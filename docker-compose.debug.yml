@@ -1,0 +1,42 @@
+version: "3.7"
+
+volumes:
+  pg_volume:
+
+
+services:
+  site:
+    build: .
+    restart: always
+    environment:
+      - APP_DEBUG=True
+      - DB_HOST=pg_db
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=testDB
+    ports:
+      - 8080:8080
+    volumes:
+      - ./public:/var/www/public
+      - ./resources/views:/var/www/resources/views
+    depends_on:
+      - pg_db
+    container_name: site
+
+  pg_db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=testDB
+    volumes:
+      - pg_volume:/var/lib/postgresql/data/
+    container_name: pg_db
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8000:8080
+    container_name: adminer
