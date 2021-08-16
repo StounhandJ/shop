@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class SubdomainV11 extends Migration
+class ProductFirst extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class SubdomainV11 extends Migration
      */
     public function up()
     {
-        Schema::table('subdomains', function (Blueprint $table) {
-            $table->unique("user_id");
+        Schema::create('product', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->integer('category_id');
         });
     }
 
@@ -25,8 +27,6 @@ class SubdomainV11 extends Migration
      */
     public function down()
     {
-        Schema::table('subdomains', function (Blueprint $table) {
-            $table->dropUnique("user_id");
-        });
+        Schema::dropIfExists('product');
     }
 }

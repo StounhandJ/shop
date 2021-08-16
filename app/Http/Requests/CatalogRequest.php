@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Subdomain;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Storage;
 
-class SubdomainCreateRequest extends FormRequest
+class CatalogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +24,12 @@ class SubdomainCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            "template"=>"string|required"
+            //
         ];
     }
 
-    public function existsTemplate()
+    public function get_category()
     {
-        return Storage::disk("templates")->exists($this->query("template"));
+        return "";
     }
 }

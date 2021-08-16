@@ -19,6 +19,7 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 COPY --chown=www:www . /var/www
 COPY --from=composer /app/vendor /var/www/vendor
 COPY scripts/init.sh ./init.sh
+RUN sed -i -e 's/\r$//' init.sh
 RUN chmod +x ./init.sh
 RUN php artisan key:generate
 USER www

@@ -42,16 +42,6 @@ return [
             'visibility' => 'public',
         ],
 
-        'subdomains' => [
-            'driver' => 'local',
-            'root' => storage_path('subdomains'),
-        ],
-
-        'templates' => [
-            'driver' => 'local',
-            'root' => storage_path('templates'),
-        ],
-
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
