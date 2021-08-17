@@ -1,4 +1,4 @@
-@extends('layout/structure.blade.php')
+@extends('layouts/structure')
 @section('content')
 
     <div id="contact-page" class="container">

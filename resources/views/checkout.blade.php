@@ -1,4 +1,4 @@
-@extends('layout/structure.blade.php')
+@extends('layouts/structure')
 @section('content')
 
     <section id="cart_items">
@@ -135,7 +135,7 @@
                                 <p>Web ID: 1089772</p>
                             </td>
                             <td class="cart_price">
-                                <p>$59</p>
+                                <p>59</p>
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
@@ -146,7 +146,7 @@
                                 </div>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price">$59</p>
+                                <p class="cart_total_price">59</p>
                             </td>
                             <td class="cart_delete">
                                 <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -162,7 +162,7 @@
                                 <p>Web ID: 1089772</p>
                             </td>
                             <td class="cart_price">
-                                <p>$59</p>
+                                <p>59</p>
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
@@ -173,7 +173,7 @@
                                 </div>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price">$59</p>
+                                <p class="cart_total_price">59</p>
                             </td>
                             <td class="cart_delete">
                                 <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -188,7 +188,7 @@
                                 <p>Web ID: 1089772</p>
                             </td>
                             <td class="cart_price">
-                                <p>$59</p>
+                                <p>59</p>
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
@@ -199,7 +199,7 @@
                                 </div>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price">$59</p>
+                                <p class="cart_total_price">59</p>
                             </td>
                             <td class="cart_delete">
                                 <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -211,11 +211,11 @@
                                 <table class="table table-condensed total-result">
                                     <tr>
                                         <td>Cart Sub Total</td>
-                                        <td>$59</td>
+                                        <td>59</td>
                                     </tr>
                                     <tr>
                                         <td>Exo Tax</td>
-                                        <td>$2</td>
+                                        <td>2</td>
                                     </tr>
                                     <tr class="shipping-cost">
                                         <td>Shipping Cost</td>
@@ -223,7 +223,7 @@
                                     </tr>
                                     <tr>
                                         <td>Total</td>
-                                        <td><span>$61</span></td>
+                                        <td><span>61</span></td>
                                     </tr>
                                 </table>
                             </td>
