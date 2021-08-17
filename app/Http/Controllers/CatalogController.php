@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function category(CatalogRequest $request)
+    public function index(CatalogRequest $request, $department="")
     {
-        dd($request->get_category());
+        dd($department);
     }
 }
