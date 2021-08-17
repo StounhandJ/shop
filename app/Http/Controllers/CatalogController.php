@@ -3,12 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CatalogRequest;
+use App\Models\Category;
+use App\Models\Department;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogRequest $request, $department="")
+    public function index(CatalogRequest $request, $departmentName="", $categoryName="")
     {
-        dd($department);
+        $department = Department::getDepartmentOrFirstDepartment($departmentName);
+
+        if (is_null($department)) abort(404);
+
+        $category = Category::getCategoryOrFirstCategory($categoryName, $department);
+
+        if (is_null($category)) abort(404);
+
+        $departments = Department::all();
+        $categories = Category::getAllCategoriesOfDepartment($department);
+        $products = Product::getAllCategoriesOfCategory($category);
+
+        if ($products->isEmpty()) abort(404);
+
+        dd($department, $category, $departments, $categories, $products);
     }
 }

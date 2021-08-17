@@ -13,8 +13,8 @@ class ProductForKey extends Migration
      */
     public function up()
     {
-        Schema::table('product', function (Blueprint $table) {
-            $table->foreign("category_id")->references('id')->on('category');
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign("category_id")->references('id')->on('categories');
         });
     }
 
@@ -25,7 +25,7 @@ class ProductForKey extends Migration
      */
     public function down()
     {
-        Schema::table('product', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->dropForeign("category_id");
         });
     }

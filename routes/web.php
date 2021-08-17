@@ -18,4 +18,4 @@ Route::get('/test', function () {
     return view('welcome');
 });
 
-Route::get('/{department?}', [CatalogController::class, "index"])->where('department', '[A-Za-z]+');
+Route::get('/{departmentName?}/{categoryName?}', [CatalogController::class, "index"])->where('department', '[A-Za-z]+');

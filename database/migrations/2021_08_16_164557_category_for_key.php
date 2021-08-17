@@ -13,8 +13,8 @@ class CategoryForKey extends Migration
      */
     public function up()
     {
-        Schema::table('category', function (Blueprint $table) {
-            $table->foreign("parent_category_id")->references('id')->on('category');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->foreign("parent_category_id")->references('id')->on('categories');
         });
     }
 
@@ -25,7 +25,7 @@ class CategoryForKey extends Migration
      */
     public function down()
     {
-         Schema::table('category', function (Blueprint $table) {
+         Schema::table('categories', function (Blueprint $table) {
             $table->dropForeign("parent_category_id");
         });
     }

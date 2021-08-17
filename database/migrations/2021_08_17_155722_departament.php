@@ -13,14 +13,14 @@ class Departament extends Migration
      */
     public function up()
     {
-        Schema::create('departament', function (Blueprint $table) {
+        Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
         });
 
-        Schema::table('category', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->integer("parent_category_id")->nullable(true)->change();
-            $table->foreignId("departament_id")->references('id')->on('departament');
+            $table->foreignId("department_id")->references('id')->on('departments');
         });
     }
 
@@ -31,11 +31,11 @@ class Departament extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departament');
+        Schema::dropIfExists('departments');
 
-        Schema::table('category', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->integer("parent_category_id")->nullable(false)->change();
-            $table->dropColumn("departament_id");
+            $table->dropColumn("department_id");
         });
     }
 }
