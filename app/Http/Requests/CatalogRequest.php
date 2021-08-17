@@ -28,8 +28,8 @@ class CatalogRequest extends FormRequest
         ];
     }
 
-    public function get_category()
+    public function get_category(): string
     {
-        return "";
+        return $this->query("c") ?? "";
     }
 }
