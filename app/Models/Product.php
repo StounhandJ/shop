@@ -70,11 +70,21 @@ class Product extends Model
             ->get();
     }
 
-    public static function getTotalPageOfCategory(Category $category)
+    public static function getTotalPageOfCategory(Category $category) : int
     {
         $productCount = Product::where("category_id", $category->getId())->count();
         if ($productCount==0) $totalPage = 0;
         else $totalPage = ceil($productCount/Product::$productsOnPage);
         return $totalPage;
+    }
+
+    public static function getListProduct(array $ids): array
+    {
+        $products = [];
+        foreach ($ids as $id){
+            $product = Product::where("id", $id)->first();
+            if (!is_null($product)) $products[] = $product;
+        }
+        return $products;
     }
 }

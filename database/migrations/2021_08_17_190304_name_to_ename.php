@@ -21,10 +21,6 @@ class NameToEname extends Migration
             $table->string("e_name");
         });
 
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string("e_name");
-        });
-
         Schema::table('products', function (Blueprint $table) {
             $table->renameColumn("name", "e_name");
         });

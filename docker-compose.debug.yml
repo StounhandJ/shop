@@ -19,7 +19,8 @@ services:
     volumes:
       - ./public:/var/www/public
       - ./app:/var/www/app
-      - ./resources/views:/var/www/resources/views
+      - ./routes:/var/www/routes
+      - ./resources:/var/www/resources
     depends_on:
       - pg_db
     container_name: site

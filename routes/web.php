@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,16 @@ Route::get('/test', function () {
     return view('welcome');
 });
 
-Route::get('/{departmentName?}/{categoryName?}', [CatalogController::class, "index"])->where('department', '[A-Za-z]+');
+Route::get('/', [CatalogController::class, "index"])->name("index");
+
+
+Route::get('/c/{departmentEName}/{categoryEName?}', [CatalogController::class, "index"])
+    ->where('departmentEName', '[A-Za-z]+')
+    ->where('categoryEName', '[A-Za-z]+')
+    ->name("catalog.index");
+
+
+Route::prefix("cart")->group(function (){
+    Route::get('/', [CartController::class, "index"]);
+    Route::post('/add', [CartController::class, "addProduct"]);
+});

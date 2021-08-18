@@ -10,13 +10,13 @@ use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogRequest $request, $departmentName="", $categoryName="")
+    public function index(CatalogRequest $request, $departmentEName="", $categoryEName="")
     {
-        $department = Department::getDepartmentOrFirstDepartment($departmentName);
+        $department = Department::getDepartmentOrFirstDepartment($departmentEName);
 
         if (is_null($department)) abort(404);
 
-        $category = Category::getCategoryOrFirstCategory($categoryName, $department);
+        $category = Category::getCategoryOrFirstCategory($categoryEName, $department);
 
         if (is_null($category)) abort(404);
 
@@ -31,5 +31,6 @@ class CatalogController extends Controller
         dd($department, $category, $departments, $categories, $products, $page, $totalPage);
 //        return view("welcome", compact("department", "departments",
 //        "category", "categories", "products", "page", "totalPage"));
+//        какую-то информация получать в самом шаблоне, как departments
     }
 }
