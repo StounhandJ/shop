@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Maker extends Model
 {
     use HasFactory;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
 }

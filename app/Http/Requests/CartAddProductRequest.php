@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CatalogRequest extends FormRequest
+class CartAddProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,20 @@ class CatalogRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "p_id"=> "required|integer|c_exists:products,id"
         ];
     }
 
-    public function getPage(): string
+    public function getProductID(): int
     {
-        $page = $this->query("p");
-        if (is_numeric($page)) $page = (int) $page;
-        else $page = 1;
-        return $page;
+        return (int) $this->query("p_id");
+    }
+
+    public function getCart(): array
+    {
+        $cartString = $this->cookie("cart");
+        if (!is_null($cartString)) $cart = json_decode($cartString);
+        else $cart = [];
+        return $cart;
     }
 }

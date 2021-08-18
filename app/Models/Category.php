@@ -37,10 +37,49 @@ class Category extends Model
 
     ];
 
-    public function parent_category()
+    public function getId()
     {
-        if ($this->parent_category_id!=$this->id)
+        return $this->id;
+    }
+
+    public function getParentCategoryId()
+    {
+        return $this->parent_category_id;
+    }
+
+    public function getParentCategory()
+    {
+        if ($this->getParentCategoryId()!=$this->getId())
             return $this->hasOne(Category::class)->getResults();
         return Null;
     }
+
+    public function getDepartment()
+    {
+        return $this->hasOne(Department::class)->getResults();
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getEName()
+    {
+        return $this->e_name;
+    }
+
+
+
+    public static function getCategoryOrFirstCategory(string $categoryEName, Department $department)
+    {
+        if ($categoryEName=="") return Category::first();
+        return Category::where("e_name", $categoryEName)->where("department_id", $department->getId())->first();
+    }
+
+    public static function getAllCategoriesOfDepartment(Department $department)
+    {
+        return Category::where("department_id", $department->getId())->get();
+    }
+
 }

@@ -18,7 +18,10 @@ services:
       - 8080:8080
     volumes:
       - ./public:/var/www/public
-      - ./resources/views:/var/www/resources/views
+      - ./app:/var/www/app
+      - ./config:/var/www/config
+      - ./routes:/var/www/routes
+      - ./resources:/var/www/resources
     depends_on:
       - pg_db
     container_name: site
