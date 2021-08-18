@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +35,19 @@ Route::get('/p/{productID}', [ProductController::class, "index"])
     ->where('productID', '[1-9]+')
     ->name("product.index");
 
-Route::prefix("cart")->group(function (){
-    Route::get('/', [CartController::class, "index"])->name("cart.index");
-    Route::post('/add', [CartController::class, "addProduct"])->name("cart.add");
+Route::prefix("cart")->name("cart.")->group(function (){
+    Route::get('/', [CartController::class, "index"])->name("index");
+    Route::post('/add', [CartController::class, "addProduct"])->name("add");
+});
+
+Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
+    Route::get('/', function (){
+        return "FFF".Auth::guard("admin")->check();
+    })->name("index")->middleware("auth:admin");
+
+    Route::get('/login', [AdminController::class, "login"])->name("login.page");
+
+    Route::post('/login', [AdminAuthController::class, "login"])->name("login");
+
+    Route::get('/logout', [AdminAuthController::class, "logout"])->name("logout")->middleware("auth:admin");
 });

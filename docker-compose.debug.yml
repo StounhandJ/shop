@@ -19,6 +19,7 @@ services:
     volumes:
       - ./public:/var/www/public
       - ./app:/var/www/app
+      - ./config:/var/www/config
       - ./routes:/var/www/routes
       - ./resources:/var/www/resources
     depends_on:
