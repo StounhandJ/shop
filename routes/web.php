@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,11 @@ Route::get('/c/{departmentEName}/{categoryEName?}', [CatalogController::class, "
     ->where('categoryEName', '[A-Za-z]+')
     ->name("catalog.index");
 
+Route::get('/p/{productID}', [ProductController::class, "index"])
+    ->where('productID', '[1-9]+')
+    ->name("product.index");
 
 Route::prefix("cart")->group(function (){
-    Route::get('/', [CartController::class, "index"]);
-    Route::post('/add', [CartController::class, "addProduct"]);
+    Route::get('/', [CartController::class, "index"])->name("cart.index");
+    Route::post('/add', [CartController::class, "addProduct"])->name("cart.add");
 });
