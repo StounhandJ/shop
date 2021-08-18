@@ -28,8 +28,11 @@ class CatalogRequest extends FormRequest
         ];
     }
 
-    public function get_category(): string
+    public function getPage(): string
     {
-        return $this->query("c") ?? "";
+        $page = $this->query("p");
+        if (is_numeric($page)) $page = (int) $page;
+        else $page = 1;
+        return $page;
     }
 }

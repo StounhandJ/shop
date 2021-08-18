@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     use HasFactory;
+
+    public static $productsOnPage = 2;
 
     /**
      * The attributes that are mass assignable.
@@ -17,24 +20,6 @@ class Product extends Model
     protected $fillable = [
         'name',
         'category_id',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-
     ];
 
     public function getId()
@@ -77,8 +62,19 @@ class Product extends Model
         return $this->price;
     }
 
-    public static function getAllCategoriesOfCategory(Category $category)
+    public static function getPageCategoriesOfCategory(Category $category, int $page)
     {
-        return Product::where("category_id", $category->getId())->get();
+        return Product::where("category_id", $category->getId())
+            ->limit(Product::$productsOnPage)
+            ->offset(($page-1)*Product::$productsOnPage)
+            ->get();
+    }
+
+    public static function getTotalPageOfCategory(Category $category)
+    {
+        $productCount = Product::where("category_id", $category->getId())->count();
+        if ($productCount==0) $totalPage = 0;
+        else $totalPage = ceil($productCount/Product::$productsOnPage);
+        return $totalPage;
     }
 }

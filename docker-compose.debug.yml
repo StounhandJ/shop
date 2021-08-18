@@ -18,6 +18,7 @@ services:
       - 8080:8080
     volumes:
       - ./public:/var/www/public
+      - ./app:/var/www/app
       - ./resources/views:/var/www/resources/views
     depends_on:
       - pg_db

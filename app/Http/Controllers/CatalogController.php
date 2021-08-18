@@ -20,12 +20,16 @@ class CatalogController extends Controller
 
         if (is_null($category)) abort(404);
 
+        $page = $request->getPage();
+        $totalPage = Product::getTotalPageOfCategory($category);
         $departments = Department::all();
         $categories = Category::getAllCategoriesOfDepartment($department);
-        $products = Product::getAllCategoriesOfCategory($category);
+        $products = Product::getPageCategoriesOfCategory($category, $page);
 
         if ($products->isEmpty()) abort(404);
 
-        dd($department, $category, $departments, $categories, $products);
+        dd($department, $category, $departments, $categories, $products, $page, $totalPage);
+//        return view("welcome", compact("department", "departments",
+//        "category", "categories", "products", "page", "totalPage"));
     }
 }
