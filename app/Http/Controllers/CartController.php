@@ -16,8 +16,8 @@ class CartController extends Controller
     {
         $products = Product::getListProduct($request->getCart());
         $departments = Department::all();
-        dd($departments, $products);
-//        return view("welcome", compact("products", "departments"));
+        // dd($departments, $products);
+       return view("cart", compact("products", "departments"));
     }
 
     public function addProduct(CartAddProductRequest $request)

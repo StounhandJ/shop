@@ -637,6 +637,10 @@ ul.sub-menu {
   padding-top: 15px;
 }
 
+.category-active{
+  color: rgba(254, 152, 15, 0.6) !important;
+}
+
 .left-sidebar h2, .brands_products h2 {
   color: #FE980F;
   font-family: 'Roboto', sans-serif;

@@ -1,8 +1,5 @@
 version: "3.7"
 
-volumes:
-  pg_volume:
-
 
 services:
   site:
@@ -34,7 +31,7 @@ services:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=testDB
     volumes:
-      - pg_volume:/var/lib/postgresql/data/
+      - ./db_pg:/var/lib/postgresql/data/
     container_name: pg_db
 
   adminer:

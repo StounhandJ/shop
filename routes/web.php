@@ -55,7 +55,7 @@ Route::get('/p/{productID}', [ProductController::class, "index"])
 
 Route::prefix("cart")->name("cart.")->group(function (){
     Route::get('/', [CartController::class, "index"])->name("index");
-    Route::post('/add', [CartController::class, "addProduct"])->name("add");
+    Route::get('/add', [CartController::class, "addProduct"])->name("add");
 });
 
 Route::prefix("43hgf36jfg")->name("admin.")->group(function (){

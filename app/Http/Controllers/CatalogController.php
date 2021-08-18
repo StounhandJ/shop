@@ -28,9 +28,9 @@ class CatalogController extends Controller
 
         if ($products->isEmpty()) abort(404);
 
-        dd($department, $category, $departments, $categories, $products, $page, $totalPage);
-//        return view("welcome", compact("department", "departments",
-//        "category", "categories", "products", "page", "totalPage"));
+        // dd($department, $category, $departments, $categories, $products, $page, $totalPage);
+       return view("index", compact("department", "departments",
+       "category", "categories", "products", "page", "totalPage"));
 //        какую-то информация получать в самом шаблоне, как departments
     }
 }
