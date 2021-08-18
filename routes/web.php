@@ -42,12 +42,34 @@ Route::prefix("cart")->name("cart.")->group(function (){
 
 Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
     Route::get('/', function (){
-        return "FFF".Auth::guard("admin")->check();
+        return "Index page for admin";
     })->name("index")->middleware("auth:admin");
 
     Route::get('/login', [AdminController::class, "login"])->name("login.page");
-
     Route::post('/login', [AdminAuthController::class, "login"])->name("login");
-
     Route::get('/logout', [AdminAuthController::class, "logout"])->name("logout")->middleware("auth:admin");
+
+//    Route::prefix("/department")->name("department.")->middleware("auth:admin")->group(function (){
+//        Route::get('/create', [...Controller::class, "create"])->name("create");
+//        Route::get('/department/change', [...Controller::class, "change"])->name("change");
+//        Route::get('/department/delete', [...Controller::class, "delete"])->name("delete");
+//    });
+//
+//    Route::prefix("/category")->name("category.")->middleware("auth:admin")->group(function (){
+//        Route::get('/create', [...Controller::class, "create"])->name("create");
+//        Route::get('/change', [...Controller::class, "change"])->name("change");
+//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
+//    });
+//
+//    Route::prefix("/product")->name("product.")->middleware("auth:admin")->group(function (){
+//        Route::get('/create', [...Controller::class, "create"])->name("create");
+//        Route::get('/change', [...Controller::class, "change"])->name("change");
+//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
+//    });
+//
+//    Route::prefix("/maker")->name("maker.")->middleware("auth:admin")->group(function (){
+//        Route::get('/create', [...Controller::class, "create"])->name("create");
+//        Route::get('/change', [...Controller::class, "change"])->name("change");
+//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
+//    });
 });
