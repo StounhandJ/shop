@@ -5,6 +5,26 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
+::-webkit-scrollbar {
+  width: 7px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f7bb6e;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FE980F;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0F0F0;
+  border-radius: 0px;
+  box-shadow: inset 0px 0px 0px 0px #F0F0F0;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background: ;
@@ -245,6 +265,7 @@ a#scrollUp i {
 .mainmenu ul li a:hover, .mainmenu ul li a.active, .shop-menu ul li a.active {
   background: none;
   color: #fdb45e;
+  text-transform: capitalize;
 }
 
 .search_box input {
@@ -637,7 +658,11 @@ ul.sub-menu {
   padding-top: 15px;
 }
 
-.category-active{
+.active {
+  color: rgba(254, 152, 15, 0.6) !important;
+}
+
+.panel-title a:hover {
   color: rgba(254, 152, 15, 0.6) !important;
 }
 
@@ -810,7 +835,7 @@ h2.title:before {
   overflow: hidden;
 }
 
-h2.title {
+h2.title, h1.title {
   color: #FE980F;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
@@ -825,6 +850,17 @@ h2.title {
   border: 1px solid #F7F7F5;
   overflow: hidden;
   margin-bottom: 30px;
+}
+
+.link-disabled{
+  pointer-events: none;
+  cursor: default;
+  background: transparent !important;
+}
+
+.link-disabled .fa-check-circle:before{
+  color: white;
+  font-size: 20px;
 }
 
 .single-products {
@@ -856,6 +892,14 @@ h2.title {
   font-size: 14px;
   font-weight: 400;
   color: #696763;
+  margin-top: 15px;
+  text-transform: capitalize;
+}
+
+.hidden-link{
+  visibility: hidden !important;
+  border: none;
+  background: none;
 }
 
 .productinfo img {
@@ -911,6 +955,18 @@ h2.title {
   font-size: 14px;
   font-weight: 400;
   color: #fff;
+  text-transform: capitalize;
+}
+
+.overlay-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay-buttons a{
+  display: block;
+  margin: 0px 5px;
 }
 
 .add-to-cart {
@@ -934,7 +990,7 @@ h2.title {
   margin-bottom: 10px;
 }
 
-.add-to-cart i {
+.add-to-cart i.fa-info-circle {
   margin-right: 5px;
 }
 
@@ -1064,10 +1120,13 @@ h2.title {
 }
 
 .pagination {
-  display: inline-block;
-  margin-bottom: 25px;
-  margin-top: 0;
-  padding-left: 15px;
+  margin: 20px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination>li {
+  display: block !important;
 }
 
 .pagination li:first-child a, .pagination li:first-child span {

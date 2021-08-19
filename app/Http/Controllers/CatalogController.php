@@ -25,12 +25,13 @@ class CatalogController extends Controller
         $departments = Department::all();
         $categories = Category::getAllCategoriesOfDepartment($department);
         $products = Product::getPageCategoriesOfCategory($category, $page);
+        $cart_products_in = $request->getCart();
 
         if ($products->isEmpty()) abort(404);
 
         // dd($department, $category, $departments, $categories, $products, $page, $totalPage);
-       return view("index", compact("department", "departments",
-       "category", "categories", "products", "page", "totalPage"));
+       return view("shop", compact("department", "departments",
+       "category", "categories", "products", "page", "totalPage", "cart_products_in"));
 //        какую-то информация получать в самом шаблоне, как departments
     }
 }

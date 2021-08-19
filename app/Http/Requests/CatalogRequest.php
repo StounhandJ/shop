@@ -35,4 +35,12 @@ class CatalogRequest extends FormRequest
         else $page = 1;
         return $page;
     }
+    
+    public function getCart(): array
+    {
+        $cartString = $this->cookie("cart");
+        if (!is_null($cartString)) $cart = json_decode($cartString);
+        else $cart = [];
+        return $cart;
+    }
 }
