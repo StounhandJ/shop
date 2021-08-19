@@ -15,21 +15,22 @@ class CartController extends Controller
 {
     public function index(CartIndexRequest $request)
     {
-        $products = Product::getListProduct($request->getCart());
+        $cart_products_in = Product::getListProduct($request->getCart());
         $departments = Department::all();
         // dd($departments, $products);
-       return view("cart", compact("products", "departments"));
+       return view("cart", compact("cart_products_in", "departments"));
     }
 
     public function addProduct(CartAddProductRequest $request)
     {
         $cart = $request->getCart();
         $productID = $request->getProductID();
-
+        if (!Product::where("id", $productID)->exists()) return response()->json(["message"=>"error"], 404);
         if (!in_array($productID, $cart))$cart[] = $productID;
+        else return response()->json(["message"=>"already added"], 401);
 
         $cookie = Cookie::forever('cart', json_encode($cart));
-        return Redirect::back()->cookie($cookie);
+        return response()->json(["message"=>"success", "cart"=>$cart], 200)->cookie($cookie);
     }
 
     public function delProduct(CartDelProductRequest $request)

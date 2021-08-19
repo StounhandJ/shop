@@ -207,7 +207,7 @@ a#scrollUp i {
 
 .shop-menu ul li {
   display: inline-block;
-  padding-left: 15px;
+  padding-left: 6px;
   padding-right: 15px;
 }
 
@@ -223,7 +223,6 @@ a#scrollUp i {
   font-weight: 300;
   padding: 0;
   padding-right: 0;
-  margin-top: 10px;
 }
 
 .shop-menu ul li a i {
@@ -260,12 +259,15 @@ a#scrollUp i {
   font-weight: 300;
   padding: 0;
   padding-bottom: 10px;
+  text-transform: lowercase;
 }
 
+.mainmenu ul li a::first-letter{
+  text-transform: uppercase;
+}
 .mainmenu ul li a:hover, .mainmenu ul li a.active, .shop-menu ul li a.active {
   background: none;
   color: #fdb45e;
-  text-transform: capitalize;
 }
 
 .search_box input {
@@ -933,6 +935,23 @@ h2.title, h1.title {
   bottom: 0;
   text-align: center;
   width: 100%;
+}
+
+.count-products-in-cart{
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: #FE980F;
+  width: 25px;
+  height: 25px;
+  padding: 5px !important;
+  border-radius: 50%;
+}
+
+.carts-icons{
+  display: flex;
+  align-items: center;
 }
 
 .product-overlay .add-to-cart {

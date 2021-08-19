@@ -10,7 +10,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    public static $productsOnPage = 2;
+    public static $productsOnPage = 3;
 
     /**
      * The attributes that are mass assignable.

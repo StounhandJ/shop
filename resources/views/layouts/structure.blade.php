@@ -16,10 +16,14 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 </head>
 <!--/head-->
 
 <body>
+    <input id="csrf-token" type="hidden" name="_token" value="{{ csrf_token() }}" />
     <header id="header">
         <!--header-->
         <div class="header_top">
@@ -61,7 +65,8 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
-                            <ul class="nav navbar-nav">
+                            <ul class="nav navbar-nav carts-icons">
+                                <li class="count-products-in-cart">{{isset($cart_products_in) ? count($cart_products_in) : 0}}</li>
                                 <li><a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"></i>Корзина</a></li>
                             </ul>
                         </div>
@@ -193,7 +198,7 @@
 
     </footer>
     <!--/Footer-->
-    <script src="/js/jquery.js"></script>
+   <script src="/js/add-to-cart.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.scrollUp.min.js"></script>
     <script src="/js/shit.js"></script>

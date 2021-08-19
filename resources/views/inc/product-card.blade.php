@@ -17,7 +17,7 @@
                     <div class="overlay-buttons">
                         <a href="{{ route('product.index', ['productID' => $item->getId()]) }}"
                             class="btn btn-default add-to-cart"><i class="fa fa-info-circle"></i>Подробнее</a>
-                        <a href="{{ route('cart.add', ['p_id' => $item->getId()]) }}"
+                        <a id="{{$item->getId()}}"
                             class="btn btn-default add-to-cart {{in_array($item->getID(), $cart_products_in) ? 'link-disabled' : ''}}">
                             <i class="fa {{in_array($item->getID(), $cart_products_in) ? 'fa-check-circle' : 'fa-shopping-cart'}}"></i>
                         </a>

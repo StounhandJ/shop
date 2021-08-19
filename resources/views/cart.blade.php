@@ -21,7 +21,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product)
+                        @foreach ($cart_products_in as $product)
                             <tr>
                                 <td class="cart_product">
                                     <a href=""><img src="images/cart/one.png" alt=""></a>
@@ -49,6 +49,9 @@
                                 </td>
                             </tr>
                         @endforeach
+                        @if (count($cart_products_in) == 0)
+                            Корзина пуста
+                        @endif
                     </tbody>
                 </table>
             </div>

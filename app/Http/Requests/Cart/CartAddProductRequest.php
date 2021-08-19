@@ -31,6 +31,6 @@ class CartAddProductRequest extends FormRequest
 
     public function getProductID(): int
     {
-        return (int) $this->query("p_id");
+        return (int) $this->input("p_id");
     }
 }
