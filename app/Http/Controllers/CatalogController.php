@@ -16,7 +16,7 @@ class CatalogController extends Controller
 
         if (is_null($department)) abort(404);
 
-        $category = Category::getCategoryOrFirstCategory($categoryEName, $department);
+        $category = Category::getCategoryOrFirstCategoryOfDepartment($categoryEName, $department);
 
         if (is_null($category)) abort(404);
 
@@ -32,6 +32,5 @@ class CatalogController extends Controller
         // dd($department, $category, $departments, $categories, $products, $page, $totalPage);
        return view("shop", compact("department", "departments",
        "category", "categories", "products", "page", "totalPage", "cart_products_in"));
-//        какую-то информация получать в самом шаблоне, как departments
     }
 }

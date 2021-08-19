@@ -71,9 +71,9 @@ class Category extends Model
 
 
 
-    public static function getCategoryOrFirstCategory(string $categoryEName, Department $department)
+    public static function getCategoryOrFirstCategoryOfDepartment(string $categoryEName, Department $department)
     {
-        if ($categoryEName=="") return Category::first();
+        if ($categoryEName=="") return Category::where("department_id", $department->getId())->first();
         return Category::where("e_name", $categoryEName)->where("department_id", $department->getId())->first();
     }
 
