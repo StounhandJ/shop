@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Cart;
 
-use App\Http\Requests\Cart\Cart;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CatalogRequest extends FormRequest
+class CartIndexRequest extends FormRequest
 {
     use Cart;
     /**
@@ -28,13 +27,5 @@ class CatalogRequest extends FormRequest
         return [
             //
         ];
-    }
-
-    public function getPage(): string
-    {
-        $page = $this->query("p");
-        if (is_numeric($page)) $page = (int) $page;
-        else $page = 1;
-        return $page;
     }
 }

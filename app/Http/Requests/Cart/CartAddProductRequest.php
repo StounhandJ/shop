@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Cart;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 class CartAddProductRequest extends FormRequest
 {
+    use Cart;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -31,13 +32,5 @@ class CartAddProductRequest extends FormRequest
     public function getProductID(): int
     {
         return (int) $this->query("p_id");
-    }
-
-    public function getCart(): array
-    {
-        $cartString = $this->cookie("cart");
-        if (!is_null($cartString)) $cart = json_decode($cartString);
-        else $cart = [];
-        return $cart;
     }
 }

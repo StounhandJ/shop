@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Cart;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartIndexRequest extends FormRequest
+class CartDelProductRequest extends FormRequest
 {
+    use Cart;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,15 +25,12 @@ class CartIndexRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "p_id"=> "required|integer|c_exists:products,id"
         ];
     }
 
-    public function getCart(): array
+    public function getProductID(): int
     {
-        $cartString = $this->cookie("cart");
-        if (!is_null($cartString)) $cart = json_decode($cartString);
-        else $cart = [];
-        return $cart;
+        return (int) $this->query("p_id");
     }
 }
