@@ -22,6 +22,13 @@ class Product extends Model
         'category_id',
     ];
 
+    protected $appends = ['url'];
+
+    public function getUrlAttribute()
+    {
+        return route('product.index', ['productID' => $this->getId()]);
+    }
+
     public function getId()
     {
         return $this->id;
@@ -62,23 +69,23 @@ class Product extends Model
         return $this->price;
     }
 
-    public static function getProductsOfCategoryBuilder(Category $category) : Builder
+    public static function getProductsOfCategoryBuilder(Category $category): Builder
     {
         return Product::where("category_id", $category->getId());
     }
 
-    public static function getTotalPageOfCategory(Category $category) : int
+    public static function getTotalPageOfCategory(Category $category): int
     {
         $productCount = Product::where("category_id", $category->getId())->count();
-        if ($productCount==0) $totalPage = 0;
-        else $totalPage = ceil($productCount/Product::$productsOnPage);
+        if ($productCount == 0) $totalPage = 0;
+        else $totalPage = ceil($productCount / Product::$productsOnPage);
         return $totalPage;
     }
 
     public static function getListProduct(array $ids): array
     {
         $products = [];
-        foreach ($ids as $id){
+        foreach ($ids as $id) {
             $product = Product::where("id", $id)->first();
             if (!is_null($product)) $products[] = $product;
         }

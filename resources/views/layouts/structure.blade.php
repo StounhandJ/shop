@@ -16,7 +16,8 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
-    <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"
+        charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
@@ -60,14 +61,15 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="{{route('index')}}"><img src="/images/home/logo.png" alt="" /></a>
+                            <a href="{{ route('index') }}"><img src="/images/home/logo.png" alt="" /></a>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav carts-icons">
                                 <li class="count-products-in-cart">?</li>
-                                <li><a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"></i>Корзина</a></li>
+                                <li><a href="{{ route('cart.index') }}"><i class="fa fa-shopping-cart"></i>Корзина</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -92,9 +94,11 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="{{route('index')}}" class="active">Главная</a></li>
+                                <li><a href="{{ route('index') }}" class="active">Главная</a></li>
                                 @foreach ($departments as $item)
-                                <li><a href="{{route('catalog.index', ['departmentEName'=>$item->getEName()])}}" class={{ isset($current_department) &&  $item->getId() == $current_department->getId() ? 'active' : '' }}>{{$item->getName()}}</a></li>
+                                    <li><a href="{{ route('catalog.index', ['departmentEName' => $item->getEName()]) }}"
+                                            class={{ isset($current_department) && $item->getId() == $current_department->getId() ? 'active' : '' }}>{{ $item->getName() }}</a>
+                                    </li>
                                 @endforeach
                                 {{-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
@@ -108,8 +112,11 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="search_box pull-right">
-                            <input id="search" type="text" placeholder="Поиск" />
+                        <div class="search-content pull-right">
+                            <input type="search" placeholder="Поиск..." id="search" autocomplete="off">
+                            <div class="search-dropdown-content">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -198,11 +205,12 @@
 
     </footer>
     <!--/Footer-->
-   <script src="/js/add-to-cart.js"></script>
+    <script src="/js/add-to-cart.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.scrollUp.min.js"></script>
     <script src="/js/shit.js"></script>
     <script src="/js/jquery.prettyPhoto.js"></script>
+    <script src="/js/search.js"></script>
     <script src="/js/main.js"></script>
 </body>
 
