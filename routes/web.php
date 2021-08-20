@@ -57,6 +57,7 @@ Route::prefix("cart")->name("cart.")->group(function (){
     Route::get('/', [CartController::class, "index"])->name("index");
     Route::post('/add', [CartController::class, "addProduct"])->name("add");
     Route::get('/del', [CartController::class, "delProduct"])->name("del");
+    Route::post('/info', [CartController::class, "info"])->name("info");
 });
 
 Route::prefix("43hgf36jfg")->name("admin.")->group(function (){

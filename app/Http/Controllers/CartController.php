@@ -44,4 +44,9 @@ class CartController extends Controller
         $cookie = Cookie::forever('cart', json_encode($cart));
         return Redirect::back()->cookie($cookie);
     }
+
+    public function info(CartIndexRequest $request)
+    {
+        return response()->json(["message"=>"success", "cart"=>$request->getCart()], 200);
+    }
 }

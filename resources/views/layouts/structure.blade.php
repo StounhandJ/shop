@@ -66,7 +66,7 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav carts-icons">
-                                <li class="count-products-in-cart">{{isset($cart_products_in) ? count($cart_products_in) : 0}}</li>
+                                <li class="count-products-in-cart">?</li>
                                 <li><a href="{{route('cart.index')}}"><i class="fa fa-shopping-cart"></i>Корзина</a></li>
                             </ul>
                         </div>
@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="search_box pull-right">
-                            <input type="text" placeholder="Поиск" />
+                            <input id="search" type="text" placeholder="Поиск" />
                         </div>
                     </div>
                 </div>

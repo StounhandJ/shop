@@ -270,7 +270,7 @@ a#scrollUp i {
   color: #fdb45e;
 }
 
-.search_box input {
+#search {
   background: #F0F0E9;
   border: medium none;
   color: #B2B2B2;
@@ -284,6 +284,7 @@ a#scrollUp i {
   background-image: url(../images/home/searchicon.png);
   background-repeat: no-repeat;
   background-position: 130px;
+  position: relative;
 }
 
 /*  Dropdown menu*/
@@ -857,12 +858,6 @@ h2.title, h1.title {
 .link-disabled{
   pointer-events: none;
   cursor: default;
-  background: transparent !important;
-}
-
-.link-disabled .fa-check-circle:before{
-  color: white;
-  font-size: 20px;
 }
 
 .single-products {

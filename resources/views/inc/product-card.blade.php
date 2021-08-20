@@ -18,8 +18,8 @@
                         <a href="{{ route('product.index', ['productID' => $item->getId()]) }}"
                             class="btn btn-default add-to-cart"><i class="fa fa-info-circle"></i>Подробнее</a>
                         <a id="{{$item->getId()}}"
-                            class="btn btn-default add-to-cart {{in_array($item->getID(), $cart_products_in) ? 'link-disabled' : ''}}">
-                            <i class="fa {{in_array($item->getID(), $cart_products_in) ? 'fa-check-circle' : 'fa-shopping-cart'}}"></i>
+                            class="btn btn-default add-to-cart">
+                            <i class="fa fa-shopping-cart"></i>
                         </a>
                     </div>
                 </div>
