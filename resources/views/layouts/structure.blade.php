@@ -113,10 +113,11 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="search-content pull-right">
-                            <input type="search" placeholder="Поиск..." id="search" autocomplete="off">
-                            <div class="search-dropdown-content">
-
+                            <div class="search-icons">
+                                <input type="search" placeholder="Поиск..." id="search" autocomplete="off">
+                                <button><i class="fa fa-times-circle" aria-hidden="true" style="margin-top: 2px; font-size: 18px;"></i></button>
                             </div>
+                            <div class="search-dropdown-content"></div>
                         </div>
                     </div>
                 </div>

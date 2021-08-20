@@ -7,10 +7,14 @@
                 <div class="col-sm-9 padding-right">
                     <div class="features_items">
                         <!--features_items-->
-                        <h1 class="title text-center">{{$current_category->getName()}}</h1>
-                        @foreach ($paginate as $item)
-                            @include('inc.product-card')
-                        @endforeach
+                        <h1 class="title text-center">{{ $current_category->getName() }}</h1>
+                        @if ($paginate->isEmpty())
+                            Товаров нет
+                        @else
+                            @foreach ($paginate as $item)
+                                @include('inc.product-card')
+                            @endforeach
+                        @endif
                     </div>
                     <!--features_items-->
                 </div>

@@ -1,23 +1,35 @@
 $(document).ready(function () {
+    $(".search-icons>button").hide();
+    $(".search-icons>button").click(function () {
+        $("#search")[0].value = '';
+        $(this).hide();
+    });
     $("#search").focus(function () {
         $("#search").on("input", function () {
             $(".search-dropdown-content").slideDown();
-            var formData = new FormData();
-            formData.append("p_title", $(this)[0].value);
+            if ($(this)[0].value != '') {
+                $(".search-icons>button").show();
+            }
             $.ajax({
                 type: "GET",
                 cache: false,
-                processData: false,
-                contentType: false,
-                data: formData,
+                data: {
+                    'p_title': $(this)[0].value
+                },
                 url: "/search/products",
                 success: function (data) {
+                    $("a.search-product-link").remove();
                     data["products"].forEach((item) => {
                         console.log(item);
                         $(".search-dropdown-content").append(
-                            `<a href="#about" class="search-product-link">${item.title}</a>`
+                            `<a href="${item.url}" class="search-product-link">${item.title}</a>`
                         );
                     });
+                    if (data['products'].length == 0) {
+                        $(".search-dropdown-content").append(
+                            `<a class="search-product-link">Товары не найдено</a>`
+                        );
+                    }
                 },
                 error: function () {
                     console.log("Ошибка");

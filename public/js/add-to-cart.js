@@ -8,7 +8,7 @@ var formData = new FormData();
         data: formData,
         url: "/cart/info",
         success: function (data) {
-            console.log("Данные обновлены");
+            // console.log("Данные обновлены");
             update(data['cart']);
         },
         error: function () {

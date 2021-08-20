@@ -41,7 +41,7 @@ class ProductSearchRequest extends FormRequest
 
     public function validateProductTitle()
     {
-        return !Validator::make($this->all("p_title"),["p_title"=>"required|min:2"])->fails();
+        return !Validator::make($this->all("p_title"),["p_title"=>"required|min:1"])->fails();
     }
 
     public function validatePriceFilter()
