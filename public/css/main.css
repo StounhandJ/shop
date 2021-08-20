@@ -27,7 +27,6 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: ;
   position: relative;
   font-weight: 400px;
 }
@@ -388,7 +387,7 @@ ul.sub-menu {
   padding-left: 5px;
 }
 
-@-webkit-keyframes fadeInUp {
+@keyframes fadeInUp {
   0% {
     opacity: 0;
     -webkit-transform: translateY(20px);
@@ -962,7 +961,6 @@ h2.title, h1.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity: ;
 }
 
 .single-products:hover .product-overlay {
@@ -1151,8 +1149,6 @@ h2.title, h1.title {
 .recommended-item-control i:hover {
   background: #ccccc6;
 }
-
-.recommended_items h2 {}
 
 .our_partners {
   overflow: hidden;
@@ -1513,10 +1509,6 @@ h2.title, h1.title {
   overflow: hidden;
 }
 
-.login-form {}
-
-.signup-form {}
-
 .login-form h2, .signup-form h2 {
   color: #696763;
   font-family: 'Roboto', sans-serif;
@@ -1564,8 +1556,6 @@ h2.title, h1.title {
   font-family: 'Roboto', sans-serif;
   padding: 6px 25px;
 }
-
-.login-form label {}
 
 .login-form label input {
   border: medium none;
@@ -1702,7 +1692,6 @@ h2.title, h1.title {
   overflow: hidden;
   text-align: center;
   width: 35px;
-  float: left;
 }
 
 .cart_quantity_input {
@@ -1803,8 +1792,6 @@ h2.title, h1.title {
   float: left;
   margin-right: 10px
 }
-
-.user_info>li>span {}
 
 .user_info input, select, textarea {
   background: #F0F0E9;
@@ -2024,8 +2011,6 @@ h2.title, h1.title {
   font-weight: 500;
   margin-bottom: 17px;
 }
-
-.single-blog-post>a {}
 
 .blog-post-area .single-blog-post a img {
   border: 1px solid #F7F7F0;

@@ -10,6 +10,9 @@ $(document).ready(function () {
             if ($(this)[0].value != '') {
                 $(".search-icons>button").show();
             }
+            else {
+                $(".search-icons>button").hide();
+            }
             $.ajax({
                 type: "GET",
                 cache: false,
