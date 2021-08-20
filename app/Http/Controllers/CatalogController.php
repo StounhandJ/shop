@@ -6,31 +6,29 @@ use App\Http\Requests\CatalogRequest;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class CatalogController extends Controller
 {
     public function index(CatalogRequest $request, $departmentEName="", $categoryEName="")
     {
-        $department = Department::getDepartmentOrFirstDepartment($departmentEName);
+        $current_department = Department::getDepartmentOrFirstDepartment($departmentEName);
 
-        if (is_null($department)) abort(404);
+        if (is_null($current_department)) abort(404);
 
-        $category = Category::getCategoryOrFirstCategoryOfDepartment($categoryEName, $department);
+        $current_category = Category::getCategoryOrFirstCategoryOfDepartment($categoryEName, $current_department);
 
-        if (is_null($category)) abort(404);
+        if (is_null($current_category)) abort(404);
 
-        $page = $request->getPage();
-        $totalPage = Product::getTotalPageOfCategory($category);
         $departments = Department::all();
-        $categories = Category::getAllCategoriesOfDepartment($department);
-        $products = Product::getPageCategoriesOfCategory($category, $page);
+        $categories = Category::getAllCategoriesOfDepartment($current_department);
+        $paginate = Product::getProductsOfCategoryBuilder($current_category)
+            ->paginate(2, ['*'], "p")
+            ->withPath(route('catalog.index', ['departmentEName' => $current_department->getEName(), 'categoryEName' => $current_category->getEName()]));
         $cart_products_in = $request->getCart();
 
-        if ($products->isEmpty()) abort(404);
+        if ($paginate->isEmpty()) abort(404);
 
-        // dd($department, $category, $departments, $categories, $products, $page, $totalPage);
-       return view("shop", compact("department", "departments",
-       "category", "categories", "products", "page", "totalPage", "cart_products_in"));
+        return view("shop", compact("current_department", "departments",
+       "current_category", "categories", "paginate", "cart_products_in"));
     }
 }

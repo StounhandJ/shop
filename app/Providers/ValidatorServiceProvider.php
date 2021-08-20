@@ -32,5 +32,9 @@ class ValidatorServiceProvider extends ServiceProvider
             $column = $data[1] ?? $attr;
             return DB::table($table)->where($column, $value)->exists();
         });
+
+        Validator::extend('gf', function($attr, $value, $data){
+            return $value!="";
+        });
     }
 }

@@ -53,6 +53,9 @@ Route::get('/p/{productID}', [ProductController::class, "index"])
     ->where('productID', '[1-9]+')
     ->name("product.index");
 
+Route::get('/search/products', [ProductController::class, "search"])
+    ->name("search.products");
+
 Route::prefix("cart")->name("cart.")->group(function (){
     Route::get('/', [CartController::class, "index"])->name("index");
     Route::post('/add', [CartController::class, "addProduct"])->name("add");
