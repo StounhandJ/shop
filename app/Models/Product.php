@@ -62,12 +62,9 @@ class Product extends Model
         return $this->price;
     }
 
-    public static function getPageCategoriesOfCategory(Category $category, int $page)
+    public static function getProductsOfCategoryBuilder(Category $category) : Builder
     {
-        return Product::where("category_id", $category->getId())
-            ->limit(Product::$productsOnPage)
-            ->offset(($page-1)*Product::$productsOnPage)
-            ->get();
+        return Product::where("category_id", $category->getId());
     }
 
     public static function getTotalPageOfCategory(Category $category) : int

@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+
 </head>
 <!--/head-->
 
@@ -94,7 +94,7 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="{{route('index')}}" class="active">Главная</a></li>
                                 @foreach ($departments as $item)
-                                <li><a href="{{route('catalog.index', ['departmentEName'=>$item->getEName()])}}" class={{ isset($department) &&  $item->getId() == $department->getId() ? 'active' : '' }}>{{$item->getName()}}</a></li>
+                                <li><a href="{{route('catalog.index', ['departmentEName'=>$item->getEName()])}}" class={{ isset($current_department) &&  $item->getId() == $current_department->getId() ? 'active' : '' }}>{{$item->getName()}}</a></li>
                                 @endforeach
                                 {{-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">

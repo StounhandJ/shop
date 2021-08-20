@@ -7,10 +7,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="{{ $item->getId() == $category->getId() ? 'active' : '' }}"
+                            <a class="{{ $item->getId() == $current_category->getId() ? 'active' : '' }}"
                                 {{-- data-toggle="collapse"  --}}
                                 data-parent="#accordian"
-                                href="{{ route('catalog.index', ['departmentEName' => $department->getEName(), 'categoryEName' => $item->getEName()]) }}">
+                                href="{{ route('catalog.index', ['departmentEName' => $current_department->getEName(), 'categoryEName' => $item->getEName()]) }}">
                                 {{-- <span class="badge pull-right"><i class="fa fa-plus"></i></span> --}}
                                 {{ $item->getName() }}
                             </a>
