@@ -7,7 +7,6 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,7 +63,7 @@ Route::prefix("action")->group(function (){
 
     Route::prefix("cart")->name("cart.")->group(function (){
         Route::post('/add', [CartActionController::class, "addProduct"])->name("add");
-        Route::get('/del', [CartActionController::class, "delProduct"])->name("del");
+        Route::post('/del', [CartActionController::class, "delProduct"])->name("del");
         Route::post('/info', [CartActionController::class, "info"])->name("info");
     });
 });

@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Action;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Action\CartAddProductRequest;
 use App\Http\Requests\Action\CartDelProductRequest;
-use App\Http\Requests\Action\CartIndexRequest;
-use App\Models\Department;
-use App\Models\Product;
+use App\Http\Requests\CartIndexRequest;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Redirect;
 
@@ -18,7 +16,6 @@ class CartActionController extends Controller
     {
         $cart = $request->getCart();
         $productID = $request->getProductID();
-        if (!Product::where("id", $productID)->exists()) return response()->json(["message"=>"error"], 404);
         if (!in_array($productID, $cart))$cart[] = $productID;
         else return response()->json(["message"=>"already added"], 401);
 
@@ -34,8 +31,10 @@ class CartActionController extends Controller
             unset($cart[$key]);
             $cart = array_values($cart);
         }
+        else return response()->json(["message"=>"The product is not in the cart"], 401);
+
         $cookie = Cookie::forever('cart', json_encode($cart));
-        return Redirect::back()->cookie($cookie);
+        return response()->json(["message"=>"success", "cart"=>$cart], 200)->cookie($cookie);
     }
 
     public function info(CartIndexRequest $request)

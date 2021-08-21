@@ -30,7 +30,7 @@ class ValidatorServiceProvider extends ServiceProvider
 //            data[1] = column, if not then the attribute
             $table = $data[0];
             $column = $data[1] ?? $attr;
-            return DB::table($table)->where($column, $value)->exists();
+            return is_numeric($value) and DB::table($table)->where($column, )->exists();
         });
 
         Validator::extend('gf', function($attr, $value, $data){

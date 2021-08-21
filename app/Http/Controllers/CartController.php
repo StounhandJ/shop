@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Action\CartIndexRequest;
+use App\Http\Requests\CartIndexRequest;
 use App\Models\Department;
 use App\Models\Product;
 
