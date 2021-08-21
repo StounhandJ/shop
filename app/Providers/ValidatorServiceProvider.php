@@ -33,8 +33,12 @@ class ValidatorServiceProvider extends ServiceProvider
             return is_numeric($value) and DB::table($table)->where($column, )->exists();
         });
 
-        Validator::extend('gf', function($attr, $value, $data){
-            return $value!="";
+         Validator::extend('without_spaces', function($attr, $value){
+            return preg_match('/^\S*$/u', $value);
+        });
+
+        Validator::extend('only_english', function($attr, $value){
+            return preg_match('/(^([a-z]+)(\d+)?$)/u', $value);
         });
     }
 }

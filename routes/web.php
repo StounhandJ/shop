@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Action\CartActionController;
 use App\Http\Controllers\Action\SearchController;
+use App\Http\Controllers\Admin\Action\DepartmentAdminActionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\CartController;
@@ -77,11 +78,11 @@ Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
     Route::post('/login', [AdminAuthController::class, "login"])->name("login");
     Route::get('/logout', [AdminAuthController::class, "logout"])->name("logout")->middleware("auth:admin");
 
-//    Route::prefix("/department")->name("department.")->middleware("auth:admin")->group(function (){
-//        Route::get('/create', [...Controller::class, "create"])->name("create");
-//        Route::get('/department/change', [...Controller::class, "change"])->name("change");
-//        Route::get('/department/delete', [...Controller::class, "delete"])->name("delete");
-//    });
+    Route::prefix("/department")->name("department.")->group(function (){
+        Route::post('/create', [DepartmentAdminActionController::class, "create"])->name("create");
+        Route::post('/change', [DepartmentAdminActionController::class, "change"])->name("change");
+        Route::post('/delete', [DepartmentAdminActionController::class, "delete"])->name("delete");
+    });
 //
 //    Route::prefix("/category")->name("category.")->middleware("auth:admin")->group(function (){
 //        Route::get('/create', [...Controller::class, "create"])->name("create");
