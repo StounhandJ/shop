@@ -79,6 +79,7 @@ Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
     Route::get('/logout', [AdminAuthController::class, "logout"])->name("logout")->middleware("auth:admin");
 
     Route::prefix("/department")->name("department.")->group(function (){
+        Route::post('/list', [DepartmentAdminActionController::class, "list"])->name("list");
         Route::post('/create', [DepartmentAdminActionController::class, "create"])->name("create");
         Route::post('/change', [DepartmentAdminActionController::class, "change"])->name("change");
         Route::post('/delete', [DepartmentAdminActionController::class, "delete"])->name("delete");

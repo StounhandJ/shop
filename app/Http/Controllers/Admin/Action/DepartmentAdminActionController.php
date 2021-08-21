@@ -10,6 +10,11 @@ use App\Models\Department;
 
 class DepartmentAdminActionController extends Controller
 {
+    public function list()
+    {
+        return response()->json(["message"=>"success", "departments"=>Department::all()], 200);
+    }
+
     public function create(DepartmentAdminCreateRequest $request)
     {
         $department = Department::create($request->getName(), $request->getEName());
