@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Cart;
+namespace App\Http\Requests\Action;
 
+use App\Http\Requests\Cart\Cart;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CartIndexRequest extends FormRequest

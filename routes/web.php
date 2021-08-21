@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Action\CartActionController;
+use App\Http\Controllers\Action\SearchController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\CartController;
@@ -53,14 +55,18 @@ Route::get('/p/{productID}', [ProductController::class, "index"])
     ->where('productID', '[1-9]+')
     ->name("product.index");
 
-Route::get('/search/products', [ProductController::class, "search"])
-    ->name("search.products");
+Route::get('/cart', [CartController::class, "index"])->name("cart.index");
 
-Route::prefix("cart")->name("cart.")->group(function (){
-    Route::get('/', [CartController::class, "index"])->name("index");
-    Route::post('/add', [CartController::class, "addProduct"])->name("add");
-    Route::get('/del', [CartController::class, "delProduct"])->name("del");
-    Route::post('/info', [CartController::class, "info"])->name("info");
+Route::prefix("action")->group(function (){
+
+    Route::get('/search/products', [SearchController::class, "product"])
+        ->name("search.products");
+
+    Route::prefix("cart")->name("cart.")->group(function (){
+        Route::post('/add', [CartActionController::class, "addProduct"])->name("add");
+        Route::get('/del', [CartActionController::class, "delProduct"])->name("del");
+        Route::post('/info', [CartActionController::class, "info"])->name("info");
+    });
 });
 
 Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
