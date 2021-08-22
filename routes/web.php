@@ -43,16 +43,18 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/', [CatalogController::class, "index"])->name("index");
+Route::get('/', function (){
+    return view("layouts.structure", ["departments"=>\App\Models\Department::all()]);
+})->name("index");
 
 
-Route::get('/c/{departmentEName}/{categoryEName?}', [CatalogController::class, "index"])
-    ->where('departmentEName', '[A-Za-z]+')
-    ->where('categoryEName', '[A-Za-z]+')
+Route::get('/c/{department:e_name}/{category:e_name?}', [CatalogController::class, "index"])
+    ->where('department', '[A-Za-z]+')
+    ->where('category', '[A-Za-z]+')
     ->name("catalog.index");
 
-Route::get('/p/{productID}', [ProductController::class, "index"])
-    ->where('productID', '[1-9]+')
+Route::get('/p/{product:id}', [ProductController::class, "index"])
+    ->where('product', '[1-9]+')
     ->name("product.index");
 
 Route::get('/cart', [CartController::class, "index"])->name("cart.index");

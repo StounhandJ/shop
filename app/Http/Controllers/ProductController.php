@@ -8,13 +8,10 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index($productID)
+    public function index(Product $product)
     {
-        $product = Product::getProduct($productID);
-
-        if (is_null($product)) abort(404);
-
         $departments = Department::all();
+
         return view("product-details", compact("product", "departments"));
     }
 }

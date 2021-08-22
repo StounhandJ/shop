@@ -51,14 +51,18 @@ class Department extends Model
         return Department::where("id", $id)->first();
     }
 
-    public static function getDepartmentOrFirstDepartment(string $departmentEName)
+    public static function getFirstDepartment()
     {
-        if ($departmentEName=="") return Department::first();
-        return Department::where("e_name", $departmentEName)->first();
+        return Department::first();
     }
 
     public static function create($name, $e_name)
     {
         return Department::factory(["name"=>$name, "e_name"=>$e_name] )->make();
+    }
+
+    public static function categories()
+    {
+        return Category::all();
     }
 }

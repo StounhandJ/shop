@@ -9,26 +9,21 @@ use App\Models\Product;
 
 class CatalogController extends Controller
 {
-    public function index(CatalogRequest $request, $departmentEName="", $categoryEName="")
+    public function index(CatalogRequest $request, Department $department, Category $category)
     {
-        $current_department = Department::getDepartmentOrFirstDepartment($departmentEName);
-
-        if (is_null($current_department)) abort(404);
-
-        $current_category = Category::getCategoryOrFirstCategoryOfDepartment($categoryEName, $current_department);
-
-        if (is_null($current_category)) abort(404);
+        if (!$category->exists) $category = Category::getFirstCategoryOfDepartment($department);
 
         $departments = Department::all();
-        $categories = Category::getAllCategoriesOfDepartment($current_department);
-        $paginate = Product::getProductsOfCategoryBuilder($current_category)
+        $categories = Category::getAllCategoriesOfDepartment($department);
+        $paginate = Product::getProductsOfCategoryBuilder($category)
             ->paginate(2, ['*'], "p")
-            ->withPath(route('catalog.index', ['departmentEName' => $current_department->getEName(), 'categoryEName' => $current_category->getEName()]));
+            ->withPath(route('catalog.index', ['department' => $department->getEName(), 'category' => $category->getEName()]));
         $cart_products_in = $request->getCart();
 
-        if ($paginate->isEmpty()) abort(404);
-
-        return view("shop", compact("current_department", "departments",
-       "current_category", "categories", "paginate", "cart_products_in"));
+        return view("shop", compact( "departments","categories", "paginate", "cart_products_in"),
+        [
+            "current_department"=>$department,
+            "current_category"=>$category
+        ]);
     }
 }

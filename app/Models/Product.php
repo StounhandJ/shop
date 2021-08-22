@@ -10,8 +10,6 @@ class Product extends Model
 {
     use HasFactory;
 
-    public static $productsOnPage = 3;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -72,14 +70,6 @@ class Product extends Model
     public static function getProductsOfCategoryBuilder(Category $category): Builder
     {
         return Product::where("category_id", $category->getId());
-    }
-
-    public static function getTotalPageOfCategory(Category $category): int
-    {
-        $productCount = Product::where("category_id", $category->getId())->count();
-        if ($productCount == 0) $totalPage = 0;
-        else $totalPage = ceil($productCount / Product::$productsOnPage);
-        return $totalPage;
     }
 
     public static function getListProduct(array $ids): array

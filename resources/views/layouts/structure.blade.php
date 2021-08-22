@@ -96,7 +96,7 @@
                             <ul class="nav navbar-nav collapse navbar-collapse">
                                 <li><a href="{{ route('index') }}" class="active">Главная</a></li>
                                 @foreach ($departments as $item)
-                                    <li><a href="{{ route('catalog.index', ['departmentEName' => $item->getEName()]) }}"
+                                    <li><a href="{{ route('catalog.index', ['department' => $item->getEName()]) }}"
                                             class={{ isset($current_department) && $item->getId() == $current_department->getId() ? 'active' : '' }}>{{ $item->getName() }}</a>
                                     </li>
                                 @endforeach
