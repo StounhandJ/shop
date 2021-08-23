@@ -87,12 +87,7 @@ Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
 
     Route::apiResource("category", CategoryAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Category\""], 404));
 
-//
-//    Route::prefix("/category")->name("category.")->middleware("auth:admin")->group(function (){
-//        Route::get('/create', [...Controller::class, "create"])->name("create");
-//        Route::get('/change', [...Controller::class, "change"])->name("change");
-//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
-//    });
+    Route::apiResource("product", CategoryAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Product\""], 404));
 //
 //    Route::prefix("/product")->name("product.")->middleware("auth:admin")->group(function (){
 //        Route::get('/create', [...Controller::class, "create"])->name("create");

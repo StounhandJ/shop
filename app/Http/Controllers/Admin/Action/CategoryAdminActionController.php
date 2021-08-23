@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin\Action;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Action\CategoryAdminCreateRequest;
-use App\Http\Requests\Admin\Action\CategoryAdminUpdateRequest;
+use App\Http\Requests\Admin\Action\CategoryCreateRequest;
+use App\Http\Requests\Admin\Action\CategoryUpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class CategoryAdminActionController extends Controller
 {
@@ -25,14 +23,14 @@ class CategoryAdminActionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param CategoryAdminCreateRequest $request
+     * @param CategoryCreateRequest $request
      * @return JsonResponse
      */
-    public function store(CategoryAdminCreateRequest $request)
+    public function store(CategoryCreateRequest $request)
     {
-        $department = Category::create($request->getName(), $request->getEName(), $request->getDepartment());
-        $department->save();
-        return response()->json(["message"=>"success", "response"=>$department], 200);
+        $category= Category::create($request->getName(), $request->getEName(), $request->getDepartment());
+        $category->save();
+        return response()->json(["message"=>"success", "response"=>$category], 200);
     }
 
     /**
@@ -49,11 +47,11 @@ class CategoryAdminActionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param CategoryUpdateRequest $request
      * @param Category $category
      * @return JsonResponse
      */
-    public function update(CategoryAdminUpdateRequest $request, Category $category)
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         $category->setNameIfNotEmpty($request->getName());
         $category->setENameIfNotEmpty($request->getEName());

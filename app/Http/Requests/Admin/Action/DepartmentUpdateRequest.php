@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin\Action;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DepartmentAdminCreateRequest extends FormRequest
+class DepartmentUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class DepartmentAdminCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"=> "required|string|min:3|max:60",
-            "e_name"=> "required|string|min:3|max:60|only_english|without_spaces"
+            "name"=> "string|min:3|max:60",
+            "e_name"=> "string|min:3|max:60|only_english|without_spaces"
         ];
     }
 

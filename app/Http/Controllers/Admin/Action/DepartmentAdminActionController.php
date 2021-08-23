@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Action;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Action\DepartmentAdminCreateRequest;
-use App\Http\Requests\Admin\Action\DepartmentAdminUpdateRequest;
+use App\Http\Requests\Admin\Action\DepartmentCreateRequest;
+use App\Http\Requests\Admin\Action\DepartmentUpdateRequest;
 use App\Models\Department;
 use Illuminate\Http\JsonResponse;
 
@@ -23,10 +23,10 @@ class DepartmentAdminActionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param DepartmentAdminCreateRequest $request
+     * @param DepartmentCreateRequest $request
      * @return JsonResponse
      */
-    public function store(DepartmentAdminCreateRequest $request)
+    public function store(DepartmentCreateRequest $request)
     {
         $department = Department::create($request->getName(), $request->getEName());
         $department->save();
@@ -47,11 +47,11 @@ class DepartmentAdminActionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param DepartmentAdminUpdateRequest $request
+     * @param DepartmentUpdateRequest $request
      * @param Department $department
      * @return JsonResponse
      */
-    public function update(DepartmentAdminUpdateRequest $request, Department $department)
+    public function update(DepartmentUpdateRequest $request, Department $department)
     {
         $department->setNameIfNotEmpty($request->getName());
         $department->setENameIfNotEmpty($request->getEName());

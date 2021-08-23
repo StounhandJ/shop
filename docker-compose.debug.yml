@@ -19,6 +19,7 @@ services:
       - ./config:/var/www/config
       - ./routes:/var/www/routes
       - ./database:/var/www/database
+      - ./stotage:/var/www/stotage
       - ./resources:/var/www/resources
     depends_on:
       - pg_db

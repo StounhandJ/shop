@@ -27,6 +27,19 @@ class Product extends Model
         return route('product.index', ['productID' => $this->getId()]);
     }
 
+    public static function create($title, $description, $e_name, int $price, string $img_src, Category $category, Maker $maker)
+    {
+        return Category::factory([
+            "title"=>$title,
+            "description"=>$description,
+            "e_name"=>$e_name,
+            "price"=>$price,
+            "img_src"=>$img_src,
+            "category_id"=>$category->getID(),
+            "maker_id"=>$maker->getID()
+        ])->make();
+    }
+
     public function getId()
     {
         return $this->id;

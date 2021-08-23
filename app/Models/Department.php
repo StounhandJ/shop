@@ -51,7 +51,7 @@ class Department extends Model
         $this->update(["name"=>$this->getName(), "e_name"=>$this->getEName()]);
     }
 
-    public static function getDepartmentById(string $id) : Department
+    public static function getDepartmentById($id) : Department
     {
         return Department::where("id", $id)->first() ?? new Department();
     }

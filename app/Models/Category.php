@@ -106,4 +106,9 @@ class Category extends Model
         return Category::where("department_id", $department->getId())->get();
     }
 
+    public static function getCategoryById($id) : Category
+    {
+        return Category::where("id", $id)->first() ?? new Category();
+    }
+
 }

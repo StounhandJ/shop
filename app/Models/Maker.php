@@ -18,4 +18,9 @@ class Maker extends Model
     {
         return $this->name;
     }
+
+    public static function getMakerById($id) : Maker
+    {
+        return Maker::where("id", $id)->first() ?? new Maker();
+    }
 }
