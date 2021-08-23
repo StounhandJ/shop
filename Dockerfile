@@ -21,8 +21,10 @@ COPY --from=composer /app/vendor /var/www/vendor
 COPY scripts/init.sh ./init.sh
 RUN sed -i -e 's/\r$//' init.sh
 RUN chmod +x ./init.sh
+RUN chmod 777 -R storage/
+RUN chmod 777 -R bootstrap/cache/
 RUN php artisan key:generate
 USER www
 
-EXPOSE 8080
+EXPOSE 9000
 CMD bash -c ./init.sh

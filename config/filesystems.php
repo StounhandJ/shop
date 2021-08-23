@@ -38,8 +38,6 @@ return [
         'prod_img' => [
             'driver' => 'local',
             'root' => storage_path('app/prod_img'),
-            'url' => env('APP_URL').'/img',
-            'visibility' => 'public',
         ],
 
         's3' => [
@@ -67,7 +65,7 @@ return [
     */
 
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('img') => storage_path('app/prod_img'),
     ],
 
 ];
