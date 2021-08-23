@@ -71,33 +71,23 @@
     </section>
     <!--/slider-->
 
-    <section>
+    <section class="index-content">
         <div class="container">
             <div class="row">
-                @include('inc.category')
-                <div class="col-sm-9 padding-right">
-                    <div class="features_items">
-                        <!--features_items-->
-                        <h2 class="title text-center">Товары</h2>
-                        @foreach ($products as $item)
-                            @include('inc.product-card')
-                        @endforeach
-                    </div>
-                    <!--features_items-->
-
+                {{-- <div class="col-sm-12">
                     <div class="category-tab">
                         <!--category-tab-->
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tshirt" data-toggle="tab">T-Shirt</a></li>
-                                <li><a href="#blazers" data-toggle="tab">Blazers</a></li>
-                                <li><a href="#sunglass" data-toggle="tab">Sunglass</a></li>
-                                <li><a href="#kids" data-toggle="tab">Kids</a></li>
-                                <li><a href="#poloshirt" data-toggle="tab">Polo shirt</a></li>
+                                <li class="active"><a href="#toogle-list-1" data-toggle="tab">toogle-list-1</a></li>
+                                <li><a href="#toogle-list-2" data-toggle="tab">toogle-list-2</a></li>
+                                <li><a href="#toogle-list-3" data-toggle="tab">toogle-list-3</a></li>
+                                <li><a href="#toogle-list-4" data-toggle="tab">toogle-list-4</a></li>
+                                <li><a href="#toogle-list-5" data-toggle="tab">toogle-list-5</a></li>
                             </ul>
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane fade active in" id="tshirt">
+                            <div class="tab-pane fade active in" id="toogle-list-1">
                                 <div class="col-sm-3">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
@@ -113,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="blazers">
+                            <div class="tab-pane fade" id="toogle-list-2">
                                 <div class="col-sm-3">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
@@ -129,7 +119,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="sunglass">
+                            <div class="tab-pane fade" id="toogle-list-3">
                                 <div class="col-sm-3">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
@@ -145,7 +135,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="kids">
+                            <div class="tab-pane fade" id="toogle-list-4">
                                 <div class="col-sm-3">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
@@ -161,7 +151,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="poloshirt">
+                            <div class="tab-pane fade" id="toogle-list-5">
                                 <div class="col-sm-3">
                                     <div class="product-image-wrapper">
                                         <div class="single-products">
@@ -180,9 +170,11 @@
                         </div>
                     </div>
                     <!--/category-tab-->
+
+
                     <div class="recommended_items">
                         <!--recommended_items-->
-                        <h2 class="title text-center">recommended items</h2>
+                        <h2 class="title text-center">Рекомендуем</h2>
 
                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
@@ -228,6 +220,68 @@
                         </div>
                     </div>
                     <!--/recommended_items-->
+                </div> --}}
+
+                <h3>Акции</h3>
+                <div class="sales">
+                    <div class="col-sm-6">
+                        <div class="sales__self sales__self-1">
+                            Акция 1 (картинка)
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="sales__self sales__self-2">
+                            Акция 2 (картинка)
+                        </div>
+                        <div class="sales-34-wrapper">
+                            <div class="col-sm-6 sales__self-3">
+                                <div class="sales__self">
+                                    Акция 3 (картинка)
+                                </div>
+                            </div>
+                            <div class="col-sm-6 sales__self-4">
+                                <div class="sales__self">
+                                    Акция 4 (картинка)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Популярные категории</h3>
+                <div class="popular-categories">
+                    <div class="card">
+                        <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Категория</h5>
+                            <p class="card-text">Описание категроии</p>
+                            <a href="#" class="btn btn-primary">Перейти</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Категория</h5>
+                            <p class="card-text">Описание категроии</p>
+                            <a href="#" class="btn btn-primary">Перейти</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Категория</h5>
+                            <p class="card-text">Описание категроии</p>
+                            <a href="#" class="btn btn-primary">Перейти</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">
+                        <div class="card-body">
+                            <h5 class="card-title">Категория</h5>
+                            <p class="card-text">Описание категроии</p>
+                            <a href="#" class="btn btn-primary">Перейти</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

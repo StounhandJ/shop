@@ -44,7 +44,7 @@ Route::get('/checkout', function () {
 });
 
 Route::get('/', function (){
-    return view("layouts.structure", ["departments"=>\App\Models\Department::all()]);
+    return view("index", ["departments"=>\App\Models\Department::all()]);
 })->name("index");
 
 

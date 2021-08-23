@@ -12,11 +12,11 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr class="cart_menu">
-                            <td class="image">Item</td>
+                            <td class="image">Товар</td>
                             <td class="description"></td>
-                            <td class="price">Price</td>
-                            <td class="quantity">Quantity</td>
-                            <td class="total">Total</td>
+                            <td class="price">Цена</td>
+                            <td class="quantity">Кол-во</td>
+                            <td class="total">Итог</td>
                             <td></td>
                         </tr>
                     </thead>
