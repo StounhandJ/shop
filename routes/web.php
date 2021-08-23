@@ -4,6 +4,7 @@ use App\Http\Controllers\Action\CartActionController;
 use App\Http\Controllers\Action\SearchController;
 use App\Http\Controllers\Admin\Action\CategoryAdminActionController;
 use App\Http\Controllers\Admin\Action\DepartmentAdminActionController;
+use App\Http\Controllers\Admin\Action\ProductAdminActionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\CartController;
@@ -46,7 +47,7 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/', function (){
+Route::get('/', function (Request $request){
     return view("layouts.structure", ["departments"=>\App\Models\Department::all()]);
 })->name("index");
 
@@ -87,7 +88,7 @@ Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
 
     Route::apiResource("category", CategoryAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Category\""], 404));
 
-    Route::apiResource("product", CategoryAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Product\""], 404));
+    Route::apiResource("product", ProductAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Product\""], 404));
 //
 //    Route::prefix("/product")->name("product.")->middleware("auth:admin")->group(function (){
 //        Route::get('/create', [...Controller::class, "create"])->name("create");

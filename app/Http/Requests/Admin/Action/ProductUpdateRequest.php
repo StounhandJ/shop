@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\Action;
 
 use App\Models\Category;
 use App\Models\Maker;
+use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductUpdateRequest extends FormRequest
@@ -29,10 +30,10 @@ class ProductUpdateRequest extends FormRequest
             "title"=> "string|min:3|max:60",
             "description"=> "string|min:3|max:3000",
             "e_name"=> "string|min:3|max:60|only_english|without_spaces",
-            "category_id"=> "bail|integer|min:3|max:60|exists:".Category::class.",id",
-            "maker_id"=> "bail|integer|min:3|max:60|exists:".Maker::class.",id",
-            "img_src"=> "string|min:3|max:60",
-            "price"=> "integer|min:3|max:60",
+            "category_id"=> "bail|integer|exists:".Category::class.",id",
+            "maker_id"=> "bail|integer|exists:".Maker::class.",id",
+            "photo"=> "file|max:10000|mimes:jpeg,jpg,png,svg,bmp,webp",
+            "price"=> "integer|min:0",
         ];
     }
 
@@ -51,9 +52,9 @@ class ProductUpdateRequest extends FormRequest
         return $this->input("description");
     }
 
-    public function getImgSrc()
+    public function getImg()
     {
-        return $this->file("file");
+        return $this->file("photo");
     }
 
     public function getPrice(): int

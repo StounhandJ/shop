@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin\Action;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Action\ProductCreateRequest;
+use App\Http\Requests\Admin\Action\ProductUpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class ProductAdminActionController extends Controller
 {
@@ -29,9 +31,10 @@ class ProductAdminActionController extends Controller
      */
     public function store(ProductCreateRequest $request)
     {
+        $img_src = Product::saveImg($request->getImg());
         $product = Product::create(
             $request->getTitle(), $request->getDescription(), $request->getEName(),
-            $request->getPrice(), "img_src" , $request->getCategory(), $request->getMaker());
+            $request->getPrice(), $img_src , $request->getCategory(), $request->getMaker());
         $product->save();
         return response()->json(["message"=>"success", "response"=>$product], 200);
     }
@@ -50,13 +53,22 @@ class ProductAdminActionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param ProductUpdateRequest $request
      * @param Product $product
-     * @return Response
+     * @return JsonResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
-        //
+        $product->setTitleIfNotEmpty($request->getTitle());
+        $product->setDescriptionIfNotEmpty($request->getDescription());
+        $product->setENameIfNotEmpty($request->getEName());
+        $product->setCategoryIfNotEmpty($request->getCategory());
+        $product->setMakerIfNotEmpty($request->getMaker());
+        $product->setImgSrcIfNotEmpty($request->getImg());
+        $product->setPriceIfNotEmpty($request->getPrice());
+        $product->upgrade();
+
+        return response()->json(["message"=>"success", "response"=>$product], 200);
     }
 
     /**

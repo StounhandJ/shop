@@ -29,10 +29,10 @@ class ProductCreateRequest extends FormRequest
             "title"=> "required|string|min:3|max:60",
             "description"=> "required|string|min:3|max:3000",
             "e_name"=> "required|string|min:3|max:60|only_english|without_spaces",
-            "category_id"=> "bail|required|integer|min:3|max:60|exists:".Category::class.",id",
-            "maker_id"=> "bail|required|integer|min:3|max:60|exists:".Maker::class.",id",
-            "photo"=> "required|file|size:10000|mimes:jpeg,jpg,png,svg,bmp,webp",
-            "price"=> "required|integer|min:3|max:60",
+            "category_id"=> "bail|required|integer|exists:".Category::class.",id",
+            "maker_id"=> "bail|required|integer|exists:".Maker::class.",id",
+            "photo"=> "required|file|max:10000|mimes:jpeg,jpg,png,svg,bmp,webp",
+            "price"=> "required|integer|min:0"
         ];
     }
 

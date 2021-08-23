@@ -9,6 +9,8 @@ class Maker extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function getId()
     {
         return $this->id;
