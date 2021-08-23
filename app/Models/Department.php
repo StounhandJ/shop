@@ -31,6 +31,11 @@ class Department extends Model
         return $this->e_name;
     }
 
+    public function getCategories()
+    {
+        return $this->hasMany(Category::class)->getResults();
+    }
+
     public function setNameIfNotEmpty($name)
     {
         if ($name!="") $this->name = $name;
@@ -46,9 +51,9 @@ class Department extends Model
         $this->update(["name"=>$this->getName(), "e_name"=>$this->getEName()]);
     }
 
-    public static function getDepartmentById(string $id)
+    public static function getDepartmentById(string $id) : Department
     {
-        return Department::where("id", $id)->first();
+        return Department::where("id", $id)->first() ?? new Department();
     }
 
     public static function getFirstDepartment()

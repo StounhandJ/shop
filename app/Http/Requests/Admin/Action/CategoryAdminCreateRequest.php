@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Admin\Action;
 
+use App\Models\Department;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DepartmentAdminUpdateRequest extends FormRequest
+class CategoryAdminCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +25,9 @@ class DepartmentAdminUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"=> "string|min:3|max:60",
-            "e_name"=> "string|min:3|max:60|only_english|without_spaces"
+            "name"=> "required|string|min:3|max:60",
+            "e_name"=> "required|string|min:3|max:60|only_english|without_spaces",
+            "department_id"=> "required|integer|c_exists:departments,id"
         ];
     }
 
@@ -37,5 +39,10 @@ class DepartmentAdminUpdateRequest extends FormRequest
     public function getEName()
     {
         return $this->input("e_name");
+    }
+
+    public function getDepartment()
+    {
+        return Department::getDepartmentById($this->input("department_id"));
     }
 }

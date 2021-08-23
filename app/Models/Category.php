@@ -37,6 +37,8 @@ class Category extends Model
 
     ];
 
+    public $timestamps = false;
+
     public function getId()
     {
         return $this->id;
@@ -51,12 +53,12 @@ class Category extends Model
     {
         if ($this->getParentCategoryId()!=$this->getId())
             return $this->hasOne(Category::class)->getResults();
-        return Null;
+        return new Category();
     }
 
-    public function getDepartment()
+    public function getDepartment() : Department
     {
-        return $this->hasOne(Department::class)->getResults();
+        return $this->belongsTo(Department::class, "department_id")->getResults();
     }
 
     public function getName()
@@ -69,7 +71,30 @@ class Category extends Model
         return $this->e_name;
     }
 
+    public function setNameIfNotEmpty($name)
+    {
+        if ($name!="") $this->name = $name;
+    }
 
+    public function setENameIfNotEmpty($e_name)
+    {
+        if ($e_name!="") $this->e_name = $e_name;
+    }
+
+    public function setDepartmentIfNotEmpty(Department $department)
+    {
+        if ($department->exists) $this->department_id = $department->getId();
+    }
+
+    public function upgrade()
+    {
+        $this->update(["name"=>$this->getName(), "e_name"=>$this->getEName(), "department_id"=>$this->getDepartment()->getId()]);
+    }
+
+    public static function create($name, $e_name, Department $department)
+    {
+        return Category::factory(["name"=>$name, "e_name"=>$e_name, "department_id"=>$department->getID()] )->make();
+    }
 
     public static function getFirstCategoryOfDepartment(Department $department)
     {
