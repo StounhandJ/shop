@@ -25,4 +25,19 @@ class Maker extends Model
     {
         return Maker::where("id", $id)->first() ?? new Maker();
     }
+
+    public function setNameIfNotEmpty($name)
+    {
+        if ($name!="") $this->name = $name;
+    }
+
+    public function upgrade()
+    {
+        $this->update(["name"=>$this->getName()]);
+    }
+
+    public static function create($name)
+    {
+        return Maker::factory(["name"=>$name] )->make();
+    }
 }

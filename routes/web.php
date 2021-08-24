@@ -4,6 +4,7 @@ use App\Http\Controllers\Action\CartActionController;
 use App\Http\Controllers\Action\SearchController;
 use App\Http\Controllers\Admin\Action\CategoryAdminActionController;
 use App\Http\Controllers\Admin\Action\DepartmentAdminActionController;
+use App\Http\Controllers\Admin\Action\MakerAdminActionController;
 use App\Http\Controllers\Admin\Action\ProductAdminActionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -89,16 +90,6 @@ Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
     Route::apiResource("category", CategoryAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Category\""], 404));
 
     Route::apiResource("product", ProductAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Product\""], 404));
-//
-//    Route::prefix("/product")->name("product.")->middleware("auth:admin")->group(function (){
-//        Route::get('/create', [...Controller::class, "create"])->name("create");
-//        Route::get('/change', [...Controller::class, "change"])->name("change");
-//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
-//    });
-//
-//    Route::prefix("/maker")->name("maker.")->middleware("auth:admin")->group(function (){
-//        Route::get('/create', [...Controller::class, "create"])->name("create");
-//        Route::get('/change', [...Controller::class, "change"])->name("change");
-//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
-//    });
+
+    Route::apiResource("maker", MakerAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Maker\""], 404));
 });
