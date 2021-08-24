@@ -2,29 +2,13 @@
 
 namespace App\Http\Requests\Admin\Action;
 
+use App\Http\Requests\Admin\ModelAttribute\ProductRequest;
 use App\Models\Category;
 use App\Models\Maker;
-use GuzzleHttp\Psr7\UploadedFile;
-use Illuminate\Foundation\Http\FormRequest;
 
-class ProductUpdateRequest extends FormRequest
+class ProductUpdateRequest extends ProductRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             "title"=> "string|min:3|max:60",
@@ -35,40 +19,5 @@ class ProductUpdateRequest extends FormRequest
             "photo"=> "file|max:10000|mimes:jpeg,jpg,png,svg,bmp,webp",
             "price"=> "integer|min:0",
         ];
-    }
-
-    public function getTitle()
-    {
-        return $this->input("title");
-    }
-
-    public function getEName()
-    {
-        return $this->input("e_name");
-    }
-
-    public function getDescription()
-    {
-        return $this->input("description");
-    }
-
-    public function getImg()
-    {
-        return $this->file("photo");
-    }
-
-    public function getPrice(): int
-    {
-        return (int) $this->input("price");
-    }
-
-    public function getCategory(): Category
-    {
-        return Category::getCategoryById($this->input("category_id"));
-    }
-
-    public function getMaker(): Maker
-    {
-        return Maker::getMakerById($this->input("maker_id"));
     }
 }

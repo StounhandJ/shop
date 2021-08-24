@@ -7,9 +7,6 @@ use App\Http\Requests\Admin\Action\ProductCreateRequest;
 use App\Http\Requests\Admin\Action\ProductUpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Storage;
 
 class ProductAdminActionController extends Controller
 {

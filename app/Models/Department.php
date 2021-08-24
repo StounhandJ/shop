@@ -9,12 +9,13 @@ class Department extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'e_name',
-    ];
+    //<editor-fold desc="Setting">
 
     public $timestamps = false;
+
+    //</editor-fold>
+
+    //<editor-fold desc="Get Attribute">
 
     public function getId()
     {
@@ -36,6 +37,9 @@ class Department extends Model
         return $this->hasMany(Category::class)->getResults();
     }
 
+    //</editor-fold>
+
+    //<editor-fold desc="Set Attribute">
     public function setNameIfNotEmpty($name)
     {
         if ($name!="") $this->name = $name;
@@ -45,12 +49,9 @@ class Department extends Model
     {
         if ($e_name!="") $this->e_name = $e_name;
     }
+    //</editor-fold>
 
-    public function upgrade()
-    {
-        $this->update(["name"=>$this->getName(), "e_name"=>$this->getEName()]);
-    }
-
+    //<editor-fold desc="Search Department">
     public static function getDepartmentById($id) : Department
     {
         return Department::where("id", $id)->first() ?? new Department();
@@ -59,6 +60,12 @@ class Department extends Model
     public static function getFirstDepartment()
     {
         return Department::first();
+    }
+    //</editor-fold>
+
+    public function upgrade()
+    {
+        $this->update(["name"=>$this->getName(), "e_name"=>$this->getEName()]);
     }
 
     public static function create($name, $e_name)

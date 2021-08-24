@@ -12,51 +12,31 @@ class Product extends Model
 {
     use HasFactory;
 
+    //<editor-fold desc="Setting">
     public $timestamps = false;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'category_id',
-    ];
 
     protected $appends = ['url'];
 
-    public function getUrlAttribute()
+    public function getUrlAttribute(): string
     {
         return route('product.index', ['product' => $this->getId()]);
     }
+    //</editor-fold>
 
-    public static function create($title, $description, $e_name, int $price, string $img_src, Category $category, Maker $maker)
-    {
-        return Product::factory([
-            "title"=>$title,
-            "description"=>$description,
-            "e_name"=>$e_name,
-            "price"=>$price,
-            "img_src"=>$img_src,
-            "category_id"=>$category->getID(),
-            "maker_id"=>$maker->getID()
-        ])->make();
-    }
-
+    //<editor-fold desc="Get Attribute">
     public function getId()
     {
         return $this->id;
     }
 
-    public function getCategory()
+    public function getCategory(): Category
     {
-        return $this->belongsTo(Category::class, "category_id")->getResults();
+        return $this->belongsTo(Category::class, "category_id")->getResults() ?? new Category();
     }
 
-    public function getMaker()
+    public function getMaker(): Maker
     {
-        return $this->belongsTo(Maker::class, "maker_id")->getResults();
+        return $this->belongsTo(Maker::class, "maker_id")->getResults() ?? new Maker();
     }
 
     public function getTitle()
@@ -83,7 +63,9 @@ class Product extends Model
     {
         return $this->price;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Set Attribute">
     public function setTitleIfNotEmpty($title)
     {
         if ($title!="") $this->title = $title;
@@ -125,7 +107,9 @@ class Product extends Model
     {
         if ($price!="") $this->price = $price;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Search Product">
     public static function getProductsOfCategoryBuilder(Category $category): Builder
     {
         return Product::where("category_id", $category->getId());
@@ -141,9 +125,34 @@ class Product extends Model
         return $products;
     }
 
-    public static function getProduct(int $id)
+    public static function getProduct(int $id): Product
     {
-        return Product::where("id", $id)->first();
+        return Product::where("id", $id)->first() ?? new Product();
+    }
+    //</editor-fold>
+
+    /**
+     * The photo is saved on the disk. Return src.
+     *
+     * @param UploadedFile $img
+     * @return string
+     */
+    public static function saveImg(UploadedFile $img): string
+    {
+        return Storage::disk("prod_img")->putFile("/", $img);
+    }
+
+    public static function create($title, $description, $e_name, int $price, string $img_src, Category $category, Maker $maker)
+    {
+        return Product::factory([
+            "title"=>$title,
+            "description"=>$description,
+            "e_name"=>$e_name,
+            "price"=>$price,
+            "img_src"=>$img_src,
+            "category_id"=>$category->getID(),
+            "maker_id"=>$maker->getID()
+        ])->make();
     }
 
     public function upgrade()
@@ -157,16 +166,5 @@ class Product extends Model
             "category_id"=>$this->getCategory()->getID(),
             "maker_id"=>$this->getMaker()->getID()
         ]);
-    }
-
-    /**
-     * The photo is saved on the disk. Return src.
-     *
-     * @param UploadedFile $img
-     * @return string
-     */
-    public static function saveImg(UploadedFile $img): string
-    {
-        return Storage::disk("prod_img")->putFile("/", $img);
     }
 }

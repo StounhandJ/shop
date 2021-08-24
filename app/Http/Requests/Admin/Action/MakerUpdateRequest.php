@@ -2,34 +2,14 @@
 
 namespace App\Http\Requests\Admin\Action;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Admin\ModelAttribute\MakerRequest;
 
-class MakerUpdateRequest extends FormRequest
+class MakerUpdateRequest extends MakerRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules(): array
     {
         return [
             "name"=>"string|min:2|max:60"
         ];
-    }
-
-    public function getName()
-    {
-        return $this->input("name");
     }
 }
