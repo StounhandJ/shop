@@ -9,54 +9,24 @@ class Category extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'parent_category_id',
-    ];
+    //<editor-fold desc="Setting">
+    public $timestamps = false;
+    //</editor-fold>
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-
-    ];
-
+    //<editor-fold desc="Get Attribute">
     public function getId()
     {
         return $this->id;
     }
 
-    public function getParentCategoryId()
+    public function getParentCategory(): Category
     {
-        return $this->parent_category_id;
+        return $this->hasOne(Category::class)->getResults() ?? new Category();
     }
 
-    public function getParentCategory()
+    public function getDepartment(): Department
     {
-        if ($this->getParentCategoryId()!=$this->getId())
-            return $this->hasOne(Category::class)->getResults();
-        return Null;
-    }
-
-    public function getDepartment()
-    {
-        return $this->hasOne(Department::class)->getResults();
+        return $this->belongsTo(Department::class, "department_id")->getResults();
     }
 
     public function getName()
@@ -68,17 +38,49 @@ class Category extends Model
     {
         return $this->e_name;
     }
+    //</editor-fold>
 
+    //<editor-fold desc="Set Attribute">
+    public function setNameIfNotEmpty($name)
+    {
+        if ($name!="") $this->name = $name;
+    }
 
+    public function setENameIfNotEmpty($e_name)
+    {
+        if ($e_name!="") $this->e_name = $e_name;
+    }
 
-    public static function getFirstCategoryOfDepartment(Department $department)
+    public function setDepartmentIfNotEmpty(Department $department)
+    {
+        if ($department->exists) $this->department_id = $department->getId();
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Search Category">
+    public static function getFirstCategoryOfDepartment(Department $department): Category
     {
         return Category::where("department_id", $department->getId())->first() ?? new Category();
     }
 
-    public static function getAllCategoriesOfDepartment(Department $department)
+    public static function getAllCategoriesOfDepartment(Department $department): array
     {
-        return Category::where("department_id", $department->getId())->get();
+        return Category::where("department_id", $department->getId())->get() ?? [];
     }
 
+    public static function getCategoryById($id) : Category
+    {
+        return Category::where("id", $id)->first() ?? new Category();
+    }
+    //</editor-fold>
+
+    public function upgrade()
+    {
+        $this->update(["name"=>$this->getName(), "e_name"=>$this->getEName(), "department_id"=>$this->getDepartment()->getId()]);
+    }
+
+    public static function create($name, $e_name, Department $department)
+    {
+        return Category::factory(["name"=>$name, "e_name"=>$e_name, "department_id"=>$department->getID()] )->make();
+    }
 }

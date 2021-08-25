@@ -2,13 +2,17 @@
 
 use App\Http\Controllers\Action\CartActionController;
 use App\Http\Controllers\Action\SearchController;
+use App\Http\Controllers\Admin\Action\CategoryAdminActionController;
 use App\Http\Controllers\Admin\Action\DepartmentAdminActionController;
+use App\Http\Controllers\Admin\Action\MakerAdminActionController;
+use App\Http\Controllers\Admin\Action\ProductAdminActionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +47,8 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
-Route::get('/', function (){
-    return view("index", ["departments"=>\App\Models\Department::all()]);
+Route::get('/', function (Request $request){
+    return view("layouts.structure", ["departments"=>\App\Models\Department::all()]);
 })->name("index");
 
 
@@ -80,28 +84,11 @@ Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
     Route::post('/login', [AdminAuthController::class, "login"])->name("login");
     Route::get('/logout', [AdminAuthController::class, "logout"])->name("logout")->middleware("auth:admin");
 
-    Route::prefix("/department")->name("department.")->group(function (){
-        Route::post('/list', [DepartmentAdminActionController::class, "list"])->name("list");
-        Route::post('/create', [DepartmentAdminActionController::class, "create"])->name("create");
-        Route::post('/change', [DepartmentAdminActionController::class, "change"])->name("change");
-        Route::post('/delete', [DepartmentAdminActionController::class, "delete"])->name("delete");
-    });
-//
-//    Route::prefix("/category")->name("category.")->middleware("auth:admin")->group(function (){
-//        Route::get('/create', [...Controller::class, "create"])->name("create");
-//        Route::get('/change', [...Controller::class, "change"])->name("change");
-//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
-//    });
-//
-//    Route::prefix("/product")->name("product.")->middleware("auth:admin")->group(function (){
-//        Route::get('/create', [...Controller::class, "create"])->name("create");
-//        Route::get('/change', [...Controller::class, "change"])->name("change");
-//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
-//    });
-//
-//    Route::prefix("/maker")->name("maker.")->middleware("auth:admin")->group(function (){
-//        Route::get('/create', [...Controller::class, "create"])->name("create");
-//        Route::get('/change', [...Controller::class, "change"])->name("change");
-//        Route::get('/delete', [...Controller::class, "delete"])->name("delete");
-//    });
+    Route::apiResource("department", DepartmentAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Department\""], 404));
+
+    Route::apiResource("category", CategoryAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Category\""], 404));
+
+    Route::apiResource("product", ProductAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Product\""], 404));
+
+    Route::apiResource("maker", MakerAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Maker\""], 404));
 });
