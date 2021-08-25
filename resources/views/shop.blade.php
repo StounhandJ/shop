@@ -1,4 +1,5 @@
 @extends('layouts/structure')
+@section('title'){{ $current_category->getName() }}@endsection
 @section('content')
     <section>
         <div class="container">

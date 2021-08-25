@@ -1,4 +1,5 @@
 @extends('layouts/structure')
+@section('title')Корзина@endsection
 @section('content')
     <section id="cart_items">
         <div class="container">

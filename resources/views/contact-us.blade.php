@@ -1,4 +1,5 @@
 @extends('layouts/structure')
+@section('title')О нас@endsection
 @section('content')
 
     <div id="contact-page" class="container">
