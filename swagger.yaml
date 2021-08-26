@@ -1065,7 +1065,7 @@ components:
           type: string
           description: Имя прописными латиницкими буквами, без пробелов
           example: shkafdyb
-        img_src:
+        img_url:
           type: string
           description: Ссылка на фотографию
           example:  http://localhost/img/rM3VJDXKPIRIhH1T1DAha3.png
