@@ -11,6 +11,14 @@ class Maker extends Model
 
     //<editor-fold desc="Setting">
     public $timestamps = false;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+    ];
     //</editor-fold>
 
     //<editor-fold desc="Get Attribute">
@@ -47,5 +55,10 @@ class Maker extends Model
     public static function create($name)
     {
         return Maker::factory(["name"=>$name] )->make();
+    }
+
+    public function getProductCount()
+    {
+        return Product::where("maker_id", $this->getId())->count();
     }
 }

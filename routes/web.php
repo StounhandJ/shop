@@ -13,6 +13,9 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\CategoryAdminController;
+use App\Http\Controllers\Admin\ProductAdminController;
+use App\Http\Controllers\Admin\MakerAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +51,7 @@ Route::get('/checkout', function () {
 });
 
 Route::get('/', function (Request $request){
-    return view("layouts.structure", ["departments"=>\App\Models\Department::all()]);
+    return view("index", ["departments"=>\App\Models\Department::all()]);
 })->name("index");
 
 
@@ -77,9 +80,6 @@ Route::prefix("action")->group(function (){
 });
 
 Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
-    Route::get('/', function (){
-        return "Index page for admin";
-    })->name("index")->middleware("auth:admin");
 
     Route::get('/login', [AdminController::class, "login"])->name("login.page");
     Route::post('/login', [AdminAuthController::class, "login"])->name("login");
@@ -93,3 +93,14 @@ Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
 
     Route::apiResource("maker", MakerAdminActionController::class)->missing(fn() => response()->json(["message"=>"No query results for model \"Maker\""], 404));
 });
+
+Route::prefix("admin")->name("admin.")->group(function (){
+    Route::get('/products', [ProductAdminController::class, 'index'])->name("products");
+
+    Route::get('/categories', [CategoryAdminController::class, 'index'])->name("categories");
+
+    Route::get('/makers', [MakerAdminController::class, 'index'])->name("makers");
+
+    Route::get('/', [ProductAdminController::class, 'index'])->name("index");
+});
+

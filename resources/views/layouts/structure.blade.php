@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -24,7 +25,6 @@
 <!--/head-->
 
 <body>
-    <input id="csrf-token" type="hidden" name="_token" value="{{ csrf_token() }}" />
     <header id="header">
         <!--header-->
         <div class="header_top">
@@ -94,7 +94,7 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="{{ route('index') }}" class="active">Главная</a></li>
+                                <li><a href="{{ route('index') }}" class="{{Request::url() == route('index') ?  'active' : '' }}">Главная</a></li>
                                 @foreach ($departments as $item)
                                     <li><a href="{{ route('catalog.index', ['department' => $item->getEName()]) }}"
                                             class={{ isset($current_department) && $item->getId() == $current_department->getId() ? 'active' : '' }}>{{ $item->getName() }}</a>
