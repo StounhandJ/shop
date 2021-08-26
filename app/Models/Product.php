@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class Product extends Model
 {
@@ -15,11 +16,25 @@ class Product extends Model
     //<editor-fold desc="Setting">
     public $timestamps = false;
 
-    protected $appends = ['url'];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'img_src'
+    ];
+
+    protected $appends = ['url', 'img_url'];
 
     public function getUrlAttribute(): string
     {
         return route('product.index', ['product' => $this->getId()]);
+    }
+
+    public function getImgUrlAttribute(): string
+    {
+        return URL::to("/").Storage::disk("prod_img")->url($this->getImgSrc());
     }
     //</editor-fold>
 

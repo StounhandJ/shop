@@ -63,9 +63,9 @@ class Category extends Model
         return Category::where("department_id", $department->getId())->first() ?? new Category();
     }
 
-    public static function getAllCategoriesOfDepartment(Department $department): array
+    public static function getAllCategoriesOfDepartment(Department $department)
     {
-        return Category::where("department_id", $department->getId())->get() ?? [];
+        return Category::where("department_id", $department->getId())->get();
     }
 
     public static function getCategoryById($id) : Category
