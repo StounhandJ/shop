@@ -1,0 +1,1083 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/StounhandJ/shop/1.0.0
+  - description: SwaggerHub API Auto Mocking
+    url: http://localhost
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Shop
+  contact:
+    email: roman.m2003@yandex.ru
+tags:
+  - name: maker
+    description: Производители
+  - name: department
+    description: Отделы товаров
+  - name: category
+    description: Категории
+  - name: product
+    description: Категории
+paths:
+  /action/maker:
+    get:
+      tags:
+        - maker
+      summary: Список
+      operationId: indexMaker
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Maker'
+    post:
+      tags:
+        - maker
+      summary: Создать производителя
+      operationId: storeMaker
+      parameters:
+        - in: query
+          name: name
+          description: Имя производителя
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Maker'
+        '422':
+          description: Полученные данные были неверными
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                    description: Перечесление ошибочных данных
+  /action/maker/{maker}: 
+    get:
+      tags:
+        - maker
+      summary: Показать производителя
+      operationId: showMaker
+      parameters:
+          - in: path
+            name: maker
+            description: ID производителя
+            required: true
+            schema:
+              type: integer
+            example: 236
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Maker'
+        '404':
+          description: Производитель не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Maker"
+                    
+    put:
+      tags:
+        - maker
+      summary: Обновить производителя
+      operationId: updateMaker
+      parameters:
+          - in: path
+            name: maker
+            description: ID производителя
+            required: true
+            schema:
+              type: integer
+            example: 236
+          - in: query
+            name: name
+            description: Имя производителя
+            required: false
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Maker'
+        '404':
+          description: Производитель не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Maker"
+        '422':
+          description: Полученные данные были неверными
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                    description: Перечесление ошибочных данных
+    delete:
+      tags:
+        - maker
+      summary: Удалить производителя
+      operationId: deleteMaker
+      parameters:
+          - in: path
+            name: maker
+            description: ID производителя
+            required: true
+            schema:
+              type: integer
+            example: 236
+      responses:
+        '200':
+          description: Успешное удаление
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+        '404':
+          description: Производитель не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Maker"
+        '500':
+          description: Непредвиденная ошибка
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error
+
+  
+  /action/department:
+    get:
+      tags:
+        - department
+      summary: Список
+      operationId: indexDepartment
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Department'
+    post:
+      tags:
+        - department
+      summary: Создать отдел
+      operationId: storeDepartment
+      parameters:
+        - in: query
+          name: name
+          description: Имя отдела
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 60
+          example: Мебель
+        - in: query
+          name: e_name
+          description: Имя прописными латиницкими буквами, без пробелов
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 60
+          example: mebel
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Department'
+        '422':
+          description: Полученные данные были неверными
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                    description: Перечесление ошибочных данных
+  /action/department/{department}: 
+    get:
+      tags:
+        - department
+      summary: Показать отдел
+      operationId: showDepartment
+      parameters:
+          - in: path
+            name: department
+            description: ID отдела
+            required: true
+            schema:
+              type: integer
+            example: 79
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Department'
+        '404':
+          description: Отдел не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Department"
+    put:
+      tags:
+        - department
+      summary: Обновить отдел
+      operationId: updateDepartment
+      parameters:
+          - in: path
+            name: department
+            description: ID отдела
+            required: true
+            schema:
+              type: integer
+            example: 79
+          - in: query
+            name: name
+            description: Название отдела
+            required: false
+            schema:
+              type: string
+              minimum: 3
+              maximum: 60
+            example: Сантехника
+          - in: query
+            name: e_name
+            description: Имя прописными латиницкими буквами, без пробелов
+            required: false
+            schema:
+              type: string
+              minimum: 3
+              maximum: 60
+            example: santex
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Department'
+        '404':
+          description: Отдел не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Department"
+        '422':
+          description: Полученные данные были неверными
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                    description: Перечесление ошибочных данных
+    delete:
+      tags:
+        - department
+      summary: Удалить отдел
+      operationId: deleteDepartment
+      parameters:
+          - in: path
+            name: department
+            description: ID отдела
+            required: true
+            schema:
+              type: integer
+            example: 79
+      responses:
+        '200':
+          description: Успешное удаление
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+        '404':
+          description: Отдел не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Department"
+        '500':
+          description: Непредвиденная ошибка
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error
+                    
+                    
+ 
+ 
+  /action/category:
+    get:
+      tags:
+        - category
+      summary: Список
+      operationId: indexCategory
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+    post:
+      tags:
+        - category
+      summary: Создать категорию
+      operationId: storeCategory
+      parameters:
+        - in: query
+          name: name
+          description: Название категории
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 60
+          example: Шкаф
+        - in: query
+          name: e_name
+          description: Низвание прописными латиницкими буквами, без пробелов
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 60
+          example: shkafs
+        - in: query
+          name: department_id
+          description: ID отдела к которому принадлежит категория
+          required: true
+          schema:
+            type: integer
+          example: 79
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Category'
+        '422':
+          description: Полученные данные были неверными
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                    description: Перечесление ошибочных данных
+  /action/category/{category}: 
+    get:
+      tags:
+        - category
+      summary: Показать категорию
+      operationId: showCategory
+      parameters:
+          - in: path
+            name: category
+            description: ID категории
+            required: true
+            schema:
+              type: integer
+            example: 31
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Category'
+        '404':
+          description: Категория не найдена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Сategory"
+    put:
+      tags:
+        - category
+      summary: Обновить категорию
+      operationId: updateCategory
+      parameters:
+          - in: path
+            name: category
+            description: ID категории
+            required: true
+            schema:
+              type: integer
+            example: 31
+          - in: query
+            name: name
+            description: Название категории
+            required: false
+            schema:
+              type: string
+              minimum: 3
+              maximum: 60
+            example: Столы
+          - in: query
+            name: e_name
+            description: Низвание прописными латиницкими буквами, без пробелов
+            required: false
+            schema:
+              type: string
+              minimum: 3
+              maximum: 60
+            example: stols
+          - in: query
+            name: department_id
+            description: ID отдела к которому принадлежит категория
+            required: false
+            schema:
+              type: integer
+            example: 79
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Category'
+        '404':
+          description: Категория не найдена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Сategory"
+        '422':
+          description: Полученные данные были неверными
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                    description: Перечесление ошибочных данных
+    delete:
+      tags:
+        - category
+      summary: Удалить категорию
+      operationId: deleteСategory
+      parameters:
+          - in: path
+            name: category
+            description: ID категории
+            required: true
+            schema:
+              type: integer
+            example: 79
+      responses:
+        '200':
+          description: Успешное удаление
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+        '404':
+          description: Категория не найдена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Сategory"
+        '500':
+          description: Непредвиденная ошибка
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error                    
+
+
+
+  /action/product:
+    get:
+      tags:
+        - product
+      summary: Список
+      operationId: indexProduct
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+    post:
+      tags:
+        - product
+      summary: Создать продукт
+      operationId: storeProduct
+      parameters:
+        - in: query
+          name: title
+          description: Название продукта
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 60
+          example: Шкаф дубовый
+        - in: query
+          name: description
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 3000
+          example: Очень хороший и красивый шкаф
+        - in: query
+          name: e_name
+          description: Низвание прописными латиницкими буквами, без пробелов
+          required: true
+          schema:
+            type: string
+            minimum: 3
+            maximum: 60
+          example: shkafdyb
+        - in: query
+          name: category_id
+          description: ID категории к которой принадлежит товар
+          required: true
+          schema:
+            type: integer
+          example: 31
+        - in: query
+          name: maker_id
+          description: ID производителя к которой принадлежит товар
+          required: true
+          schema:
+            type: integer
+          example: 236
+        - in: query
+          name: price
+          description: Цена
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+          example: 81000
+        - in: query
+          name: photo
+          description: Фотография, до 10мб
+          required: true
+          schema:
+            type: string
+            format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Product'
+        '422':
+          description: Полученные данные были неверными
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                    description: Перечесление ошибочных данных
+  /action/product/{product}: 
+    get:
+      tags:
+        - product
+      summary: Показать продукт
+      operationId: showProduct
+      parameters:
+          - in: path
+            name: product
+            description: ID продукта
+            required: true
+            schema:
+              type: integer
+            example: 31
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Product'
+        '404':
+          description: Продукт не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Product"
+    put:
+      tags:
+        - product
+      summary: Обновить продукт
+      operationId: updateProduct
+      parameters:
+          - in: path
+            name: product
+            description: ID продукта
+            required: true
+            schema:
+              type: integer
+            example: 31
+          - in: query
+            name: title
+            description: Название продукта
+            required: false
+            schema:
+              type: string
+              minimum: 3
+              maximum: 60
+            example: Шкаф еловый
+          - in: query
+            name: description
+            required: false
+            schema:
+              type: string
+              minimum: 3
+              maximum: 3000
+            example: А может и не очень красивый
+          - in: query
+            name: e_name
+            description: Низвание прописными латиницкими буквами, без пробелов
+            required: false
+            schema:
+              type: string
+              minimum: 3
+              maximum: 60
+            example: elishkaf
+          - in: query
+            name: category_id
+            description: ID категории к которой принадлежит товар
+            required: false
+            schema:
+              type: integer
+            example: 34
+          - in: query
+            name: maker_id
+            description: ID производителя к которой принадлежит товар
+            required: false
+            schema:
+              type: integer
+            example: 975
+          - in: query
+            name: price
+            description: Цена
+            required: false
+            schema:
+              type: integer
+              minimum: 0
+            example: 27000
+          - in: query
+            name: photo
+            description: Фотография, до 10мб
+            required: false
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+                  response:
+                    $ref: '#/components/schemas/Product'
+        '404':
+          description: Продукт не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Product"
+        '422':
+          description: Полученные данные были неверными
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: The given data was invalid.
+                  errors:
+                    type: object
+                    description: Перечесление ошибочных данных
+    delete:
+      tags:
+        - product
+      summary: Удалить продукт
+      operationId: deleteProduct
+      parameters:
+          - in: path
+            name: product
+            description: ID продукта
+            required: true
+            schema:
+              type: integer
+            example: 79
+      responses:
+        '200':
+          description: Успешное удаление
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: success
+        '404':
+          description: Продукт не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No query results for model "Product"
+        '500':
+          description: Непредвиденная ошибка
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: error       
+                    
+                    
+                    
+                    
+components:
+  schemas:
+    Maker:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: uuid
+          example: 236
+        name:
+          type: string
+          example: Widget Adapter
+    
+    Department:
+      type: object
+      required:
+        - id
+        - name
+        - e_name
+      properties:
+        id:
+          type: integer
+          format: uuid
+          example: 79
+        name:
+          type: string
+          example: Мебель
+        e_name:
+          type: string
+          description: Имя прописными латиницкими буквами, без пробелов
+          example: mebel
+    
+    Category:
+      type: object
+      required:
+        - id
+        - name
+        - e_name
+        - department_id
+      properties:
+        id:
+          type: integer
+          format: uuid
+          example: 31
+        name:
+          type: string
+          example: Шкафы
+        e_name:
+          type: string
+          description: Имя прописными латиницкими буквами, без пробелов
+          example: shkafs
+        department_id:
+          type: integer
+          description: ID Отдела к которой принадлежит категория
+          example: 79
+    
+    Product:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - price
+        - e_name
+        - img_src
+        - category
+        - maker_id
+        - url
+      properties:
+        id:
+          type: integer
+          format: uuid
+          example: 581
+        title:
+          type: string
+          example: Дубовый шкаф
+        description:
+          type: string
+          example: Очень хороший и красивый шкаф
+        price:
+          type: integer
+          example: 81000
+        e_name:
+          type: string
+          description: Имя прописными латиницкими буквами, без пробелов
+          example: shkafdyb
+        img_src:
+          type: string
+          description: Ссылка на фотографию
+          example:  http://localhost/img/rM3VJDXKPIRIhH1T1DAha3.png
+        category_id:
+          type: integer
+          description: ID категории к которой принадлежит товар
+          example: 31
+        maker_id:
+          type: integer
+          description: ID производителя к которой принадлежит товар
+          example: 236
+        url:
+          type: string
+          description: Ссылка на страницу товара
+          example: http://localhost/p/581

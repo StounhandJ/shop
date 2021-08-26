@@ -1,0 +1,1004 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "https://virtserver.swaggerhub.com/StounhandJ/shop/1.0.0"
+  }, {
+    "description" : "SwaggerHub API Auto Mocking",
+    "url" : "http://localhost"
+  } ],
+  "info" : {
+    "description" : "This is a simple API",
+    "version" : "1.0.0",
+    "title" : "Shop",
+    "contact" : {
+      "email" : "roman.m2003@yandex.ru"
+    }
+  },
+  "tags" : [ {
+    "name" : "maker",
+    "description" : "Производители"
+  }, {
+    "name" : "department",
+    "description" : "Отделы товаров"
+  }, {
+    "name" : "category",
+    "description" : "Категории"
+  } ],
+  "paths" : {
+    "/action/maker" : {
+      "get" : {
+        "tags" : [ "maker" ],
+        "summary" : "Список",
+        "operationId" : "indexMaker",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/Maker"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "maker" ],
+        "summary" : "Создать производителя",
+        "operationId" : "storeMaker",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "name",
+          "description" : "Имя производителя",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Maker"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Полученные данные были неверными",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "The given data was invalid."
+                    },
+                    "errors" : {
+                      "type" : "object",
+                      "description" : "Перечесление ошибочных данных"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/maker/{maker}" : {
+      "get" : {
+        "tags" : [ "maker" ],
+        "summary" : "Показать производителя",
+        "operationId" : "showMaker",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "maker",
+          "description" : "ID производителя",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 236
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Maker"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Производитель не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Maker\""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "maker" ],
+        "summary" : "Обновить производителя",
+        "operationId" : "updateMaker",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "maker",
+          "description" : "ID производителя",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 236
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "Имя производителя",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Maker"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Производитель не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Maker\""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Полученные данные были неверными",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "The given data was invalid."
+                    },
+                    "errors" : {
+                      "type" : "object",
+                      "description" : "Перечесление ошибочных данных"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "maker" ],
+        "summary" : "Удалить производителя",
+        "operationId" : "deleteMaker",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "maker",
+          "description" : "ID производителя",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 236
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Успешное удаление",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Производитель не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Maker\""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Непредвиденная ошибка",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/department" : {
+      "get" : {
+        "tags" : [ "department" ],
+        "summary" : "Список",
+        "operationId" : "indexDepartment",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/Department"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "department" ],
+        "summary" : "Создать отдел",
+        "operationId" : "storeDepartment",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "name",
+          "description" : "Имя отдела",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "minimum" : 3,
+            "maximum" : 60
+          },
+          "example" : "Мебель"
+        }, {
+          "in" : "query",
+          "name" : "e_name",
+          "description" : "Имя прописными латиницкими буквами, без пробелов",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "minimum" : 3,
+            "maximum" : 60
+          },
+          "example" : "mebel"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Department"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Полученные данные были неверными",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "The given data was invalid."
+                    },
+                    "errors" : {
+                      "type" : "object",
+                      "description" : "Перечесление ошибочных данных"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/department/{department}" : {
+      "get" : {
+        "tags" : [ "department" ],
+        "summary" : "Показать отдел",
+        "operationId" : "showDepartment",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "department",
+          "description" : "ID отдела",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 79
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Department"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Отдел не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Department\""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "department" ],
+        "summary" : "Обновить отдел",
+        "operationId" : "updateDepartment",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "department",
+          "description" : "ID отдела",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 79
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "Название отдела",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "minimum" : 3,
+            "maximum" : 60
+          },
+          "example" : "Сантехника"
+        }, {
+          "in" : "query",
+          "name" : "e_name",
+          "description" : "Имя прописными латиницкими буквами, без пробелов",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "minimum" : 3,
+            "maximum" : 60
+          },
+          "example" : "santex"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Department"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Отдел не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Department\""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Полученные данные были неверными",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "The given data was invalid."
+                    },
+                    "errors" : {
+                      "type" : "object",
+                      "description" : "Перечесление ошибочных данных"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "department" ],
+        "summary" : "Удалить отдел",
+        "operationId" : "deleteDepartment",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "department",
+          "description" : "ID отдела",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 79
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Успешное удаление",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Отдел не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Department\""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Непредвиденная ошибка",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/category" : {
+      "get" : {
+        "tags" : [ "category" ],
+        "summary" : "Список",
+        "operationId" : "indexCategory",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "type" : "array",
+                      "items" : {
+                        "$ref" : "#/components/schemas/Category"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "category" ],
+        "summary" : "Создать категорию",
+        "operationId" : "storeCategory",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "name",
+          "description" : "Имя производителя",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "minimum" : 3,
+            "maximum" : 60
+          },
+          "example" : "Мебель"
+        }, {
+          "in" : "query",
+          "name" : "e_name",
+          "description" : "Имя прописными латиницкими буквами, без пробелов",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "minimum" : 3,
+            "maximum" : 60
+          },
+          "example" : "mebel"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Category"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Полученные данные были неверными",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "The given data was invalid."
+                    },
+                    "errors" : {
+                      "type" : "object",
+                      "description" : "Перечесление ошибочных данных"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/action/category/{category}" : {
+      "get" : {
+        "tags" : [ "category" ],
+        "summary" : "Показать категорию",
+        "operationId" : "showCategory",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "category",
+          "description" : "ID категории",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 79
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Category"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Отдел не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Сategory\""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "category" ],
+        "summary" : "Обновить категорию",
+        "operationId" : "updateCategory",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "category",
+          "description" : "ID категории",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 79
+        }, {
+          "in" : "query",
+          "name" : "name",
+          "description" : "Имя производителя",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "minimum" : 3,
+            "maximum" : 60
+          },
+          "example" : "Сантехника"
+        }, {
+          "in" : "query",
+          "name" : "e_name",
+          "description" : "Имя прописными латиницкими буквами, без пробелов",
+          "required" : false,
+          "schema" : {
+            "type" : "string",
+            "minimum" : 3,
+            "maximum" : 60
+          },
+          "example" : "santex"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    },
+                    "response" : {
+                      "$ref" : "#/components/schemas/Category"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Отдел не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Сategory\""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422" : {
+            "description" : "Полученные данные были неверными",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "The given data was invalid."
+                    },
+                    "errors" : {
+                      "type" : "object",
+                      "description" : "Перечесление ошибочных данных"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "category" ],
+        "summary" : "Удалить отдел",
+        "operationId" : "deleteСategory",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "category",
+          "description" : "ID отдела",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "example" : 79
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Успешное удаление",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Отдел не найден",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "No query results for model \"Сategory\""
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Непредвиденная ошибка",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "message" : {
+                      "type" : "string",
+                      "example" : "error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Maker" : {
+        "type" : "object",
+        "required" : [ "id", "name" ],
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "uuid",
+            "example" : 236
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Widget Adapter"
+          }
+        }
+      },
+      "Department" : {
+        "type" : "object",
+        "required" : [ "id", "name", "e_name" ],
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "uuid",
+            "example" : 79
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Мебель"
+          },
+          "e_name" : {
+            "type" : "string",
+            "description" : "Имя прописными латиницкими буквами, без пробелов",
+            "example" : "mebel"
+          }
+        }
+      },
+      "Category" : {
+        "type" : "object",
+        "description" : "department = Отдел к которому пренадлежит данная категория",
+        "required" : [ "id", "name", "e_name", "department" ],
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "uuid",
+            "example" : 79
+          },
+          "name" : {
+            "type" : "string",
+            "example" : "Шкафы"
+          },
+          "e_name" : {
+            "type" : "string",
+            "description" : "Имя прописными латиницкими буквами, без пробелов",
+            "example" : "shkafs"
+          },
+          "department" : {
+            "$ref" : "#/components/schemas/Department"
+          }
+        }
+      }
+    }
+  }
+}
