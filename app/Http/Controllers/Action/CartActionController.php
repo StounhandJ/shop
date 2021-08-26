@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Action;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Action\CartAddProductRequest;
 use App\Http\Requests\Action\CartDelProductRequest;
+use App\Http\Requests\Action\CartSendRequest;
 use App\Http\Requests\CartIndexRequest;
+use App\Mail\OrderRegistrationMail;
+use http\Env\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class CartActionController extends Controller
@@ -40,5 +44,12 @@ class CartActionController extends Controller
     public function info(CartIndexRequest $request)
     {
         return response()->json(["message"=>"success", "cart"=>$request->getCart()], 200);
+    }
+
+    public function send(CartIndexRequest $request)
+    {
+        Mail::to("zarabot111.111@gmail.com")
+            ->send(new OrderRegistrationMail());
+        dd(1);
     }
 }
