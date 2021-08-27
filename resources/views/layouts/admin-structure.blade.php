@@ -10,7 +10,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="/js/admin/all.min.js"></script>
     <script src="https://kit.fontawesome.com/8a553633d6.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -74,6 +73,14 @@
                                     <i class="fa fa-user" aria-hidden="true" style="font-size: 18px;"></i>
                                 </span>
                                 <span class="nav-link-text">Производители</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{{Request::url() == route('admin.departments') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.departments') }}">
+                                <span class="nav-icon">
+                                    <i class="fas fa-sitemap" style="font-size: 18px;"></i>
+                                </span>
+                                <span class="nav-link-text">Отделы</span>
                             </a>
                         </li>
                         <li class="nav-item">

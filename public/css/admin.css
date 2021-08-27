@@ -10808,7 +10808,7 @@ button.close:focus {
     cursor: pointer;
 }
 
-.change-input {
+.change-input, .change-input-ename{
     border: 1px solid #b9b9b9;
     width: 100%;
 }

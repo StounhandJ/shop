@@ -78,4 +78,9 @@ class Category extends Model
     {
         return Category::factory(["name"=>$name, "e_name"=>$e_name, "department_id"=>$department->getID()] )->make();
     }
+
+    public function getProductCount()
+    {
+        return Product::where("category_id", $this->getId())->count();
+    }
 }

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\CategoryAdminController;
 use App\Http\Controllers\Admin\ProductAdminController;
 use App\Http\Controllers\Admin\MakerAdminController;
+use App\Http\Controllers\Admin\DepartmentAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,9 @@ Route::prefix("43hgf36jfg")->name("admin.")->group(function (){
 });
 
 Route::prefix("admin")->name("admin.")->group(function (){
+
+    Route::get('/departments', [DepartmentAdminController::class, 'index'])->name("departments");
+
     Route::get('/products', [ProductAdminController::class, 'index'])->name("products");
 
     Route::get('/categories', [CategoryAdminController::class, 'index'])->name("categories");
