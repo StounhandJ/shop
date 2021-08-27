@@ -54,7 +54,7 @@ class MakerAdminActionController extends Controller
     public function update(MakerUpdateRequest $request, Maker $maker)
     {
         $maker->setNameIfNotEmpty($request->getName());
-        $maker->upgrade();
+        $maker->save();
 
         return response()->json(["message"=>"success", "response"=>$maker], 200);
     }

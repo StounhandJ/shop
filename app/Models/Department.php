@@ -63,11 +63,6 @@ class Department extends Model
     }
     //</editor-fold>
 
-    public function upgrade()
-    {
-        $this->update(["name"=>$this->getName(), "e_name"=>$this->getEName()]);
-    }
-
     public static function create($name, $e_name)
     {
         return Department::factory(["name"=>$name, "e_name"=>$e_name] )->make();

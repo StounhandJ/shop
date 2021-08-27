@@ -11,14 +11,6 @@ class Maker extends Model
 
     //<editor-fold desc="Setting">
     public $timestamps = false;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-    ];
     //</editor-fold>
 
     //<editor-fold desc="Get Attribute">
@@ -46,11 +38,6 @@ class Maker extends Model
         return Maker::where("id", $id)->first() ?? new Maker();
     }
     //</editor-fold>
-
-    public function upgrade()
-    {
-        $this->update(["name"=>$this->getName()]);
-    }
 
     public static function create($name)
     {

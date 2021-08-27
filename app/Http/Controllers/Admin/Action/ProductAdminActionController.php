@@ -63,7 +63,7 @@ class ProductAdminActionController extends Controller
         $product->setMakerIfNotEmpty($request->getMaker());
         $product->setImgSrcIfNotEmpty($request->getImg());
         $product->setPriceIfNotEmpty($request->getPrice());
-        $product->upgrade();
+        $product->save();
 
         return response()->json(["message"=>"success", "response"=>$product], 200);
     }

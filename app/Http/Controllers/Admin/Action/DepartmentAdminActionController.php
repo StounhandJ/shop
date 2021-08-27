@@ -55,7 +55,7 @@ class DepartmentAdminActionController extends Controller
     {
         $department->setNameIfNotEmpty($request->getName());
         $department->setENameIfNotEmpty($request->getEName());
-        $department->upgrade();
+        $department->save();
 
         return response()->json(["message"=>"success", "response"=>$department], 200);
     }

@@ -169,17 +169,4 @@ class Product extends Model
             "maker_id"=>$maker->getID()
         ])->make();
     }
-
-    public function upgrade()
-    {
-        $this->update([
-            "title"=>$this->getTitle(),
-            "description"=>$this->getDescription(),
-            "e_name"=>$this->getEName(),
-            "price"=>$this->getPrice(),
-            "img_src"=>$this->getImgSrc(),
-            "category_id"=>$this->getCategory()->getID(),
-            "maker_id"=>$this->getMaker()->getID()
-        ]);
-    }
 }

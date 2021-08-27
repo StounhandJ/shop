@@ -74,11 +74,6 @@ class Category extends Model
     }
     //</editor-fold>
 
-    public function upgrade()
-    {
-        $this->update(["name"=>$this->getName(), "e_name"=>$this->getEName(), "department_id"=>$this->getDepartment()->getId()]);
-    }
-
     public static function create($name, $e_name, Department $department)
     {
         return Category::factory(["name"=>$name, "e_name"=>$e_name, "department_id"=>$department->getID()] )->make();

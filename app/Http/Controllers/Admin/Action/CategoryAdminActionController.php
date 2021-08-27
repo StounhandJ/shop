@@ -56,7 +56,7 @@ class CategoryAdminActionController extends Controller
         $category->setNameIfNotEmpty($request->getName());
         $category->setENameIfNotEmpty($request->getEName());
         $category->setDepartmentIfNotEmpty($request->getDepartment());
-        $category->upgrade();
+        $category->save();
 
         return response()->json(["message"=>"success", "response"=>$category], 200);
     }
