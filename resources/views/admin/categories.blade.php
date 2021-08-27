@@ -18,8 +18,8 @@
                                 <li><span class="text-muted">Товаров:</span></li>
                             </ul>
                         </div>
-                        <span class="change-btn btn btn-primary">Изменить</span>
-                        <span class="save-btn btn btn-primary">Сохранить</span>
+                        <button class="change-btn btn btn-primary">Изменить</button>
+                        <button class="save-btn btn btn-primary">Сохранить</button>
                     </div>
                 </div>
             </div>
