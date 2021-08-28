@@ -26,7 +26,7 @@ class CartDelProductRequest extends FormRequest
     public function rules()
     {
         return [
-            "p_id"=> "required|integer|c_exists:products,id"
+            "p_id"=> "required|integer|exists:products,id"
         ];
     }
 

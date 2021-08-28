@@ -11,6 +11,13 @@ class Category extends Model
 
     //<editor-fold desc="Setting">
     public $timestamps = false;
+    
+    protected $appends = ['department_name'];
+
+    public function getDepartmentNameAttribute(): string
+    {
+        return $this->getDepartment()->getName();
+    }
     //</editor-fold>
 
     //<editor-fold desc="Get Attribute">

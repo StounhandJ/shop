@@ -25,7 +25,7 @@
                         </div>
                         <button class="change-btn change-btn-makers btn btn-primary">Изменить</button>
                         <button class="save-btn save-btn-makers btn btn-primary" id="{{$item->getId()}}">Сохранить</button>
-                        <button class="delete-btn delete-btn-makers btn btn-primary"><i class="far fa-trash-alt" style="color: white;"></i></button>
+                        <button class="delete-btn btn btn-primary" path="maker"><i class="far fa-trash-alt" style="color: white;"></i></button>
                     </div>
                 </div>
             </div>

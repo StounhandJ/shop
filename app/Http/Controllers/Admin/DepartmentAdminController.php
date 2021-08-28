@@ -9,7 +9,7 @@ class DepartmentAdminController extends Controller
 {
     public function index()
     {
-        $paginate = Department::paginate(2, ['*'], "p")
+        $paginate = Department::paginate(16, ['*'], "p")
             ->withPath(route('admin.departments'));
 
         return view("admin.departments", compact("paginate"));

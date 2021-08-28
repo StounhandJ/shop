@@ -27,7 +27,7 @@
                         </div>
                         <button class="change-btn change-btn-departments btn btn-primary">Изменить</button>
                         <button class="save-btn save-btn-departments btn btn-primary" id="{{$item->getId()}}">Сохранить</button>
-                        <button class="delete-btn delete-btn-departments btn btn-primary"><i class="far fa-trash-alt" style="color: white;"></i></button>
+                        <button class="delete-btn btn btn-primary" path="department"><i class="far fa-trash-alt" style="color: white;"></i></button>
                     </div>
                 </div>
             </div>
