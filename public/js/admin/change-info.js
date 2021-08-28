@@ -1,11 +1,3 @@
-// var data = {};
-// $('.app-card-body')[0]
-//     .serializeArray()
-//     .forEach((item) => {
-//         data[item.name] = item.value;
-//     });
-//     console.table(data);
-//     return false;
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -51,12 +43,15 @@ function update() {
             data: fd,
             url: "/43hgf36jfg/department",
             success: function (data) {
-                data.response.forEach((item) => {
-                    department_list.append(new Option(item.name, item.id));
-                });
-                department_list.val(department_list[0].id).change();
+                if (department_list[0] != undefined) {
+                    data.response.forEach((item) => {
+                        department_list.append(new Option(item.name, item.id));
+                    });
+                    department_list.val(department_list[0].id).change();
+                }
             },
         });
+        return false;
         // dropdown list for change depart in category
     });
     // update maker
@@ -121,27 +116,21 @@ function update() {
 
     // update department
     $(".save-btn-departments").click(function () {
-        var fd = new FormData();
-        fd.append("name", $(this).siblings(".change-input")[0].value);
-        fd.append(
-            "e_name",
-            $(this)
-                .siblings(".app-doc-meta")
-                .children(".mb-0")
-                .children(".change-input-ename")[0].value
-        );
+        var data = {};
+        $(this)
+            .parents("form")
+            .serializeArray()
+            .forEach((item) => {
+                data[item.name] = item.value;
+            });
         uri = $(this).siblings(".app-doc-meta").children(".mb-0").children()[0];
         department_name = $(this).siblings("h4").children()[0];
         btn = $(this)[0];
-        console.log($(this)[0].id);
         if ($(this)[0].id !== "") {
-            fd.append("_method", "PUT");
+            data["_method"]="PUT"
             $.ajax({
                 type: "POST",
-                cache: false,
-                processData: false,
-                contentType: false,
-                data: fd,
+                data: data,
                 url: "/43hgf36jfg/department/" + $(this)[0].id,
                 success: function (data) {
                     department_name.innerHTML = data.response.name;
@@ -161,13 +150,10 @@ function update() {
             });
         } else {
             // add department
-            fd.append("_method", "POST");
+            data["_method"]="PUT"
             $.ajax({
                 type: "POST",
-                cache: false,
-                processData: false,
-                contentType: false,
-                data: fd,
+                data: data,
                 url: "/43hgf36jfg/department",
                 success: function (data) {
                     department_name.innerHTML = data.response.name;
@@ -190,11 +176,12 @@ function update() {
         $(this).siblings(".delete-btn").hide();
         $(this).siblings(".change-input").hide();
         $(this)
-            .siblings(".app-doc-meta")
-            .children(".mb-0")
-            .children(".change-input-ename")
-            .hide();
+        .siblings(".app-doc-meta")
+        .children(".mb-0")
+        .children(".change-input-ename")
+        .hide();
         $(this).siblings(".change-btn").show();
+        return false;
     });
     // udpate department
 
@@ -371,11 +358,11 @@ $(document).ready(function () {
                 '<div class="app-card app-card-doc shadow-sm h-100">' +
                 '<div class="app-card-body p-3">' +
                 '<h4 class="app-doc-title truncate mb-0"><span></span></h4>' +
-                '<input type="text" class="change-input" placeholder="Название отдела">' +
+                '<input type="text" name="name" class="change-input" placeholder="Название отдела">' +
                 '<div class="app-doc-meta">' +
                 '<ul class="list-unstyled mb-0">' +
                 '<li><span class="text-muted">uri:</span></li>' +
-                '<input type="text" class="change-input-ename" placeholder="Новый uri"></input>' +
+                '<input type="text" name="e_name" class="change-input-ename" placeholder="Новый uri"></input>' +
                 '<li><span class="text-muted">Id:</span></li>' +
                 '<li><span class="text-muted">Категорий:</span></li>' +
                 "</ul>" +
