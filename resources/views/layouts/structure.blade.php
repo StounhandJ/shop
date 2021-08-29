@@ -94,12 +94,17 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="{{ route('index') }}" class="{{Request::url() == route('index') ?  'active' : '' }}">Главная</a></li>
+                                <li><a href="{{ route('index') }}"
+                                        class="{{ Request::url() == route('index') ? 'active' : '' }}">Главная</a>
+                                </li>
                                 @foreach ($departments as $item)
                                     <li><a href="{{ route('catalog.index', ['department' => $item->getEName()]) }}"
                                             class={{ isset($current_department) && $item->getId() == $current_department->getId() ? 'active' : '' }}>{{ $item->getName() }}</a>
                                     </li>
                                 @endforeach
+                                <li><a href="{{ route('custom') }}"
+                                    class="{{ Request::url() == route('custom') ? 'active' : '' }}">На заказ</a>
+                            </li>
                                 {{-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
@@ -115,7 +120,8 @@
                         <div class="search-content pull-right">
                             <div class="search-icons">
                                 <input type="search" placeholder="Поиск..." id="search" autocomplete="off">
-                                <button><i class="fa fa-times-circle" aria-hidden="true" style="margin-top: 2px; font-size: 18px;"></i></button>
+                                <button><i class="fa fa-times-circle" aria-hidden="true"
+                                        style="margin-top: 2px; font-size: 18px;"></i></button>
                             </div>
                             <div class="search-dropdown-content"></div>
                         </div>

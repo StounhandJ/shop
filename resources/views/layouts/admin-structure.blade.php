@@ -67,6 +67,30 @@
                 </div>
                 <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
                     <ul class="app-menu list-unstyled">
+                        {{-- <li class="nav-item">
+                            <a class="{{Request::url() == route('admin.orders') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.orders') }}">
+                                <span class="nav-icon">
+                                    <i class="fa fa-credit-card" aria-hidden="true" style="font-size: 18px;"></i>
+                                </span>
+                                <span class="nav-link-text">Заказы</span>
+                            </a>
+                        </li> --}}
+                        {{-- <li class="nav-item">
+                            <a class="{{Request::url() == route('admin.charts') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.charts') }}">
+                                <span class="nav-icon">
+                                    <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 18px;"></i>
+                                </span>
+                                <span class="nav-link-text">Диаграммы</span>
+                            </a>
+                        </li> --}}
+                        {{-- <li class="nav-item">
+                            <a class="{{Request::url() == route('admin.main-info') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.main-info') }}">
+                                <span class="nav-icon">
+                                    <i class="fa fa-info-circle" aria-hidden="true" style="font-size: 18px;"></i>
+                                </span>
+                                <span class="nav-link-text">Диаграммы</span>
+                            </a>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="{{Request::url() == route('admin.makers') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.makers') }}">
                                 <span class="nav-icon">

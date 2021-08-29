@@ -1923,7 +1923,7 @@ textarea.input-lg {
     outline-offset: -2px
 }
 
-.btn:hover, .btn:focus {
+.btn:hover {
     color: #333;
     text-decoration: none
 }
