@@ -11,15 +11,12 @@ class AdminAuthController extends Controller
 {
     public function login(Request $request)
     {
-        if (Auth::guard("admin")->check()) return redirect(route("admin.index"));
-
-        $user = User::where("email", $request->query("email"))
-                ->where("password", $request->query("password"));
-        if (is_null($user)) return redirect(route("admin.login"))->withErrors([
-            "login"=> "fail login"
+        $data = $request->only(["login", "password"]);
+        $data["is_admin"] = true;
+        if (!auth()->guard("admin")->attempt($data))
+            return redirect(route("admin.login"))->withErrors([
+            "login"=> "Неправильные данные"
         ]);
-        Auth::guard("admin")->login($user, true);
-
         return redirect(route("admin.index"));
     }
 

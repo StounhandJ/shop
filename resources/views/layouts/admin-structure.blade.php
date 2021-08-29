@@ -48,8 +48,8 @@
                         </div> --}}
                         <div class="app-utilities col-auto">
                             <div class="app-utility-item">
-                                <i class="admin-name">Имя админа</i>
-                                <a class="btn app-btn-primary" style="margin-left: 10px;" href="#"><i class="fa fa-sign-out" style="color: white"></i></a>
+                                <i class="admin-name">{{ auth()->user()->getLogin() }}</i>
+                                <a class="btn app-btn-primary" style="margin-left: 10px;" href="{{ route("admin.logout") }}"><i class="fa fa-sign-out" style="color: white"></i></a>
                             </div>
                         </div>
                     </div>
