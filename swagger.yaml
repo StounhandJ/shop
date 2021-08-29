@@ -1018,6 +1018,7 @@ components:
         - name
         - e_name
         - department_id
+        - department_name
       properties:
         id:
           type: integer
@@ -1034,6 +1035,10 @@ components:
           type: integer
           description: ID Отдела к которой принадлежит категория
           example: 79
+        department_name:
+          type: string
+          description: Название Отдела к которой принадлежит категория
+          example: Мебель
     
     Product:
       type: object
