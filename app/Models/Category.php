@@ -11,6 +11,13 @@ class Category extends Model
 
     //<editor-fold desc="Setting">
     public $timestamps = false;
+    
+    protected $appends = ['department_name'];
+
+    public function getDepartmentNameAttribute(): string
+    {
+        return $this->getDepartment()->getName();
+    }
     //</editor-fold>
 
     //<editor-fold desc="Get Attribute">
@@ -77,5 +84,10 @@ class Category extends Model
     public static function create($name, $e_name, Department $department)
     {
         return Category::factory(["name"=>$name, "e_name"=>$e_name, "department_id"=>$department->getID()] )->make();
+    }
+
+    public function getProductCount()
+    {
+        return Product::where("category_id", $this->getId())->count();
     }
 }

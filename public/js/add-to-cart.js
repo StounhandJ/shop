@@ -8,10 +8,8 @@ $.ajax({
     cache: false,
     processData: false,
     contentType: false,
-    data: formData,
     url: "/action/cart/info",
     success: function (data) {
-        // console.log("Данные обновлены");
         update(data["cart"]);
     },
     error: function () {
@@ -20,15 +18,15 @@ $.ajax({
 });
 $(document).ready(function () {
     $(".add-to-cart ~ .add-to-cart").click(function () {
-        var formData = new FormData();
+        var fd = new FormData();
         var productID = $(this)[0].id;
-        formData.append("p_id", productID);
+        fd.append("p_id", productID);
         $.ajax({
             type: "POST",
             cache: false,
             processData: false,
             contentType: false,
-            data: formData,
+            data: fd,
             url: "/action/cart/add",
             success: function (data) {
                 console.log("Добавлено в корзину");

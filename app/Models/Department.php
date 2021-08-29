@@ -72,4 +72,9 @@ class Department extends Model
     {
         return Category::all();
     }
+
+    public function getCategoryCount()
+    {
+        return Category::where("department_id", $this->getId())->count();
+    }
 }

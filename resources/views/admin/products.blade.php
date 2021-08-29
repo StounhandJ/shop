@@ -17,8 +17,8 @@
                         </select>
                     </div>
                     <div class="col-auto">
-                        <a class="btn app-btn-primary" href="#"><i class="fa fa-plus"
-                                style="margin-right:5px;"></i>Создать</a>
+                        <button class="btn app-btn-primary"><i class="fa fa-plus"
+                                style="margin-right:5px;"></i>Создать</button>
                     </div>
                 </div>
             </div>
@@ -40,8 +40,8 @@
                                 <li><span class="text-muted">Цена:</span> <input type="text" class="change-input"></li>
                             </ul>
                         </div>
-                        <span class="change-btn btn btn-primary">Изменить</span>
-                        <span class="save-btn btn btn-primary">Сохранить</span>
+                        <button class="change-btn btn btn-primary">Изменить</button>
+                        <button class="save-btn btn btn-primary">Сохранить</button>
                     </div>
                 </div>
             </div>

@@ -10,13 +10,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="/js/admin/all.min.js"></script>
     <script src="https://kit.fontawesome.com/8a553633d6.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link id="theme-style" rel="stylesheet" href="/css/portal.css">
+    <link id="theme-style" rel="stylesheet" href="/css/admin.css">
 
 </head>
 
@@ -74,6 +73,14 @@
                                     <i class="fa fa-user" aria-hidden="true" style="font-size: 18px;"></i>
                                 </span>
                                 <span class="nav-link-text">Производители</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="{{Request::url() == route('admin.departments') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.departments') }}">
+                                <span class="nav-icon">
+                                    <i class="fas fa-sitemap" style="font-size: 18px;"></i>
+                                </span>
+                                <span class="nav-link-text">Отделы</span>
                             </a>
                         </li>
                         <li class="nav-item">
