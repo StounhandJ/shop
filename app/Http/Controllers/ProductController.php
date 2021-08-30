@@ -13,11 +13,11 @@ class ProductController extends Controller
     {
         $departments = Department::all();
 
-        $categories = Category::all();
+        $current_category = $product->getCategory();
 
-        $current_category = $categories[0];
+        $current_department = $current_category->getDepartment();
 
-        $current_department = $departments[0];
+        $categories = $current_department->getCategories();
 
         return view("product-details", compact("product", "departments", 'categories', 'current_category', 'current_department'));
     }
