@@ -41,7 +41,7 @@ function update() {
             processData: false,
             contentType: false,
             data: fd,
-            url: "/admin/action/department",
+            url: "/action/department",
             success: function (data) {
                 if (department_list[0] != undefined) {
                     data.response.forEach((item) => {
@@ -69,7 +69,7 @@ function update() {
                 processData: false,
                 contentType: false,
                 data: fd,
-                url: "/admin/action/maker/" + $(this)[0].id,
+                url: "/action/maker/" + $(this)[0].id,
                 success: function (data) {
                     maker_name.innerHTML = data.response.name;
                 },
@@ -92,7 +92,7 @@ function update() {
                 processData: false,
                 contentType: false,
                 data: fd,
-                url: "/admin/action/maker",
+                url: "/action/maker",
                 success: function (data) {
                     maker_name.innerHTML = data.response.name;
                     btn.id = data.response.id;
@@ -131,7 +131,7 @@ function update() {
             $.ajax({
                 type: "POST",
                 data: data,
-                url: "/admin/action/department/" + $(this)[0].id,
+                url: "/action/department/" + $(this)[0].id,
                 success: function (data) {
                     department_name.innerHTML = data.response.name;
                     uri.innerHTML =
@@ -154,7 +154,7 @@ function update() {
             $.ajax({
                 type: "POST",
                 data: data,
-                url: "/admin/action/department",
+                url: "/action/department",
                 success: function (data) {
                     department_name.innerHTML = data.response.name;
                     uri.innerHTML =
@@ -223,7 +223,7 @@ function update() {
                 processData: false,
                 contentType: false,
                 data: fd,
-                url: "/admin/action/category/" + $(this)[0].id,
+                url: "/action/category/" + $(this)[0].id,
                 success: function (data) {
                     category_name.innerHTML = data.response.name;
                     department_list.id = data.response.department_id;
@@ -255,7 +255,7 @@ function update() {
                 processData: false,
                 contentType: false,
                 data: fd,
-                url: "/admin/action/category",
+                url: "/action/category",
                 success: function (data) {
                     category_name.innerHTML = data.response.name;
                     department_list.id = data.response.department_id;
@@ -305,7 +305,7 @@ function update() {
             type: "POST",
             data: { _method: "DELETE" },
             url:
-                "/admin/action/" +
+                "/action/" +
                 $(this)[0].attributes.getNamedItem("path").value +
                 "/" +
                 $(this).siblings(".save-btn")[0].id,

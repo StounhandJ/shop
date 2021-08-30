@@ -15,12 +15,12 @@
                     <h2>{{ $item->getPrice() }} &#8381;</h2>
                     <p>{{ $item->getTitle() }}</p>
                     <div class="overlay-buttons">
-                        <a href="{{ route('product.index', ['product' => $item->getId()]) }}"
+                        <a href="{{ route('product.details', ['product' => $item->getId()]) }}"
                             class="btn btn-default add-to-cart"><i class="fa fa-info-circle"></i>Подробнее</a>
-                        <a id="{{$item->getId()}}"
+                        <button id="{{$item->getId()}}"
                             class="btn btn-default add-to-cart">
                             <i class="fa fa-shopping-cart"></i>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
