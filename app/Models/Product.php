@@ -92,9 +92,9 @@ class Product extends Model
         if ($description!="") $this->description = $description;
     }
 
-    public function setENameIfNotEmpty($e_Name)
+    public function setENameIfNotEmpty($e_name)
     {
-        if ($e_Name!="") $this->e_Name = $e_Name;
+        if ($e_name!="") $this->e_name = $e_name;
     }
 
     /**
@@ -111,12 +111,12 @@ class Product extends Model
 
     public function setCategoryIfNotEmpty(Category $category)
     {
-        if ($category->exists) $this->category = $category;
+        if ($category->exists) $this->category_id = $category->getId();
     }
 
     public function setMakerIfNotEmpty(Maker $maker)
     {
-        if ($maker->exists) $this->maker = $maker;
+        if ($maker->exists) $this->maker_id = $maker->getId();
     }
 
     public function setPriceIfNotEmpty($price)
@@ -145,6 +145,11 @@ class Product extends Model
     {
         return Product::where("id", $id)->first() ?? new Product();
     }
+
+    public static function getByTitle(string $title): Product
+    {
+        return Product::where("title", $title)->first() ?? new Product();
+    }
     //</editor-fold>
 
     /**
@@ -158,7 +163,7 @@ class Product extends Model
         return Storage::disk("prod_img")->putFile("/", $img);
     }
 
-    public static function create($title, $description, $e_name, int $price, string $img_src, Category $category, Maker $maker)
+    public static function make($title, $description, $e_name, int $price, string $img_src, Category $category, Maker $maker)
     {
         return Product::factory([
             "title"=>$title,

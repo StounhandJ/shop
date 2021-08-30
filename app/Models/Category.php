@@ -80,9 +80,14 @@ class Category extends Model
     {
         return Category::where("id", $id)->first() ?? new Category();
     }
+
+    public static function getCategoryByEName($e_name) : Category
+    {
+        return Category::where("e_name", $e_name)->first() ?? new Category();
+    }
     //</editor-fold>
 
-    public static function create($name, $e_name, Department $department)
+    public static function make($name, $e_name, Department $department)
     {
         return Category::factory(["name"=>$name, "e_name"=>$e_name, "department_id"=>$department->getID()] )->make();
     }

@@ -38,9 +38,14 @@ class Maker extends Model
     {
         return Maker::where("id", $id)->first() ?? new Maker();
     }
+
+    public static function getMakerByName($name) : Maker
+    {
+        return Maker::where("name", $name)->first() ?? new Maker();
+    }
     //</editor-fold>
 
-    public static function create($name)
+    public static function make($name)
     {
         return Maker::factory(["name"=>$name] )->make();
     }

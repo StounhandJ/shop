@@ -60,8 +60,8 @@ Route::get('/custom', function (Request $request) {
 })->name("custom");
 
 Route::get('/c/{department:e_name}/{category:e_name?}', [CatalogController::class, "index"])
-    ->where('department', '[A-Za-z]+')
-    ->where('category', '[A-Za-z]+')
+    ->where('department', '[A-Za-z|_]+')
+    ->where('category', '[A-Za-z|_]+')
     ->name("catalog.index");
 
 Route::get('/p/{product:id}', [ProductController::class, "index"])
@@ -119,7 +119,7 @@ Route::prefix("admin")->name("admin.")->middleware("auth:admin")->group(function
 
     Route::get('/', [ProductAdminController::class, 'index'])->name("index");
 
-    
+
 });
 
 Route::get('/orders', function(){return view('admin.orders');})->middleware("auth:admin");

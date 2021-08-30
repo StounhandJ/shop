@@ -28,7 +28,7 @@ class MakerAdminActionController extends Controller
      */
     public function store(MakerCreateRequest $request)
     {
-        $maker = Maker::create($request->getName());
+        $maker = Maker::make($request->getName());
         $maker->save();
         return response()->json(["message"=>"success", "response"=>$maker], 200);
     }

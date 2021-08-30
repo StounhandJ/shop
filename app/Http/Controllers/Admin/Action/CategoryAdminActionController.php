@@ -28,7 +28,7 @@ class CategoryAdminActionController extends Controller
      */
     public function store(CategoryCreateRequest $request)
     {
-        $category= Category::create($request->getName(), $request->getEName(), $request->getDepartment());
+        $category= Category::make($request->getName(), $request->getEName(), $request->getDepartment());
         $category->save();
         return response()->json(["message"=>"success", "response"=>$category], 200);
     }

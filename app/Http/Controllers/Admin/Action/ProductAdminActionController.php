@@ -29,7 +29,7 @@ class ProductAdminActionController extends Controller
     public function store(ProductCreateRequest $request)
     {
         $img_src = Product::saveImg($request->getImg());
-        $product = Product::create(
+        $product = Product::make(
             $request->getTitle(), $request->getDescription(), $request->getEName(),
             $request->getPrice(), $img_src , $request->getCategory(), $request->getMaker());
         $product->save();

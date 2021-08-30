@@ -28,7 +28,7 @@ class DepartmentAdminActionController extends Controller
      */
     public function store(DepartmentCreateRequest $request)
     {
-        $department = Department::create($request->getName(), $request->getEName());
+        $department = Department::make($request->getName(), $request->getEName());
         $department->save();
         return response()->json(["message"=>"success", "response"=>$department], 200);
     }
