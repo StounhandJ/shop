@@ -14,9 +14,9 @@ class ParserProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(SantehnikParser::class, function (){
-            return new SantehnikParser(config("parser.santehnik"));
-        });
+//        $this->app->bind(SantehnikParser::class, function (){
+//            return new SantehnikParser(config("parser.santehnik"));
+//        });
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Product;
 use App\Services\SantehnikParser;
 use Illuminate\Console\Command;
+use StounhandJ\HtmldomLaravel\Htmldom;
 
 class ParseCommand extends Command
 {
@@ -36,27 +37,37 @@ class ParseCommand extends Command
      * Execute the console command.
      *
      * @return int
+     * @throws \Exception
      */
-    public function handle(SantehnikParser $parser)
+    public function handle()
     {
-        $progressBar = $this->output->createProgressBar();
-        $progressBar->setFormat('verbose');
-        $progressBar->start();
-        /** @var $product Product */
-        foreach ($progressBar->iterate($parser->parseGenerator(), $parser->count()) as $product) {
-            $search_product = Product::getByTitle($product->getTitle());
-            if ($search_product->exists) {
-                $search_product->setDescriptionIfNotEmpty($product->getDescription());
-                $search_product->setENameIfNotEmpty($product->getEName());
+        $statistics = [];
+        foreach (config("parser.santehnik") as $url_parse) {
+            $this->info("Парсинга: ".$url_parse);
+            $parser = new SantehnikParser($url_parse);
+            $this->info("Товаров: ".$parser->count());
+            $progressBar = $this->output->createProgressBar();
+            $progressBar->setFormat('verbose');
+            $progressBar->start();
+            /** @var $product Product */
+            foreach ($progressBar->iterate($parser->parseGenerator(), $parser->count()) as $product) {
+                $search_product = Product::getByTitle($product->getTitle());
+                if ($search_product->exists) {
+                    $search_product->setDescriptionIfNotEmpty($product->getDescription());
+                    $search_product->setENameIfNotEmpty($product->getEName());
 //                $search_product->setImgSrcIfNotEmpty($product->getImgSrc());
-                $search_product->setCategoryIfNotEmpty($product->getCategory());
-                $search_product->setMakerIfNotEmpty($product->getMaker());
-                $search_product->setPriceIfNotEmpty($product->getPrice());
-                $search_product->save();
-            } else $product->save();
-            sleep(1);
+                    $search_product->setCategoryIfNotEmpty($product->getCategory());
+                    $search_product->setMakerIfNotEmpty($product->getMaker());
+                    $search_product->setPriceIfNotEmpty($product->getPrice());
+                    $search_product->save();
+                } else $product->save();
+            }
+            $parser_stat = $parser->statistics();
+            $statistics[] = [$url_parse, $parser->count(), $parser_stat["countCategories"], $parser_stat["countMakers"]];
+            $progressBar->finish();
+            $this->newLine();
         }
-        $progressBar->finish();
+        $this->table(["Ссылка", "Создано/Изменено товаров","Категорий", "Производителей"], $statistics);
         return 0;
     }
 
