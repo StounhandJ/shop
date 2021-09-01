@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Exceptions\InvalidSiteException;
 use App\Models\Product;
 use App\Services\SantehnikParser;
 use Illuminate\Console\Command;
@@ -37,9 +38,23 @@ class ParseCommand extends Command
      * Execute the console command.
      *
      * @return int
-     * @throws \Exception
      */
     public function handle()
+    {
+        try {
+            $this->parse();
+        }
+        catch (InvalidSiteException $e)
+        {
+            $this->error($e->getMessage());
+        }
+        return 0;
+    }
+
+    /**
+     * @throws InvalidSiteException
+     */
+    public function parse()
     {
         $statistics = [];
         foreach (config("parser.santehnik") as $url_parse) {
@@ -68,14 +83,5 @@ class ParseCommand extends Command
             $this->newLine();
         }
         $this->table(["Ссылка", "Создано/Изменено товаров","Категорий", "Производителей"], $statistics);
-        return 0;
-    }
-
-    public function iterable()
-    {
-        $iterable = [1, 2, 3, 5];
-        foreach ($iterable as $value) {
-            yield $value;
-        }
     }
 }

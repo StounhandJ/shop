@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\Parser;
+use App\Exceptions\InvalidSiteException;
 use App\Models\Category;
 use App\Models\Maker;
 use App\Models\Product;
@@ -25,13 +26,13 @@ class SantehnikParser extends Parser
     private $makers;
 
     /**
-     * @throws Exception
+     * @throws InvalidSiteException
      */
     public function __construct(string $department_url)
     {
         $this->loadConfig();
         preg_match('@^(?:https://)?([^/]+)@i', $department_url, $matches);
-        if ($this->host != $matches[1]) throw new Exception("Неверный сайт");
+        if ($this->host != $matches[1]) throw new InvalidSiteException();
         $this->department = $this->getOrCreateDepartmentIfNoExist($this->getDepartmentEName($department_url), $this->getDepartmentName($department_url));
         $this->categories = $this->getCategories($department_url);
         $this->makers = [];
@@ -41,18 +42,6 @@ class SantehnikParser extends Parser
             $category_data["count"] = $this->getTotalCnt($category_data["sectionId"]);
             $this->totalCnt += $category_data["count"];
         }
-    }
-
-    private function loadConfig()
-    {
-        $this->host = config($this->pathSetting()."host");
-        $this->item_on_page = config($this->pathSetting()."item_on_page");
-        $this->interval = config($this->pathSetting()."interval");
-    }
-
-    private function pathSetting(): string
-    {
-        return sprintf("%s.%s.%s.", $this->config_name, $this->setting_name, $this->name);
     }
 
     public function count(): int
@@ -75,6 +64,26 @@ class SantehnikParser extends Parser
                 sleep($this->interval);
             }
         }
+    }
+
+    public function statistics(): array
+    {
+        return [
+            "countMakers"=> count($this->makers),
+            "countCategories"=> count($this->categories)
+        ];
+    }
+
+    private function loadConfig()
+    {
+        $this->host = config($this->pathSetting()."host");
+        $this->item_on_page = config($this->pathSetting()."item_on_page");
+        $this->interval = config($this->pathSetting()."interval");
+    }
+
+    private function pathSetting(): string
+    {
+        return sprintf("%s.%s.%s.", $this->config_name, $this->setting_name, $this->name);
     }
 
     private function plusUniqueMaker(Maker $maker)
@@ -151,13 +160,5 @@ class SantehnikParser extends Parser
         );
         $context = stream_context_create($options);
         return json_decode(file_get_contents($url, false, $context), true);
-    }
-
-    public function statistics(): array
-    {
-        return [
-            "countMakers"=> count($this->makers),
-            "countCategories"=> count($this->categories)
-        ];
     }
 }

@@ -32,7 +32,7 @@ abstract class Parser
 
     protected function getOrCreateDepartmentIfNoExist($e_name, $name): Department
     {
-        $department = Department::getDepartmentByEName($e_name);
+        $department = Department::getByEName($e_name);
         if ($department->exists)
         {
             $department->setNameIfNotEmpty($name);
@@ -47,7 +47,7 @@ abstract class Parser
 
     protected function getOrCreateCategoryIfNoExist($e_name, $name, Department $department): Category
     {
-        $category = Category::getCategoryByEName($e_name);
+        $category = Category::getByEName($e_name);
         if ($category->exists)
         {
             $category->setNameIfNotEmpty($name);
@@ -62,7 +62,7 @@ abstract class Parser
 
     protected function getOrCreateMakerIfNoExist($name): Maker
     {
-        $maker= Maker::getMakerByName($name);
+        $maker= Maker::getByName($name);
         if ($maker->exists) return $maker;
 
         $maker = Maker::make($name);
