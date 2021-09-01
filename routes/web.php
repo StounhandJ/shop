@@ -5,6 +5,7 @@ use App\Http\Controllers\Action\SearchController;
 use App\Http\Controllers\Admin\Action\CategoryAdminActionController;
 use App\Http\Controllers\Admin\Action\DepartmentAdminActionController;
 use App\Http\Controllers\Admin\Action\MakerAdminActionController;
+use App\Http\Controllers\Admin\Action\OrderAdminActionController;
 use App\Http\Controllers\Admin\Action\ProductAdminActionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -90,6 +91,10 @@ Route::prefix("action")->group(function () {
         Route::apiResource("product", ProductAdminActionController::class)->missing(fn() => response()->json(["message" => "No query results for model \"Product\""], 404));
 
         Route::apiResource("maker", MakerAdminActionController::class)->missing(fn() => response()->json(["message" => "No query results for model \"Maker\""], 404));
+
+        Route::apiResource("order", OrderAdminActionController::class)
+            ->only(['index', 'show'])->missing(fn() => response()->json(["message" => "No query results for model \"Order\""], 404));
+
     });
 
 });
