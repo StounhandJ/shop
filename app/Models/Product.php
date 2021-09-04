@@ -156,6 +156,11 @@ class Product extends Model
     {
         return Product::where("title", $title)->first() ?? new Product();
     }
+
+    public static function getByImgSrcBuilder(string $img_src): Builder
+    {
+        return Product::where("img_src", $img_src);
+    }
     //</editor-fold>
 
     /**
