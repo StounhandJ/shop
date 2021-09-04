@@ -92,6 +92,7 @@ class SantehnikParser extends Parser
             "-",
             "e_name",
             $data["price"],
+            // data["price"] = data["price"]*0.95
             Product::saveImg($file_path),
             $category,
             $maker);

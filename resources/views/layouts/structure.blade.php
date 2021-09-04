@@ -17,10 +17,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"
         charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 <!--/head-->
 
@@ -212,13 +211,15 @@
 
     </footer>
     <!--/Footer-->
-    <script src="/js/add-to-cart.js"></script>
+    <script src="/js/cut-title.js"></script>
+    <script src="/js/add-to-cart.js"></>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.scrollUp.min.js"></script>
     <script src="/js/shit.js"></script>
     <script src="/js/jquery.prettyPhoto.js"></script>
     <script src="/js/search.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/total-cart-price.js"></script>
 </body>
 
 </html>

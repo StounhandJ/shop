@@ -9,7 +9,7 @@
                     <div class="product-details">
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img src="images/product-details/1.jpg" alt="Картинка товара" />
+                                <img src="{{$product->getImgSrc()}}" alt="Картинка товара" />
                             </div>
                         </div>
                         <div class="col-sm-7">
