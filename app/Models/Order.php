@@ -12,6 +12,13 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $appends = ['products'];
+
+    public function getProductsAttribute(): Collection
+    {
+        return $this->products()->get();
+    }
+
     public static function getById($id) : Order
     {
         return Order::where("id", $id)->first() ?? new Order();

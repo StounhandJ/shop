@@ -24,6 +24,6 @@ class CategoryRequest extends FormRequest
 
     public function getDepartment(): Department
     {
-        return Department::getDepartmentById($this->input("department_id"));
+        return Department::getById($this->input("department_id"));
     }
 }

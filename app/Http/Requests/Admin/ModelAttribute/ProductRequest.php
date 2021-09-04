@@ -40,11 +40,11 @@ class ProductRequest extends FormRequest
 
     public function getCategory(): Category
     {
-        return Category::getCategoryById($this->input("category_id"));
+        return Category::getById($this->input("category_id"));
     }
 
     public function getMaker(): Maker
     {
-        return Maker::getMakerById($this->input("maker_id"));
+        return Maker::getById($this->input("maker_id"));
     }
 }

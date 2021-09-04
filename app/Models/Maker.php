@@ -34,12 +34,12 @@ class Maker extends Model
     //</editor-fold>
 
     //<editor-fold desc="Search Maker">
-    public static function getMakerById($id) : Maker
+    public static function getById($id) : Maker
     {
         return Maker::where("id", $id)->first() ?? new Maker();
     }
 
-    public static function getMakerByName($name) : Maker
+    public static function getByName($name) : Maker
     {
         return Maker::where("name", $name)->first() ?? new Maker();
     }

@@ -78,12 +78,12 @@ class Category extends Model
         return Category::where("department_id", $department->getId())->get();
     }
 
-    public static function getCategoryById($id) : Category
+    public static function getById($id) : Category
     {
         return Category::where("id", $id)->first() ?? new Category();
     }
 
-    public static function getCategoryByEName($e_name) : Category
+    public static function getByEName($e_name) : Category
     {
         return Category::where("e_name", $e_name)->first() ?? new Category();
     }

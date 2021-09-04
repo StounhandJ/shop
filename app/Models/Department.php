@@ -53,17 +53,17 @@ class Department extends Model
     //</editor-fold>
 
     //<editor-fold desc="Search Department">
-    public static function getDepartmentById($id) : Department
+    public static function getById($id) : Department
     {
         return Department::where("id", $id)->first() ?? new Department();
     }
 
-    public static function getDepartmentByEName($e_name) : Department
+    public static function getByEName($e_name) : Department
     {
         return Department::where("e_name", $e_name)->first() ?? new Department();
     }
 
-    public static function getFirstDepartment()
+    public static function getFirst()
     {
         return Department::first();
     }

@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Exceptions\InvalidSiteException;
 use App\Models\Product;
 use App\Services\SantehnikParser;
 use Illuminate\Console\Command;
-use StounhandJ\HtmldomLaravel\Htmldom;
 
 class ParseCommand extends Command
 {
@@ -37,9 +37,23 @@ class ParseCommand extends Command
      * Execute the console command.
      *
      * @return int
-     * @throws \Exception
      */
     public function handle()
+    {
+        try {
+            $this->parse();
+        }
+        catch (InvalidSiteException $e)
+        {
+            $this->error($e->getMessage());
+        }
+        return 0;
+    }
+
+    /**
+     * @throws InvalidSiteException
+     */
+    public function parse()
     {
         $statistics = [];
         foreach (config("parser.santehnik") as $url_parse) {
@@ -55,7 +69,7 @@ class ParseCommand extends Command
                 if ($search_product->exists) {
                     $search_product->setDescriptionIfNotEmpty($product->getDescription());
                     $search_product->setENameIfNotEmpty($product->getEName());
-//                $search_product->setImgSrcIfNotEmpty($product->getImgSrc());
+                    $search_product->setImgSrcIfNotEmpty($product->getImgPath());
                     $search_product->setCategoryIfNotEmpty($product->getCategory());
                     $search_product->setMakerIfNotEmpty($product->getMaker());
                     $search_product->setPriceIfNotEmpty($product->getPrice());
@@ -68,14 +82,5 @@ class ParseCommand extends Command
             $this->newLine();
         }
         $this->table(["Ссылка", "Создано/Изменено товаров","Категорий", "Производителей"], $statistics);
-        return 0;
-    }
-
-    public function iterable()
-    {
-        $iterable = [1, 2, 3, 5];
-        foreach ($iterable as $value) {
-            yield $value;
-        }
     }
 }
