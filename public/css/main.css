@@ -226,6 +226,7 @@ a#scrollUp i {
 
 .shop-menu ul li a i {
   margin-right: 3px;
+  display: inline;
 }
 
 .shop-menu ul li a:hover {
@@ -708,7 +709,7 @@ ul.sub-menu {
 }
 
 .active {
-  color: rgba(254, 152, 15, 0.6) !important;
+  color: rgb(254, 152, 15) !important;
 }
 
 .panel-title a:hover {
@@ -930,13 +931,19 @@ h2.title, h1.title {
   font-weight: 700;
 }
 
-.productinfo p {
+.productinfo p, .product-overlay p {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 400;
   color: #696763;
-  margin-top: 15px;
+  max-width: 200px;
+  text-align: center;
+  margin: 15px auto 10px;
   text-transform: capitalize;
+}
+
+.product-overlay p {
+  color: white;
 }
 
 .hidden-link {
@@ -1007,14 +1014,6 @@ h2.title, h1.title {
 .product-overlay .add-to-cart:hover {
   background: #fff;
   color: #FE980F;
-}
-
-.product-overlay p {
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #fff;
-  text-transform: capitalize;
 }
 
 .overlay-buttons {
@@ -1328,9 +1327,8 @@ h2.title, h1.title {
   margin-top: 18px;
 }
 
-.product-information span span {
+.product-information div span {
   color: #FE980F;
-  float: left;
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
   font-weight: 700;
@@ -1338,7 +1336,7 @@ h2.title, h1.title {
   margin-top: 0px;
 }
 
-.product-information span input {
+.product-information div input {
   border: 1px solid #DEDEDC;
   color: #696763;
   font-family: 'Roboto', sans-serif;
@@ -1769,11 +1767,6 @@ h2.title, h1.title {
   font-size: 24px;
 }
 
-.cart_product {
-  display: block;
-  margin: 15px -70px 10px 25px;
-}
-
 .cart_quantity_button a {
   background: #F0F0E9;
   color: #696763;
@@ -1791,12 +1784,6 @@ h2.title, h1.title {
   font-size: 16px;
   text-align: center;
   font-family: 'Roboto', sans-serif;
-}
-
-.cart_delete {
-  display: block;
-  margin-right: -12px;
-  overflow: hidden;
 }
 
 .cart_delete a {
@@ -2076,8 +2063,8 @@ h2.title, h1.title {
   color: #696763
 }
 
-#cart_items .cart_info .table.table-condensed.total-result tr {
-  border-bottom: 0
+#cart_items tr {
+  border-top: 20px solid transparent;
 }
 
 #cart_items .cart_info .table.table-condensed.total-result span {
@@ -2582,9 +2569,8 @@ h2.title, h1.title {
 
 .form-control {
   border: none;
-  border-bottom: 1px solid #ccc;
-  padding-left: 0;
-  padding-right: 0;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  padding: 0px 10px;
   border-radius: 0;
   background: none;
 }
@@ -2601,7 +2587,7 @@ h2.title, h1.title {
   font-size: 13px;
 }
 
-.btn, .form-control, .custom-select {
+.form-control, .custom-select {
   height: 45px;
 }
 
@@ -2612,18 +2598,14 @@ h2.title, h1.title {
   border-color: #000;
 }
 
-.btn {
-  border: none;
-  border-radius: 0;
-  font-size: 12px;
-  letter-spacing: .2rem;
+.btn::first-letter{
   text-transform: uppercase;
 }
 
 .btn.btn-primary {
-  background: #35477d;
+  background: #FE980F;
   color: #fff;
-  padding: 15px 20px;
+  padding: 12px 16px;
 }
 
 .btn:hover {
@@ -2654,12 +2636,12 @@ h2.title, h1.title {
 }
 
 #custom .contact-wrap .contact-info {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #custom .contact-wrap .contact-info ul li {
   margin-bottom: 15px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 #custom .contact-wrap .contact-info ul li .wrap-icon {
@@ -2673,19 +2655,23 @@ h2.title, h1.title {
 }
 
 #custom .contact-wrap .form h3 {
-  color: #35477d;
+  color: #FE980F;
   font-size: 20px;
   margin-bottom: 30px;
 }
 
 #custom .contact-wrap .contact-info {
-  background: #35477d;
+  background: #FE980F;
 }
 
 #custom .contact-wrap .contact-info h3 {
   color: #fff;
   font-size: 20px;
   margin-bottom: 30px;
+}
+
+#custom textarea{
+  padding: 15px;
 }
 
 #custom label.error {
@@ -2719,4 +2705,27 @@ h2.title, h1.title {
   font-weight: bold;
   font-size: 12px;
   color: #000;
+}
+
+.header-contact-icon{
+  margin-right: 5px;
+}
+
+h3.zero-items-shop, h3.zero-items-cart{
+  text-align: center;
+  color:black;
+  font-size: 20px;
+}
+
+.cart_product{
+  text-align: center;
+}
+
+.custom-form-wrapper{
+  margin-bottom: 20px; 
+}
+
+.shop-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

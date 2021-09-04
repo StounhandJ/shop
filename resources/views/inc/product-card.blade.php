@@ -1,8 +1,8 @@
-<div class="col-sm-4">
+<div>
     <div class="product-image-wrapper">
         <div class="single-products">
             <div class="productinfo text-center">
-                <img src="/images/home/product1.jpg" alt="product-image" />
+                <img src="/images/home/product1.jpg" alt="Картинка товара" />
                 {{-- <h2>{{ $item->getPrice() }} &#8381;</h2> --}}
                 <p>{{ $item->getTitle() }}</p>
                 <a href="{{ route('cart.add', ['p_id' => $item->getId()]) }}"
