@@ -41,7 +41,9 @@ class Category extends Model implements Sitemapable
 
     public function getDepartment(): Department
     {
-        return $this->belongsTo(Department::class, "department_id")->getResults();
+        $department = new Department();
+        $department->setNameIfNotEmpty("Удалён");
+        return $this->belongsTo(Department::class, "department_id")->getResults() ?? $department;
     }
 
     public function getName()

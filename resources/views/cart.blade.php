@@ -3,139 +3,54 @@
 @section('content')
     <section id="cart_items">
         <div class="container">
-            <div class="breadcrumbs">
-                <ol class="breadcrumb">
-                    <li><a href="#">Home</a></li>
-                    <li class="active">Shopping Cart</li>
-                </ol>
-            </div>
-            <div class="table-responsive cart_info">
+            <div class="cart_info">
                 <table class="table table-condensed">
-                    <thead>
-                        <tr class="cart_menu">
-                            <td class="image">Товар</td>
-                            <td class="description"></td>
-                            <td class="price">Цена</td>
-                            <td class="quantity">Кол-во</td>
-                            <td class="total">Итог</td>
-                            <td></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($cart_products_in as $product)
-                            <tr>
-                                <td class="cart_product">
-                                    <a href=""><img src="images/cart/one.png" alt=""></a>
-                                </td>
-                                <td class="cart_description">
-                                    <h4><a href="">{{$product->getTitle()}}</a></h4>
-                                    <p>Web ID: {{$product->getId()}}</p>
-                                </td>
-                                <td class="cart_price">
-                                    <p>{{$product->getPrice()}}</p>
-                                </td>
-                                <td class="cart_quantity">
-                                    <div class="cart_quantity_button">
-                                        <a class="cart_quantity_up" href=""> + </a>
-                                        <input class="cart_quantity_input" type="text" name="quantity" value="1"
-                                            autocomplete="off" size="2">
-                                        <a class="cart_quantity_down" href=""> - </a>
-                                    </div>
-                                </td>
-                                <td class="cart_total">
-                                    <p class="cart_total_price">59</p>
-                                </td>
-                                <td class="cart_delete">
-                                    <a class="cart_quantity_delete" href="{{ route('cart.del', ['p_id' => $product->getId()]) }}"><i class="fa fa-times"></i></a>
-                                </td>
+                    @if (count($cart_products_in) == 0)
+                        <h3 class="zero-items-cart">Корзина пуста</h3>
+                    @else
+                        <thead>
+                            <tr class="cart_menu">
+                                <td class="product" colspan="2">Товар</td>
+                                <td class="total">Цена</td>
+                                <td></td>
                             </tr>
-                        @endforeach
-                        @if (count($cart_products_in) == 0)
-                            Корзина пуста
-                        @endif
-                    </tbody>
+                        </thead>
+                        <tbody>
+                            @foreach ($cart_products_in as $product)
+                                <tr>
+                                    <td class="cart_product">
+                                        <img src="{{$product->getImgSrc()}}" alt="Картинка товара">
+                                    </td>
+                                    <td class="cart_description">
+                                        <h4><a href="" class="cut-title">{{ $product->getTitle() }}</a></h4>
+                                        <p>ID товара: {{ $product->getId() }}</p>
+                                    </td>
+                                    <td class="cart_total">
+                                        <p class="cart_total_price"><span class="price">{{ $product->getPrice() }}</span> &#8381;</p>
+                                    </td>
+                                    <td class="cart_delete">
+                                        <a class="cart_quantity_delete"
+                                            href="{{ route('cart.del', ['p_id' => $product->getId()]) }}"><i
+                                                class="fa fa-times"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    @endif
                 </table>
+            </div>
+            <div class="final-price">
+                <p>Итого к оплате: </p>
+                <div class="int">
+                    <span>111</span> &#8381;
+                </div>
             </div>
         </div>
     </section>
     <!--/#cart_items-->
 
     <section id="do_action">
-        <div class="container">
-            <div class="heading">
-                <h3>What would you like to do next?</h3>
-                <p>Choose if you have a discount code or reward points you want to use or would like to estimate your
-                    delivery cost.</p>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="chose_area">
-                        <ul class="user_option">
-                            <li>
-                                <input type="checkbox">
-                                <label>Use Coupon Code</label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>Use Gift Voucher</label>
-                            </li>
-                            <li>
-                                <input type="checkbox">
-                                <label>Estimate Shipping & Taxes</label>
-                            </li>
-                        </ul>
-                        <ul class="user_info">
-                            <li class="single_field">
-                                <label>Country:</label>
-                                <select>
-                                    <option>United States</option>
-                                    <option>Bangladesh</option>
-                                    <option>UK</option>
-                                    <option>India</option>
-                                    <option>Pakistan</option>
-                                    <option>Ucrane</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
-
-                            </li>
-                            <li class="single_field">
-                                <label>Region / State:</label>
-                                <select>
-                                    <option>Select</option>
-                                    <option>Dhaka</option>
-                                    <option>London</option>
-                                    <option>Dillih</option>
-                                    <option>Lahore</option>
-                                    <option>Alaska</option>
-                                    <option>Canada</option>
-                                    <option>Dubai</option>
-                                </select>
-
-                            </li>
-                            <li class="single_field zip-field">
-                                <label>Zip Code:</label>
-                                <input type="text">
-                            </li>
-                        </ul>
-                        <a class="btn btn-default update" href="">Get Quotes</a>
-                        <a class="btn btn-default check_out" href="">Continue</a>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="total_area">
-                        <ul>
-                            <li>Cart Sub Total <span>59</span></li>
-                            <li>Eco Tax <span>2</span></li>
-                            <li>Shipping Cost <span>Free</span></li>
-                            <li>Total <span>61</span></li>
-                        </ul>
-                        <a class="btn btn-default update" href="">Update</a>
-                        <a class="btn btn-default check_out" href="">Check Out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('inc.custom')
     </section>
     <!--/#do_action-->
 @endsection

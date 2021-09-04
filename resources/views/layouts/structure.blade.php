@@ -17,10 +17,9 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"
         charset="utf-8"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 <!--/head-->
 
@@ -34,8 +33,8 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="tel:"><i class="fa fa-phone"></i> +7 (999) 999-99-99</a></li>
-                                <li><a href="mailto:"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+                                <li><a href="tel:84955325529"><i class="fa fa-phone header-contact-icon"></i>8 (495) 532-55-29</a></li>
+                                <li><a href="mailto:feeldom@bk.ru"><i class="fa fa-envelope header-contact-icon"></i>feeldom@bk.ru</a></li>
                             </ul>
                         </div>
                     </div>
@@ -58,13 +57,13 @@
         <div class="header-middle">
             <!--header-middle-->
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
+                <div class="row logo-row">
+                    <div class="col-sm-6">
                         <div class="logo pull-left">
                             <a href="{{ route('index') }}"><img src="/images/home/logo.png" alt="" /></a>
                         </div>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav carts-icons">
                                 <li class="count-products-in-cart">?</li>
@@ -205,20 +204,22 @@
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <p class="text-center">Copyright © 2021 Все права защищены.</p>
+                    <p class="text-center">&copy; Feeldom.ru, {{now()->year}}</p>
                 </div>
             </div>
         </div>
 
     </footer>
     <!--/Footer-->
-    <script src="/js/add-to-cart.js"></script>
+    <script src="/js/cut-title.js"></script>
+    <script src="/js/add-to-cart.js"></>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.scrollUp.min.js"></script>
     <script src="/js/shit.js"></script>
     <script src="/js/jquery.prettyPhoto.js"></script>
     <script src="/js/search.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/total-cart-price.js"></script>
 </body>
 
 </html>

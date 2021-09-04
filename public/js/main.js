@@ -40,6 +40,6 @@ for (var i = 0; i < accord.length; i++) {
         } else if (this.classList.contains("fa-minus")) {
             this.classList.remove("fa-minus");
             this.classList.add("fa-plus");
-        };
+        }
     });
 }
