@@ -84,12 +84,15 @@ class SantehnikParser extends Parser
 
     private function makeProduct($data, Maker $maker, Category $category)
     {
+        $temp = tmpfile();
+        $file_path = stream_get_meta_data($temp)["uri"];
+        fwrite($temp, file_get_contents($data["img"]));
         return Product::make(
             $data["title"],
             "-",
             "e_name",
             $data["price"],
-            "-",
+            Product::saveImg($file_path),
             $category,
             $maker);
     }
