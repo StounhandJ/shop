@@ -147,7 +147,7 @@ class Product extends Model
         return $products;
     }
 
-    public static function getProduct(int $id): Product
+    public static function getById(int $id): Product
     {
         return Product::where("id", $id)->first() ?? new Product();
     }
