@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Models\Product;
 use App\Services\SantehnikParser;
 use Illuminate\Console\Command;
-use StounhandJ\HtmldomLaravel\Htmldom;
 
 class ParseCommand extends Command
 {
@@ -55,7 +54,7 @@ class ParseCommand extends Command
                 if ($search_product->exists) {
                     $search_product->setDescriptionIfNotEmpty($product->getDescription());
                     $search_product->setENameIfNotEmpty($product->getEName());
-//                $search_product->setImgSrcIfNotEmpty($product->getImgSrc());
+                    $search_product->setImgSrcIfNotEmpty($product->getImgPath());
                     $search_product->setCategoryIfNotEmpty($product->getCategory());
                     $search_product->setMakerIfNotEmpty($product->getMaker());
                     $search_product->setPriceIfNotEmpty($product->getPrice());

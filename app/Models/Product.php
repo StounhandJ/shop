@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Faker\Core\File;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,7 +36,7 @@ class Product extends Model
 
     public function getImgUrlAttribute(): string
     {
-        return URL::to("/").Storage::disk("prod_img")->url($this->getImgSrc());
+        return URL::to("/").$this->getImgSrc();
     }
     //</editor-fold>
 
@@ -67,7 +68,12 @@ class Product extends Model
 
     public function getImgSrc()
     {
-        return $this->img_src;
+        return Storage::disk("prod_img")->url($this->img_src);
+    }
+
+    public function getImgPath()
+    {
+        return stream_get_meta_data(Storage::disk("prod_img")->readStream($this->img_src))["uri"];
     }
 
     public function getEName()
@@ -100,11 +106,11 @@ class Product extends Model
     /**
      * Sets the new image src.
      *
-     * @param UploadedFile|null $img
+     * @param UploadedFile|string|null $img
      */
-    public function setImgSrcIfNotEmpty(?UploadedFile $img)
+    public function setImgSrcIfNotEmpty(UploadedFile|string|null  $img)
     {
-        if (!is_null($img)){
+        if (!is_null($img) and ((is_string($img) and $img!="") or !is_string($img))){
             $this->img_src = Product::saveImg($img);
         }
     }
@@ -155,10 +161,10 @@ class Product extends Model
     /**
      * The photo is saved on the disk. Return src.
      *
-     * @param UploadedFile $img
+     * @param UploadedFile|string $img
      * @return string
      */
-    public static function saveImg(UploadedFile $img): string
+    public static function saveImg(UploadedFile|string $img): string
     {
         return Storage::disk("prod_img")->putFile("/", $img);
     }

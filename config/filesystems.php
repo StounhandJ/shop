@@ -38,6 +38,7 @@ return [
         'prod_img' => [
             'driver' => 'local',
             'root' => storage_path('app/prod_img'),
+            "url" => "/img"
         ],
 
         's3' => [

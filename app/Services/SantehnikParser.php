@@ -36,8 +36,7 @@ class SantehnikParser extends Parser
         $this->categories = $this->getCategories($department_url);
         $this->makers = [];
         $this->totalCnt = 0;
-        foreach ($this->categories as &$category_data)
-        {
+        foreach ($this->categories as &$category_data) {
             $category_data["count"] = $this->getTotalCnt($category_data["sectionId"]);
             $this->totalCnt += $category_data["count"];
         }
@@ -45,9 +44,9 @@ class SantehnikParser extends Parser
 
     private function loadConfig()
     {
-        $this->host = config($this->pathSetting()."host");
-        $this->item_on_page = config($this->pathSetting()."item_on_page");
-        $this->interval = config($this->pathSetting()."interval");
+        $this->host = config($this->pathSetting() . "host");
+        $this->item_on_page = config($this->pathSetting() . "item_on_page");
+        $this->interval = config($this->pathSetting() . "interval");
     }
 
     private function pathSetting(): string
@@ -66,8 +65,7 @@ class SantehnikParser extends Parser
             $pages = ceil($category_data["count"] / $this->item_on_page);
             for ($page = 1; $page <= $pages; $page += 1) {
                 $products = $this->getProducts($category_data["sectionId"], $this->item_on_page, $page);
-                foreach ($products as $product)
-                {
+                foreach ($products as $product) {
                     $maker = $this->getOrCreateMakerIfNoExist($product["brand"] ?? "not defined");
                     $this->plusUniqueMaker($maker);
                     yield $this->makeProduct($product, $maker, $category_data["category"]);
@@ -84,12 +82,15 @@ class SantehnikParser extends Parser
 
     private function makeProduct($data, Maker $maker, Category $category)
     {
+        $temp = tmpfile();
+        $file_path = stream_get_meta_data($temp)["uri"];
+        fwrite($temp, file_get_contents($data["img"]));
         return Product::make(
             $data["title"],
             "-",
             "e_name",
             $data["price"],
-            "-",
+            Product::saveImg($file_path),
             $category,
             $maker);
     }
@@ -156,8 +157,8 @@ class SantehnikParser extends Parser
     public function statistics(): array
     {
         return [
-            "countMakers"=> count($this->makers),
-            "countCategories"=> count($this->categories)
+            "countMakers" => count($this->makers),
+            "countCategories" => count($this->categories)
         ];
     }
 }
