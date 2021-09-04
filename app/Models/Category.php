@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
 
-class Category extends Model
+class Category extends Model implements Sitemapable
 {
     use HasFactory, SoftDeletes;
 
@@ -18,6 +20,11 @@ class Category extends Model
     public function getDepartmentNameAttribute(): string
     {
         return $this->getDepartment()->getName();
+    }
+
+    public function toSitemapTag(): Url | string | array
+    {
+        return route('catalog.index', ["department"=>$this->getDepartment()->getEName(),"category"=>$this->getEName()]);
     }
     //</editor-fold>
 

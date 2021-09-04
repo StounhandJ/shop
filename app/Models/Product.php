@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
-use Faker\Core\File;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\URL;
+use Spatie\Sitemap\Tags\Url;
+use Spatie\Sitemap\Contracts\Sitemapable;
 
-class Product extends Model
+class Product extends Model implements Sitemapable
 {
     use HasFactory, SoftDeletes;
 
@@ -31,12 +32,17 @@ class Product extends Model
 
     public function getUrlAttribute(): string
     {
-        return route('product.index', ['product' => $this->getId()]);
+        return route('product.details', ['product' => $this->getId()]);
     }
 
     public function getImgUrlAttribute(): string
     {
-        return URL::to("/").$this->getImgSrc();
+        return Request::root().$this->getImgSrc();
+    }
+
+    public function toSitemapTag(): Url | string | array
+    {
+        return route('product.details', ["product"=>$this->getId()]);
     }
     //</editor-fold>
 
