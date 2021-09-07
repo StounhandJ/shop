@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Action\CartAddProductRequest;
 use App\Http\Requests\Action\CartDelProductRequest;
 use App\Http\Requests\CartIndexRequest;
+use App\Http\Requests\Action\CartSendRequest;
 use App\Mail\OrderRegistrationMail;
 use App\Models\Order;
 use Illuminate\Support\Facades\Cookie;
@@ -44,13 +45,10 @@ class CartActionController extends Controller
         return response()->json(["message"=>"success", "cart"=>$request->getCart()], 200);
     }
 
-    public function send(CartIndexRequest $request)
+    public function send(CartSendRequest $request)
     {
-        $order = new Order();
-        $order->save();
-        $order->products()->attach($request->getCart());
+        $order = Order::create($request->getCart(), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
         Mail::to("zarabot111.111@gmail.com")
             ->send(new OrderRegistrationMail($order));
-        dd(1);
     }
 }
