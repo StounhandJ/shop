@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\Parser;
+use App\Exceptions\InvalidSiteException;
 use App\Models\Category;
 use App\Models\Maker;
 use App\Models\Product;
@@ -25,13 +26,13 @@ class SantehnikParser extends Parser
     private $makers;
 
     /**
-     * @throws Exception
+     * @throws InvalidSiteException
      */
     public function __construct(string $department_url)
     {
         $this->loadConfig();
         preg_match('@^(?:https://)?([^/]+)@i', $department_url, $matches);
-        if ($this->host != $matches[1]) throw new Exception("Неверный сайт");
+        if ($this->host != $matches[1]) throw new InvalidSiteException("Неверный сайт");
         $this->department = $this->getOrCreateDepartmentIfNoExist($this->getDepartmentEName($department_url), $this->getDepartmentName($department_url));
         $this->categories = $this->getCategories($department_url);
         $this->makers = [];

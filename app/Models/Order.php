@@ -12,12 +12,15 @@ class Order extends Model
 {
     use HasFactory;
 
+    //<editor-fold desc="Setting">
     protected $appends = ['products'];
 
     public function getProductsAttribute(): Collection
     {
         return $this->products()->get();
     }
+
+    //</editor-fold>
 
     public static function getById($id) : Order
     {
@@ -36,10 +39,21 @@ class Order extends Model
 
     /**
      * @param Product[] $products
-     * @return Collection|Model
+     * @param $fio
+     * @param $email
+     * @param $phone
+     * @param $comment
+     * @return Order
      */
-    public static function make(array $products)
+    public static function create(array $products, $fio, $email, $phone, $comment): Order
     {
-        $order =  Order::factory()->make();
+        $order = Order::factory([
+            "fio"=>$fio,
+            "email"=>$email,
+            "phone"=>$phone ?? "",
+            "comment"=>$comment ?? ""
+        ])->create();
+        $order->products()->attach($products);
+        return $order;
     }
 }

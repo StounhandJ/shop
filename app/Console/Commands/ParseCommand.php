@@ -6,6 +6,7 @@ use App\Exceptions\InvalidSiteException;
 use App\Models\Product;
 use App\Services\SantehnikParser;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class ParseCommand extends Command
 {
@@ -47,6 +48,8 @@ class ParseCommand extends Command
         {
             $this->error($e->getMessage());
         }
+        $this->info("Удаление лишних изображений");
+        Artisan::call('img:clear');
         return 0;
     }
 

@@ -23,7 +23,9 @@ class CatalogController extends Controller
         return view("shop", compact( "departments","categories", "paginate", "cart_products_in"),
         [
             "current_department"=>$department,
-            "current_category"=>$category
+            "current_category"=>$category,
+            "title"=> $category->getName()." - Филлдом",
+            "description" => " Купить или заказать с доставкой ".$category->getName()." в интернет-магазине Филдом.Ру, продажа сантехники в Москве, гибкий фильтр подбора...",
         ]);
     }
 }

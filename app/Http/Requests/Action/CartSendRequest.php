@@ -27,10 +27,16 @@ class CartSendRequest extends FormRequest
     public function rules()
     {
         return [
-            "email"=>"required|email",
-            "fio"=>"required|string|min:5|max:100",
-            "description"=>"required|string|max:2000"
+            "name"=>"required|string|min:1|max:60",
+            "email"=>"required|string|min:3|max:60",
+            "phone"=>"string|min:3|max:60",
+            "comment"=>"string|max:800",
         ];
+    }
+
+    public function getName()
+    {
+        return $this->input("name");
     }
 
     public function getEmail()
@@ -38,13 +44,13 @@ class CartSendRequest extends FormRequest
         return $this->input("email");
     }
 
-    public function getFio()
+    public function getPhone()
     {
-        return $this->input("fio");
+        return $this->input("phone");
     }
 
-    public function getDescription()
+    public function getComment()
     {
-        return $this->input("description");
+        return $this->input("comment");
     }
 }
