@@ -30,11 +30,26 @@ class CatalogRequest extends FormRequest
         ];
     }
 
-    public function getPage(): string
+    public function getPage(): int
     {
         $page = $this->query("p");
         if (is_numeric($page)) $page = (int) $page;
         else $page = 1;
         return $page;
+    }
+
+    public function getPopular(): bool
+    {
+        return !($this->query("popular") == "0");
+    }
+
+    public function getMinPrice()
+    {
+        return $this->query("mip");
+    }
+
+    public function getMaxPrice()
+    {
+        return $this->query("map");
     }
 }

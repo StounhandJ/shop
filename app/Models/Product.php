@@ -144,9 +144,14 @@ class Product extends Model implements Sitemapable
     //</editor-fold>
 
     //<editor-fold desc="Search Product">
-    public static function getProductsOfCategoryBuilder(Category $category): Builder
+    public static function getProductsOfCategoryBuilder(Category $category, $minPrice = null, $maxPrice = null, bool $popular = true): Builder
     {
-        return Product::query()->where("category_id", $category->getId())->orderBy("rating", 'desc');
+        $builder = Product::query()->where("category_id", $category->getId());
+
+        if (isset($minPrice)) $builder->where("price", ">=", $minPrice);
+        if (isset($maxPrice)) $builder->where("price", "<=", $maxPrice);
+
+        return $builder->orderBy("rating", $popular?'desc':'asc');
     }
 
     public static function getListProduct(array $ids): array

@@ -15,7 +15,7 @@ class CatalogController extends Controller
 
         $departments = Department::all();
         $categories = Category::getAllCategoriesOfDepartment($department);
-        $paginate = Product::getProductsOfCategoryBuilder($category)
+        $paginate = Product::getProductsOfCategoryBuilder($category, $request->getMinPrice(), $request->getMaxPrice(), $request->getPopular())
             ->paginate(18, ['*'], "p")
             ->withPath(route('catalog.index', ['department' => $department->getEName(), 'category' => $category->getEName()]));
         $cart_products_in = $request->getCart();
