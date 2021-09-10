@@ -9,6 +9,7 @@ use App\Http\Requests\CartIndexRequest;
 use App\Http\Requests\Action\CartSendRequest;
 use App\Mail\OrderRegistrationMail;
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
 
@@ -47,8 +48,9 @@ class CartActionController extends Controller
 
     public function send(CartSendRequest $request)
     {
-        $order = Order::create($request->getCart(), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
+        $order = Order::create(Collection::make($request->getCart()), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
         Mail::to("zarabot111.111@gmail.com")
             ->send(new OrderRegistrationMail($order));
+        return redirect(route("cart"))->withoutCookie('cart');
     }
 }
