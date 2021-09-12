@@ -30,7 +30,7 @@
                                     </td>
                                     <td class="cart_delete">
                                         <a class="cart_quantity_delete"
-                                            href="{{ route('cart.del', ['p_id' => $product->getId()]) }}"><i
+                                            href="{{ route('cart.del', ['p_id' => $product->getId()]) }}" id="{{$product->getId()}}"><i
                                                 class="fa fa-times"></i></a>
                                     </td>
                                 </tr>
@@ -42,7 +42,7 @@
             <div class="final-price">
                 <p>Итого к оплате: </p>
                 <div class="int">
-                    <span>111</span> &#8381;
+                    <span>0</span> &#8381;
                 </div>
             </div>
         </div>

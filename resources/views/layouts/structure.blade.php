@@ -219,7 +219,6 @@
     <script src="/js/jquery.prettyPhoto.js"></script>
     <script src="/js/search.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/total-cart-price.js"></script>
     <script src="/js/cart-delete.js"></script>
 </body>
 

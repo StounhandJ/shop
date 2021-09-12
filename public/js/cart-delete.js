@@ -1,23 +1,31 @@
-// $(document).ready(function () {
-//     $(".add-to-cart ~ .add-to-cart").click(function () {
-//         var fd = new FormData();
-//         var productID = $(this)[0].id;
-//         fd.append("p_id", productID);
-//         $.ajax({
-//             type: "POST",
-//             cache: false,
-//             processData: false,
-//             contentType: false,
-//             data: fd,
-//             url: "/action/cart/del",
-//             success: function (data) {
-//                 console.log("Добавлено в корзину");
-//                 update(data["cart"]);
-//             },
-//             error: function () {
-//                 console.log("Ошибка");
-//             },
-//         });
-//         return false;
-//     });
-// });
+// total price
+function totalPrice() { 
+    price = 0;
+    $("tbody span.price").each((id, item_price) => {
+        price += parseInt(item_price.innerHTML);
+    });
+    $(".final-price .int span")[0].innerHTML = price;
+};
+// total price
+$(document).ready(function () {
+    totalPrice();
+    $(".cart_quantity_delete").click(function () {
+        var parent = $(this).parent();
+        $.ajax({
+            type: "POST",
+            data: { _method: "DELETE" },
+            url: "/action/cart/delete/" + $(this).id,
+            success: function (data) {
+                parent.remove();
+                totalPrice();
+            },
+            error: function (data) {
+                if (data.status == 404) {
+                    alert("Ошибка");
+                } else if (data.status == 500) {
+                    alert("Написать Роме");
+                }
+            },
+        });
+    });
+});
