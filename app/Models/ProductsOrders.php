@@ -13,5 +13,17 @@ class ProductsOrders extends Pivot
 
     public $incrementing = false;
 
-     public $timestamps = false;
+    public $timestamps = false;
+
+    public function getProduct(): Product
+    {
+        return Product::getById($this->product_id);
+    }
+
+    protected static function booted()
+    {
+        static::created(function (ProductsOrders $productsOrders) {
+            $productsOrders->getProduct()->addRating();
+        });
+    }
 }

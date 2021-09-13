@@ -38,15 +38,16 @@ class Order extends Model
     }
 
     /**
-     * @param Product[] $products
+     * @param Collection $products
      * @param $fio
      * @param $email
      * @param $phone
      * @param $comment
      * @return Order
      */
-    public static function create(array $products, $fio, $email, $phone, $comment): Order
+    public static function create(Collection $products, $fio, $email, $phone, $comment): Order
     {
+        /** @var Order $order */
         $order = Order::factory([
             "fio"=>$fio,
             "email"=>$email,

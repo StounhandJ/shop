@@ -135,12 +135,23 @@ class Product extends Model implements Sitemapable
     {
         if ($price!="") $this->price = $price;
     }
+
+    public function addRating($rating = 1)
+    {
+        $this->increment("rating", $rating);
+
+    }
     //</editor-fold>
 
     //<editor-fold desc="Search Product">
-    public static function getProductsOfCategoryBuilder(Category $category): Builder
+    public static function getProductsOfCategoryBuilder(Category $category, $minPrice = null, $maxPrice = null, bool $popular = true): Builder
     {
-        return Product::where("category_id", $category->getId());
+        $builder = Product::query()->where("category_id", $category->getId());
+
+        if (isset($minPrice)) $builder->where("price", ">=", $minPrice);
+        if (isset($maxPrice)) $builder->where("price", "<=", $maxPrice);
+
+        return $builder->orderBy("rating", $popular?'desc':'asc');
     }
 
     public static function getListProduct(array $ids): array
