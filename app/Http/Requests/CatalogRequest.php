@@ -43,6 +43,20 @@ class CatalogRequest extends FormRequest
         return !($this->query("popular") == "0");
     }
 
+    public function getPrice()
+    {
+        if (is_null($this->query("price")))
+            return null;
+
+        if ($this->query("price") == "1")
+            return true;
+
+        if ($this->query("price") == "0")
+            return false;
+
+        return null;
+    }
+
     public function getMinPrice()
     {
         return $this->query("mip");
