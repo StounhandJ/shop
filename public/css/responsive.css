@@ -307,7 +307,7 @@
 	#cart_items .cart_delete{
 		position: absolute;
 		transform: translate(-50%, -50%);
-		bottom: 0;
+		top: 30px;
 		right: 0;
 	}
 }

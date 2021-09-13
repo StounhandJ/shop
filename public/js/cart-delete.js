@@ -10,14 +10,15 @@ function totalPrice() {
 $(document).ready(function () {
     totalPrice();
     $(".cart_quantity_delete").click(function () {
-        var parent = $(this).parent();
+        var parent = $(this).parent().parent();
         $.ajax({
+            data: {"p_id":$(this)[0].id},
             type: "POST",
-            data: { _method: "DELETE" },
-            url: "/action/cart/delete/" + $(this).id,
+            url: "/action/cart/del/",
             success: function (data) {
                 parent.remove();
                 totalPrice();
+                $(".count-products-in-cart")[0].innerHTML = data["cart"].length;
             },
             error: function (data) {
                 if (data.status == 404) {
@@ -27,5 +28,6 @@ $(document).ready(function () {
                 }
             },
         });
+        return false;
     });
 });

@@ -5,7 +5,13 @@
         <div class="container">
             <div class="row">
                 @include('inc.category')
-                <div class="col-sm-9">
+                <div class="col-sm-9" style="position: relative">
+                    {{-- <div class="filters"><i class="fa fa-filter" aria-hidden="true"></i></div> --}}
+                    <p>
+                        <span>По популярности</span>
+                        <span>По цене</span>
+                        <span>А-я</span>
+                    </p>
                     <h1 class="title text-center">{{ $current_category->getName() }}</h1>
                     <div class="features_items shop-grid">
                         @if ($paginate->isEmpty())

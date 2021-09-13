@@ -2698,7 +2698,8 @@ h3.zero-items-shop, h3.zero-items-cart {
   background: #dbdbdb;
   color: #FFFFFF;
   padding: 5px 7px;
-  font-size: 16px
+  font-size: 16px;
+  cursor: pointer;
 }
 
 #cart_items .cart_delete a:hover {
@@ -2720,4 +2721,11 @@ h3.zero-items-shop, h3.zero-items-cart {
   font-size: 26px;
   margin: 10px 0;
   display: inline;
+}
+.filters{
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
 }

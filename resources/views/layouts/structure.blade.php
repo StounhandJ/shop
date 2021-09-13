@@ -33,12 +33,14 @@
                     <div class="col-sm-6">
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
-                                <li><a href="tel:84955325529"><i class="fa fa-phone header-contact-icon"></i>8 (495) 532-55-29</a></li>
-                                <li><a href="mailto:feeldom@bk.ru"><i class="fa fa-envelope header-contact-icon"></i>feeldom@bk.ru</a></li>
+                                <li><a href="tel:84955325529"><i class="fa fa-phone header-contact-icon"></i>8 (495)
+                                        532-55-29</a></li>
+                                <li><a href="mailto:feeldom@bk.ru"><i
+                                            class="fa fa-envelope header-contact-icon"></i>feeldom@bk.ru</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    {{-- <div class="col-sm-6">
                         <div class="social-icons pull-right">
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -48,7 +50,7 @@
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -60,7 +62,7 @@
                 <div class="row logo-row">
                     <div class="col-sm-6">
                         <div class="logo pull-left">
-                            <a href="{{ route('index') }}"><img src="/images/home/logo.png" alt="" /></a>
+                            <a href="{{ route('index') }}"><img src="/images/logo-lg.svg" alt="logo"></a>
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -102,8 +104,11 @@
                                     </li>
                                 @endforeach
                                 <li><a href="{{ route('custom') }}"
-                                    class="{{ Request::url() == route('custom') ? 'active' : '' }}">На заказ</a>
-                            </li>
+                                        class="{{ Request::url() == route('custom') ? 'active' : '' }}">На заказ</a>
+                                </li>
+                                
+                                
+                                
                                 {{-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Products</a></li>
@@ -112,6 +117,9 @@
                                         <li><a href="cart.html">Cart</a></li>
                                     </ul>
                                 </li> --}}
+
+
+
                             </ul>
                         </div>
                     </div>
@@ -134,7 +142,7 @@
     @yield('content')
     <footer id="footer">
         <!--Footer-->
-        <div class="footer-widget">
+        {{-- <div class="footer-widget">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2">
@@ -199,12 +207,12 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
-                    <p class="text-center">&copy; Feeldom.ru, {{now()->year}}</p>
+                    <p class="text-center">&copy; Feeldom.ru, {{ now()->year }}</p>
                 </div>
             </div>
         </div>
@@ -212,7 +220,7 @@
     </footer>
     <!--/Footer-->
     <script src="/js/cut-title.js"></script>
-    <script src="/js/add-to-cart.js"></>
+    <script src="/js/add-to-cart.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.scrollUp.min.js"></script>
     <script src="/js/shit.js"></script>

@@ -17,7 +17,7 @@ $.ajax({
     },
 });
 $(document).ready(function () {
-    $(".add-to-cart ~ .add-to-cart").click(function () {
+    $(".add-to-cart:first-child").click(function () {
         var fd = new FormData();
         var productID = $(this)[0].id;
         fd.append("p_id", productID);
@@ -68,7 +68,7 @@ function update(cart) {
         var element = $(`#${id}>.fa-shopping-cart`);
         if (element) {
             element.addClass("fa-check-circle").removeClass("fa-shopping-cart");
-            $(`#${id}`).addClass("link-disabled");
+            $(`button#${id}`).addClass("link-disabled");
         }
     });
 }

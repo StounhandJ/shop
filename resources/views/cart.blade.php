@@ -22,16 +22,14 @@
                                         <img src="{{$product->getImgSrc()}}" alt="Картинка товара">
                                     </td>
                                     <td class="cart_description">
-                                        <h4><a href="" class="cut-title">{{ $product->getTitle() }}</a></h4>
+                                        <h4><a href="{{ route('product.details', ['product' => $product->getId()]) }}" class="cut-title">{{ $product->getTitle() }}</a></h4>
                                         <p>ID товара: {{ $product->getId() }}</p>
                                     </td>
                                     <td class="cart_total">
                                         <p class="cart_total_price"><span class="price">{{ $product->getPrice() }}</span> &#8381;</p>
                                     </td>
                                     <td class="cart_delete">
-                                        <a class="cart_quantity_delete"
-                                            href="{{ route('cart.del', ['p_id' => $product->getId()]) }}" id="{{$product->getId()}}"><i
-                                                class="fa fa-times"></i></a>
+                                        <a class="cart_quantity_delete" id="{{$product->getId()}}"><i class="fa fa-times"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
