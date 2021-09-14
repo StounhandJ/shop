@@ -15,18 +15,23 @@ class CatalogController extends Controller
 
         $departments = Department::all();
         $categories = Category::getAllCategoriesOfDepartment($department);
-        $paginate = Product::getProductsOfCategoryBuilder($category,
-            $request->getMinPrice(), $request->getMaxPrice(), $request->getPopular(), $request->getPrice())
-            ->paginate(18, ['*'], "p")
-            ->withPath(route('catalog.index', ['department' => $department->getEName(), 'category' => $category->getEName()]));
+
+        $paginate = Product::getProductsOfCategoryPagination(
+            $category,
+            $request->getMinPrice(),
+            $request->getMaxPrice(),
+            $request->getPopular(),
+            $request->getPrice()
+        );
+
         $cart_products_in = $request->getCart();
 
-        return view("shop", compact( "departments","categories", "paginate", "cart_products_in"),
-        [
-            "current_department"=>$department,
-            "current_category"=>$category,
-            "title"=> $category->getName()." - Филлдом",
-            "description" => " Купить или заказать с доставкой ".$category->getName()." в интернет-магазине Филдом.Ру, продажа сантехники в Москве, гибкий фильтр подбора...",
-        ]);
+        return view("shop", compact("departments", "categories", "paginate", "cart_products_in"),
+            [
+                "current_department" => $department,
+                "current_category" => $category,
+                "title" => $category->getName() . " - Филлдом",
+                "description" => " Купить или заказать с доставкой " . $category->getName() . " в интернет-магазине Филдом.Ру, продажа сантехники в Москве, гибкий фильтр подбора...",
+            ]);
     }
 }

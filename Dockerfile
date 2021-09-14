@@ -9,9 +9,12 @@ COPY composer.lock composer.json /var/www/
 WORKDIR /var/www
 
 RUN apt-get update
-RUN apt-get install -y libpq-dev \
+RUN apt-get install -y zlib1g-dev libpq-dev libmemcached-dev --no-install-recommends \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo pdo_pgsql pgsql
+
+RUN pecl install memcached \
+    && docker-php-ext-enable memcached
 
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www

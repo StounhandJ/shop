@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Sitemap\Tags\Url;
@@ -18,6 +20,10 @@ class Product extends Model implements Sitemapable
 
     //<editor-fold desc="Setting">
     public $timestamps = false;
+
+    private static $cacheSecond = 20;
+
+    protected $perPage = 18;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -37,12 +43,12 @@ class Product extends Model implements Sitemapable
 
     public function getImgUrlAttribute(): string
     {
-        return Request::root().$this->getImgSrc();
+        return Request::root() . $this->getImgSrc();
     }
 
-    public function toSitemapTag(): Url | string | array
+    public function toSitemapTag(): Url|string|array
     {
-        return route('product.details', ["product"=>$this->getId()]);
+        return route('product.details', ["product" => $this->getId()]);
     }
     //</editor-fold>
 
@@ -96,17 +102,17 @@ class Product extends Model implements Sitemapable
     //<editor-fold desc="Set Attribute">
     public function setTitleIfNotEmpty($title)
     {
-        if ($title!="") $this->title = $title;
+        if ($title != "") $this->title = $title;
     }
 
     public function setDescriptionIfNotEmpty($description)
     {
-        if ($description!="") $this->description = $description;
+        if ($description != "") $this->description = $description;
     }
 
     public function setENameIfNotEmpty($e_name)
     {
-        if ($e_name!="") $this->e_name = $e_name;
+        if ($e_name != "") $this->e_name = $e_name;
     }
 
     /**
@@ -114,9 +120,9 @@ class Product extends Model implements Sitemapable
      *
      * @param UploadedFile|string|null $img
      */
-    public function setImgSrcIfNotEmpty(UploadedFile|string|null  $img)
+    public function setImgSrcIfNotEmpty(UploadedFile|string|null $img)
     {
-        if (!is_null($img) and ((is_string($img) and $img!="") or !is_string($img))){
+        if (!is_null($img) and ((is_string($img) and $img != "") or !is_string($img))) {
             $this->img_src = Product::saveImg($img);
         }
     }
@@ -133,7 +139,7 @@ class Product extends Model implements Sitemapable
 
     public function setPriceIfNotEmpty($price)
     {
-        if ($price!="") $this->price = $price;
+        if ($price != "") $this->price = $price;
     }
 
     public function addRating($rating = 1)
@@ -144,17 +150,29 @@ class Product extends Model implements Sitemapable
     //</editor-fold>
 
     //<editor-fold desc="Search Product">
-    public static function getProductsOfCategoryBuilder(Category $category, $minPrice = null, $maxPrice = null, bool $popular = true, $price = null): Builder
+    public static function getProductsOfCategoryPagination(Category $category, $minPrice = null, $maxPrice = null, bool $popular = true, $price = null): LengthAwarePaginator
+    {
+        $builder = Product::sortProductBuilder($category, $minPrice, $maxPrice, $popular, $price);
+        $paginate = Product::builderToPaginate($builder, $category);
+        $key = sprintf("products_%s%s%s%s%s",
+            $category->getEName(),
+            $minPrice,
+            $maxPrice,
+            $popular,
+            $price);
+        return Product::cache($key, $paginate);
+    }
+
+    private static function sortProductBuilder(Category $category, $minPrice = null, $maxPrice = null, bool $popular = true, $price = null): Builder
     {
         $builder = Product::query()->where("category_id", $category->getId());
 
         if (isset($minPrice)) $builder->where("price", ">=", $minPrice);
         if (isset($maxPrice)) $builder->where("price", "<=", $maxPrice);
 
-        if (isset($price)) $builder->orderBy("price", $price?'desc':'asc');
-        else $builder->orderBy("rating", $popular?'desc':'asc');
+        if (isset($price)) $builder->orderBy("price", $price ? 'desc' : 'asc');
+        else $builder->orderBy("rating", $popular ? 'desc' : 'asc');
 
-//        dd($price, $builder->toSql());
         return $builder;
     }
 
@@ -195,16 +213,28 @@ class Product extends Model implements Sitemapable
         return Storage::disk("prod_img")->putFile("/", $img);
     }
 
+    private static function cache(string $key, $data)
+    {
+        return Cache::store("memcached")->remember($key, Product::$cacheSecond, fn()=> $data);
+    }
+
+    private static function builderToPaginate(Builder $builder, Category $category): LengthAwarePaginator
+    {
+        return $builder->paginate(null, ['*'], "p")
+            ->withPath(route('catalog.index', ['department' => $category->getDepartment()->getEName(), 'category' => $category->getEName()]));
+
+    }
+
     public static function make($title, $description, $e_name, int $price, string $img_src, Category $category, Maker $maker)
     {
         return Product::factory([
-            "title"=>$title,
-            "description"=>$description,
-            "e_name"=>$e_name,
-            "price"=>$price,
-            "img_src"=>$img_src,
-            "category_id"=>$category->getID(),
-            "maker_id"=>$maker->getID()
+            "title" => $title,
+            "description" => $description,
+            "e_name" => $e_name,
+            "price" => $price,
+            "img_src" => $img_src,
+            "category_id" => $category->getID(),
+            "maker_id" => $maker->getID()
         ])->make();
     }
 }
