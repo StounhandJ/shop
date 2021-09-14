@@ -19,7 +19,7 @@ class OrderRegistrationMail extends Mailable implements ShouldQueue
      */
     public Order $order;
 
-    public $queue = "Email";
+    // public $queue = "Email";
 
     /**
      * Create a new message instance.

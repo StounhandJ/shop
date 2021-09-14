@@ -918,9 +918,9 @@
                 </table>
             </td>
         </table>
-        @php totalPrice = 0 @endphp 
-        @foreach ($order->products() as $item)
-            @php totalPrice += $item->getPrice() @endphp 
+        @php $totalPrice = 0 @endphp 
+        @foreach ($order->products()->getResults() as $item)
+            @php $totalPrice += $item->getPrice() @endphp 
             <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0"
                 align="center">
                 <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" align="left"
@@ -938,7 +938,7 @@
                                             </tr>
                                             <tr>
                                                 <td align="left" class="esd-block-text es-p5t es-m-txt-c">
-                                                    <p style="color: #ffffff;font-size: 18px;">{{$item->getName()}}</p>
+                                                    <p style="color: #ffffff;font-size: 18px;">{{$item->getTitle()}}</p>
                                                 </td>
                                             </tr>
                                         </tbody>

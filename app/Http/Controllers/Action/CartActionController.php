@@ -12,6 +12,7 @@ use App\Models\Order;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Product;
 
 class CartActionController extends Controller
 {
@@ -48,7 +49,7 @@ class CartActionController extends Controller
 
     public function send(CartSendRequest $request)
     {
-        $order = Order::create(Collection::make($request->getCart()), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
+        $order = Order::create(Collection::make(Product::getListProduct($request->getCart())), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
 
         Mail::to($request->getEmail())
             ->send(new OrderRegistrationMail($order));
@@ -56,7 +57,7 @@ class CartActionController extends Controller
         Mail::to("zarabot111.111@gmail.com")
             ->send(new OrderRegistrationMail($order));
 
-        return redirect(route("cart"))->withoutCookie('cart');
+        return redirect(route("cart.index"))->withoutCookie('cart');
     }
 
     public function sendCustom(CartSendRequest $request)
@@ -64,6 +65,6 @@ class CartActionController extends Controller
         $order = Order::create(Collection::make(), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
         Mail::to("zarabot111.111@gmail.com")
             ->send(new OrderRegistrationMail($order));
-        return redirect(route("cart"));
+        return redirect(route("custom"));
     }
 }

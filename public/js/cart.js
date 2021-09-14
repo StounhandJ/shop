@@ -32,32 +32,32 @@ $(document).ready(function () {
         });
         return false;
     });
-    $(".form-button").click(function () {
-        $("form").submit(function () {
-            var data = {};
-            $(this)
-                .serializeArray()
-                .forEach((item) => {
-                    data[item.name] = item.value;
-                });
-            $.ajax({
-                type: "GET",
-                success: function () {
-                    $("body").addClass("modal__visible");
-                    $(".popup").addClass("modal__active");
-                    $("body").keydown(function (e) {
-                        if (e.code == "Escape") {
-                            $(".popup").removeClass("modal__active");
-                            $("body").removeClass("modal__visible");
-                        }
-                    });
-                },
+    $("form").submit(function () {
+        var data = {};
+        $(this)
+            .serializeArray()
+            .forEach((item) => {
+                data[item.name] = item.value;
             });
-            return false;
+        $.ajax({
+            type: "GET",
+            data: data,
+            url: "/action/cart/send" + ($(this)[0].id == "customId" ? "-custom" : ""),
+            success: function () {
+                $("body").addClass("modal__visible");
+                $(".popup").addClass("modal__active");
+                $("body").keydown(function (e) {
+                    if (e.code == "Escape") {
+                        $(".popup").removeClass("modal__active");
+                        $("body").removeClass("modal__visible");
+                    };
+                });
+                $(".popup__close").click(function () {
+                    $(".popup").removeClass("modal__active");
+                    $("body").removeClass("modal__visible");
+                });
+            },
         });
-    });
-    $(".popup__close").click(function () {
-        $(".popup").removeClass("modal__active");
-        $("body").removeClass("modal__visible");
+        return false;
     });
 });

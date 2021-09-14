@@ -10,7 +10,7 @@
                             Для оформления заказа заполните форму
                         @endif
                     </h3>
-                    <form class="mb-5" id="contactForm" name="contactForm">
+                    <form class="mb-5" id="{{Request::url() == route('custom') ? "customId" : "cartId"}}" name="contactForm">
                         <div class="row">
                             <div class="col-md-6 form-group mb-5">
                                 <label for="" class="col-form-label">Имя *</label>
