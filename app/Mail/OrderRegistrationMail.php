@@ -37,6 +37,6 @@ class OrderRegistrationMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('test');
+        return $this->view('mail.mail');
     }
 }

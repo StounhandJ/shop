@@ -18,9 +18,11 @@
                                 <div>
                                     <span>{{ $product->getPrice() }} &#8381;</span>
                                 </div>
-                                <p><b>Длина: </b><span></span> см</p>
+                                <p><b>Производитель: </b><span></span> {{$product->getMaker()->getName()}}</p>
+                                <p><b>ID товара: </b><span></span> {{$product->getId()}}</p>
+                                {{-- <p><b>Длина: </b><span></span> см</p>
                                 <p><b>Ширина: </b><span></span> см</p>
-                                <p><b>Высота: </b><span></span> см</p>
+                                <p><b>Высота: </b><span></span> см</p> --}}
                                 <button type="button" id="{{ $product->getId() }}"
                                     class="btn btn-fefault cart btn-cart-p-d">
                                     <i class="fa fa-shopping-cart"></i>
@@ -30,7 +32,7 @@
                         </div>
                     </div>
 
-                    <div class="category-tab shop-details-tab">
+                    {{-- <div class="category-tab shop-details-tab">
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#dcp" data-toggle="tab">Описание</a></li>
@@ -67,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

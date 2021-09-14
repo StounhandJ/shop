@@ -25,10 +25,24 @@
   box-shadow: inset 0px 0px 0px 0px #F0F0F0;
 }
 
+html,body{
+  height: 100%;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
   font-weight: 400px;
+}
+
+.wrapper{
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#main{
+  flex: 1 1 auto;
 }
 
 img {
@@ -2612,7 +2626,7 @@ h2.title, h1.title {
 h3.zero-items-shop, h3.zero-items-cart {
   text-align: center;
   color: black;
-  font-size: 20px;
+  font-size: 40px;
 }
 
 .custom-form-wrapper {
@@ -2728,4 +2742,56 @@ h3.zero-items-shop, h3.zero-items-cart {
   top: 0;
   right: 0;
   padding: 5px;
+}
+.modal__visible{
+  overflow: hidden;
+  padding-right: 6px;
+}
+.modal__active{
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.modal__active .popup__block{
+  transform: translateY(0);
+}
+.popup{
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+}
+.popup__block{
+  transform: perspective(400px) translateY(100%) rotateX(-45deg);
+  padding: 20px;
+  height: 200px;
+  position: relative;
+  background: white;
+  transition: all 0.5s ease;
+}
+.fa-check-square-o{
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  color: #FE980F;
+}
+.popup__text{
+  text-align: center;
+  font-size: 25px;
+  padding: 15px 0;
+}
+.popup__close{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  cursor: pointer;
 }

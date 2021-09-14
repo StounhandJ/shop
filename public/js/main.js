@@ -31,15 +31,15 @@ $(document).ready(function () {
         });
     });
 });
-var accord = document.getElementsByClassName("fa-plus");
-for (var i = 0; i < accord.length; i++) {
-    accord[i].addEventListener("click", function changePlusMinus() {
-        if (this.classList.contains("fa-plus")) {
-            this.classList.remove("fa-plus");
-            this.classList.add("fa-minus");
-        } else if (this.classList.contains("fa-minus")) {
-            this.classList.remove("fa-minus");
-            this.classList.add("fa-plus");
-        }
-    });
-}
+// var accord = document.getElementsByClassName("fa-plus");
+// for (var i = 0; i < accord.length; i++) {
+//     accord[i].addEventListener("click", function changePlusMinus() {
+//         if (this.classList.contains("fa-plus")) {
+//             this.classList.remove("fa-plus");
+//             this.classList.add("fa-minus");
+//         } else if (this.classList.contains("fa-minus")) {
+//             this.classList.remove("fa-minus");
+//             this.classList.add("fa-plus");
+//         }
+//     });
+// }
