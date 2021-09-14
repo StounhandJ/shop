@@ -81,6 +81,7 @@ Route::prefix("action")->group(function () {
         Route::post('/del', [CartActionController::class, "delProduct"])->name("del");
         Route::post('/info', [CartActionController::class, "info"])->name("info");
         Route::get('/send', [CartActionController::class, "send"])->name("send");
+        Route::get('/send-custom', [CartActionController::class, "sendCustom"])->name("send");
     });
 
     Route::middleware("auth:admin")->group(function () {

@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,7 +17,9 @@ class OrderRegistrationMail extends Mailable implements ShouldQueue
      *
      * @var Order
      */
-    public $order;
+    public Order $order;
+
+    public $queue = "Email";
 
     /**
      * Create a new message instance.
