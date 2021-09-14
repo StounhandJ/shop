@@ -2736,13 +2736,6 @@ h3.zero-items-shop, h3.zero-items-cart {
   margin: 10px 0;
   display: inline;
 }
-.filters{
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
-}
 .modal__visible{
   overflow: hidden;
   padding-right: 6px;
@@ -2757,7 +2750,7 @@ h3.zero-items-shop, h3.zero-items-cart {
 .popup{
   opacity: 0;
   visibility: hidden;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -2794,4 +2787,14 @@ h3.zero-items-shop, h3.zero-items-cart {
   top: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+.filters{
+  text-align: right;
+}
+.filters-row{
+  display: inline-block;
+  padding: 5px;
+}
+.filters-row>span ~ span{
+  padding-left: 10px;
 }

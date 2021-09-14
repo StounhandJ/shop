@@ -19,6 +19,18 @@
                 </div>
             @endforeach
         </div>
+        {{-- @if (Request::url() == route('shop')) --}}
+            <div class="price-range"><!--price-range-->
+                <h2>Сортировать по цене</h2>
+                <div class="well text-center">
+                     <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="200000" data-slider-step="100" data-slider-value="[0,50000]" id="sl2" ><br />
+                     <b class="pull-left">0 &#8381;</b> <b class="pull-right">200000 &#8381;</b>
+                </div>
+                <div class="price-range-btn">
+                    <button>Применить</button>
+                </div>
+            </div><!--/price-range-->
+        {{-- @endif --}}
         <!--/category-products-->
 
         {{-- <div class="brands_products">

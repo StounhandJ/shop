@@ -924,7 +924,7 @@
             <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0"
                 align="center">
                 <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" align="left"
-                    style="background-color: #FFCC66;" bgcolor="#FFCC66" esd-custom-block-id="47378">
+                    style="background-color: #FFCC66;padding:20px" bgcolor="#FFCC66" esd-custom-block-id="47378">
                     <table cellpadding="0" cellspacing="0" class="es-left" align="left">
                         <tbody>
                             <tr>
@@ -933,12 +933,12 @@
                                         <tbody>
                                             <tr>
                                                 <td align="left" class="esd-block-text es-m-txt-c">
-                                                    <p style="font-size: 18px;color: #333333;"><b>Товар:</b></p>
+                                                    <p style="font-size: 18px;color: #333333;margin:0;"><b>Товар:</b></p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td align="left" class="esd-block-text es-p5t es-m-txt-c">
-                                                    <p style="color: #ffffff;font-size: 18px;">{{$item->getTitle()}}</p>
+                                                    <p style="color: #ffffff;font-size: 18px;margin:0;padding-top:5px">{{$item->getTitle()}}</p>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -956,13 +956,13 @@
                                         <tbody>
                                             <tr>
                                                 <td align="right" class="esd-block-text es-m-txt-c">
-                                                    <p style="color: #333333; font-size: 18px;"><strong>Цена</strong>
+                                                    <p style="color: #333333; font-size: 18px;margin:0;"><strong>Цена</strong>
                                                     </p>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td align="right" class="esd-block-text es-m-txt-c">
-                                                    <p style="font-size: 25px; padding-top:5px;color: #ffffff;">
+                                                    <p style="font-size: 25px; padding-top:5px;margin:0;color: #ffffff;">
                                                         <strong>{{$item->getPrice()}} &#8381;</strong>
                                                     </p>
                                                 </td>

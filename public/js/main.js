@@ -9,7 +9,11 @@ var RGBChange = function () {
     );
 };
 
-/*scroll to top*/
+function sort(by) {
+    var currentUrl = $(location).attr("href");
+    console.log("sort")
+    return window.history.pushState(null, null, currentUrl + "?" + by);
+}
 
 $(document).ready(function () {
     $(function () {
@@ -30,16 +34,8 @@ $(document).ready(function () {
             zIndex: 2147483647, // Z-Index for the overlay
         });
     });
+    $("#sortByPrice").click(function () {
+        sort("mip=100000");
+        $(this).css({ color: "yellow" });
+    });
 });
-// var accord = document.getElementsByClassName("fa-plus");
-// for (var i = 0; i < accord.length; i++) {
-//     accord[i].addEventListener("click", function changePlusMinus() {
-//         if (this.classList.contains("fa-plus")) {
-//             this.classList.remove("fa-plus");
-//             this.classList.add("fa-minus");
-//         } else if (this.classList.contains("fa-minus")) {
-//             this.classList.remove("fa-minus");
-//             this.classList.add("fa-plus");
-//         }
-//     });
-// }
