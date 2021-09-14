@@ -49,8 +49,21 @@ class CartActionController extends Controller
     public function send(CartSendRequest $request)
     {
         $order = Order::create(Collection::make($request->getCart()), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
+
+        Mail::to($request->getEmail())
+            ->send(new OrderRegistrationMail($order));
+
         Mail::to("zarabot111.111@gmail.com")
             ->send(new OrderRegistrationMail($order));
+
         return redirect(route("cart"))->withoutCookie('cart');
+    }
+
+    public function sendCustom(CartSendRequest $request)
+    {
+        $order = Order::create(Collection::make(), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
+        Mail::to("zarabot111.111@gmail.com")
+            ->send(new OrderRegistrationMail($order));
+        return redirect(route("cart"));
     }
 }
