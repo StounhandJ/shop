@@ -6,7 +6,7 @@ services:
     build: .
     restart: always
     environment:
-      - APP_URL=localhost
+      - APP_URL=http://localhost
       - APP_DEBUG=True
       - PRODUCT=False
       - DB_HOST=pg_db
@@ -23,7 +23,7 @@ services:
       - ./database:/var/www/database
       - ./storage:/var/www/storage
       - ./resources:/var/www/resources
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./data/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     depends_on:
       - pg_db
     container_name: site
@@ -55,7 +55,7 @@ services:
     volumes:
       - ./public:/var/www/public
       - ./storage:/var/www/storage
-      - ./nginx.conf:/etc/nginx/conf.d/app.conf
+      - ./data/nginx/nginx.debug.conf:/etc/nginx/conf.d/app.conf
     depends_on:
       - site
 

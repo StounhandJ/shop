@@ -17,7 +17,7 @@ RUN pecl install memcached \
     && docker-php-ext-enable memcached
 
 RUN apt-get install -y supervisor
-COPY scripts/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY data/scripts/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
@@ -25,7 +25,7 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 COPY --chown=www:www . /var/www
 RUN touch /var/www/storage/logs/laravel.log
 COPY --from=composer /app/vendor /var/www/vendor
-COPY scripts/init.sh ./init.sh
+COPY data/scripts/init.sh ./init.sh
 RUN sed -i -e 's/\r$//' init.sh
 RUN chmod +x ./init.sh
 RUN php artisan key:generate
