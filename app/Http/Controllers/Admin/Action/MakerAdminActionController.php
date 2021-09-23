@@ -17,7 +17,7 @@ class MakerAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message"=>"success", "response"=>Maker::all()], 200);
+        return response()->json(["message" => "success", "response" => Maker::all()], 200);
     }
 
     /**
@@ -30,7 +30,7 @@ class MakerAdminActionController extends Controller
     {
         $maker = Maker::make($request->getName());
         $maker->save();
-        return response()->json(["message"=>"success", "response"=>$maker], 200);
+        return response()->json(["message" => "success", "response" => $maker], 200);
     }
 
     /**
@@ -41,7 +41,7 @@ class MakerAdminActionController extends Controller
      */
     public function show(Maker $maker)
     {
-        return response()->json(["message"=>"success", "response"=>$maker], 200);
+        return response()->json(["message" => "success", "response" => $maker], 200);
     }
 
     /**
@@ -56,7 +56,7 @@ class MakerAdminActionController extends Controller
         $maker->setNameIfNotEmpty($request->getName());
         $maker->save();
 
-        return response()->json(["message"=>"success", "response"=>$maker], 200);
+        return response()->json(["message" => "success", "response" => $maker], 200);
     }
 
     /**
@@ -68,6 +68,6 @@ class MakerAdminActionController extends Controller
     public function destroy(Maker $maker)
     {
         $result = $maker->delete();
-        return response()->json(["message"=>$result?"success":"error"], $result?200:500);
+        return response()->json(["message" => $result ? "success" : "error"], $result ? 200 : 500);
     }
 }

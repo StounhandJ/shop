@@ -13,10 +13,11 @@ class AdminAuthController extends Controller
     {
         $data = $request->only(["login", "password"]);
         $data["is_admin"] = true;
-        if (!auth()->guard("admin")->attempt($data))
+        if (!auth()->guard("admin")->attempt($data)) {
             return redirect(route("admin.login"))->withErrors([
-            "login"=> "Неправильные данные"
-        ]);
+                "login" => "Неправильные данные"
+            ]);
+        }
         return redirect(route("admin.index"));
     }
 

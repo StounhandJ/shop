@@ -10,7 +10,7 @@ class MakerCreateRequest extends MakerRequest
     public function rules(): array
     {
         return [
-            "name"=>"required|string|min:2|max:60"
+            "name" => "required|string|min:2|max:60"
         ];
     }
 }

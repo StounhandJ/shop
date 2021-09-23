@@ -17,7 +17,7 @@ class OrderAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message"=>"success", "response"=>Order::all()], 200);
+        return response()->json(["message" => "success", "response" => Order::all()], 200);
     }
 
     /**
@@ -28,6 +28,6 @@ class OrderAdminActionController extends Controller
      */
     public function show(Order $order)
     {
-        return response()->json(["message"=>"success", "response"=>$order], 200);
+        return response()->json(["message" => "success", "response" => $order], 200);
     }
 }

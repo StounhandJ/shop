@@ -11,7 +11,7 @@ class DepartmentRequest extends FormRequest
         return true;
     }
 
-     public function getName()
+    public function getName()
     {
         return $this->input("name");
     }

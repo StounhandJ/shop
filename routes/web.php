@@ -72,7 +72,6 @@ Route::get('/p/{product:id}', [ProductController::class, "index"])
 Route::get('/cart', [CartController::class, "index"])->name("cart.index");
 
 Route::prefix("action")->group(function () {
-
     Route::get('/search/products', [SearchController::class, "product"])
         ->name("search.products");
 
@@ -85,30 +84,36 @@ Route::prefix("action")->group(function () {
     });
 
     Route::middleware("auth:admin")->group(function () {
-        Route::apiResource("department", DepartmentAdminActionController::class)->missing(fn() => response()->json(["message" => "No query results for model \"Department\""], 404));
+        Route::apiResource("department", DepartmentAdminActionController::class)->missing(
+            fn() => response()->json(["message" => "No query results for model \"Department\""], 404)
+        );
 
-        Route::apiResource("category", CategoryAdminActionController::class)->missing(fn() => response()->json(["message" => "No query results for model \"Category\""], 404));
+        Route::apiResource("category", CategoryAdminActionController::class)->missing(
+            fn() => response()->json(["message" => "No query results for model \"Category\""], 404)
+        );
 
-        Route::apiResource("product", ProductAdminActionController::class)->missing(fn() => response()->json(["message" => "No query results for model \"Product\""], 404));
+        Route::apiResource("product", ProductAdminActionController::class)->missing(
+            fn() => response()->json(["message" => "No query results for model \"Product\""], 404)
+        );
 
-        Route::apiResource("maker", MakerAdminActionController::class)->missing(fn() => response()->json(["message" => "No query results for model \"Maker\""], 404));
+        Route::apiResource("maker", MakerAdminActionController::class)->missing(
+            fn() => response()->json(["message" => "No query results for model \"Maker\""], 404)
+        );
 
         Route::apiResource("order", OrderAdminActionController::class)
-            ->only(['index', 'show'])->missing(fn() => response()->json(["message" => "No query results for model \"Order\""], 404));
-
+            ->only(['index', 'show'])->missing(
+                fn() => response()->json(["message" => "No query results for model \"Order\""], 404)
+            );
     });
-
 });
 
 Route::prefix("43hgf36jfg")->name("admin.")->group(function () {
-
     Route::get('/login', [AdminController::class, "login"])->name("login.page")->middleware("guest");
     Route::post('/login', [AdminAuthController::class, "login"])->name("login")->middleware("guest");
     Route::get('/logout', [AdminAuthController::class, "logout"])->name("logout")->middleware("auth:admin");
 });
 
 Route::prefix("admin")->name("admin.")->middleware("auth:admin")->group(function () {
-
     Route::get('/departments', [DepartmentAdminController::class, 'index'])->name("departments");
 
     Route::get('/products', [ProductAdminController::class, 'index'])->name("products");
@@ -124,10 +129,14 @@ Route::prefix("admin")->name("admin.")->middleware("auth:admin")->group(function
     // Route::get('/maininfo', [MainInfoAdminController::class, 'index'])->name("maininfo");
 
     Route::get('/', [ProductAdminController::class, 'index'])->name("index");
-
-
 });
 
-Route::get('/orders', function(){return view('admin.orders');})->middleware("auth:admin");
-Route::get('/charts', function(){return view('admin.charts');})->middleware("auth:admin");
-Route::get('/main-info', function(){return view('admin.main-info');})->middleware("auth:admin");
+Route::get('/orders', function () {
+    return view('admin.orders');
+})->middleware("auth:admin");
+Route::get('/charts', function () {
+    return view('admin.charts');
+})->middleware("auth:admin");
+Route::get('/main-info', function () {
+    return view('admin.main-info');
+})->middleware("auth:admin");

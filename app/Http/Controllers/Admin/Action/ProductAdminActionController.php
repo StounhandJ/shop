@@ -17,7 +17,7 @@ class ProductAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message"=>"success", "response"=>Product::all()], 200);
+        return response()->json(["message" => "success", "response" => Product::all()], 200);
     }
 
     /**
@@ -30,10 +30,16 @@ class ProductAdminActionController extends Controller
     {
         $img_src = Product::saveImg($request->getImg());
         $product = Product::make(
-            $request->getTitle(), $request->getDescription(), $request->getEName(),
-            $request->getPrice(), $img_src , $request->getCategory(), $request->getMaker());
+            $request->getTitle(),
+            $request->getDescription(),
+            $request->getEName(),
+            $request->getPrice(),
+            $img_src,
+            $request->getCategory(),
+            $request->getMaker()
+        );
         $product->save();
-        return response()->json(["message"=>"success", "response"=>$product], 200);
+        return response()->json(["message" => "success", "response" => $product], 200);
     }
 
     /**
@@ -44,7 +50,7 @@ class ProductAdminActionController extends Controller
      */
     public function show(Product $product)
     {
-        return response()->json(["message"=>"success", "response"=>$product], 200);
+        return response()->json(["message" => "success", "response" => $product], 200);
     }
 
     /**
@@ -65,7 +71,7 @@ class ProductAdminActionController extends Controller
         $product->setPriceIfNotEmpty($request->getPrice());
         $product->save();
 
-        return response()->json(["message"=>"success", "response"=>$product], 200);
+        return response()->json(["message" => "success", "response" => $product], 200);
     }
 
     /**
@@ -77,6 +83,6 @@ class ProductAdminActionController extends Controller
     public function destroy(Product $product)
     {
         $result = $product->delete();
-        return response()->json(["message"=>$result?"success":"error"], $result?200:500);
+        return response()->json(["message" => $result ? "success" : "error"], $result ? 200 : 500);
     }
 }

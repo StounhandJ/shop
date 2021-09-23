@@ -26,11 +26,11 @@ class ValidatorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Validator::extend('without_spaces', function($attr, $value){
+        Validator::extend('without_spaces', function ($attr, $value) {
             return preg_match('/^\S*$/u', $value);
         });
 
-        Validator::extend('only_english', function($attr, $value){
+        Validator::extend('only_english', function ($attr, $value) {
             return preg_match('/(^([a-z]+)(\d+)?$)/u', $value);
         });
     }

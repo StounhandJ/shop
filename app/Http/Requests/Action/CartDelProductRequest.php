@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class CartDelProductRequest extends FormRequest
 {
     use Cart;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,12 +27,12 @@ class CartDelProductRequest extends FormRequest
     public function rules()
     {
         return [
-            "p_id"=> "required|integer|exists:products,id"
+            "p_id" => "required|integer|exists:products,id"
         ];
     }
 
     public function getProductID(): int
     {
-        return (int) $this->input("p_id");
+        return (int)$this->input("p_id");
     }
 }

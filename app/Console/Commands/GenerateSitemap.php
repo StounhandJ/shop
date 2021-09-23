@@ -61,17 +61,6 @@ class GenerateSitemap extends Command
         return 0;
     }
 
-    public function categories()
-    {
-        $count = Category::query()->count() / 5000;
-        for ($i = 0; $i < $count; $i++) {
-            Sitemap::create()
-                ->add(Category::query()->offset($i * 500)->limit(500)->get()->lazy())
-                ->writeToFile(public_path(sprintf('sitemaps/sitemap_category_%s.xml', $i)));
-            yield sprintf('sitemaps/sitemap_category_%s.xml', $i);
-        }
-    }
-
     public function products()
     {
         $count = Product::query()->count() / 5000;
@@ -79,6 +68,17 @@ class GenerateSitemap extends Command
             Sitemap::create()
                 ->add(Product::query()->offset($i * 5000)->limit(5000)->get()->lazy())
                 ->writeToFile(public_path(sprintf('sitemaps/sitemap_product_%s.xml', $i)));
+            yield sprintf('sitemaps/sitemap_category_%s.xml', $i);
+        }
+    }
+
+    public function categories()
+    {
+        $count = Category::query()->count() / 5000;
+        for ($i = 0; $i < $count; $i++) {
+            Sitemap::create()
+                ->add(Category::query()->offset($i * 500)->limit(500)->get()->lazy())
+                ->writeToFile(public_path(sprintf('sitemaps/sitemap_category_%s.xml', $i)));
             yield sprintf('sitemaps/sitemap_category_%s.xml', $i);
         }
     }

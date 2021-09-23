@@ -55,7 +55,8 @@ class ImgClearCommand extends Command
             }
         }
         $this->line(1);
-        $this->table(["Каталог", "Осталось", "Удалено", "Всего Было Файлов"],
+        $this->table(
+            ["Каталог", "Осталось", "Удалено", "Всего Было Файлов"],
             [
                 [
                     "prod_img",
@@ -63,7 +64,8 @@ class ImgClearCommand extends Command
                     $delete_count_file,
                     $start_count_file
                 ]
-            ]);
+            ]
+        );
         return 0;
     }
 }

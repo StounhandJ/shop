@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class CartIndexRequest extends FormRequest
 {
     use Cart;
+
     /**
      * Determine if the user is authorized to make this request.
      *

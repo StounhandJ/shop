@@ -19,10 +19,13 @@ class ProductController extends Controller
 
         $categories = $current_department->getCategories();
 
-        return view("product-details", compact("product", "departments", 'categories', 'current_category', 'current_department'),
+        return view("product-details",
+            compact("product", "departments", 'categories', 'current_category', 'current_department'),
             [
                 "title" => $product->getTitle() . " - Филлдом",
-                "description" => $product->getTitle() . " Купить или заказать с доставкой ".$current_category->getName()." в интернет-магазине Филдом.Ру, продажа сантехники в Москве, гибкий фильтр подбора...",
+                "description" => $product->getTitle(
+                    ) . " Купить или заказать с доставкой " . $current_category->getName(
+                    ) . " в интернет-магазине Филдом.Ру, продажа сантехники в Москве, гибкий фильтр подбора...",
             ]
         );
     }

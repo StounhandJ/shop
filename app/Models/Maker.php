@@ -15,43 +15,49 @@ class Maker extends Model
     //</editor-fold>
 
     //<editor-fold desc="Get Attribute">
-    public function getId()
-    {
-        return $this->id;
-    }
 
-    public function getName()
-    {
-        return $this->name;
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="Set Attribute">
-    public function setNameIfNotEmpty($name)
-    {
-        if ($name!="") $this->name = $name;
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="Search Maker">
-    public static function getById($id) : Maker
+    public static function getById($id): Maker
     {
         return Maker::where("id", $id)->first() ?? new Maker();
     }
 
-    public static function getByName($name) : Maker
+    public static function getByName($name): Maker
     {
         return Maker::where("name", $name)->first() ?? new Maker();
     }
     //</editor-fold>
 
+    //<editor-fold desc="Set Attribute">
+
     public static function make($name)
     {
-        return Maker::factory(["name"=>$name] )->make();
+        return Maker::factory(["name" => $name])->make();
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Search Maker">
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setNameIfNotEmpty($name)
+    {
+        if ($name != "") {
+            $this->name = $name;
+        }
+    }
+
+    //</editor-fold>
 
     public function getProductCount()
     {
         return Product::where("maker_id", $this->getId())->count();
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }

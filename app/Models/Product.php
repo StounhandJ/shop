@@ -19,10 +19,8 @@ class Product extends Model implements Sitemapable
     use HasFactory, SoftDeletes;
 
     //<editor-fold desc="Setting">
-    public $timestamps = false;
-
     private static $cacheSecond = 20;
-
+    public $timestamps = false;
     protected $perPage = 18;
 
     /**
@@ -36,131 +34,6 @@ class Product extends Model implements Sitemapable
 
     protected $appends = ['url', 'img_url'];
 
-    public function getUrlAttribute(): string
-    {
-        return route('product.details', ['product' => $this->getId()]);
-    }
-
-    public function getImgUrlAttribute(): string
-    {
-        return Request::root() . $this->getImgSrc();
-    }
-
-    public function toSitemapTag(): Url|string|array
-    {
-        return route('product.details', ["product" => $this->getId()]);
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="Get Attribute">
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function getCategory(): Category
-    {
-        return $this->belongsTo(Category::class, "category_id")->getResults() ?? new Category();
-    }
-
-    public function getMaker(): Maker
-    {
-        return $this->belongsTo(Maker::class, "maker_id")->getResults() ?? new Maker();
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    public function getImgSrc()
-    {
-        return Storage::disk("prod_img")->url($this->img_src);
-    }
-
-    public function getImgPath()
-    {
-        return stream_get_meta_data(Storage::disk("prod_img")->readStream($this->img_src))["uri"];
-    }
-
-    public function getEName()
-    {
-        return $this->e_name;
-    }
-
-    public function getPrice()
-    {
-        return $this->price;
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="Set Attribute">
-    public function setTitleIfNotEmpty($title)
-    {
-        if ($title != "") {
-            $this->title = $title;
-        }
-    }
-
-    public function setDescriptionIfNotEmpty($description)
-    {
-        if ($description != "") {
-            $this->description = $description;
-        }
-    }
-
-    public function setENameIfNotEmpty($e_name)
-    {
-        if ($e_name != "") {
-            $this->e_name = $e_name;
-        }
-    }
-
-    /**
-     * Sets the new image src.
-     *
-     * @param UploadedFile|string|null $img
-     */
-    public function setImgSrcIfNotEmpty(UploadedFile|string|null $img)
-    {
-        if (!is_null($img) and ((is_string($img) and $img != "") or !is_string($img))) {
-            $this->img_src = Product::saveImg($img);
-        }
-    }
-
-    public function setCategoryIfNotEmpty(Category $category)
-    {
-        if ($category->exists) {
-            $this->category_id = $category->getId();
-        }
-    }
-
-    public function setMakerIfNotEmpty(Maker $maker)
-    {
-        if ($maker->exists) {
-            $this->maker_id = $maker->getId();
-        }
-    }
-
-    public function setPriceIfNotEmpty($price)
-    {
-        if ($price != "") {
-            $this->price = $price;
-        }
-    }
-
-    public function addRating($rating = 1)
-    {
-        $this->increment("rating", $rating);
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="Search Product">
     public static function getProductsOfCategoryPagination(
         Category $category,
         $minPrice = null,
@@ -206,6 +79,44 @@ class Product extends Model implements Sitemapable
         return $builder;
     }
 
+    private static function builderToPaginate(
+        Builder $builder,
+        Category $category,
+        $minPrice = null,
+        $maxPrice = null,
+        bool $popular = true,
+        $price = null
+    ): LengthAwarePaginator {
+        $data = ['department' => $category->getDepartment()->getEName(), 'category' => $category->getEName()];
+
+        if (!is_null($minPrice)) {
+            $data["mip"] = $minPrice;
+        }
+        if (!is_null($maxPrice)) {
+            $data["map"] = $maxPrice;
+        }
+        if (!is_null($price)) {
+            $data["price"] = $price;
+        }
+        $data["popular"] = $popular;
+
+        return $builder->paginate(null, ['*'], "p")
+            ->withPath(
+                route(
+                    'catalog.index',
+                    $data
+                )
+            );
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Get Attribute">
+
+    private static function cache(string $key, $data)
+    {
+        return Cache::store("memcached")->remember($key, Product::$cacheSecond, fn() => $data);
+    }
+
     public static function getListProduct(array $ids): array
     {
         $products = [];
@@ -232,47 +143,6 @@ class Product extends Model implements Sitemapable
     {
         return Product::where("img_src", $img_src);
     }
-    //</editor-fold>
-
-    /**
-     * The photo is saved on the disk. Return src.
-     *
-     * @param UploadedFile|string $img
-     * @return string
-     */
-    public static function saveImg(UploadedFile|string $img): string
-    {
-        return Storage::disk("prod_img")->putFile("/", $img);
-    }
-
-    private static function cache(string $key, $data)
-    {
-        return Cache::store("memcached")->remember($key, Product::$cacheSecond, fn() => $data);
-    }
-
-    private static function builderToPaginate(
-        Builder $builder,
-        Category $category,
-        $minPrice = null,
-        $maxPrice = null,
-        bool $popular = true,
-        $price = null
-    ): LengthAwarePaginator {
-        $data = ['department' => $category->getDepartment()->getEName(), 'category' => $category->getEName()];
-
-        if (!is_null($minPrice)) $data["mip"] = $minPrice;
-        if (!is_null($maxPrice)) $data["map"] = $maxPrice;
-        if (!is_null($price)) $data["price"] = $price;
-        $data["popular"] = $popular;
-
-        return $builder->paginate(null, ['*'], "p")
-            ->withPath(
-                route(
-                    'catalog.index',
-                    $data
-                )
-            );
-    }
 
     public static function make(
         $title,
@@ -292,5 +162,142 @@ class Product extends Model implements Sitemapable
             "category_id" => $category->getID(),
             "maker_id" => $maker->getID()
         ])->make();
+    }
+
+    public function getUrlAttribute(): string
+    {
+        return route('product.details', ['product' => $this->getId()]);
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getImgUrlAttribute(): string
+    {
+        return Request::root() . $this->getImgSrc();
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Set Attribute">
+
+    public function getImgSrc()
+    {
+        return Storage::disk("prod_img")->url($this->img_src);
+    }
+
+    public function toSitemapTag(): Url|string|array
+    {
+        return route('product.details', ["product" => $this->getId()]);
+    }
+
+    public function getCategory(): Category
+    {
+        return $this->belongsTo(Category::class, "category_id")->getResults() ?? new Category();
+    }
+
+    public function getMaker(): Maker
+    {
+        return $this->belongsTo(Maker::class, "maker_id")->getResults() ?? new Maker();
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function getImgPath()
+    {
+        return stream_get_meta_data(Storage::disk("prod_img")->readStream($this->img_src))["uri"];
+    }
+
+    public function getEName()
+    {
+        return $this->e_name;
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Search Product">
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setTitleIfNotEmpty($title)
+    {
+        if ($title != "") {
+            $this->title = $title;
+        }
+    }
+
+    public function setDescriptionIfNotEmpty($description)
+    {
+        if ($description != "") {
+            $this->description = $description;
+        }
+    }
+
+    public function setENameIfNotEmpty($e_name)
+    {
+        if ($e_name != "") {
+            $this->e_name = $e_name;
+        }
+    }
+
+    /**
+     * Sets the new image src.
+     *
+     * @param UploadedFile|string|null $img
+     */
+    public function setImgSrcIfNotEmpty(UploadedFile|string|null $img)
+    {
+        if (!is_null($img) and ((is_string($img) and $img != "") or !is_string($img))) {
+            $this->img_src = Product::saveImg($img);
+        }
+    }
+
+    /**
+     * The photo is saved on the disk. Return src.
+     *
+     * @param UploadedFile|string $img
+     * @return string
+     */
+    public static function saveImg(UploadedFile|string $img): string
+    {
+        return Storage::disk("prod_img")->putFile("/", $img);
+    }
+    //</editor-fold>
+
+    public function setCategoryIfNotEmpty(Category $category)
+    {
+        if ($category->exists) {
+            $this->category_id = $category->getId();
+        }
+    }
+
+    public function setMakerIfNotEmpty(Maker $maker)
+    {
+        if ($maker->exists) {
+            $this->maker_id = $maker->getId();
+        }
+    }
+
+    public function setPriceIfNotEmpty($price)
+    {
+        if ($price != "") {
+            $this->price = $price;
+        }
+    }
+
+    public function addRating($rating = 1)
+    {
+        $this->increment("rating", $rating);
     }
 }

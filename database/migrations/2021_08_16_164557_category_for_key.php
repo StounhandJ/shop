@@ -25,7 +25,7 @@ class CategoryForKey extends Migration
      */
     public function down()
     {
-         Schema::table('categories', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->dropForeign("parent_category_id");
         });
     }

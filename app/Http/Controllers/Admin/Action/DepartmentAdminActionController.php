@@ -17,7 +17,7 @@ class DepartmentAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message"=>"success", "response"=>Department::all()], 200);
+        return response()->json(["message" => "success", "response" => Department::all()], 200);
     }
 
     /**
@@ -30,7 +30,7 @@ class DepartmentAdminActionController extends Controller
     {
         $department = Department::make($request->getName(), $request->getEName());
         $department->save();
-        return response()->json(["message"=>"success", "response"=>$department], 200);
+        return response()->json(["message" => "success", "response" => $department], 200);
     }
 
     /**
@@ -41,7 +41,7 @@ class DepartmentAdminActionController extends Controller
      */
     public function show(Department $department)
     {
-        return response()->json(["message"=>"success", "response"=>$department], 200);
+        return response()->json(["message" => "success", "response" => $department], 200);
     }
 
     /**
@@ -57,7 +57,7 @@ class DepartmentAdminActionController extends Controller
         $department->setENameIfNotEmpty($request->getEName());
         $department->save();
 
-        return response()->json(["message"=>"success", "response"=>$department], 200);
+        return response()->json(["message" => "success", "response" => $department], 200);
     }
 
     /**
@@ -69,6 +69,6 @@ class DepartmentAdminActionController extends Controller
     public function destroy(Department $department)
     {
         $result = $department->delete();
-        return response()->json(["message"=>$result?"success":"error"], $result?200:500);
+        return response()->json(["message" => $result ? "success" : "error"], $result ? 200 : 500);
     }
 }

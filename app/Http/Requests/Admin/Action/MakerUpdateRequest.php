@@ -9,7 +9,7 @@ class MakerUpdateRequest extends MakerRequest
     public function rules(): array
     {
         return [
-            "name"=>"string|min:2|max:60"
+            "name" => "string|min:2|max:60"
         ];
     }
 }

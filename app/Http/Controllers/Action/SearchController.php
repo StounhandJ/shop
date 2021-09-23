@@ -11,21 +11,18 @@ class SearchController extends Controller
     public function product(SearchRequest $request)
     {
         $products = [];
-        if ($request->validateProductTitle())
-        {
+        if ($request->validateProductTitle()) {
             $products = Product::where('title', 'ilike', '%' . $request->getProductTitle() . '%')
                 ->limit(25)
-                ->orderBy("price", $request->getPriceFilter()? "desc":"asc")
+                ->orderBy("price", $request->getPriceFilter() ? "desc" : "asc")
                 ->get()
                 ->merge($products);
-        }
-        else
-        {
-            $products = Product::orderBy("price", $request->getPriceFilter()? "desc":"asc")
+        } else {
+            $products = Product::orderBy("price", $request->getPriceFilter() ? "desc" : "asc")
                 ->limit(25)
                 ->get()
                 ->merge($products);
         }
-        return response()->json(["message"=>"success", "products"=>$products], 200);
+        return response()->json(["message" => "success", "products" => $products], 200);
     }
 }

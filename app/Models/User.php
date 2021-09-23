@@ -31,6 +31,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function getByLogin($login): User
+    {
+        return User::where("login", $login)->first() ?? new User();
+    }
+
+    public static function makeAdmin($login, $password)
+    {
+        return User::factory(["login" => $login, "password" => $password])
+            ->admin()
+            ->noEmail()
+            ->make();
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
@@ -39,18 +52,5 @@ class User extends Authenticatable
     public function getLogin()
     {
         return $this->attributes['login'];
-    }
-
-    public static function getByLogin($login): User
-    {
-        return User::where("login", $login)->first() ?? new User();
-    }
-
-    public static function makeAdmin($login, $password)
-    {
-        return User::factory(["login"=>$login, "password"=>$password])
-            ->admin()
-            ->noEmail()
-            ->make();
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class CatalogRequest extends FormRequest
 {
     use Cart;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -33,8 +34,11 @@ class CatalogRequest extends FormRequest
     public function getPage(): int
     {
         $page = $this->query("p");
-        if (is_numeric($page)) $page = (int) $page;
-        else $page = 1;
+        if (is_numeric($page)) {
+            $page = (int)$page;
+        } else {
+            $page = 1;
+        }
         return $page;
     }
 
@@ -45,14 +49,17 @@ class CatalogRequest extends FormRequest
 
     public function getPrice()
     {
-        if (is_null($this->query("price")))
+        if (is_null($this->query("price"))) {
             return null;
+        }
 
-        if ($this->query("price") == "1")
+        if ($this->query("price") == "1") {
             return true;
+        }
 
-        if ($this->query("price") == "0")
+        if ($this->query("price") == "0") {
             return false;
+        }
 
         return null;
     }

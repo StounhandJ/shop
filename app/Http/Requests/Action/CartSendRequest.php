@@ -27,10 +27,10 @@ class CartSendRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"=>"required|string|min:1|max:60",
-            "email"=>"required|string|min:3|max:60",
-            "phone"=>"string|min:3|max:60",
-            "comment"=>"string|max:800",
+            "name" => "required|string|min:1|max:60",
+            "email" => "required|string|min:3|max:60",
+            "phone" => "string|min:3|max:60",
+            "comment" => "string|max:800",
         ];
     }
 

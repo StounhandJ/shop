@@ -20,8 +20,10 @@ class AdminSeed extends Seeder
                 "password" => "admin"
             ]
         ];
-        foreach ($admins as $admin)
-            if (!User::getByLogin($admin["login"])->exists) User::makeAdmin($admin["login"], $admin["password"])->save();
-
+        foreach ($admins as $admin) {
+            if (!User::getByLogin($admin["login"])->exists) {
+                User::makeAdmin($admin["login"], $admin["password"])->save();
+            }
+        }
     }
 }
