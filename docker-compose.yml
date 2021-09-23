@@ -86,6 +86,7 @@ services:
           -
   memcached_db:
     image: memcached:latest
+    restart: always
     logging:
         driver: "json-file"
         options:

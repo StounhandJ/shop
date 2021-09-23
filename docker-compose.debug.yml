@@ -61,5 +61,6 @@ services:
 
   memcached_db:
     image: memcached:latest
+    restart: always
     command:
       - '--memory-limit=100'
