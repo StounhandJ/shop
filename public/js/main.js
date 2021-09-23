@@ -11,8 +11,26 @@ var RGBChange = function () {
 
 function sort(by) {
     var currentUrl = $(location).attr("href");
-    console.log("sort")
-    return window.history.pushState(null, null, currentUrl + "?" + by);
+    window.history.pushState(null, null, currentUrl + "?" + by);
+}
+
+function updateURLParameter(url, param, paramVal) {
+    var newAdditionalURL = "";
+    var tempArray = url.split("?");
+    var baseURL = tempArray[0];
+    var additionalURL = tempArray[1];
+    var temp = "";
+    if (additionalURL) {
+        tempArray = additionalURL.split("&");
+        for (var i = 0; i < tempArray.length; i++) {
+            if (tempArray[i].split("=")[0] != param) {
+                newAdditionalURL += temp + tempArray[i];
+                temp = "&";
+            }
+        }
+    }
+    var rows_txt = temp + "" + param + "=" + paramVal;
+    return baseURL + "?" + newAdditionalURL + rows_txt;
 }
 
 $(document).ready(function () {
@@ -34,8 +52,31 @@ $(document).ready(function () {
             zIndex: 2147483647, // Z-Index for the overlay
         });
     });
-    $("#sortByPrice").click(function () {
-        sort("mip=100000");
-        $(this).css({ color: "yellow" });
+    $("#filter-price").click(function () {
+        minmax = $("#sl2")[0].value.split(",");
+
+        var newURL = updateURLParameter(
+            window.location.href,
+            "mip",
+            minmax[0]
+        );
+
+        window.history.replaceState(
+            "",
+            "",
+            updateURLParameter(window.location.href, "map", minmax[1])
+        );
+    });
+    $("#filter-popular").click(function () {
+        // $("#filter-popular").css({ color: "#FE980F", "font-weight": "500" });
+        window.history.replaceState(
+            "",
+            "",
+            updateURLParameter(window.location.href, "popular", 1)
+        );
+    });
+    $("#filter-Az").click(function () {
+        // sort("");
+        // $("#filter-popular").css({"color":"#FE980F", "font-weight": "500",})
     });
 });

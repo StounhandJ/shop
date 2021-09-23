@@ -744,6 +744,15 @@ ul.sub-menu {
   z-index: 3;
 }
 
+.left-sidebar h4, .left-sidebar h5{
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 auto 0px;
+  text-align: center;
+}
+
 .left-sidebar h2:after, h2.title:after {
   content: " ";
   position: absolute;
@@ -870,9 +879,9 @@ h2.title:before {
   border: 1px solid #F7F7F0;
   border-radius: 4px;
   box-shadow: none;
-  margin-bottom: 20px;
+  margin-bottom: 0px !important;
   min-height: 20px;
-  padding: 35px;
+  padding: 25px 0px;
 }
 
 .tooltip-inner {
@@ -2797,4 +2806,24 @@ h3.zero-items-shop, h3.zero-items-cart {
 }
 .filters-row>span ~ span{
   padding-left: 10px;
+}
+.price-range-btn{
+  text-align: center;
+}
+.btn-price-slider{
+  margin: 0 !important;
+  padding: 6px 10px !important;
+}
+.filter-btn{
+  font-weight: 500;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: black;
+}
+.filter-btn:hover{
+  text-decoration: underline;
+}
+.slider-minmax-span{
+  color: black;
 }
