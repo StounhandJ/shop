@@ -102,17 +102,23 @@ class Product extends Model implements Sitemapable
     //<editor-fold desc="Set Attribute">
     public function setTitleIfNotEmpty($title)
     {
-        if ($title != "") $this->title = $title;
+        if ($title != "") {
+            $this->title = $title;
+        }
     }
 
     public function setDescriptionIfNotEmpty($description)
     {
-        if ($description != "") $this->description = $description;
+        if ($description != "") {
+            $this->description = $description;
+        }
     }
 
     public function setENameIfNotEmpty($e_name)
     {
-        if ($e_name != "") $this->e_name = $e_name;
+        if ($e_name != "") {
+            $this->e_name = $e_name;
+        }
     }
 
     /**
@@ -129,49 +135,73 @@ class Product extends Model implements Sitemapable
 
     public function setCategoryIfNotEmpty(Category $category)
     {
-        if ($category->exists) $this->category_id = $category->getId();
+        if ($category->exists) {
+            $this->category_id = $category->getId();
+        }
     }
 
     public function setMakerIfNotEmpty(Maker $maker)
     {
-        if ($maker->exists) $this->maker_id = $maker->getId();
+        if ($maker->exists) {
+            $this->maker_id = $maker->getId();
+        }
     }
 
     public function setPriceIfNotEmpty($price)
     {
-        if ($price != "") $this->price = $price;
+        if ($price != "") {
+            $this->price = $price;
+        }
     }
 
     public function addRating($rating = 1)
     {
         $this->increment("rating", $rating);
-
     }
     //</editor-fold>
 
     //<editor-fold desc="Search Product">
-    public static function getProductsOfCategoryPagination(Category $category, $minPrice = null, $maxPrice = null, bool $popular = true, $price = null): LengthAwarePaginator
-    {
+    public static function getProductsOfCategoryPagination(
+        Category $category,
+        $minPrice = null,
+        $maxPrice = null,
+        bool $popular = true,
+        $price = null
+    ): LengthAwarePaginator {
         $builder = Product::sortProductBuilder($category, $minPrice, $maxPrice, $popular, $price);
-        $paginate = Product::builderToPaginate($builder, $category);
-        $key = sprintf("products_%s%s%s%s%s",
+        $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price);
+        $key = sprintf(
+            "products_%s%s%s%s%s",
             $category->getEName(),
             $minPrice,
             $maxPrice,
             $popular,
-            $price);
+            $price
+        );
         return Product::cache($key, $paginate);
     }
 
-    private static function sortProductBuilder(Category $category, $minPrice = null, $maxPrice = null, bool $popular = true, $price = null): Builder
-    {
+    private static function sortProductBuilder(
+        Category $category,
+        $minPrice = null,
+        $maxPrice = null,
+        bool $popular = true,
+        $price = null
+    ): Builder {
         $builder = Product::query()->where("category_id", $category->getId());
 
-        if (isset($minPrice)) $builder->where("price", ">=", $minPrice);
-        if (isset($maxPrice)) $builder->where("price", "<=", $maxPrice);
+        if (isset($minPrice)) {
+            $builder->where("price", ">=", $minPrice);
+        }
+        if (isset($maxPrice)) {
+            $builder->where("price", "<=", $maxPrice);
+        }
 
-        if (isset($price)) $builder->orderBy("price", $price ? 'desc' : 'asc');
-        else $builder->orderBy("rating", $popular ? 'desc' : 'asc');
+        if (isset($price)) {
+            $builder->orderBy("price", $price ? 'desc' : 'asc');
+        } else {
+            $builder->orderBy("rating", $popular ? 'desc' : 'asc');
+        }
 
         return $builder;
     }
@@ -181,7 +211,9 @@ class Product extends Model implements Sitemapable
         $products = [];
         foreach ($ids as $id) {
             $product = Product::where("id", $id)->first();
-            if (!is_null($product)) $products[] = $product;
+            if (!is_null($product)) {
+                $products[] = $product;
+            }
         }
         return $products;
     }
@@ -215,18 +247,42 @@ class Product extends Model implements Sitemapable
 
     private static function cache(string $key, $data)
     {
-        return Cache::store("memcached")->remember($key, Product::$cacheSecond, fn()=> $data);
+        return Cache::store("memcached")->remember($key, Product::$cacheSecond, fn() => $data);
     }
 
-    private static function builderToPaginate(Builder $builder, Category $category): LengthAwarePaginator
-    {
+    private static function builderToPaginate(
+        Builder $builder,
+        Category $category,
+        $minPrice = null,
+        $maxPrice = null,
+        bool $popular = true,
+        $price = null
+    ): LengthAwarePaginator {
+        $data = ['department' => $category->getDepartment()->getEName(), 'category' => $category->getEName()];
+
+        if (!is_null($minPrice)) $data["mip"] = $minPrice;
+        if (!is_null($maxPrice)) $data["map"] = $maxPrice;
+        if (!is_null($price)) $data["price"] = $price;
+        $data["popular"] = $popular;
+
         return $builder->paginate(null, ['*'], "p")
-            ->withPath(route('catalog.index', ['department' => $category->getDepartment()->getEName(), 'category' => $category->getEName()]));
-
+            ->withPath(
+                route(
+                    'catalog.index',
+                    $data
+                )
+            );
     }
 
-    public static function make($title, $description, $e_name, int $price, string $img_src, Category $category, Maker $maker)
-    {
+    public static function make(
+        $title,
+        $description,
+        $e_name,
+        int $price,
+        string $img_src,
+        Category $category,
+        Maker $maker
+    ) {
         return Product::factory([
             "title" => $title,
             "description" => $description,
