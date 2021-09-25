@@ -25,8 +25,8 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            "p_title"=>"min:1",
-            "price"=>"integer|min:0|max:1"
+            "p_title" => "min:1",
+            "price" => "integer|min:0|max:1"
         ];
     }
 
@@ -37,16 +37,16 @@ class SearchRequest extends FormRequest
 
     public function getPriceFilter()
     {
-        return $this->validatePriceFilter()? $this->input("price"): 0 ;
-    }
-
-    public function validateProductTitle()
-    {
-        return !Validator::make($this->all("p_title"),["p_title"=>"required|min:1"])->fails();
+        return $this->validatePriceFilter() ? $this->input("price") : 0;
     }
 
     public function validatePriceFilter()
     {
-        return !Validator::make($this->all("price"),["price"=>"integer|min:0|max:1"])->fails();
+        return !Validator::make($this->all("price"), ["price" => "integer|min:0|max:1"])->fails();
+    }
+
+    public function validateProductTitle()
+    {
+        return !Validator::make($this->all("p_title"), ["p_title" => "required|min:1"])->fails();
     }
 }

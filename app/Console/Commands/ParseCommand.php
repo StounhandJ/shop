@@ -43,9 +43,7 @@ class ParseCommand extends Command
     {
         try {
             $this->parse();
-        }
-        catch (InvalidSiteException $e)
-        {
+        } catch (InvalidSiteException $e) {
             $this->error($e->getMessage());
         }
         $this->info("Удаление лишних изображений");
@@ -60,9 +58,9 @@ class ParseCommand extends Command
     {
         $statistics = [];
         foreach (config("parser.santehnik") as $url_parse) {
-            $this->info("Парсинга: ".$url_parse);
+            $this->info("Парсинга: " . $url_parse);
             $parser = new SantehnikParser($url_parse);
-            $this->info("Товаров: ".$parser->count());
+            $this->info("Товаров: " . $parser->count());
             $progressBar = $this->output->createProgressBar();
             $progressBar->setFormat('verbose');
             $progressBar->start();
@@ -77,13 +75,20 @@ class ParseCommand extends Command
                     $search_product->setMakerIfNotEmpty($product->getMaker());
                     $search_product->setPriceIfNotEmpty($product->getPrice());
                     $search_product->save();
-                } else $product->save();
+                } else {
+                    $product->save();
+                }
             }
             $parser_stat = $parser->statistics();
-            $statistics[] = [$url_parse, $parser->count(), $parser_stat["countCategories"], $parser_stat["countMakers"]];
+            $statistics[] = [
+                $url_parse,
+                $parser->count(),
+                $parser_stat["countCategories"],
+                $parser_stat["countMakers"]
+            ];
             $progressBar->finish();
             $this->newLine();
         }
-        $this->table(["Ссылка", "Создано/Изменено товаров","Категорий", "Производителей"], $statistics);
+        $this->table(["Ссылка", "Создано/Изменено товаров", "Категорий", "Производителей"], $statistics);
     }
 }

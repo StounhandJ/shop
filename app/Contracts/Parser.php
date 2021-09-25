@@ -8,6 +8,9 @@ use App\Models\Maker;
 
 abstract class Parser
 {
+    protected $config_name = "parser";
+    protected $setting_name = "setting";
+
     abstract public function __construct(string $department_url);
 
     /**
@@ -26,15 +29,10 @@ abstract class Parser
      */
     abstract public function statistics(): array;
 
-    protected $config_name = "parser";
-
-    protected $setting_name = "setting";
-
     protected function getOrCreateDepartmentIfNoExist($e_name, $name): Department
     {
         $department = Department::getByEName($e_name);
-        if ($department->exists)
-        {
+        if ($department->exists) {
             $department->setNameIfNotEmpty($name);
             $department->save();
             return $department;
@@ -48,8 +46,7 @@ abstract class Parser
     protected function getOrCreateCategoryIfNoExist($e_name, $name, Department $department): Category
     {
         $category = Category::getByEName($e_name);
-        if ($category->exists)
-        {
+        if ($category->exists) {
             $category->setNameIfNotEmpty($name);
             $category->save();
             return $category;
@@ -62,8 +59,10 @@ abstract class Parser
 
     protected function getOrCreateMakerIfNoExist($name): Maker
     {
-        $maker= Maker::getByName($name);
-        if ($maker->exists) return $maker;
+        $maker = Maker::getByName($name);
+        if ($maker->exists) {
+            return $maker;
+        }
 
         $maker = Maker::make($name);
         $maker->save();

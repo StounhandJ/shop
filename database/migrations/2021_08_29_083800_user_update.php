@@ -14,10 +14,10 @@ class UserUpdate extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->renameColumn("name", "login");
-             $table->unique("login");
-             $table->dropUnique("users_email_unique");
-             $table->boolean("is_admin");
+            $table->renameColumn("name", "login");
+            $table->unique("login");
+            $table->dropUnique("users_email_unique");
+            $table->boolean("is_admin");
         });
     }
 
@@ -29,10 +29,10 @@ class UserUpdate extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->dropUnique("users_login_unique");
-             $table->renameColumn("login", "name");
-             $table->unique("email");
-             $table->dropColumn("is_admin");
+            $table->dropUnique("users_login_unique");
+            $table->renameColumn("login", "name");
+            $table->unique("email");
+            $table->dropColumn("is_admin");
         });
     }
 }

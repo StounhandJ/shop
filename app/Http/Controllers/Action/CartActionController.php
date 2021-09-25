@@ -21,11 +21,14 @@ class CartActionController extends Controller
     {
         $cart = $request->getCart();
         $productID = $request->getProductID();
-        if (!in_array($productID, $cart))$cart[] = $productID;
-        else return response()->json(["message"=>"already added"], 401);
+        if (!in_array($productID, $cart)) {
+            $cart[] = $productID;
+        } else {
+            return response()->json(["message" => "already added"], 401);
+        }
 
         $cookie = Cookie::forever('cart', json_encode($cart));
-        return response()->json(["message"=>"success", "cart"=>$cart], 200)->cookie($cookie);
+        return response()->json(["message" => "success", "cart" => $cart], 200)->cookie($cookie);
     }
 
     public function delProduct(CartDelProductRequest $request)
@@ -35,21 +38,28 @@ class CartActionController extends Controller
         if (($key = array_search($productID, $cart)) !== false) {
             unset($cart[$key]);
             $cart = array_values($cart);
+        } else {
+            return response()->json(["message" => "The product is not in the cart"], 401);
         }
-        else return response()->json(["message"=>"The product is not in the cart"], 401);
 
         $cookie = Cookie::forever('cart', json_encode($cart));
-        return response()->json(["message"=>"success", "cart"=>$cart], 200)->cookie($cookie);
+        return response()->json(["message" => "success", "cart" => $cart], 200)->cookie($cookie);
     }
 
     public function info(CartIndexRequest $request)
     {
-        return response()->json(["message"=>"success", "cart"=>$request->getCart()], 200);
+        return response()->json(["message" => "success", "cart" => $request->getCart()], 200);
     }
 
     public function send(CartSendRequest $request)
     {
-        $order = Order::create(Collection::make(Product::getListProduct($request->getCart())), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
+        $order = Order::create(
+            Collection::make(Product::getListProduct($request->getCart())),
+            $request->getName(),
+            $request->getEmail(),
+            $request->getPhone(),
+            $request->getComment()
+        );
 
         Mail::to($request->getEmail())
             ->send(new OrderRegistrationMail($order));
@@ -62,7 +72,13 @@ class CartActionController extends Controller
 
     public function sendCustom(CartSendRequest $request)
     {
-        $order = Order::create(Collection::make(), $request->getName(), $request->getEmail(), $request->getPhone(), $request->getComment());
+        $order = Order::create(
+            Collection::make(),
+            $request->getName(),
+            $request->getEmail(),
+            $request->getPhone(),
+            $request->getComment()
+        );
         Mail::to("zarabot111.111@gmail.com")
             ->send(new OrderRegistrationMail($order));
         return redirect(route("custom"));

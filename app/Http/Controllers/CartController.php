@@ -12,6 +12,6 @@ class CartController extends Controller
     {
         $cart_products_in = Product::getListProduct($request->getCart());
         $departments = Department::all();
-       return view("cart", compact("cart_products_in", "departments"));
+        return view("cart", compact("cart_products_in", "departments"));
     }
 }

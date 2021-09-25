@@ -9,21 +9,19 @@ class ProductsOrders extends Pivot
 {
     use HasFactory;
 
-    protected $table = "products_orders";
-
     public $incrementing = false;
-
     public $timestamps = false;
-
-    public function getProduct(): Product
-    {
-        return Product::getById($this->product_id);
-    }
+    protected $table = "products_orders";
 
     protected static function booted()
     {
         static::created(function (ProductsOrders $productsOrders) {
             $productsOrders->getProduct()->addRating();
         });
+    }
+
+    public function getProduct(): Product
+    {
+        return Product::getById($this->product_id);
     }
 }

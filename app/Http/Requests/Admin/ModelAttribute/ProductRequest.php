@@ -35,7 +35,7 @@ class ProductRequest extends FormRequest
 
     public function getPrice(): int
     {
-        return (int) $this->input("price");
+        return (int)$this->input("price");
     }
 
     public function getCategory(): Category

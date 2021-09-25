@@ -13,11 +13,11 @@ class ProductNewFields extends Migration
      */
     public function up()
     {
-         Schema::table('products', function (Blueprint $table) {
-             $table->string("title");
-             $table->string("description");
-             $table->string("img_src");
-             $table->integer("price");
+        Schema::table('products', function (Blueprint $table) {
+            $table->string("title");
+            $table->string("description");
+            $table->string("img_src");
+            $table->integer("price");
         });
     }
 

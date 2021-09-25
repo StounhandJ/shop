@@ -14,15 +14,15 @@ class AllSoftDeletes extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-             $table->softDeletes();
+            $table->softDeletes();
         });
 
         Schema::table('departments', function (Blueprint $table) {
-             $table->softDeletes();
+            $table->softDeletes();
         });
 
         Schema::table('makers', function (Blueprint $table) {
-             $table->softDeletes();
+            $table->softDeletes();
         });
     }
 
@@ -34,15 +34,15 @@ class AllSoftDeletes extends Migration
     public function down()
     {
         Schema::table('categories', function (Blueprint $table) {
-             $table->dropSoftDeletes();
+            $table->dropSoftDeletes();
         });
 
         Schema::table('departments', function (Blueprint $table) {
-             $table->dropSoftDeletes();
+            $table->dropSoftDeletes();
         });
 
         Schema::table('makers', function (Blueprint $table) {
-             $table->dropSoftDeletes();
+            $table->dropSoftDeletes();
         });
     }
 }

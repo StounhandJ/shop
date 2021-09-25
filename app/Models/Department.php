@@ -18,15 +18,42 @@ class Department extends Model
 
     //<editor-fold desc="Get Attribute">
 
-    public function getId()
+    public static function getById($id): Department
     {
-        return $this->id;
+        return Department::where("id", $id)->first() ?? new Department();
+    }
+
+    public static function getByEName($e_name): Department
+    {
+        return Department::where("e_name", $e_name)->first() ?? new Department();
+    }
+
+    public static function getFirst()
+    {
+        return Department::first();
+    }
+
+    public static function make($name, $e_name)
+    {
+        return Department::factory(["name" => $name, "e_name" => $e_name])->make();
+    }
+
+    //</editor-fold>
+
+    //<editor-fold desc="Set Attribute">
+
+    public static function categories()
+    {
+        return Category::all();
     }
 
     public function getName()
     {
         return $this->name;
     }
+    //</editor-fold>
+
+    //<editor-fold desc="Search Department">
 
     public function getEName()
     {
@@ -38,49 +65,29 @@ class Department extends Model
         return $this->hasMany(Category::class)->getResults();
     }
 
-    //</editor-fold>
-
-    //<editor-fold desc="Set Attribute">
     public function setNameIfNotEmpty($name)
     {
-        if ($name!="") $this->name = $name;
+        if ($name != "") {
+            $this->name = $name;
+        }
     }
+
+    //</editor-fold>
 
     public function setENameIfNotEmpty($e_name)
     {
-        if ($e_name!="") $this->e_name = $e_name;
-    }
-    //</editor-fold>
-
-    //<editor-fold desc="Search Department">
-    public static function getById($id) : Department
-    {
-        return Department::where("id", $id)->first() ?? new Department();
-    }
-
-    public static function getByEName($e_name) : Department
-    {
-        return Department::where("e_name", $e_name)->first() ?? new Department();
-    }
-
-    public static function getFirst()
-    {
-        return Department::first();
-    }
-    //</editor-fold>
-
-    public static function make($name, $e_name)
-    {
-        return Department::factory(["name"=>$name, "e_name"=>$e_name] )->make();
-    }
-
-    public static function categories()
-    {
-        return Category::all();
+        if ($e_name != "") {
+            $this->e_name = $e_name;
+        }
     }
 
     public function getCategoryCount()
     {
         return Category::where("department_id", $this->getId())->count();
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }

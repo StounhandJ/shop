@@ -33,7 +33,7 @@ class NameToEname extends Migration
      */
     public function down()
     {
-         Schema::table('categories', function (Blueprint $table) {
+        Schema::table('categories', function (Blueprint $table) {
             $table->dropColumn("e_name");
         });
 

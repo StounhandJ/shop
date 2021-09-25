@@ -11,7 +11,9 @@ class CatalogController extends Controller
 {
     public function index(CatalogRequest $request, Department $department, Category $category)
     {
-        if (!$category->exists) $category = Category::getFirstCategoryOfDepartment($department);
+        if (!$category->exists) {
+            $category = Category::getFirstCategoryOfDepartment($department);
+        }
 
         $departments = Department::all();
         $categories = Category::getAllCategoriesOfDepartment($department);
@@ -26,12 +28,16 @@ class CatalogController extends Controller
 
         $cart_products_in = $request->getCart();
 
-        return view("shop", compact("departments", "categories", "paginate", "cart_products_in"),
+        return view(
+            "shop",
+            compact("departments", "categories", "paginate", "cart_products_in"),
             [
                 "current_department" => $department,
                 "current_category" => $category,
                 "title" => $category->getName() . " - Филлдом",
-                "description" => " Купить или заказать с доставкой " . $category->getName() . " в интернет-магазине Филдом.Ру, продажа сантехники в Москве, гибкий фильтр подбора...",
-            ]);
+                "description" => " Купить или заказать с доставкой " . $category->getName(
+                    ) . " в интернет-магазине Филдом.Ру, продажа сантехники в Москве, гибкий фильтр подбора...",
+            ]
+        );
     }
 }

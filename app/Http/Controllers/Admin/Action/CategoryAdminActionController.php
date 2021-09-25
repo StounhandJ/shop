@@ -17,7 +17,7 @@ class CategoryAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message"=>"success", "response"=>Category::all()], 200);
+        return response()->json(["message" => "success", "response" => Category::all()], 200);
     }
 
     /**
@@ -28,9 +28,9 @@ class CategoryAdminActionController extends Controller
      */
     public function store(CategoryCreateRequest $request)
     {
-        $category= Category::make($request->getName(), $request->getEName(), $request->getDepartment());
+        $category = Category::make($request->getName(), $request->getEName(), $request->getDepartment());
         $category->save();
-        return response()->json(["message"=>"success", "response"=>$category], 200);
+        return response()->json(["message" => "success", "response" => $category], 200);
     }
 
     /**
@@ -41,7 +41,7 @@ class CategoryAdminActionController extends Controller
      */
     public function show(Category $category)
     {
-        return response()->json(["message"=>"success", "response"=>$category], 200);
+        return response()->json(["message" => "success", "response" => $category], 200);
     }
 
     /**
@@ -58,7 +58,7 @@ class CategoryAdminActionController extends Controller
         $category->setDepartmentIfNotEmpty($request->getDepartment());
         $category->save();
 
-        return response()->json(["message"=>"success", "response"=>$category], 200);
+        return response()->json(["message" => "success", "response" => $category], 200);
     }
 
     /**
@@ -70,6 +70,6 @@ class CategoryAdminActionController extends Controller
     public function destroy(Category $category)
     {
         $result = $category->delete();
-        return response()->json(["message"=>$result?"success":"error"], $result?200:500);
+        return response()->json(["message" => $result ? "success" : "error"], $result ? 200 : 500);
     }
 }

@@ -15,27 +15,12 @@ class Order extends Model
     //<editor-fold desc="Setting">
     protected $appends = ['products'];
 
-    public function getProductsAttribute(): Collection
-    {
-        return $this->products()->get();
-    }
-
-    //</editor-fold>
-
-    public static function getById($id) : Order
+    public static function getById($id): Order
     {
         return Order::where("id", $id)->first() ?? new Order();
     }
 
-    public function products(): BelongsToMany
-    {
-        return $this->belongsToMany(Product::class, "products_orders")->using(ProductsOrders::class);
-    }
-
-    public function addProduct(Product $product)
-    {
-
-    }
+    //</editor-fold>
 
     /**
      * @param Collection $products
@@ -49,12 +34,26 @@ class Order extends Model
     {
         /** @var Order $order */
         $order = Order::factory([
-            "fio"=>$fio,
-            "email"=>$email,
-            "phone"=>$phone ?? "",
-            "comment"=>$comment ?? ""
+            "fio" => $fio,
+            "email" => $email,
+            "phone" => $phone ?? "",
+            "comment" => $comment ?? ""
         ])->create();
         $order->products()->attach($products);
         return $order;
+    }
+
+    public function getProductsAttribute(): Collection
+    {
+        return $this->products()->get();
+    }
+
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, "products_orders")->using(ProductsOrders::class);
+    }
+
+    public function addProduct(Product $product)
+    {
     }
 }

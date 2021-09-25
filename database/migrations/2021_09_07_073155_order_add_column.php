@@ -19,7 +19,6 @@ class OrderAddColumn extends Migration
             $table->string("phone")->default("");
             $table->string("comment")->default("");
         });
-
     }
 
     /**
