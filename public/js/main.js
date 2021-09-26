@@ -9,10 +9,15 @@ var RGBChange = function () {
     );
 };
 
-function sort(by) {
-    var currentUrl = $(location).attr("href");
-    console.log("sort")
-    return window.history.pushState(null, null, currentUrl + "?" + by);
+function updateUrl(param) {
+    var currentUrl = window.location.href;
+    var clearUrl = currentUrl.split("?");
+    if (param) {
+        window.history.replaceState("", "", clearUrl[0] + "?" + param);
+    } else {
+        window.history.replaceState("", "", clearUrl[0]);
+    }
+    location.reload();
 }
 
 $(document).ready(function () {
@@ -34,8 +39,29 @@ $(document).ready(function () {
             zIndex: 2147483647, // Z-Index for the overlay
         });
     });
-    $("#sortByPrice").click(function () {
-        sort("mip=100000");
-        $(this).css({ color: "yellow" });
+    $("#filters-all-input-wrapper").hide();
+    $("#sortByPriceTitle").click(function () {
+        $("#filters-all-input-wrapper").slideToggle();
+    });
+    $("#filter-price").click(function () {
+        if ($("#min-price")[0].value > 0 && $("#max-price")[0].value < 500000) {
+            minmax = [$("#min-price")[0].value, $("#max-price")[0].value];
+            // localStorage.setItem("minValue", JSON.stringify(minmax[0]));
+            // localStorage.setItem("maxValue", JSON.stringify(minmax[1]));
+            updateUrl(`mip=${minmax[0]}&map=${minmax[1]}`);
+            // $("#min-price") = JSON.parse(localStorage.getItem("minValue"));
+            // $("#max-price") = JSON.parse(localStorage.getItem("maxValue"));
+        } else{
+            $("#price-required").show();
+        }
+    });
+    $("#filter-popular").click(function () {
+        updateUrl(`popular=1`);
+    });
+    $("#filter-Az").click(function () {
+        // updateUrl(`popular=1`);
+    });
+    $("#filter-clear").click(function () {
+        updateUrl();
     });
 });

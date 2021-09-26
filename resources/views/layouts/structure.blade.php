@@ -225,7 +225,6 @@
     <script src="/js/search.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/cart.js"></script>
-    <script src="/js/price-range.js"></script>
 </body>
 
 </html>
