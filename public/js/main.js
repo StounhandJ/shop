@@ -49,17 +49,22 @@ $(document).ready(function () {
             // localStorage.setItem("minValue", JSON.stringify(minmax[0]));
             // localStorage.setItem("maxValue", JSON.stringify(minmax[1]));
             updateUrl(`mip=${minmax[0]}&map=${minmax[1]}`);
-            // $("#min-price") = JSON.parse(localStorage.getItem("minValue"));
-            // $("#max-price") = JSON.parse(localStorage.getItem("maxValue"));
         } else{
             $("#price-required").show();
         }
     });
     $("#filter-popular").click(function () {
+        // if (!$("#filter-popular").hasClass("click")) {
+        //     updateUrl(`popular=1`);
+        //     $("#filter-popular").addClass("click");
+        // } else {
+        //     updateUrl(`popular=0`);
+        //     $("#filter-popular").removeClass("click");
+        // };
         updateUrl(`popular=1`);
     });
     $("#filter-Az").click(function () {
-        // updateUrl(`popular=1`);
+        updateUrl(`abc=1`);
     });
     $("#filter-clear").click(function () {
         updateUrl();
