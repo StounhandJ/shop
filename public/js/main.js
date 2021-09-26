@@ -39,20 +39,28 @@ $(document).ready(function () {
             zIndex: 2147483647, // Z-Index for the overlay
         });
     });
+
     $("#filters-all-input-wrapper").hide();
     $("#sortByPriceTitle").click(function () {
         $("#filters-all-input-wrapper").slideToggle();
     });
+
+    const url = new URL(
+        window.location.href.toString()
+    )
+
+    $("#min-price")[0].value = url.searchParams.get('mip');
+    $("#max-price")[0].value = url.searchParams.get('map');
+
     $("#filter-price").click(function () {
-        if ($("#min-price")[0].value > 0 && $("#max-price")[0].value < 500000) {
+        if ($("#min-price")[0].value > 0 && $("#max-price")[0].value < 500000 && $("#min-price")[0].value < $("#max-price")[0].value) {
             minmax = [$("#min-price")[0].value, $("#max-price")[0].value];
-            // localStorage.setItem("minValue", JSON.stringify(minmax[0]));
-            // localStorage.setItem("maxValue", JSON.stringify(minmax[1]));
             updateUrl(`mip=${minmax[0]}&map=${minmax[1]}`);
         } else{
             $("#price-required").show();
         }
     });
+
     $("#filter-popular").click(function () {
         // if (!$("#filter-popular").hasClass("click")) {
         //     updateUrl(`popular=1`);
@@ -63,9 +71,11 @@ $(document).ready(function () {
         // };
         updateUrl(`popular=1`);
     });
+
     $("#filter-Az").click(function () {
         updateUrl(`abc=1`);
     });
+
     $("#filter-clear").click(function () {
         updateUrl();
     });
