@@ -30,30 +30,9 @@ use App\Http\Controllers\Admin\DepartmentAdminController;
 |
 */
 
-Route::get('/index', function () {
-    return view('index');
-});
-Route::get('/product-details', function () {
-    return view('product-details');
-});
-Route::get('/404', function () {
-    return view('404');
-});
-Route::get('/cart', function () {
-    return view('cart');
-});
-Route::get('/contact-us', function () {
-    return view('contact-us');
-});
-Route::get('/shop', function () {
-    return view('shop');
-});
-Route::get('/checkout', function () {
-    return view('checkout');
-});
-
 Route::get('/', function (Request $request) {
-    return view("index", ["departments" => \App\Models\Department::all()]);
+    return redirect(\route("catalog.index", ["department"=>\App\Models\Department::getFirst()->getEname()]));
+//    return view("index", ["departments" => \App\Models\Department::all()]);
 })->name("index");
 
 Route::get('/custom', function (Request $request) {
@@ -121,12 +100,6 @@ Route::prefix("admin")->name("admin.")->middleware("auth:admin")->group(function
     Route::get('/categories', [CategoryAdminController::class, 'index'])->name("categories");
 
     Route::get('/makers', [MakerAdminController::class, 'index'])->name("makers");
-
-    // Route::get('/orders', [OrdersAdminController::class, 'index'])->name("orders");
-
-    // Route::get('/charts', [ChartsAdminController::class, 'index'])->name("charts");
-
-    // Route::get('/maininfo', [MainInfoAdminController::class, 'index'])->name("maininfo");
 
     Route::get('/', [ProductAdminController::class, 'index'])->name("index");
 });

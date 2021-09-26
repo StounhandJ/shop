@@ -23,7 +23,8 @@ class CatalogController extends Controller
             $request->getMinPrice(),
             $request->getMaxPrice(),
             $request->getPopular(),
-            $request->getPrice()
+            $request->getPrice(),
+            $request->getAbc()
         );
 
         $cart_products_in = $request->getCart();

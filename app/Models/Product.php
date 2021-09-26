@@ -39,17 +39,19 @@ class Product extends Model implements Sitemapable
         $minPrice = null,
         $maxPrice = null,
         bool $popular = true,
-        $price = null
+        $price = null,
+        $abc = null
     ): LengthAwarePaginator {
-        $builder = Product::sortProductBuilder($category, $minPrice, $maxPrice, $popular, $price);
-        $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price);
+        $builder = Product::sortProductBuilder($category, $minPrice, $maxPrice, $popular, $price, $abc);
+        $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
         $key = sprintf(
-            "products_%s%s%s%s%s",
+            "products_%s%s%s%s%s%s",
             $category->getEName(),
             $minPrice,
             $maxPrice,
             $popular,
-            $price
+            $price,
+            $abc
         );
         return Product::cache($key, $paginate);
     }
@@ -59,20 +61,25 @@ class Product extends Model implements Sitemapable
         $minPrice = null,
         $maxPrice = null,
         bool $popular = true,
-        $price = null
+        $price = null,
+        $abc = null
     ): Builder {
         $builder = Product::query()->where("category_id", $category->getId());
 
-        if (isset($minPrice)) {
+        if (!is_null($minPrice)) {
             $builder->where("price", ">=", $minPrice);
         }
-        if (isset($maxPrice)) {
+        if (!is_null($maxPrice)) {
             $builder->where("price", "<=", $maxPrice);
         }
 
-        if (isset($price)) {
+        if (!is_null($price)) {
             $builder->orderBy("price", $price ? 'desc' : 'asc');
-        } else {
+        }
+        elseif (!is_null($abc)){
+            $builder->orderBy("title", $abc ? 'desc' : 'asc');
+        }
+        else {
             $builder->orderBy("rating", $popular ? 'desc' : 'asc');
         }
 
@@ -85,7 +92,8 @@ class Product extends Model implements Sitemapable
         $minPrice = null,
         $maxPrice = null,
         bool $popular = true,
-        $price = null
+        $price = null,
+        $abc = null
     ): LengthAwarePaginator {
         $data = ['department' => $category->getDepartment()->getEName(), 'category' => $category->getEName()];
 
@@ -98,8 +106,10 @@ class Product extends Model implements Sitemapable
         if (!is_null($price)) {
             $data["price"] = $price;
         }
+        if (!is_null($abc)) {
+            $data["abc"] = $abc;
+        }
         $data["popular"] = $popular;
-
         return $builder->paginate(null, ['*'], "p")
             ->withPath(
                 route(

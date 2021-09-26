@@ -64,6 +64,23 @@ class CatalogRequest extends FormRequest
         return null;
     }
 
+     public function getAbc()
+    {
+        if (is_null($this->query("abc"))) {
+            return null;
+        }
+
+        if ($this->query("abc") == "1") {
+            return true;
+        }
+
+        if ($this->query("abc") == "0") {
+            return false;
+        }
+
+        return null;
+    }
+
     public function getMinPrice()
     {
         return $this->query("mip");
