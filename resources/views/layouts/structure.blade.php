@@ -95,9 +95,9 @@
                             </div>
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
-                                    <li><a href="{{ route('index') }}"
+                                    {{-- <li><a href="{{ route('index') }}"
                                             class="{{ Request::url() == route('index') ? 'active' : '' }}">Главная</a>
-                                    </li>
+                                    </li> --}}
                                     @foreach ($departments as $item)
                                         <li><a href="{{ route('catalog.index', ['department' => $item->getEName()]) }}"
                                                 class={{ isset($current_department) && $item->getId() == $current_department->getId() ? 'active' : '' }}>{{ $item->getName() }}</a>

@@ -8,7 +8,7 @@
                         <input type="number" class="filter-input" name="min-price" value="" min="0" step="1000" max="500000" id="min-price" placeholder="От">
                         <input type="number" class="filter-input" name="max-price" value="" min="0" step="1000" max="500000" id="max-price" placeholder="До">
                     </div>
-                    <p id="price-required" style="display:none;">заполните поля 0 - 500 000</p>
+                    <p id="price-required" style="display:none;">некорректные значения</p>
                     <div class="price-range-btn">
                         <button class="btn btn-primary btn-price-slider" id="filter-price">Применить</button>
                     </div>
