@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class OrderRegistrationMail extends Mailable implements ShouldQueue
+class OrderEmployerMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -38,7 +38,7 @@ class OrderRegistrationMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('mail.mail')
-            ->subject("Зарегистрированный заказ");
+        return $this->markdown('mail.employer')
+            ->subject("Новый заказ");
     }
 }

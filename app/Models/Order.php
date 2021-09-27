@@ -15,6 +15,39 @@ class Order extends Model
     //<editor-fold desc="Setting">
     protected $appends = ['products'];
 
+    public function getProductsAttribute(): Collection
+    {
+        return $this->products()->get();
+    }
+
+    //</editor-fold>
+
+    //<editor-fold desc="Get">
+
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    public function products(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, "products_orders")->using(ProductsOrders::class);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Search">
+
+
     public static function getById($id): Order
     {
         return Order::where("id", $id)->first() ?? new Order();
@@ -41,19 +74,5 @@ class Order extends Model
         ])->create();
         $order->products()->attach($products);
         return $order;
-    }
-
-    public function getProductsAttribute(): Collection
-    {
-        return $this->products()->get();
-    }
-
-    public function products(): BelongsToMany
-    {
-        return $this->belongsToMany(Product::class, "products_orders")->using(ProductsOrders::class);
-    }
-
-    public function addProduct(Product $product)
-    {
     }
 }

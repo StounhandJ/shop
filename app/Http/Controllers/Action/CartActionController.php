@@ -7,6 +7,8 @@ use App\Http\Requests\Action\CartAddProductRequest;
 use App\Http\Requests\Action\CartDelProductRequest;
 use App\Http\Requests\CartIndexRequest;
 use App\Http\Requests\Action\CartSendRequest;
+use App\Mail\OrderCustomEmployerMail;
+use App\Mail\OrderEmployerMail;
 use App\Mail\OrderRegistrationMail;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Collection;
@@ -65,7 +67,7 @@ class CartActionController extends Controller
             ->send(new OrderRegistrationMail($order));
 
         Mail::to("zarabot111.111@gmail.com")
-            ->send(new OrderRegistrationMail($order));
+            ->send(new OrderEmployerMail($order));
 
         return redirect(route("cart.index"))->withoutCookie('cart');
     }
@@ -80,7 +82,7 @@ class CartActionController extends Controller
             $request->getComment()
         );
         Mail::to("zarabot111.111@gmail.com")
-            ->send(new OrderRegistrationMail($order));
+            ->send(new OrderCustomEmployerMail($order));
         return redirect(route("custom"));
     }
 }
