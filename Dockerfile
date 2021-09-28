@@ -19,7 +19,7 @@ RUN pecl install memcached \
 RUN apt-get install -y supervisor
 COPY data/scripts/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-COPY --chown=www:www . /var/www
+COPY --chown=www-data:www-data . /var/www
 RUN touch /var/www/storage/logs/laravel.log
 COPY --from=composer /app/vendor /var/www/vendor
 COPY data/scripts/init.sh ./init.sh
