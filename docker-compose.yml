@@ -19,6 +19,7 @@ services:
       - MEMCACHED_HOST=memcached_db
       - MEMCACHED_PORT=11211
     volumes:
+        - ./public:/var/www/public
         - ./storage/app:/var/www/storage/app
         - ./data/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     depends_on:
@@ -83,7 +84,7 @@ services:
           - ./data/certbot/cloudflare.ini:/opt/cerbot/cloudflare.ini
           - ./data/certbot/conf:/etc/letsencrypt
           - ./data/certbot/www:/var/www/certbot
- 
+
   memcached_db:
     image: memcached:latest
     restart: always
