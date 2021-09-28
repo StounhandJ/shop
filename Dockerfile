@@ -20,7 +20,6 @@ RUN apt-get install -y supervisor
 COPY data/scripts/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY --chown=www-data:www-data . /var/www
-RUN touch /var/www/storage/logs/laravel.log
 COPY --from=composer /app/vendor /var/www/vendor
 COPY data/scripts/init.sh ./init.sh
 RUN sed -i -e 's/\r$//' init.sh

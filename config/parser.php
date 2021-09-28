@@ -2,9 +2,7 @@
 
 return [
     "santehnik" => [
-        "https://santehnika-online.ru/climate/",
-        "https://santehnika-online.ru/santehnika/",
-        "https://santehnika-online.ru/mebel_dlja_vannoj_komnaty/"
+        "https://santehnika-online.ru/santehnika/"
     ],
     "setting" =>
         [
