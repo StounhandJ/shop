@@ -17,7 +17,7 @@ class AdminSeed extends Seeder
         $admins = [
             [
                 "login" => "admin",
-                "password" => "admin"
+                "password" => "Rad027S"
             ]
         ];
         foreach ($admins as $admin) {
