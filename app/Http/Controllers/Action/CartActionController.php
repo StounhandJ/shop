@@ -66,7 +66,7 @@ class CartActionController extends Controller
         Mail::to($request->getEmail())
             ->send(new OrderRegistrationMail($order));
 
-        Mail::to("zarabot111.111@gmail.com")
+        Mail::to("feeldom@bk.ru")
             ->send(new OrderEmployerMail($order));
 
         return redirect(route("cart.index"))->withoutCookie('cart');
@@ -81,7 +81,7 @@ class CartActionController extends Controller
             $request->getPhone(),
             $request->getComment()
         );
-        Mail::to("zarabot111.111@gmail.com")
+        Mail::to("feeldom@bk.ru")
             ->send(new OrderCustomEmployerMail($order));
         return redirect(route("custom"));
     }
