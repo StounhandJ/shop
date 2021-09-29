@@ -30,7 +30,7 @@ class CartSendRequest extends FormRequest
             "name" => "required|string|min:1|max:60",
             "email" => "required|string|min:3|max:60",
             "phone" => "string|min:3|max:60",
-            "comment" => "string|max:800",
+            "comment" => "nullable|string|max:800",
         ];
     }
 
