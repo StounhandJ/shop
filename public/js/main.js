@@ -73,7 +73,7 @@ $(document).ready(function () {
     });
 
     $("#filter-Az").click(function () {
-        updateUrl(`abc=1`);
+        updateUrl(`abc=0`);
     });
 
     $("#filter-clear").click(function () {
