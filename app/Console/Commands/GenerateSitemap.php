@@ -68,7 +68,7 @@ class GenerateSitemap extends Command
             Sitemap::create()
                 ->add(Product::query()->offset($i * 5000)->limit(5000)->get()->lazy())
                 ->writeToFile(public_path(sprintf('sitemaps/sitemap_product_%s.xml', $i)));
-            yield sprintf('sitemaps/sitemap_category_%s.xml', $i);
+            yield sprintf('sitemaps/sitemap_product_%s.xml', $i);
         }
     }
 
