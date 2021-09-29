@@ -40,7 +40,7 @@ $(document).ready(function () {
                 data[item.name] = item.value;
             });
         $.ajax({
-            type: "GET",
+            type: "POST",
             data: data,
             url: "/action/cart/send" + ($(this)[0].id == "customId" ? "-custom" : ""),
             success: function () {

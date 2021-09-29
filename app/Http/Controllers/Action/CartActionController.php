@@ -69,7 +69,7 @@ class CartActionController extends Controller
         Mail::to(config("app.app_mail"))
             ->send(new OrderEmployerMail($order));
 
-        return redirect(route("cart.index"))->withoutCookie('cart');
+        return response()->json(["message" => "success"], 200)->withoutCookie('cart');
     }
 
     public function sendCustom(CartSendRequest $request)
@@ -83,6 +83,6 @@ class CartActionController extends Controller
         );
         Mail::to(config("app.app_mail"))
             ->send(new OrderCustomEmployerMail($order));
-        return redirect(route("custom"));
+        return response()->json(["message" => "success"], 200);
     }
 }
