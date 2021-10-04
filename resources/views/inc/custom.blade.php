@@ -62,6 +62,10 @@
                             <span class="wrap-icon icon-envelope mr-3"></span>
                             <span class="text"><a href="mailto:feeldom@bk.ru" style="color:white">feeldom@bk.ru</a></span>
                         </li>
+                        <li class="d-flex">
+                            <span class="wrap-icon icon-envelope mr-3"></span>
+                            <span class="text"><a href="mailto:feeldom@bk.ru" style="color:white">Москва, Ленинский проспект, дом 4, строение 1А, квартира 10</a></span>
+                        </li>
                     </ul>
                 </div>
             </div>

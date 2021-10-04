@@ -13,6 +13,7 @@
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/price-range.css" rel="stylesheet">
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" />
     <link rel="icon" href="/images/ico/favicon.ico" sizes="48x48" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"
@@ -42,7 +43,8 @@
                             <div class="social-icons pull-right">
                                 <ul class="nav navbar-nav">
                                     <li><a href="#" title="Филдом ВКонтакте"><i class="fa fa-vk"></i></a></li>
-                                    <li><a href="#" title="Филдом Инстаграм"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#" title="Филдом Инстаграм"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="#" title="Филдом Вотсап"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -88,6 +90,9 @@
                             </div>
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
+                                    <div class="price-slider-mobile">
+                                        @include('inc.price-slider-mobile')
+                                    </div>
                                     {{-- <li><a href="{{ route('index') }}"
                                             class="{{ Request::url() == route('index') ? 'active' : '' }}">Главная</a>
                                     </li> --}}

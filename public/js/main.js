@@ -68,14 +68,10 @@ $(document).ready(function () {
             changeFilterIcon();
         }
 
-        $("#filters-all-input-wrapper").hide();
-
-        $("#filter-price").click(function () {
-            $("#filters-all-input-wrapper").slideToggle();
-        });
-
         $("#min-price")[0].value = url.searchParams.get("mip");
         $("#max-price")[0].value = url.searchParams.get("map");
+        $("#min-price-mobile")[0].value = url.searchParams.get("mip");
+        $("#max-price-mobile")[0].value = url.searchParams.get("map");
 
         $("#filter-price-slider").click(function () {
             if (
@@ -87,6 +83,19 @@ $(document).ready(function () {
                 updateUrl(`mip=${minmax[0]}&map=${minmax[1]}`);
             } else {
                 $("#price-required").show();
+            }
+        });
+
+        $("#filter-price-slider-mobile").click(function () {
+            if (
+                $("#min-price-mobile")[0].value > 0 &&
+                $("#max-price-mobile")[0].value < 500000 &&
+                $("#min-price-mobile")[0].value < $("#max-price-mobile")[0].value
+            ) {
+                minmax = [$("#min-price-mobile")[0].value, $("#max-price-mobile")[0].value];
+                updateUrl(`mip=${minmax[0]}&map=${minmax[1]}`);
+            } else {
+                $("#price-required-mobile").show();
             }
         });
 

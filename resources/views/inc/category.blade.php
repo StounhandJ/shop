@@ -4,9 +4,8 @@
             Request::url() == route('catalog.index', ['department' => $current_department->getEName(), 'category' => $current_category->getEName()]) || 
             Request::url() == route('catalog.index', ['department' => $current_department->getEName()])
         )
-            <h2>Фильтры</h2>
-            <div class="panel-group category-products">
-                @include('inc.filters')
+            <div class="price-slider-main">
+                @include('inc.price-slider')
             </div>
         @endif
         <h2>Категории</h2>
