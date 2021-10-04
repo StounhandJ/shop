@@ -6,5 +6,5 @@ $(document).ready(function () {
                 cut[i].innerText.slice(0, 70) +
                 (cut[i].innerText < 70 ? "" : "...");
         }
-    })();
+    });
 });

@@ -13,11 +13,7 @@
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/price-range.css" rel="stylesheet">
-    <link rel="shortcut icon" href="/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="icon" href="/images/ico/favicon.ico" sizes="48x48" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"
         charset="utf-8"></script>
@@ -42,17 +38,14 @@
                                 </ul>
                             </div>
                         </div>
-                        {{-- <div class="col-sm-6">
+                        <div class="col-sm-6">
                             <div class="social-icons pull-right">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#" title="Филдом ВКонтакте"><i class="fa fa-vk"></i></a></li>
+                                    <li><a href="#" title="Филдом Инстаграм"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -141,71 +134,59 @@
         </main>
         <footer id="footer">
             <!--Footer-->
-            {{-- <div class="footer-widget">
+            <div class="footer-widget">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="single-widget">
-                                <h2>Service</h2>
+                                <h2>О нас</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">Online Help</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Order Status</a></li>
-                                    <li><a href="#">Change Location</a></li>
-                                    <li><a href="#">FAQ’s</a></li>
+                                    <li><a href="#">Акции</a></li>
+                                    <li><a href="#">Партнёрам</a></li>
+                                    <li><a href="#">Контакты</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="single-widget">
-                                <h2>Quock Shop</h2>
+                                <h2>Услуги</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">T-Shirt</a></li>
-                                    <li><a href="#">Mens</a></li>
-                                    <li><a href="#">Womens</a></li>
-                                    <li><a href="#">Gift Cards</a></li>
-                                    <li><a href="#">Shoes</a></li>
+                                    <li><a href="#">Под размер</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="single-widget">
-                                <h2>Policies</h2>
+                                <h2>Покупателям</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">Terms of Use</a></li>
-                                    <li><a href="#">Privecy Policy</a></li>
-                                    <li><a href="#">Refund Policy</a></li>
-                                    <li><a href="#">Billing System</a></li>
-                                    <li><a href="#">Ticket System</a></li>
+                                    <li><a href="#">Оплата</a></li>
+                                    <li><a href="#">Доставка и самовывоз</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="single-widget">
-                                <h2>About Shopper</h2>
+                                <h2>Наши соц. сети</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">Company Information</a></li>
-                                    <li><a href="#">Careers</a></li>
-                                    <li><a href="#">Store Location</a></li>
-                                    <li><a href="#">Affillate Program</a></li>
-                                    <li><a href="#">Copyright</a></li>
+                                    <li><a href="#">ВКонтакте</a></li>
+                                    <li><a href="#">Инстаграм</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-3 col-sm-offset-1">
                             <div class="single-widget">
-                                <h2>About Shopper</h2>
+                                <h2>Связаться с нами</h2>
                                 <form action="#" class="searchform">
-                                    <input type="text" placeholder="Your email address" />
+                                    <input type="tel" placeholder="Номер телефона" />
                                     <button type="submit" class="btn btn-default"><i
                                             class="fa fa-arrow-circle-o-right"></i></button>
-                                    <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                                    <p>Введите номер телефона и в ближайшее время мы перезвоним вам!</p>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <div class="footer-bottom">
                 <div class="container">
                     <div class="row">

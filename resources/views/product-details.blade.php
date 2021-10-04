@@ -24,7 +24,7 @@
                                 <p><b>Ширина: </b><span></span> см</p>
                                 <p><b>Высота: </b><span></span> см</p> --}}
                                 <button type="button" id="{{ $product->getId() }}"
-                                    class="btn btn-fefault cart btn-cart-p-d">
+                                    class="btn cart btn-cart-p-d">
                                     <i class="fa fa-shopping-cart"></i>
                                     Добавить в корзину
                                 </button>

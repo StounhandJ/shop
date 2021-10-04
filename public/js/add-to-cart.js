@@ -29,7 +29,7 @@ $(document).ready(function () {
             data: fd,
             url: "/action/cart/add",
             success: function (data) {
-                console.log("Добавлено в корзину");
+                console.log("Добавлено в корзину внешне");
                 update(data["cart"]);
             },
             error: function () {
@@ -50,8 +50,9 @@ $(document).ready(function () {
             data: fd,
             url: "/action/cart/add",
             success: function (data) {
-                console.log("Добавлено в корзину");
-                $(".btn-cart-p-d")[0].innerHTML = "<i class=\"fa fa-check-circle\"></i>Добавлено в корзину";
+                console.log("Добавлено в корзину из подробнее");
+                $(".btn-cart-p-d")[0].innerHTML =
+                    '<i class="fa fa-check-circle"></i>Добавлено в корзину';
                 update(data["cart"]);
             },
             error: function () {
