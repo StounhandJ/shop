@@ -68,8 +68,13 @@ function update(cart) {
     cart.forEach((id) => {
         var element = $(`#${id}>.fa-shopping-cart`);
         if (element) {
-            element.addClass("fa-check-circle").removeClass("fa-shopping-cart");
             $(`button#${id}`).addClass("link-disabled");
+            if (window.location.href.split("p/")[1]) {
+                element.parent().html(`<i class="fa fa-check-circle"></i> Добавлено в корзину`);
+            } else {
+                element.parent().html(`<i class="fa fa-check-circle"></i>`);
+            }
+            element.removeClass("fa-shopping-cart");
         }
     });
 }

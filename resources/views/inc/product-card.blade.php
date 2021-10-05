@@ -2,7 +2,12 @@
     <div class="product-image-wrapper">
         <div class="single-products">
             <div class="productinfo text-center">
-                <img src="{{$item->getImgSrc()}}" alt="Картинка товара" />
+                {{-- <img src="{{ $item->getImgSrc() }}" alt="Картинка товара" /> --}}
+
+                <div class="product-image-wrapper-img">
+                    <div class="product-image" style="background-image: url({{ $item->getImgSrc() }})"></div>
+                </div>
+
                 <h2>{{ $item->getPrice() }} &#8381;</h2>
                 <p class="product-title cut-title">{{ $item->getTitle() }}</p>
                 <a href="{{ route('cart.add', ['p_id' => $item->getId()]) }}"
@@ -15,8 +20,7 @@
                     <h2>{{ $item->getPrice() }} &#8381;</h2>
                     <p class="product-title cut-title">{{ $item->getTitle() }}</p>
                     <div class="overlay-buttons">
-                        <button id="{{$item->getId()}}"
-                            class="btn btn-default add-to-cart">
+                        <button id="{{ $item->getId() }}" class="btn btn-default add-to-cart">
                             <i class="fa fa-shopping-cart"></i>
                         </button>
                         <a href="{{ route('product.details', ['product' => $item->getId()]) }}"

@@ -24,38 +24,38 @@ function updateUrl(param) {
 
 function changeFilterIcon() {
     switch (window.location.href.split("?")[1]) {
-        case "abc=1":
+        case "abc=0":
             $("#filter-Az").addClass("clicked");
             $("#filter-Az").siblings("img").attr('src', '/images/filters/filter-01.svg');
             $("#filter-Az").siblings("img").show();
-            console.log("abc=1")
-            break;
-        case "abc=0":
-            $("#filter-Az").siblings("img").attr('src', '/images/filters/filter-10.svg');
-            $("#filter-Az").siblings("img").show();
             console.log("abc=0")
             break;
-        case "popular=1":
+        case "abc=1":
+            $("#filter-Az").siblings("img").attr('src', '/images/filters/filter-10.svg');
+            $("#filter-Az").siblings("img").show();
+            console.log("abc=1")
+            break;
+        case "popular=0":
             $("#filter-popular").addClass("clicked");
             $("#filter-popular").siblings("img").attr('src', '/images/filters/filter-01.svg');
             $("#filter-popular").siblings("img").show();
-            console.log("popular=1")
+            console.log("popular=0")
             break;
-        case "popular=0":
+        case "popular=1":
             $("#filter-popular").siblings("img").attr('src', '/images/filters/filter-10.svg');
             $("#filter-popular").siblings("img").show();
             console.log("popular=0")
             break;
-        case "price=1":
+        case "price=0":
             $("#filter-price").addClass("clicked");
             $("#filter-price").siblings("img").attr('src', '/images/filters/filter-01.svg');
             $("#filter-price").siblings("img").show();
-            console.log("price=1")
+            console.log("price=0");
             break;
-        case "price=0":
+        case "price=1":
             $("#filter-price").siblings("img").attr('src', '/images/filters/filter-10.svg');
             $("#filter-price").siblings("img").show();
-            console.log("price=0")
+            console.log("price=1");
             break;
     }
 }
@@ -99,21 +99,30 @@ $(document).ready(function () {
             }
         });
 
+        $("#filter-price").click(function () {
+            if (!$(this).hasClass("clicked")) {
+                updateUrl(`price=0`);    
+                changeFilterIcon($(this));
+            } else {
+                updateUrl(`price=1`);
+            };
+        });
+
         $("#filter-popular").click(function () {
-            if ($(this).hasClass("clicked")) {
+            if (!$(this).hasClass("clicked")) {
                 updateUrl(`popular=0`);    
+                // changeFilterIcon($(this));
             } else {
                 updateUrl(`popular=1`);
-                changeFilterIcon($(this));
             };
         });
 
         $("#filter-Az").click(function () {
-            if ($(this).hasClass("clicked")) {
+            if (!$(this).hasClass("clicked")) {
                 updateUrl(`abc=0`);    
+                // changeFilterIcon($(this));
             } else {
                 updateUrl(`abc=1`);
-                changeFilterIcon($(this));
             };
         });
 

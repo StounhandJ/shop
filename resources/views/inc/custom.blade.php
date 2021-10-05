@@ -13,30 +13,26 @@
                     <form class="mb-5" id="{{Request::url() == route('custom') ? "customId" : "cartId"}}" name="contactForm">
                         <div class="row">
                             <div class="col-md-6 form-group mb-5">
-                                <label for="" class="col-form-label">Имя *</label>
                                 <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Как мы можем к вам обращаться?" required>
+                                    placeholder="Имя" required>
                             </div>
                             <div class="col-md-6 form-group mb-5">
-                                <label for="" class="col-form-label">Email *</label>
-                                <input type="text" class="form-control" name="email" id="email"
-                                    placeholder="Ваша почта для связи..." required>
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Почта" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 form-group mb-5">
-                                <label for="" class="col-form-label">Телефон *</label>
                                 <input type="tel" class="form-control" name="phone" id="phone"
-                                    placeholder="Контактный телефон для связи..." required>
+                                    placeholder="Контактный телефон" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12 form-group mb-5">
-                                <label for="comment" class="col-form-label">Комментарий</label>
                                 <textarea class="form-control" name="comment" id="message" cols="30" rows="4"
-                                    placeholder="Опишите ваши пожелания..."></textarea>
+                                    placeholder="Комментарий..."></textarea>
                             </div>
                         </div>
 

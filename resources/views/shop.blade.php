@@ -18,24 +18,24 @@
                             </h4>
                         </div>
 
-                        <div class="panel-default">
-                            <h4 class="panel-title filter-btn">
-                                <button id="filter-popular">Популярности</button>
-                                <img src="/images/filters/filter-01.svg" class="filter">
-                            </h4>
-                        </div>
-
+                        
                         <div class="panel-default">
                             <h4 class="panel-title filter-btn">
                                 <button id="filter-Az">Алфавиту</button>
-                                <img src="/images/filters/filter-01.svg" class="filter">
+                                {{-- <img src="/images/filters/filter-01.svg" class="filter"> --}}
                             </h4>
                         </div>
-
-
-                        {{-- <div class="price-range-btn">
+                        
+                        <div class="panel-default">
+                            <h4 class="panel-title filter-btn">
+                                <button id="filter-popular">Популярности</button>
+                                {{-- <img src="/images/filters/filter-01.svg" class="filter"> --}}
+                            </h4>
+                        </div>
+                        
+                        <div class="panel-default">
                             <button class="btn btn-primary btn-price-slider" id="filter-clear">Очистить</button>
-                        </div> --}}
+                        </div>
 
                     </div>
                     <div class="features_items shop-grid">

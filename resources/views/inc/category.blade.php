@@ -1,35 +1,33 @@
 <div class="col-sm-3">
     <div class="left-sidebar">
-        @if (
-            Request::url() == route('catalog.index', ['department' => $current_department->getEName(), 'category' => $current_category->getEName()]) || 
-            Request::url() == route('catalog.index', ['department' => $current_department->getEName()])
-        )
+        @if (Request::url() == route('catalog.index', ['department' => $current_department->getEName(), 'category' => $current_category->getEName()]) || Request::url() == route('catalog.index', ['department' => $current_department->getEName()]))
             <div class="price-slider-main">
                 @include('inc.price-slider')
             </div>
         @endif
         <h2>Категории</h2>
-        <div class="panel-group category-products" id="accordian">
+        <ul class="panel-group category-products" id="accordian">
             <!--category-productsr-->
             @foreach ($categories as $item)
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="{{ $item->getId() == $current_category->getId() ? 'active' : '' }}"
-                                {{-- data-toggle="collapse"  --}}
-                                data-parent="#accordian"
-                                href="{{ route('catalog.index', ['department' => $current_department->getEName(), 'category' => $item->getEName()]) }}">
-                                {{-- <span class="badge pull-right"><i class="fa fa-plus"></i></span> --}}
-                                {{ $item->getName() }}
-                            </a>
-                        </h4>
+                <li>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="{{ $item->getId() == $current_category->getId() ? 'active' : '' }}"
+                                    {{-- data-toggle="collapse" --}} data-parent="#accordian"
+                                    href="{{ route('catalog.index', ['department' => $current_department->getEName(), 'category' => $item->getEName()]) }}">
+                                    {{-- <span class="badge pull-right"><i class="fa fa-plus"></i></span> --}}
+                                    {{ $item->getName() }}
+                                </a>
+                            </h4>
+                        </div>
                     </div>
-                </div>
+                </li>
             @endforeach
-        </div>
-        <!--/category-products-->
+            </>
+            <!--/category-products-->
 
-        {{-- <div class="brands_products">
+            {{-- <div class="brands_products">
             <!--brands_products-->
             <h2>Brands</h2>
             <div class="brands-name">

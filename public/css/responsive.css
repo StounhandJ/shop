@@ -106,6 +106,15 @@
 }
 
 @media (max-width: 767px) {
+    .padding-right{
+        padding-left: 0;
+    }
+    .product-information{
+        padding: 60px 30px;
+    }
+    .product-details{
+        flex-direction: column;
+    }
     .price-slider-main{
         display: none;
     }
@@ -469,9 +478,6 @@
     #similar-product .carousel-inner .item img {
         margin-left: 4px;
     }
-    .product-information {
-        margin-top: 40px;
-    }
     #reviews p,
     .blog-post-area .single-blog-post p {
         text-align: justify;
@@ -511,7 +517,6 @@
         margin-bottom: 10px;
     }
     .product-information {
-        padding-left: 0;
         text-align: center;
     }
     .product-information span span {
