@@ -8,8 +8,7 @@
                 <div class="col-sm-9 padding-right">
                     <div class="product-details">
                         <div class="col-sm-5">
-                            <div class="view-product">
-                                <img src="{{$product->getImgSrc()}}" alt="Картинка товара" />
+                            <div class="view-product" style="background-image: url({{$product->getImgSrc()}});">
                             </div>
                         </div>
                         <div class="col-sm-7">

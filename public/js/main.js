@@ -120,15 +120,15 @@ $(document).ready(function () {
         $("#filter-Az").click(function () {
             if (!$(this).hasClass("clicked")) {
                 updateUrl(`abc=0`);    
-                // changeFilterIcon($(this));
+                changeFilterIcon($(this));
             } else {
                 updateUrl(`abc=1`);
             };
         });
 
-        $("#filter-clear").click(function () {
-            updateUrl();
-        });
+        // $("#filter-clear").click(function () {
+        //     updateUrl();
+        // });
 
         $.scrollUp({
             scrollName: "scrollUp", // Element ID

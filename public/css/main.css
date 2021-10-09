@@ -1306,6 +1306,17 @@ h1.title {
     align-items: center;
 }
 
+.product-details .col-sm-5{
+    height: 300px;
+}
+
+.product-details .view-product{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 100%;
+}
+
 .view-product {
     position: relative;
 }

@@ -24,6 +24,11 @@
 }
 
 @media (max-width: 992px) {
+    .footer-row{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
     .shop-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -271,6 +276,17 @@
 }
 
 @media (max-width: 661px) {
+    .footer-row{
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-widget .col-sm-2{
+        margin-left: 0 !important;
+        width: auto !important;
+    }
+    .footer-widget .single-widget{
+        text-align: center;
+    }
     .cart_info {
         padding: 0 20px;
     }

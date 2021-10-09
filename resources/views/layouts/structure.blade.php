@@ -141,7 +141,7 @@
             <!--Footer-->
             <div class="footer-widget">
                 <div class="container">
-                    <div class="row">
+                    <div class="row footer-row">
                         <div class="col-sm-2">
                             <div class="single-widget">
                                 <h2>О нас</h2>
