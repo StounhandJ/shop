@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
+    <meta name="description" content="@yield('description') в интернет-магазине feeldom.ru, продажа мебели в Москве и Московской области, гибкий фильтр подбора за низкую цену">
+    <meta name="keywords" content="мебель, москва, купить, доставка, заказать">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/prettyPhoto.css" rel="stylesheet">
@@ -19,14 +21,11 @@
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"
         charset="utf-8"></script>
 </head>
-<!--/head-->
 
 <body>
     <div class="wrapper">
         <header id="header">
-            <!--header-->
             <div class="header_top">
-                <!--header_top-->
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6">
@@ -51,9 +50,7 @@
                     </div>
                 </div>
             </div>
-            <!--/header_top-->
             <div class="header-middle">
-                <!--header-middle-->
                 <div class="container">
                     <div class="row logo-row">
                         <div class="col-sm-6">
@@ -73,9 +70,7 @@
                     </div>
                 </div>
             </div>
-            <!--/header-middle-->
             <div class="header-bottom">
-                <!--header-bottom-->
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-9">
@@ -93,9 +88,6 @@
                                     <div class="price-slider-mobile">
                                         @include('inc.price-slider-mobile')
                                     </div>
-                                    {{-- <li><a href="{{ route('index') }}"
-                                            class="{{ Request::url() == route('index') ? 'active' : '' }}">Главная</a>
-                                    </li> --}}
                                     @foreach ($departments as $item)
                                         <li><a href="{{ route('catalog.index', ['department' => $item->getEName()]) }}"
                                                 class={{ isset($current_department) && $item->getId() == $current_department->getId() ? 'active' : '' }}>{{ $item->getName() }}</a>
@@ -104,17 +96,6 @@
                                     <li><a href="{{ route('custom') }}"
                                             class="{{ Request::url() == route('custom') ? 'active' : '' }}">На заказ</a>
                                     </li>
-        
-        
-        
-                                    {{-- <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
-                                        <ul role="menu" class="sub-menu">
-                                            <li><a href="shop.html">Products</a></li>
-                                            <li><a href="product-details.html">Product Details</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="cart.html">Cart</a></li>
-                                        </ul>
-                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
@@ -131,14 +112,11 @@
                     </div>
                 </div>
             </div>
-            <!--/header-bottom-->
         </header>
-        <!--/header-->
         <main id="main">
             @yield('content')
         </main>
         <footer id="footer">
-            <!--Footer-->
             <div class="footer-widget">
                 <div class="container">
                     <div class="row footer-row">
@@ -200,7 +178,6 @@
                 </div>
             </div>
         </footer>
-        <!--/Footer-->
     </div>
     <script src="/js/cut-title.js"></script>
     <script src="/js/add-to-cart.js"></script>

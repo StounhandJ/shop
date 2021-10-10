@@ -22,10 +22,10 @@ class ProductController extends Controller
         return view("product-details",
             compact("product", "departments", 'categories', 'current_category', 'current_department'),
             [
-                "title" => $product->getTitle() . " - Филлдом",
+                "title" => $product->getTitle() . " - Фиилдом",
                 "description" => $product->getTitle(
-                    ) . " Купить или заказать с доставкой " . $current_category->getName(
-                    ) . " в интернет-магазине Филдом.Ру, продажа сантехники в Москве, гибкий фильтр подбора...",
+                    ) . " за ". $product->getPrice() ." рублей купить или заказать с доставкой " . $current_category->getName(
+                    ),
             ]
         );
     }

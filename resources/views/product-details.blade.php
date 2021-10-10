@@ -1,5 +1,6 @@
 @extends('layouts/structure')
-@section('title'){{ $product->getTitle() }}@endsection
+@section('title'){{ $title }}@endsection
+@section('description'){{ $description }}@endsection
 @section('content')
     <section>
         <div class="container">
