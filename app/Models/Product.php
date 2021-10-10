@@ -19,7 +19,7 @@ class Product extends Model implements Sitemapable
     use HasFactory, SoftDeletes;
 
     //<editor-fold desc="Setting">
-    private static $cacheSecond = 20;
+    private static int $cacheSecond = 20;
     public $timestamps = false;
     protected $perPage = 18;
 
