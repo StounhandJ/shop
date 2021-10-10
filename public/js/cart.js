@@ -16,7 +16,7 @@ $(document).ready(function () {
         $.ajax({
             data: { p_id: $(this)[0].id },
             type: "POST",
-            url: "/action/cart/del/",
+            url: "/action/cart/del",
             success: function (data) {
                 parent.remove();
                 totalPrice();
