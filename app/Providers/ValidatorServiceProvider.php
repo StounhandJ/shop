@@ -31,7 +31,7 @@ class ValidatorServiceProvider extends ServiceProvider
         });
 
         Validator::extend('only_english', function ($attr, $value) {
-            return preg_match('/(^([a-z]+)(\d+)?$)/u', $value);
+            return preg_match('/(^([a-z\-_]+)(\d+)?$)/u', $value);
         });
     }
 }
