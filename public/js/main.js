@@ -26,34 +26,46 @@ function changeFilterIcon() {
     switch (window.location.href.split("?")[1]) {
         case "abc=0":
             $("#filter-Az").addClass("clicked");
-            $("#filter-Az").siblings("img").attr('src', '/images/filters/filter-01.svg');
+            $("#filter-Az")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-01.svg");
             $("#filter-Az").siblings("img").show();
-            console.log("abc=0")
+            console.log("abc=0");
             break;
         case "abc=1":
-            $("#filter-Az").siblings("img").attr('src', '/images/filters/filter-10.svg');
+            $("#filter-Az")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-10.svg");
             $("#filter-Az").siblings("img").show();
-            console.log("abc=1")
+            console.log("abc=1");
             break;
         case "popular=0":
             $("#filter-popular").addClass("clicked");
-            $("#filter-popular").siblings("img").attr('src', '/images/filters/filter-01.svg');
+            $("#filter-popular")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-01.svg");
             $("#filter-popular").siblings("img").show();
-            console.log("popular=0")
+            console.log("popular=0");
             break;
         case "popular=1":
-            $("#filter-popular").siblings("img").attr('src', '/images/filters/filter-10.svg');
+            $("#filter-popular")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-10.svg");
             $("#filter-popular").siblings("img").show();
-            console.log("popular=0")
+            console.log("popular=0");
             break;
         case "price=0":
             $("#filter-price").addClass("clicked");
-            $("#filter-price").siblings("img").attr('src', '/images/filters/filter-01.svg');
+            $("#filter-price")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-01.svg");
             $("#filter-price").siblings("img").show();
             console.log("price=0");
             break;
         case "price=1":
-            $("#filter-price").siblings("img").attr('src', '/images/filters/filter-10.svg');
+            $("#filter-price")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-10.svg");
             $("#filter-price").siblings("img").show();
             console.log("price=1");
             break;
@@ -90,9 +102,13 @@ $(document).ready(function () {
             if (
                 $("#min-price-mobile")[0].value > 0 &&
                 $("#max-price-mobile")[0].value < 500000 &&
-                $("#min-price-mobile")[0].value < $("#max-price-mobile")[0].value
+                $("#min-price-mobile")[0].value <
+                    $("#max-price-mobile")[0].value
             ) {
-                minmax = [$("#min-price-mobile")[0].value, $("#max-price-mobile")[0].value];
+                minmax = [
+                    $("#min-price-mobile")[0].value,
+                    $("#max-price-mobile")[0].value,
+                ];
                 updateUrl(`mip=${minmax[0]}&map=${minmax[1]}`);
             } else {
                 $("#price-required-mobile").show();
@@ -101,29 +117,29 @@ $(document).ready(function () {
 
         $("#filter-price").click(function () {
             if (!$(this).hasClass("clicked")) {
-                updateUrl(`price=0`);    
+                updateUrl(`price=0`);
                 changeFilterIcon($(this));
             } else {
                 updateUrl(`price=1`);
-            };
+            }
         });
 
         $("#filter-popular").click(function () {
             if (!$(this).hasClass("clicked")) {
-                updateUrl(`popular=0`);    
+                updateUrl(`popular=0`);
                 // changeFilterIcon($(this));
             } else {
                 updateUrl(`popular=1`);
-            };
+            }
         });
 
         $("#filter-Az").click(function () {
             if (!$(this).hasClass("clicked")) {
-                updateUrl(`abc=0`);    
+                updateUrl(`abc=0`);
                 changeFilterIcon($(this));
             } else {
                 updateUrl(`abc=1`);
-            };
+            }
         });
 
         // $("#filter-clear").click(function () {
@@ -145,6 +161,26 @@ $(document).ready(function () {
             scrollImg: false, // Set true to use image
             activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
             zIndex: 2147483647, // Z-Index for the overlay
+        });
+
+        // var accord = document.getElementsByClassName("fa-plus");
+        // for (var i = 0; i < accord.length; i++) {
+        //     accord[i].addEventListener("click", function changePlusMinus() {
+        //         if (this.classList.contains("fa-plus")) {
+        //             this.classList.remove("fa-plus");
+        //             this.classList.add("fa-minus");
+        //         } else if (this.classList.contains("fa-minus")) {
+        //             this.classList.remove("fa-minus");
+        //             this.classList.add("fa-plus");
+        //         }
+        //     });
+        // }
+
+
+        $(".category-mobile").click(function () {
+            $("#accordian").slideToggle();
+            $(this).children().children().toggleClass("fa-minus fa-plus")
+            $(this).toggleClass("category-open category-close")
         });
     });
 });

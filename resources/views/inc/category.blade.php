@@ -5,9 +5,8 @@
                 @include('inc.price-slider')
             </div>
         @endif
-        <h2>Категории</h2>
+        <h2 class="main-category-title category-mobile category-close">Категории <span class="badge category-plus-button"><i class="fa fa-plus"></i></span></h2>
         <ul class="panel-group category-products" id="accordian">
-            <!--category-productsr-->
             @foreach ($categories as $item)
                 <li>
                     <div class="panel panel-default">
@@ -24,24 +23,41 @@
                     </div>
                 </li>
             @endforeach
-            </>
-            <!--/category-products-->
+        </ul>
 
-            {{-- <div class="brands_products">
-            <!--brands_products-->
-            <h2>Brands</h2>
-            <div class="brands-name">
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-                    <li><a href="#"> <span class="pull-right">(56 &#8381;)</span>Grüne Erde</a></li>
-                    <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-                    <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-                    <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-                    <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-                    <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-                </ul>
+
+{{-- 
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordian" href="#mens">
+                        <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                        Категории
+                    </a>
+                </h2>
             </div>
-        </div>
-        <!--/brands_products--> --}}
+            <div id="mens" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="">Fendi</a></li>
+                        <li><a href="">Guess</a></li>
+                        <li><a href="">Valentino</a></li>
+                        <li><a href="">Dior</a></li>
+                        <li><a href="">Versace</a></li>
+                        <li><a href="">Armani</a></li>
+                        <li><a href="">Prada</a></li>
+                        <li><a href="">Dolce and Gabbana</a></li>
+                        <li><a href="">Chanel</a></li>
+                        <li><a href="">Gucci</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div> --}}
+
+
+
+
+
     </div>
 </div>
