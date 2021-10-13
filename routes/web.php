@@ -54,6 +54,8 @@ Route::prefix("action")->group(function () {
     Route::get('/search/products', [SearchController::class, "product"])
         ->name("search.products");
 
+    Route::post("/callback-form", [CartActionController::class, "callbackForm"]);
+
     Route::prefix("cart")->name("cart.")->group(function () {
         Route::post('/add', [CartActionController::class, "addProduct"])->name("add");
         Route::post('/del', [CartActionController::class, "delProduct"])->name("del");

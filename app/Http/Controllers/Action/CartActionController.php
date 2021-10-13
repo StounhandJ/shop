@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Action;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Action\CallbackFormRequest;
 use App\Http\Requests\Action\CartAddProductRequest;
 use App\Http\Requests\Action\CartDelProductRequest;
 use App\Http\Requests\CartIndexRequest;
 use App\Http\Requests\Action\CartSendRequest;
+use App\Mail\CallbackFormMail;
 use App\Mail\OrderCustomEmployerMail;
 use App\Mail\OrderEmployerMail;
 use App\Mail\OrderRegistrationMail;
@@ -83,6 +85,13 @@ class CartActionController extends Controller
         );
         Mail::to(config("app.app_mail"))
             ->send(new OrderCustomEmployerMail($order));
+        return response()->json(["message" => "success"], 200);
+    }
+
+    public function callbackForm(CallbackFormRequest $request)
+    {
+        Mail::to(config("app.app_mail"))
+            ->send(new CallbackFormMail($request->getPhone()));
         return response()->json(["message" => "success"], 200);
     }
 }
