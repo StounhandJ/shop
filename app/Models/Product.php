@@ -45,7 +45,7 @@ class Product extends Model implements Sitemapable
         $builder = Product::sortProductBuilder($category, $minPrice, $maxPrice, $popular, $price, $abc);
         $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
         $key = sprintf(
-            "products_%s%s%s%s%s%s%s",
+            "products_%s.%s.%s.%s.%s.%s.%s",
             $category->getEName(),
             $minPrice,
             $maxPrice,
