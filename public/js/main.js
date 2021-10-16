@@ -11,65 +11,74 @@ var RGBChange = function () {
 
 const url = new URL(window.location.href.toString());
 
+changeFilterIcon();
+
 function updateUrl(param) {
-    var currentUrl = window.location.href;
-    var clearUrl = currentUrl.split("?");
-    if (param) {
-        window.history.replaceState("", "", clearUrl[0] + "?" + param);
-    } else {
-        window.history.replaceState("", "", clearUrl[0]);
+    for (var key in param) {
+        url.searchParams.set(key, param[key]);
     }
+    window.history.replaceState("", "", url);
     location.reload();
 }
 
 function changeFilterIcon() {
-    switch (window.location.href.split("?")[1]) {
-        case "abc=0":
-            $("#filter-Az").addClass("clicked");
-            $("#filter-Az")
-                .siblings("img")
-                .attr("src", "/images/filters/filter-01.svg");
-            $("#filter-Az").siblings("img").show();
-            console.log("abc=0");
-            break;
-        case "abc=1":
-            $("#filter-Az")
-                .siblings("img")
-                .attr("src", "/images/filters/filter-10.svg");
-            $("#filter-Az").siblings("img").show();
-            console.log("abc=1");
-            break;
-        case "popular=0":
-            $("#filter-popular").addClass("clicked");
-            $("#filter-popular")
-                .siblings("img")
-                .attr("src", "/images/filters/filter-01.svg");
-            $("#filter-popular").siblings("img").show();
-            console.log("popular=0");
-            break;
-        case "popular=1":
-            $("#filter-popular")
-                .siblings("img")
-                .attr("src", "/images/filters/filter-10.svg");
-            $("#filter-popular").siblings("img").show();
-            console.log("popular=0");
-            break;
-        case "price=0":
-            $("#filter-price").addClass("clicked");
-            $("#filter-price")
-                .siblings("img")
-                .attr("src", "/images/filters/filter-01.svg");
-            $("#filter-price").siblings("img").show();
-            console.log("price=0");
-            break;
-        case "price=1":
-            $("#filter-price")
-                .siblings("img")
-                .attr("src", "/images/filters/filter-10.svg");
-            $("#filter-price").siblings("img").show();
-            console.log("price=1");
-            break;
-    }
+    var params = {};
+    window.location.href.split("?")[1].split("&").forEach(function(data) {
+        params[data.split("=")[0]] = data.split("=")[1];
+    });
+    console.log(params);
+
+
+
+
+    // console.log(params);
+    // switch (window.location.href.split("?")[1]) {
+    //     case "abc=0":
+    //         $("#filter-Az").addClass("clicked");
+    //         $("#filter-Az")
+    //             .siblings("img")
+    //             .attr("src", "/images/filters/filter-01.svg");
+    //         $("#filter-Az").siblings("img").show();
+    //         console.log("abc=0");
+    //         break;
+    //     case "abc=1":
+    //         $("#filter-Az")
+    //             .siblings("img")
+    //             .attr("src", "/images/filters/filter-10.svg");
+    //         $("#filter-Az").siblings("img").show();
+    //         console.log("abc=1");
+    //         break;
+    //     // case "popular=0":
+    //     //     // $("#filter-popular")
+    //     //     //     .siblings("img")
+    //     //     //     .attr("src", "/images/filters/filter-01.svg");
+    //     //     // $("#filter-popular").siblings("img").show();
+    //     //     // console.log("popular=0");
+    //     //     break;
+    //     case "popular=1":
+    //         $("#filter-popular").addClass("popular-clicked");
+    //         //     $("#filter-popular")
+    //         //         .siblings("img")
+    //         //         .attr("src", "/images/filters/filter-10.svg");
+    //         //     $("#filter-popular").siblings("img").show();
+    //         //     // console.log("popular=0");
+    //         break;
+    //     case "price=0":
+    //         $("#filter-price").addClass("clicked");
+    //         $("#filter-price")
+    //             .siblings("img")
+    //             .attr("src", "/images/filters/filter-01.svg");
+    //         $("#filter-price").siblings("img").show();
+    //         console.log("price=0");
+    //         break;
+    //     case "price=1":
+    //         $("#filter-price")
+    //             .siblings("img")
+    //             .attr("src", "/images/filters/filter-10.svg");
+    //         $("#filter-price").siblings("img").show();
+    //         console.log("price=1");
+    //         break;
+    // }
 }
 
 $(document).ready(function () {
@@ -126,19 +135,19 @@ $(document).ready(function () {
 
         $("#filter-popular").click(function () {
             if (!$(this).hasClass("clicked")) {
-                updateUrl(`popular=0`);
-                // changeFilterIcon($(this));
+                updateUrl({ popular: "1" });
+                changeFilterIcon($(this));
             } else {
-                updateUrl(`popular=1`);
+                updateUrl({ popular: "0" });
             }
         });
 
         $("#filter-Az").click(function () {
             if (!$(this).hasClass("clicked")) {
-                updateUrl(`abc=0`);
+                updateUrl({ abc: "0" });
                 changeFilterIcon($(this));
             } else {
-                updateUrl(`abc=1`);
+                updateUrl({ abc: "1" });
             }
         });
 
@@ -176,11 +185,10 @@ $(document).ready(function () {
         //     });
         // }
 
-
         $(".category-mobile").click(function () {
             $("#accordian").slideToggle();
-            $(this).children().children().toggleClass("fa-minus fa-plus")
-            $(this).toggleClass("category-open category-close")
+            $(this).children().children().toggleClass("fa-minus fa-plus");
+            $(this).toggleClass("category-open category-close");
         });
     });
 });

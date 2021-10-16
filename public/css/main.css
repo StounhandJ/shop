@@ -2988,3 +2988,8 @@ h4.filter-btn button:hover {
     align-items: center;
     justify-content: center;
 }
+
+.popular-clicked{
+    color: black !important;
+    font-weight: 500 !important;
+}
