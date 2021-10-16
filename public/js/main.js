@@ -11,8 +11,6 @@ var RGBChange = function () {
 
 const url = new URL(window.location.href.toString());
 
-changeFilterIcon();
-
 function updateUrl(param) {
     for (var key in param) {
         url.searchParams.set(key, param[key]);
@@ -21,64 +19,76 @@ function updateUrl(param) {
     location.reload();
 }
 
+// function setKeyValueUrlParams() {
+//     var params = {};
+//     if (window.location.href.split("?")[1]) {
+//         window.location.href
+//             .split("?")[1]
+//             .split("&")
+//             .forEach(function (data) {
+//                 params[data.split("=")[0]] = data.split("=")[1];
+//             });
+//     }
+//     console.table(params);
+// }
+
 function changeFilterIcon() {
-    var params = {};
-    window.location.href.split("?")[1].split("&").forEach(function(data) {
-        params[data.split("=")[0]] = data.split("=")[1];
-    });
-    console.log(params);
+    // setKeyValueUrlParams();
 
+    for (let i = 0; i < window.location.href.split("?")[1].split("&").length; i++) {
+        switch (window.location.href.split("?")[1].split("&")[i]) {
+            case "abc=0":
+                $("#filter-Az").addClass("clicked");
+                $("#filter-Az")
+                    .siblings("img")
+                    .attr("src", "/images/filters/filter-01.svg");
+                $("#filter-Az").siblings("img").show();
+                console.log("abc=0");
+                break;
 
+            case "abc=1":
+                $("#filter-Az")
+                    .siblings("img")
+                    .attr("src", "/images/filters/filter-10.svg");
+                $("#filter-Az").siblings("img").show();
+                console.log("abc=1");
+                break;
 
+            case "popular=0":
+                $("#filter-popular")
+                    .siblings("img")
+                    .attr("src", "/images/filters/filter-01.svg");
+                $("#filter-popular").siblings("img").show();
+                console.log("popular=0");
+                break;
 
-    // console.log(params);
-    // switch (window.location.href.split("?")[1]) {
-    //     case "abc=0":
-    //         $("#filter-Az").addClass("clicked");
-    //         $("#filter-Az")
-    //             .siblings("img")
-    //             .attr("src", "/images/filters/filter-01.svg");
-    //         $("#filter-Az").siblings("img").show();
-    //         console.log("abc=0");
-    //         break;
-    //     case "abc=1":
-    //         $("#filter-Az")
-    //             .siblings("img")
-    //             .attr("src", "/images/filters/filter-10.svg");
-    //         $("#filter-Az").siblings("img").show();
-    //         console.log("abc=1");
-    //         break;
-    //     // case "popular=0":
-    //     //     // $("#filter-popular")
-    //     //     //     .siblings("img")
-    //     //     //     .attr("src", "/images/filters/filter-01.svg");
-    //     //     // $("#filter-popular").siblings("img").show();
-    //     //     // console.log("popular=0");
-    //     //     break;
-    //     case "popular=1":
-    //         $("#filter-popular").addClass("popular-clicked");
-    //         //     $("#filter-popular")
-    //         //         .siblings("img")
-    //         //         .attr("src", "/images/filters/filter-10.svg");
-    //         //     $("#filter-popular").siblings("img").show();
-    //         //     // console.log("popular=0");
-    //         break;
-    //     case "price=0":
-    //         $("#filter-price").addClass("clicked");
-    //         $("#filter-price")
-    //             .siblings("img")
-    //             .attr("src", "/images/filters/filter-01.svg");
-    //         $("#filter-price").siblings("img").show();
-    //         console.log("price=0");
-    //         break;
-    //     case "price=1":
-    //         $("#filter-price")
-    //             .siblings("img")
-    //             .attr("src", "/images/filters/filter-10.svg");
-    //         $("#filter-price").siblings("img").show();
-    //         console.log("price=1");
-    //         break;
-    // }
+            case "popular=1":
+                $("#filter-popular").addClass("popular-clicked");
+                $("#filter-popular")
+                    .siblings("img")
+                    .attr("src", "/images/filters/filter-10.svg");
+                $("#filter-popular").siblings("img").show();
+                console.log("popular=0");
+                break;
+
+            case "price=0":
+                $("#filter-price").addClass("clicked");
+                $("#filter-price")
+                    .siblings("img")
+                    .attr("src", "/images/filters/filter-01.svg");
+                $("#filter-price").siblings("img").show();
+                console.log("price=0");
+                break;
+
+            case "price=1":
+                $("#filter-price")
+                    .siblings("img")
+                    .attr("src", "/images/filters/filter-10.svg");
+                $("#filter-price").siblings("img").show();
+                console.log("price=1");
+                break;
+        }
+    }
 }
 
 $(document).ready(function () {
@@ -101,7 +111,7 @@ $(document).ready(function () {
                 $("#min-price")[0].value < $("#max-price")[0].value
             ) {
                 minmax = [$("#min-price")[0].value, $("#max-price")[0].value];
-                updateUrl(`mip=${minmax[0]}&map=${minmax[1]}`);
+                updateUrl({ mip: `${minmax[0]}`, map: `${minmax[1]}` });
             } else {
                 $("#price-required").show();
             }
@@ -118,7 +128,7 @@ $(document).ready(function () {
                     $("#min-price-mobile")[0].value,
                     $("#max-price-mobile")[0].value,
                 ];
-                updateUrl(`mip=${minmax[0]}&map=${minmax[1]}`);
+                updateUrl({ mip: `${minmax[0]}`, map: `${minmax[1]}` });
             } else {
                 $("#price-required-mobile").show();
             }
@@ -126,17 +136,17 @@ $(document).ready(function () {
 
         $("#filter-price").click(function () {
             if (!$(this).hasClass("clicked")) {
-                updateUrl(`price=0`);
-                changeFilterIcon($(this));
+                updateUrl({ price: "0" });
+                changeFilterIcon();
             } else {
-                updateUrl(`price=1`);
+                updateUrl({ price: "1" });
             }
         });
 
         $("#filter-popular").click(function () {
-            if (!$(this).hasClass("clicked")) {
+            if (!$(this).hasClass("popular-clicked")) {
                 updateUrl({ popular: "1" });
-                changeFilterIcon($(this));
+                changeFilterIcon();
             } else {
                 updateUrl({ popular: "0" });
             }
@@ -145,45 +155,31 @@ $(document).ready(function () {
         $("#filter-Az").click(function () {
             if (!$(this).hasClass("clicked")) {
                 updateUrl({ abc: "0" });
-                changeFilterIcon($(this));
+                changeFilterIcon();
             } else {
                 updateUrl({ abc: "1" });
             }
         });
 
-        // $("#filter-clear").click(function () {
-        //     updateUrl();
-        // });
-
-        $.scrollUp({
-            scrollName: "scrollUp", // Element ID
-            scrollDistance: 300, // Distance from top/bottom before showing element (px)
-            scrollFrom: "top", // 'top' or 'bottom'
-            scrollSpeed: 300, // Speed back to top (ms)
-            easingType: "linear", // Scroll to top easing (see http://easings.net/)
-            animation: "fade", // Fade, slide, none
-            animationSpeed: 200, // Animation in speed (ms)
-            scrollTrigger: false, // Set a custom triggering element. Can be an HTML string or jQuery object
-            //scrollTarget: false, // Set a custom target element for scrolling to the top
-            scrollText: '<i class="fa fa-angle-up"></i>', // Text for element, can contain HTML
-            scrollTitle: false, // Set a custom <a> title if required.
-            scrollImg: false, // Set true to use image
-            activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
-            zIndex: 2147483647, // Z-Index for the overlay
+        $("#filter-clear").click(function () {
+            updateUrl();
         });
 
-        // var accord = document.getElementsByClassName("fa-plus");
-        // for (var i = 0; i < accord.length; i++) {
-        //     accord[i].addEventListener("click", function changePlusMinus() {
-        //         if (this.classList.contains("fa-plus")) {
-        //             this.classList.remove("fa-plus");
-        //             this.classList.add("fa-minus");
-        //         } else if (this.classList.contains("fa-minus")) {
-        //             this.classList.remove("fa-minus");
-        //             this.classList.add("fa-plus");
-        //         }
-        //     });
-        // }
+        $.scrollUp({
+            scrollName: "scrollUp",
+            scrollDistance: 300,
+            scrollFrom: "top",
+            scrollSpeed: 300,
+            easingType: "linear",
+            animation: "fade",
+            animationSpeed: 200,
+            scrollTrigger: false,
+            scrollText: '<i class="fa fa-angle-up"></i>',
+            scrollTitle: false,
+            scrollImg: false,
+            activeOverlay: false,
+            zIndex: 2147483647,
+        });
 
         $(".category-mobile").click(function () {
             $("#accordian").slideToggle();
