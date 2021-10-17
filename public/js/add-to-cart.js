@@ -66,7 +66,7 @@ $(document).ready(function () {
         var fd = new FormData();
         fd.append("phone", $("#footer-callback-input")[0].value);
         $.ajax({
-            type: "GET",
+            type: "POST",
             cache: false,
             processData: false,
             contentType: false,
