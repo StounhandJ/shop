@@ -74,6 +74,18 @@ $(document).ready(function () {
             url: "/action/callback-form",
             success: function (data) {
                 console.log("номер отправлен");
+                $("body").addClass("modal__visible");
+                $(".popup").addClass("modal__active");
+                $("body").keydown(function (e) {
+                    if (e.code == "Escape") {
+                        $(".popup").removeClass("modal__active");
+                        $("body").removeClass("modal__visible");
+                    };
+                });
+                $(".popup__close").click(function () {
+                    $(".popup").removeClass("modal__active");
+                    $("body").removeClass("modal__visible");
+                });
             },
             error: function () {
                 console.log("Ошибка");

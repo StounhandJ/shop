@@ -590,7 +590,6 @@ ul.sub-menu {
 
 .searchform input {
     border: 1px solid #dddddd;
-    color: #ccccc6;
     font-family: "Roboto", sans-serif;
     font-size: 14px;
     margin-top: 0;
@@ -2992,4 +2991,8 @@ h4.filter-btn button:hover {
 .popular-clicked{
     color: black !important;
     font-weight: 500 !important;
+}
+
+.category-mobile{
+    cursor: pointer;
 }
