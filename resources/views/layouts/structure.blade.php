@@ -43,7 +43,7 @@
                                 <ul class="nav navbar-nav">
                                     <li><a href="#" title="Филдом ВКонтакте"><i class="fa fa-vk"></i></a></li>
                                     <li><a href="#" title="Филдом Инстаграм"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#" title="Филдом Вотсап"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://api.whatsapp.com/send/?phone=79261775858" title="Филдом Вотсап"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -126,9 +126,9 @@
                             <div class="single-widget">
                                 <h2>О нас</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">Акции</a></li>
-                                    <li><a href="#">Партнёрам</a></li>
-                                    <li><a href="#">Контакты</a></li>
+                                    {{-- <li><a href="#">Акции</a></li> --}}
+                                    <li><a href="https://api.whatsapp.com/send/?phone=79261775858">Партнёрам</a></li> 
+                                    <li><a href="{{route('info')}}#contacts">Контакты</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -136,7 +136,7 @@
                             <div class="single-widget">
                                 <h2>Услуги</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">Под размер</a></li>
+                                    <li><a href="{{route('custom')}}">Под размер</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -144,8 +144,8 @@
                             <div class="single-widget">
                                 <h2>Покупателям</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">Оплата</a></li>
-                                    <li><a href="#">Доставка и самовывоз</a></li>
+                                    <li><a href="{{route('info')}}#pay">Оплата</a></li>
+                                    <li><a href="{{route('info')}}#delivery">Доставка и самовывоз</a></li>
                                 </ul>
                             </div>
                         </div>
