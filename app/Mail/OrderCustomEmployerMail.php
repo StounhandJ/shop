@@ -38,7 +38,7 @@ class OrderCustomEmployerMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('mail.cust_employer')
+        return $this->markdown('mail.cust_employer')
             ->subject("Новый кастомный заказ заказ");
     }
 }

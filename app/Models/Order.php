@@ -24,6 +24,11 @@ class Order extends Model
 
     //<editor-fold desc="Get">
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
     public function getPhone()
     {
         return $this->phone;

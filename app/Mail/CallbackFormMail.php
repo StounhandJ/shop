@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CallbackFormMail extends Mailable
+class CallbackFormMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -22,7 +22,7 @@ class CallbackFormMail extends Mailable
 
     public function build()
     {
-        return $this->view('mail.callback_form')
+        return $this->markdown('mail.callback_form')
             ->subject("Просьба перезвонить");
     }
 }
