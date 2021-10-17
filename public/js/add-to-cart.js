@@ -61,6 +61,26 @@ $(document).ready(function () {
         });
         return false;
     });
+
+    $("#footer-callback").click(function () {
+        var fd = new FormData();
+        fd.append("phone", $("#footer-callback-input")[0].value);
+        $.ajax({
+            type: "GET",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: fd,
+            url: "/action/callback-form",
+            success: function (data) {
+                console.log("номер отправлен");
+            },
+            error: function () {
+                console.log("Ошибка");
+            },
+        });
+        return false;
+    });
 });
 
 function update(cart) {

@@ -1,15 +1,4 @@
-/*price range*/
-
-$("#sl2").slider();
-
-var RGBChange = function () {
-    $("#RGB").css(
-        "background",
-        "rgb(" + r.getValue() + "," + g.getValue() + "," + b.getValue() + ")"
-    );
-};
-
-const url = new URL(window.location.href.toString());
+const url = new URL(window.location.href.toString().split("?")[0]);
 
 function updateUrl(param) {
     for (var key in param) {
@@ -19,75 +8,58 @@ function updateUrl(param) {
     location.reload();
 }
 
-// function setKeyValueUrlParams() {
-//     var params = {};
-//     if (window.location.href.split("?")[1]) {
-//         window.location.href
-//             .split("?")[1]
-//             .split("&")
-//             .forEach(function (data) {
-//                 params[data.split("=")[0]] = data.split("=")[1];
-//             });
-//     }
-//     console.table(params);
-// }
+function getUrlParams() {
+    var params = {};
+    if (window.location.href.split("?")[1]) {
+        window.location.href
+            .split("?")[1]
+            .split("&")
+            .forEach(function (data) {
+                params[data.split("=")[0]] = data.split("=")[1];
+            });
+    }
+    console.table(params);
+    return params;
+}
 
 function changeFilterIcon() {
-    // setKeyValueUrlParams();
+    var urlParams = getUrlParams();
 
-    for (let i = 0; i < window.location.href.split("?")[1].split("&").length; i++) {
-        switch (window.location.href.split("?")[1].split("&")[i]) {
-            case "abc=0":
-                $("#filter-Az").addClass("clicked");
-                $("#filter-Az")
-                    .siblings("img")
-                    .attr("src", "/images/filters/filter-01.svg");
-                $("#filter-Az").siblings("img").show();
-                console.log("abc=0");
-                break;
-
-            case "abc=1":
-                $("#filter-Az")
-                    .siblings("img")
-                    .attr("src", "/images/filters/filter-10.svg");
-                $("#filter-Az").siblings("img").show();
-                console.log("abc=1");
-                break;
-
-            case "popular=0":
-                $("#filter-popular")
-                    .siblings("img")
-                    .attr("src", "/images/filters/filter-01.svg");
-                $("#filter-popular").siblings("img").show();
-                console.log("popular=0");
-                break;
-
-            case "popular=1":
-                $("#filter-popular").addClass("popular-clicked");
-                $("#filter-popular")
-                    .siblings("img")
-                    .attr("src", "/images/filters/filter-10.svg");
-                $("#filter-popular").siblings("img").show();
-                console.log("popular=0");
-                break;
-
-            case "price=0":
-                $("#filter-price").addClass("clicked");
-                $("#filter-price")
-                    .siblings("img")
-                    .attr("src", "/images/filters/filter-01.svg");
-                $("#filter-price").siblings("img").show();
-                console.log("price=0");
-                break;
-
-            case "price=1":
-                $("#filter-price")
-                    .siblings("img")
-                    .attr("src", "/images/filters/filter-10.svg");
-                $("#filter-price").siblings("img").show();
-                console.log("price=1");
-                break;
+    // abc
+    if ("abc" in urlParams) {
+        if (urlParams["abc"] == 1) {
+            $("#filter-Az")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-10.svg");
+        } else if (urlParams["abc"] == 0) {
+            $("#filter-Az").addClass("clicked");
+            $("#filter-Az")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-01.svg");
         }
+        $("#filter-Az").siblings("img").show();
+    }
+
+    //popular
+    if ("popular" in urlParams) {
+        if (urlParams["popular"] == 1) {
+            $("#filter-popular").addClass("popular-clicked");
+        }
+    }
+
+    // price
+    if ("price" in urlParams) {
+        if (urlParams["price"] == 1) {
+            $("#filter-price")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-10.svg");
+        } else if (urlParams["price"] == 0) {
+            $("#filter-price").addClass("clicked");
+            $("#filter-price")
+                .siblings("img")
+                .attr("src", "/images/filters/filter-01.svg");
+        }
+        $("#filter-price").siblings("img").show();
     }
 }
 
@@ -99,19 +71,23 @@ $(document).ready(function () {
             changeFilterIcon();
         }
 
-        $("#min-price")[0].value = url.searchParams.get("mip");
-        $("#max-price")[0].value = url.searchParams.get("map");
-        $("#min-price-mobile")[0].value = url.searchParams.get("mip");
-        $("#max-price-mobile")[0].value = url.searchParams.get("map");
+        var urlParams = getUrlParams();
+
+        $("#min-price")[0].value = urlParams["mip"] ?? "";
+        $("#max-price")[0].value = urlParams["map"] ?? "";
+
+        $("#min-price-mobile")[0].value = urlParams["mip"] ?? "";
+        $("#max-price-mobile")[0].value = urlParams["map"] ?? "";
 
         $("#filter-price-slider").click(function () {
+            var minPriceSlider = $("#min-price")[0].value;
+            var maxPriceSlider = $("#max-price")[0].value;
             if (
-                $("#min-price")[0].value > 0 &&
-                $("#max-price")[0].value < 500000 &&
-                $("#min-price")[0].value < $("#max-price")[0].value
+                maxPriceSlider == "" || maxPriceSlider>minPriceSlider
             ) {
-                minmax = [$("#min-price")[0].value, $("#max-price")[0].value];
-                updateUrl({ mip: `${minmax[0]}`, map: `${minmax[1]}` });
+                urlParams["mip"] = minPriceSlider;
+                urlParams["map"] = maxPriceSlider;
+                updateUrl(urlParams);
             } else {
                 $("#price-required").show();
             }
@@ -124,11 +100,12 @@ $(document).ready(function () {
                 $("#min-price-mobile")[0].value <
                     $("#max-price-mobile")[0].value
             ) {
-                minmax = [
-                    $("#min-price-mobile")[0].value,
-                    $("#max-price-mobile")[0].value,
-                ];
-                updateUrl({ mip: `${minmax[0]}`, map: `${minmax[1]}` });
+                minmax = [$("#min-price")[0].value, $("#max-price")[0].value];
+        
+                urlParams["mip"] = minmax[0];
+                urlParams["map"] = minmax[1];
+                
+                updateUrl(urlParams);
             } else {
                 $("#price-required-mobile").show();
             }
@@ -136,34 +113,34 @@ $(document).ready(function () {
 
         $("#filter-price").click(function () {
             if (!$(this).hasClass("clicked")) {
-                updateUrl({ price: "0" });
-                changeFilterIcon();
+                urlParams["price"] = 0;
             } else {
-                updateUrl({ price: "1" });
+                urlParams["price"] = 1;
             }
+            updateUrl(urlParams);
         });
 
         $("#filter-popular").click(function () {
             if (!$(this).hasClass("popular-clicked")) {
-                updateUrl({ popular: "1" });
-                changeFilterIcon();
+                urlParams["popular"] = 1;
             } else {
-                updateUrl({ popular: "0" });
+                urlParams["popular"] = 0;
             }
+            updateUrl(urlParams);
         });
 
         $("#filter-Az").click(function () {
             if (!$(this).hasClass("clicked")) {
-                updateUrl({ abc: "0" });
-                changeFilterIcon();
+                urlParams["abc"] = 0;
             } else {
-                updateUrl({ abc: "1" });
+                urlParams["abc"] = 1;
             }
+            updateUrl(urlParams);
         });
 
-        $("#filter-clear").click(function () {
-            updateUrl();
-        });
+        // $("#filter-clear").click(function () {
+        //     updateUrl();
+        // });
 
         $.scrollUp({
             scrollName: "scrollUp",
