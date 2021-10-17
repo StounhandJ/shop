@@ -23,6 +23,7 @@
                                 {{-- <p><b>Длина: </b> см</p>
                                 <p><b>Ширина: </b> см</p>
                                 <p><b>Высота: </b> см</p> --}}
+                                {{-- <p><b>Габариты: </b> см</p> --}}
                                 <button type="button" id="{{ $product->getId() }}"
                                     class="btn cart btn-cart-p-d">
                                     <i class="fa fa-shopping-cart"></i>

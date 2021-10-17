@@ -1306,6 +1306,7 @@ h1.title {
 }
 
 .product-details .col-sm-5 {
+    width: 100%;
     height: 300px;
 }
 
