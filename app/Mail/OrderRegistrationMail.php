@@ -39,6 +39,6 @@ class OrderRegistrationMail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->view('mail.mail')
-            ->subject("Зарегистрированный заказ");
+            ->subject(sprintf("Зарегистрированный заказ №%s", $this->order->getId()));
     }
 }

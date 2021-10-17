@@ -39,6 +39,6 @@ class OrderEmployerMail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->markdown('mail.employer')
-            ->subject("Новый заказ");
+            ->subject(sprintf("Новый заказ №%s", $this->order->getId()));
     }
 }
