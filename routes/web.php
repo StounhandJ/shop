@@ -39,6 +39,10 @@ Route::get('/custom', function (Request $request) {
     return view("custom", ["departments" => \App\Models\Department::all()]);
 })->name("custom");
 
+Route::get('/info', function () {
+    return view('info');
+})->name("info");
+
 Route::get('/c/{department:e_name}/{category:e_name?}', [CatalogController::class, "index"])
     ->where('department', '[A-Za-z|_]+')
     ->where('category', '[A-Za-z|_]+')

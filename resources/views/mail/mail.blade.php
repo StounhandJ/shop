@@ -542,7 +542,7 @@
                                                                                                         style="font-size:0">
                                                                                                         <a href="https://feeldom.ru"
                                                                                                             target="_blank"><img
-                                                                                                                src="https://tlr.stripocdn.email/content/guids/CABINET_9f0c7ef4cb9cbe15f984af25f0f3e1fa/images/38081505821807564.png"
+                                                                                                                src="{{URL::asset("images/logo-mail.svg")}}"
                                                                                                                 alt="logo"
                                                                                                                 title="feeldom"
                                                                                                                 width="150"></a>

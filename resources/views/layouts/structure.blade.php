@@ -85,9 +85,11 @@
                             </div>
                             <div class="mainmenu pull-left">
                                 <ul class="nav navbar-nav collapse navbar-collapse">
-                                    <div class="price-slider-mobile">
-                                        @include('inc.price-slider-mobile')
-                                    </div>
+                                    <li>
+                                        <div class="price-slider-mobile">
+                                            @include('inc.price-slider-mobile')
+                                        </div>
+                                    </li>
                                     @foreach ($departments as $item)
                                         <li><a href="{{ route('catalog.index', ['department' => $item->getEName()]) }}"
                                                 class={{ isset($current_department) && $item->getId() == $current_department->getId() ? 'active' : '' }}>{{ $item->getName() }}</a>
@@ -160,9 +162,9 @@
                             <div class="single-widget">
                                 <h2>Связаться с нами</h2>
                                 <form action="#" class="searchform">
-                                    <input type="tel" placeholder="Номер телефона" />
-                                    <button type="submit" class="btn btn-default"><i
-                                            class="fa fa-arrow-circle-o-right"></i></button>
+                                    <input type="tel" id="footer-callback-input" placeholder="Номер телефона" />
+                                    <button class="btn btn-default"><i
+                                            class="fa fa-arrow-circle-o-right" id="footer-callback"></i></button>
                                     <p>Введите номер телефона и в ближайшее время мы перезвоним вам!</p>
                                 </form>
                             </div>

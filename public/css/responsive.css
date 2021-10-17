@@ -111,6 +111,18 @@
 }
 
 @media (max-width: 767px) {
+    .category-plus-button{
+        display: inline-block;
+    }
+    .category-close{
+        margin-bottom: 35px !important;
+    }
+    .category-open{
+        margin-bottom: 0 !important;
+    }
+    #accordian{
+        display: none;
+    }
     .padding-right{
         padding-left: 0;
     }
