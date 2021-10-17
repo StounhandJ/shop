@@ -164,11 +164,9 @@ $(document).ready(function () {
         });
 
         $(".category-mobile").click(function () {
-            if ($(".category-mobile").children().children().is(":visible")) {
-                $("#accordian").slideToggle();
-                $(this).children().children().toggleClass("fa-minus fa-plus");
-                $(this).toggleClass("category-open category-close");
-            };
+            $("#accordian").slideToggle();
+            $(this).children().children().toggleClass("fa-minus fa-plus");
+            $(this).toggleClass("category-open category-close");
         });
     });
 });

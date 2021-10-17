@@ -111,9 +111,6 @@
 }
 
 @media (max-width: 767px) {
-    .category-plus-button{
-        display: inline-block;
-    }
     .category-close{
         margin-bottom: 35px !important;
     }
@@ -294,6 +291,7 @@
     }
     .footer-widget .col-sm-2{
         margin-left: 0 !important;
+        padding-left: 0 !important;
         width: auto !important;
     }
     .footer-widget .single-widget{

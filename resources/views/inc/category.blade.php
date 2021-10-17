@@ -25,7 +25,6 @@
             @endforeach
         </ul>
 
-
 {{-- 
 
         <div class="panel panel-default">
@@ -54,10 +53,6 @@
                 </div>
             </div>
         </div> --}}
-
-
-
-
 
     </div>
 </div>
