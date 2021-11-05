@@ -4,8 +4,11 @@
             <div class="price-slider-main">
                 @include('inc.price-slider')
             </div>
+            <div class="filters-checkbox">
+                @include('inc.filters-checkbox')
+            </div>
         @endif
-        <h2 class="main-category-title category-mobile category-close">Категории <span class="badge category-plus-button"><i class="fa fa-plus"></i></span></h2>
+        <h2 class="main-category-title category-mobile category-open">Категории <span class="badge category-plus-button"><i class="fa fa-minus"></i></span></h2>
         <ul class="panel-group category-products" id="accordian">
             @foreach ($categories as $item)
                 <li>

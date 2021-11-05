@@ -163,10 +163,24 @@ $(document).ready(function () {
             zIndex: 2147483647,
         });
 
-        $(".category-mobile").click(function () {
-            $("#accordian").slideToggle();
-            $(this).children().children().toggleClass("fa-minus fa-plus");
-            $(this).toggleClass("category-open category-close");
+        // $(".category-mobile").click(function () {
+        //     // $("#accordian").slideToggle();
+        //     $(this).toggleClass("category-open category-close");
+        //     if ($(this).hasClass("category-open")) {
+        //         $("#accordian").slideUp();
+        //         $(this).children().children().addClass("fa-minus");
+        //         $(this).children().children().removeClass("fa-plus");
+        //     };
+        //     if ($(this).hasClass("category-close")) {
+        //         $("#accordian").slideDown();
+        //         $(this).children().children().addClass("fa-plus");
+        //         $(this).children().children().removeClass("fa-minus");
+        //     };
+        // });
+
+        $(".filters-checkbox-more").click(function () {
+            $(".filters-checkbox-ul").toggleClass("filters-checkbox-open");
+            $(".fa-checkbox-arrow").toggleClass("fa-arrow-up fa-arrow-down");
         });
     });
 });

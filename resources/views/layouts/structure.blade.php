@@ -41,8 +41,8 @@
                         <div class="col-sm-6">
                             <div class="social-icons pull-right">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="#" title="Филдом ВКонтакте"><i class="fa fa-vk"></i></a></li>
-                                    <li><a href="#" title="Филдом Инстаграм"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="https://vk.com/public208011201" title="Филдом ВКонтакте"><i class="fa fa-vk"></i></a></li>
+                                    <li><a href="https://www.instagram.com/_feel_dom_/" title="Филдом Инстаграм"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                                     <li><a href="https://api.whatsapp.com/send/?phone=79261775858" title="Филдом Вотсап"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
@@ -153,8 +153,8 @@
                             <div class="single-widget">
                                 <h2>Наши соц. сети</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#">ВКонтакте</a></li>
-                                    <li><a href="#">Инстаграм</a></li>
+                                    <li><a href="https://vk.com/public208011201">ВКонтакте</a></li>
+                                    <li><a href="https://www.instagram.com/_feel_dom_/">Инстаграм</a></li>
                                 </ul>
                             </div>
                         </div>
