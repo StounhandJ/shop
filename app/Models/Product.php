@@ -47,11 +47,11 @@ class Product extends Model implements Sitemapable
         $key = sprintf(
             "products_%s.%s.%s.%s.%s.%s.%s",
             $category->getEName(),
-            $minPrice,
-            $maxPrice,
-            $popular,
-            $price,
-            $abc,
+            $minPrice ?? "-",
+            $maxPrice ?? "-",
+            $popular ?? "-",
+            $price ?? "-",
+            $abc ?? "-",
             $paginate->currentPage()
         );
         return Product::cache($key, $paginate);
