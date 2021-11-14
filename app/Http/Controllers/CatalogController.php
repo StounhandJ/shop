@@ -6,6 +6,7 @@ use App\Http\Requests\CatalogRequest;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Product;
+use App\Models\Maker;
 
 class CatalogController extends Controller
 {
@@ -16,6 +17,7 @@ class CatalogController extends Controller
         }
 
         $departments = Department::all();
+        $makers = Maker::getByAbc();
         $categories = Category::getAllCategoriesOfDepartment($department);
 
         $paginate = Product::getProductsOfCategoryPagination(
@@ -31,11 +33,11 @@ class CatalogController extends Controller
 
         return view(
             "shop",
-            compact("departments", "categories", "paginate", "cart_products_in"),
+            compact("departments", "categories", "paginate", "cart_products_in", "makers"),
             [
                 "current_department" => $department,
                 "current_category" => $category,
-                "title" => $category->getName() . " - Фиилдом",
+                "title" => $category->getName() . " - Филдом",
                 "description" => " Купить или заказать с доставкой " . $category->getName(
                     ),
             ]

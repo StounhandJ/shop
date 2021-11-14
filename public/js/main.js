@@ -181,6 +181,11 @@ $(document).ready(function () {
         $(".filters-checkbox-more").click(function () {
             $(".filters-checkbox-ul").toggleClass("filters-checkbox-open");
             $(".fa-checkbox-arrow").toggleClass("fa-arrow-up fa-arrow-down");
+            if ($(".filters-checkbox-more-text").text() == "Ещё") {
+                $(".filters-checkbox-more-text").text("Свернуть")
+            } else {
+                $(".filters-checkbox-more-text").text("Ещё")
+            }
         });
     });
 });

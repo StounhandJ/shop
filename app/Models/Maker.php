@@ -56,6 +56,11 @@ class Maker extends Model
         return Product::where("maker_id", $this->getId())->count();
     }
 
+    public static function getByAbc()
+    {
+        return Maker::orderBy("name")->get();
+    }
+
     public function getId()
     {
         return $this->id;
