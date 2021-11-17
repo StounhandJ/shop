@@ -36,12 +36,12 @@ class CatalogRequest extends FormRequest
     public function getPage(): int
     {
         $page = $this->query("p");
-        if (is_numeric($page)) {
-            $page = (int)$page;
-        } else {
-            $page = 1;
+
+        if (filter_var($page, FILTER_VALIDATE_INT) !== false && (int)$page >= 1) {
+            return (int)$page;
         }
-        return $page;
+
+        return 1;
     }
 
     public function getPopular(): bool
@@ -66,7 +66,7 @@ class CatalogRequest extends FormRequest
         return null;
     }
 
-     public function getAbc()
+    public function getAbc()
     {
         if (is_null($this->query("abc"))) {
             return null;
@@ -100,8 +100,7 @@ class CatalogRequest extends FormRequest
         if (is_null($makers)) {
             return $collection;
         }
-        foreach (explode(',', $makers)as $maker)
-        {
+        foreach (explode(',', $makers) as $maker) {
             $collection->add(Maker::getById($maker));
         }
         return $collection;
