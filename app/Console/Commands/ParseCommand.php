@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Services\SantehnikParser;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class ParseCommand extends Command
 {
@@ -48,7 +49,7 @@ class ParseCommand extends Command
         }
         $this->info("Удаление лишних изображений");
         Artisan::call('img:clear');
-        return 0;
+        return CommandAlias::SUCCESS;
     }
 
     /**

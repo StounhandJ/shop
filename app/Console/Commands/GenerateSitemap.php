@@ -4,13 +4,10 @@ namespace App\Console\Commands;
 
 use App\Models\Category;
 use App\Models\Product;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Spatie\Sitemap\Sitemap;
-use Spatie\Sitemap\SitemapGenerator;
-use Spatie\Sitemap\Tags\Url;
+use Symfony\Component\Console\Command\Command as CommandAlias;
+
 
 class GenerateSitemap extends Command
 {
@@ -58,7 +55,7 @@ class GenerateSitemap extends Command
             ->add('sitemap_categories.xml')
             ->writeToFile(public_path('sitemap.xml'));
 
-        return 0;
+        return CommandAlias::SUCCESS;
     }
 
     public function products()

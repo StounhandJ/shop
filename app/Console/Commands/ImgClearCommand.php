@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Product;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Console\Command\Command as CommandAlias;
 
 class ImgClearCommand extends Command
 {
@@ -66,6 +67,6 @@ class ImgClearCommand extends Command
                 ]
             ]
         );
-        return 0;
+        return CommandAlias::SUCCESS;
     }
 }
