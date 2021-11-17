@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Cart\Cart;
+use App\Models\Maker;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Collection;
 
 class CatalogRequest extends FormRequest
 {
@@ -89,5 +91,19 @@ class CatalogRequest extends FormRequest
     public function getMaxPrice()
     {
         return $this->query("map");
+    }
+
+    public function getMakers(): Collection
+    {
+        $collection = new Collection();
+        $makers = $this->query("makers");
+        if (is_null($makers)) {
+            return $collection;
+        }
+        foreach (explode(',', $makers)as $maker)
+        {
+            $collection->add(Maker::getById($maker));
+        }
+        return $collection;
     }
 }

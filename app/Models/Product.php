@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
@@ -36,6 +37,7 @@ class Product extends Model implements Sitemapable
 
     public static function getProductsOfCategoryPagination(
         Category $category,
+        Collection $makers,
         $minPrice = null,
         $maxPrice = null,
         bool $popular = true,
@@ -54,6 +56,7 @@ class Product extends Model implements Sitemapable
             $abc,
             $paginate->currentPage()
         );
+//        dd($paginate);
         return Product::cache($key, $paginate);
     }
 
