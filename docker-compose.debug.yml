@@ -29,7 +29,7 @@ services:
     container_name: site
 
   pg_db:
-    image: postgres
+    image: postgres:13.4
     restart: always
     environment:
       - POSTGRES_USER=root

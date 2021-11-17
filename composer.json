@@ -13,8 +13,9 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.54",
         "laravel/tinker": "^2.5",
-        "stounhandj/htmldom-laravel": "^1.0.0",
-        "spatie/laravel-sitemap": "^6.0"
+        "rosell-dk/webp-convert": "^2.7",
+        "spatie/laravel-sitemap": "^6.0",
+        "stounhandj/htmldom-laravel": "^1.0.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

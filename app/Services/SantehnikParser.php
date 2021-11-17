@@ -7,9 +7,9 @@ use App\Exceptions\InvalidSiteException;
 use App\Models\Category;
 use App\Models\Maker;
 use App\Models\Product;
-use Exception;
 use Generator;
 use StounhandJ\HtmldomLaravel\Htmldom;
+use WebPConvert\WebPConvert;
 
 class SantehnikParser extends Parser
 {
@@ -159,16 +159,21 @@ class SantehnikParser extends Parser
         $temp = tmpfile();
         $file_path = stream_get_meta_data($temp)["uri"];
         fwrite($temp, file_get_contents($data["img"]));
-        return Product::make(
+
+        WebPConvert::convert($file_path, $file_path.".webp", []);
+        $product = Product::make(
             $data["title"],
             "-",
             "e_name",
             $data["price"],
             // data["price"] = data["price"]*0.95
-            Product::saveImg($file_path),
+            Product::saveImg($file_path.".webp"),
             $category,
             $maker
         );
+        if ($product->getPrice()==0)
+            $product->delete();
+        return $product;
     }
 
     public function statistics(): array

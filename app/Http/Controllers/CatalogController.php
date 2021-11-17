@@ -22,11 +22,13 @@ class CatalogController extends Controller
 
         $paginate = Product::getProductsOfCategoryPagination(
             $category,
+            $request->getMakers(),
+            $request->getPage(),
             $request->getMinPrice(),
             $request->getMaxPrice(),
             $request->getPopular(),
             $request->getPrice(),
-            $request->getAbc()
+            $request->getAbc(),
         );
 
         $cart_products_in = $request->getCart();

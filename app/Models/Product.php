@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
+use Psr\SimpleCache\InvalidArgumentException;
 use Spatie\Sitemap\Tags\Url;
 use Spatie\Sitemap\Contracts\Sitemapable;
 
@@ -35,38 +37,61 @@ class Product extends Model implements Sitemapable
     protected $appends = ['url', 'img_url'];
 
     public static function getProductsOfCategoryPagination(
-        Category $category,
-        $minPrice = null,
-        $maxPrice = null,
-        bool $popular = true,
-        $price = null,
-        $abc = null
-    ): LengthAwarePaginator {
-        $builder = Product::sortProductBuilder($category, $minPrice, $maxPrice, $popular, $price, $abc);
-        $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
+        Category   $category,
+        Collection $makers,
+                   $page,
+                   $minPrice = null,
+                   $maxPrice = null,
+        bool       $popular = true,
+                   $price = null,
+                   $abc = null
+    ): LengthAwarePaginator
+    {
+        $makersString = "";
+        foreach ($makers as $maker) {
+            $makersString .= sprintf("%s=", $maker->getId());
+        }
         $key = sprintf(
-            "products_%s.%s.%s.%s.%s.%s.%s",
+            "products_%s.%s.%s.%s.%s.%s.%s.%s",
             $category->getEName(),
-            $minPrice,
-            $maxPrice,
-            $popular,
-            $price,
-            $abc,
-            $paginate->currentPage()
+            $makersString,
+            $minPrice ?? "-",
+            $maxPrice ?? "-",
+            $popular ?? "-",
+            $price ?? "-",
+            $abc ?? "-",
+            $page
         );
-        return Product::cache($key, $paginate);
+        $data = Product::get_cache($key);
+        if (!is_null($data))
+            return Product::get_cache($key);
+
+
+        $builder = Product::sortProductBuilder($category, $makers, $minPrice, $maxPrice, $popular, $price, $abc);
+
+        $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
+        Product::set_cache($key, $paginate);
+        return $paginate;
     }
 
     private static function sortProductBuilder(
-        Category $category,
-        $minPrice = null,
-        $maxPrice = null,
-        bool $popular = true,
-        $price = null,
-        $abc = null
-    ): Builder {
+        Category   $category,
+        Collection $makers,
+                   $minPrice = null,
+                   $maxPrice = null,
+        bool       $popular = true,
+                   $price = null,
+                   $abc = null
+    ): Builder
+    {
         $builder = Product::query()->where("category_id", $category->getId());
 
+        $builder->where(function ($query) use ($makers) {
+            /** @var Maker $maker */
+            foreach ($makers as $maker) {
+                $query->orWhere("maker_id", "=", $maker->getId());
+            }
+        });
         if (!is_null($minPrice)) {
             $builder->where("price", ">=", $minPrice);
         }
@@ -76,11 +101,9 @@ class Product extends Model implements Sitemapable
 
         if (!is_null($price)) {
             $builder->orderBy("price", $price ? 'desc' : 'asc');
-        }
-        elseif (!is_null($abc)){
+        } elseif (!is_null($abc)) {
             $builder->orderBy("title", $abc ? 'desc' : 'asc');
-        }
-        else {
+        } else {
             $builder->orderBy("rating", $popular ? 'desc' : 'asc');
         }
 
@@ -88,14 +111,15 @@ class Product extends Model implements Sitemapable
     }
 
     private static function builderToPaginate(
-        Builder $builder,
+        Builder  $builder,
         Category $category,
-        $minPrice = null,
-        $maxPrice = null,
-        bool $popular = true,
-        $price = null,
-        $abc = null
-    ): LengthAwarePaginator {
+                 $minPrice = null,
+                 $maxPrice = null,
+        bool     $popular = true,
+                 $price = null,
+                 $abc = null
+    ): LengthAwarePaginator
+    {
         $data = ['department' => $category->getDepartment()->getEName(), 'category' => $category->getEName()];
 
         if (!is_null($minPrice)) {
@@ -123,9 +147,17 @@ class Product extends Model implements Sitemapable
 
     //<editor-fold desc="Get Attribute">
 
-    private static function cache(string $key, $data)
+    /**
+     * @throws InvalidArgumentException
+     */
+    private static function set_cache(string $key, $data)
     {
-        return Cache::store("memcached")->remember($key, Product::$cacheSecond, fn() => $data);
+        return Cache::store("memcached")->set($key, $data, Product::$cacheSecond);
+    }
+
+    private static function get_cache(string $key)
+    {
+        return Cache::store("memcached")->get($key);
     }
 
     public static function getListProduct(array $ids): array
@@ -163,7 +195,8 @@ class Product extends Model implements Sitemapable
         string $img_src,
         Category $category,
         Maker $maker
-    ) {
+    )
+    {
         return Product::factory([
             "title" => $title,
             "description" => $description,
@@ -284,6 +317,7 @@ class Product extends Model implements Sitemapable
     {
         return Storage::disk("prod_img")->putFile("/", $img);
     }
+
     //</editor-fold>
 
     public function setCategoryIfNotEmpty(Category $category)
