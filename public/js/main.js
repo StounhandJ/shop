@@ -63,6 +63,13 @@ function changeFilterIcon() {
     }
 }
 
+function clearSortBy(urlParam) {
+    delete urlParam["price"];
+    delete urlParam["popular"];
+    delete urlParam["abc"];
+    return urlParam;
+}
+
 $(document).ready(function () {
     $(function () {
         $(".filter").hide();
@@ -82,9 +89,7 @@ $(document).ready(function () {
         $("#filter-price-slider").click(function () {
             var minPriceSlider = $("#min-price")[0].value;
             var maxPriceSlider = $("#max-price")[0].value;
-            if (
-                maxPriceSlider == "" || maxPriceSlider>minPriceSlider
-            ) {
+            if (maxPriceSlider == "" || maxPriceSlider > minPriceSlider) {
                 urlParams["mip"] = minPriceSlider;
                 urlParams["map"] = maxPriceSlider;
                 updateUrl(urlParams);
@@ -94,17 +99,14 @@ $(document).ready(function () {
         });
 
         $("#filter-price-slider-mobile").click(function () {
+            var minPriceSliderMobile = $("#min-price-mobile")[0].value;
+            var maxPriceSliderMobile = $("#max-price-mobile")[0].value;
             if (
-                $("#min-price-mobile")[0].value > 0 &&
-                $("#max-price-mobile")[0].value < 500000 &&
-                $("#min-price-mobile")[0].value <
-                    $("#max-price-mobile")[0].value
+                maxPriceSliderMobile == "" ||
+                maxPriceSliderMobile > minPriceSliderMobile
             ) {
-                minmax = [$("#min-price")[0].value, $("#max-price")[0].value];
-        
-                urlParams["mip"] = minmax[0];
-                urlParams["map"] = minmax[1];
-                
+                urlParams["mip"] = minPriceSliderMobile;
+                urlParams["map"] = maxPriceSliderMobile;
                 updateUrl(urlParams);
             } else {
                 $("#price-required-mobile").show();
@@ -112,6 +114,7 @@ $(document).ready(function () {
         });
 
         $("#filter-price").click(function () {
+            urlParams = clearSortBy(urlParams);
             if (!$(this).hasClass("clicked")) {
                 urlParams["price"] = 0;
             } else {
@@ -121,6 +124,7 @@ $(document).ready(function () {
         });
 
         $("#filter-popular").click(function () {
+            urlParams = clearSortBy(urlParams);
             if (!$(this).hasClass("popular-clicked")) {
                 urlParams["popular"] = 1;
             } else {
@@ -130,6 +134,7 @@ $(document).ready(function () {
         });
 
         $("#filter-Az").click(function () {
+            urlParams = clearSortBy(urlParams);
             if (!$(this).hasClass("clicked")) {
                 urlParams["abc"] = 0;
             } else {

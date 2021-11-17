@@ -67,11 +67,4 @@
             </div>
         </div>
     </div>
-    <div class="popup">
-        <div class="popup__block">
-            <i class="fa fa-times popup__close" aria-hidden="true"></i>
-            <div><p class="popup__text">Успешно!<br> Скоро мы вам позвоним</p></div>
-            <i class="fa fa-check-square-o" aria-hidden="true"></i>
-        </div>
-    </div>
 </div>
