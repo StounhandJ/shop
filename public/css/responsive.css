@@ -24,6 +24,12 @@
 }
 
 @media (max-width: 992px) {
+    .filters-checkbox-li h4{
+        padding-left: 0;
+    }
+    .filters-checkbox .panel-heading {
+        padding: 0;
+    }
     .footer-row {
         display: flex;
         flex-wrap: wrap;
