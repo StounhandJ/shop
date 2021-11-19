@@ -87,7 +87,8 @@
                                 <ul class="nav navbar-nav collapse navbar-collapse">
                                     <li>
                                         <div class="price-slider-mobile">
-                                            @include('inc.price-slider-mobile')
+                                            <p class="price-slider-mobile-title">Цена</p>
+                                            @include('inc.price-slider')
                                         </div>
                                     </li>
                                     @foreach ($departments as $item)

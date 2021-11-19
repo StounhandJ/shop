@@ -18,7 +18,6 @@ function getUrlParams() {
                 params[data.split("=")[0]] = data.split("=")[1];
             });
     }
-    console.table(params);
     return params;
 }
 
@@ -80,38 +79,21 @@ $(document).ready(function () {
 
         var urlParams = getUrlParams();
 
-        $("#min-price")[0].value = urlParams["mip"] ?? "";
-        $("#max-price")[0].value = urlParams["map"] ?? "";
+        // $("#min-price")[0].value = urlParams["mip"];
+        // $("#max-price")[0].value = urlParams["map"];
 
-        $("#min-price-mobile")[0].value = urlParams["mip"] ?? "";
-        $("#max-price-mobile")[0].value = urlParams["map"] ?? "";
-
-        $("#filter-price-slider").click(function () {
-            var minPriceSlider = $("#min-price")[0].value;
-            var maxPriceSlider = $("#max-price")[0].value;
-            if (maxPriceSlider == "" || maxPriceSlider > minPriceSlider) {
-                urlParams["mip"] = minPriceSlider;
-                urlParams["map"] = maxPriceSlider;
-                updateUrl(urlParams);
-            } else {
-                $("#price-required").show();
-            }
-        });
-
-        $("#filter-price-slider-mobile").click(function () {
-            var minPriceSliderMobile = $("#min-price-mobile")[0].value;
-            var maxPriceSliderMobile = $("#max-price-mobile")[0].value;
-            if (
-                maxPriceSliderMobile == "" ||
-                maxPriceSliderMobile > minPriceSliderMobile
-            ) {
-                urlParams["mip"] = minPriceSliderMobile;
-                urlParams["map"] = maxPriceSliderMobile;
-                updateUrl(urlParams);
-            } else {
-                $("#price-required-mobile").show();
-            }
-        });
+        // $("#filter-price-slider").click(function () {
+        //     console.log("af");
+        //     var minPriceSlider = $("#min-price")[0].value;
+        //     var maxPriceSlider = $("#max-price")[0].value;
+        //     if (maxPriceSlider == "" || maxPriceSlider > minPriceSlider) {
+        //         urlParams["mip"] = minPriceSlider;
+        //         urlParams["map"] = maxPriceSlider;
+        //         updateUrl(urlParams);
+        //     } else {
+        //         $("#price-required").show();
+        //     }
+        // });
 
         $("#filter-price").click(function () {
             urlParams = clearSortBy(urlParams);

@@ -24,7 +24,7 @@
 }
 
 @media (max-width: 992px) {
-    .footer-row{
+    .footer-row {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -120,21 +120,55 @@
     #accordian{
         display: none;
     } */
-    .padding-right{
+    .padding-right {
         padding-left: 0;
     }
-    .product-information{
+    .product-information {
         padding: 60px 30px;
     }
-    .product-details{
+    .product-details {
         flex-direction: column;
     }
-    .price-slider-main{
+    .price-slider-main {
         display: none;
     }
-    .price-slider-mobile{
+    .price-slider-mobile {
         display: block;
     }
+
+    .price-slider-mobile-title {
+        color: white;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 20px;
+    }
+
+    .filters-all-input {
+        justify-content: flex-start;
+    }
+
+    .price-slider-wrapper {
+        flex-direction: row;
+    }
+
+    #filter-price-slider {
+        border-radius: 0px !important;
+        margin-left: 5px !important;
+    }
+
+    .filter-input {
+        background: transparent;
+        color: white;
+    }
+
+    .filter-input::-webkit-input-placeholder {
+        color: #d1d1d1;
+    }
+
+    #price-required {
+        text-align: left;
+    }
+
     #cart_items .cart_info .cart_description h4 {
         text-align: center;
         font-size: 16px;
@@ -285,16 +319,16 @@
 }
 
 @media (max-width: 661px) {
-    .footer-row{
+    .footer-row {
         flex-direction: column;
         align-items: center;
     }
-    .footer-widget .col-sm-2{
+    .footer-widget .col-sm-2 {
         margin-left: 0 !important;
         padding-left: 0 !important;
         width: auto !important;
     }
-    .footer-widget .single-widget{
+    .footer-widget .single-widget {
         text-align: center;
     }
     .cart_info {
@@ -345,7 +379,7 @@
 }
 
 @media (max-width: 480px) {
-	.shop-grid {
+    .shop-grid {
         display: grid;
         grid-template-columns: 1fr;
         justify-items: center;

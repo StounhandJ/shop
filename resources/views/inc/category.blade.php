@@ -2,13 +2,27 @@
     <div class="left-sidebar">
         @if (Request::url() == route('catalog.index', ['department' => $current_department->getEName(), 'category' => $current_category->getEName()]) || Request::url() == route('catalog.index', ['department' => $current_department->getEName()]))
             <div class="price-slider-main">
-                @include('inc.price-slider')
+                <h2 class="filters-all-title">Цена</h2>
+                <div class="panel-group category-products">
+                    <div class="price-range">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div id="filters-all-input-wrapper">
+                                        @include('inc.price-slider')                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="filters-checkbox">
                 @include('inc.filters-checkbox')
             </div>
         @endif
-        <h2 class="main-category-title category-mobile category-open">Категории <span class="badge category-plus-button"><i class="fa fa-minus"></i></span></h2>
+        <h2 class="main-category-title category-mobile category-open">Категории <span
+                class="badge category-plus-button"><i class="fa fa-minus"></i></span></h2>
         <ul class="panel-group category-products" id="accordian">
             @foreach ($categories as $item)
                 <li>
@@ -28,9 +42,7 @@
             @endforeach
         </ul>
 
-{{-- 
-
-        <div class="panel panel-default">
+        {{-- <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordian" href="#mens">
