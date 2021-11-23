@@ -11,7 +11,7 @@
                                     <div id="filters-all-input-wrapper">
                                         @include('inc.price-slider')                                     
                                     </div>
-                                </div>
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -20,6 +20,7 @@
             <div class="filters-checkbox">
                 @include('inc.filters-checkbox')
             </div>
+            @include('inc.price-range-btn')
         @endif
         <h2 class="main-category-title category-mobile category-open">Категории <span
                 class="badge category-plus-button"><i class="fa fa-minus"></i></span></h2>

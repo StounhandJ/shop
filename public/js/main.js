@@ -164,10 +164,21 @@ $(document).ready(function () {
             $(".filters-checkbox-ul").toggleClass("filters-checkbox-open");
             $(".fa-checkbox-arrow").toggleClass("fa-arrow-up fa-arrow-down");
             if ($(".filters-checkbox-more-text").text() == "Ещё") {
-                $(".filters-checkbox-more-text").text("Свернуть")
+                $(".filters-checkbox-more-text").text("Свернуть");
             } else {
-                $(".filters-checkbox-more-text").text("Ещё")
+                $(".filters-checkbox-more-text").text("Ещё");
             }
         });
+
+        $("#filter-price-slider").click(function () {
+            $(".filter-checkbox-self").each((index, element) => {
+                if (element.checked == true) {
+                    console.log(element);
+                    // urlParams["maker"] += element.id;
+                    // updateUrl(urlParams);
+                }
+            });
+        });
     });
+    
 });

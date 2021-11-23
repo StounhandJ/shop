@@ -5,7 +5,7 @@
             @foreach ($makers as $item)
                 <li class="filters-checkbox-li">
                     <h4 class="panel-title">
-                        <input type="checkbox" name="{{ $item->getName() }}" id="{{ $item->getName() }}">
+                        <input type="checkbox" class="filter-checkbox-self" name="{{ $item->getName() }}" id="{{ $item->getId() }}">
                         <span>{{ $item->getName() }}</span>
                     </h4>
                 </li>
