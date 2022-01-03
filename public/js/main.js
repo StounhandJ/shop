@@ -79,21 +79,21 @@ $(document).ready(function () {
 
         var urlParams = getUrlParams();
 
-        // $("#min-price")[0].value = urlParams["mip"];
-        // $("#max-price")[0].value = urlParams["map"];
+        $("#min-price")[0].value = urlParams["mip"];
+        $("#max-price")[0].value = urlParams["map"];
 
-        // $("#filter-price-slider").click(function () {
-        //     console.log("af");
-        //     var minPriceSlider = $("#min-price")[0].value;
-        //     var maxPriceSlider = $("#max-price")[0].value;
-        //     if (maxPriceSlider == "" || maxPriceSlider > minPriceSlider) {
-        //         urlParams["mip"] = minPriceSlider;
-        //         urlParams["map"] = maxPriceSlider;
-        //         updateUrl(urlParams);
-        //     } else {
-        //         $("#price-required").show();
-        //     }
-        // });
+        $("#filter-price-slider").click(function () {
+            console.log("af");
+            var minPriceSlider = $("#min-price")[0].value;
+            var maxPriceSlider = $("#max-price")[0].value;
+            if (maxPriceSlider == "" || maxPriceSlider > minPriceSlider) {
+                urlParams["mip"] = minPriceSlider;
+                urlParams["map"] = maxPriceSlider;
+                updateUrl(urlParams);
+            } else {
+                $("#price-required").show();
+            }
+        });
 
         $("#filter-price").click(function () {
             urlParams = clearSortBy(urlParams);
@@ -170,15 +170,19 @@ $(document).ready(function () {
             }
         });
 
-        $("#filter-price-slider").click(function () {
-            $(".filter-checkbox-self").each((index, element) => {
-                if (element.checked == true) {
-                    console.log(element);
-                    // urlParams["maker"] += element.id;
-                    // updateUrl(urlParams);
-                }
-            });
-        });
+        // $("#filter-price-slider").click(function () {
+        //     $(".filter-checkbox-self").each((index, element) => {
+        //         if (element.checked == true) {
+        //             console.log(element);
+        //             // let makers = urlParams["makers"].split(", ");
+        //             // console.log("makers = " + makers);
+        //             // makers.push(element.id);
+        //             // console.log(makers);
+        //             // urlParams["maker"] = makers.join(", ");
+        //             // console.log("new makers = " + urlParams["makers"]);
+        //             // updateUrl(urlParams);
+        //         }
+        //     });
+        // });
     });
-    
 });
