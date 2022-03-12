@@ -22,7 +22,7 @@ class CatalogController extends Controller
         $categories = Category::getAllCategoriesOfDepartment($department);
 
         if ($categories->count() == 0) {
-            $data["title"] = $department->getName() . " - Фиилдом";
+            $data["title"] = $department->getName() . " - Белый Волк";
             $data["description"] = "Отдел " . $department->getName() . " пустой";
             $data["current_category"] = $department;
             return view(
@@ -49,7 +49,7 @@ class CatalogController extends Controller
         );
 
         $data["current_category"] = $category;
-        $data["title"] = $category->getName() . " - Фиилдом";
+        $data["title"] = $category->getName() . " - Белый Волк";
         $data["description"] = " Купить или заказать с доставкой " . $category->getName();
         return view(
             "shop",
