@@ -31,8 +31,8 @@ use App\Http\Controllers\Admin\DepartmentAdminController;
 */
 
 Route::get('/', function (Request $request) {
-    return redirect(\route("catalog.index", ["department"=>\App\Models\Department::getFirst()->getEname()]));
-//    return view("index", ["departments" => \App\Models\Department::all()]);
+//    return redirect(\route("catalog.index", ["department"=>\App\Models\Department::getFirst()->getEname()]));
+    return view("index", ["departments" => \App\Models\Department::all()]);
 })->name("index");
 
 Route::get('/custom', function (Request $request) {
