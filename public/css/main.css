@@ -266,13 +266,12 @@ a#scrollUp i {
     padding-left: 0;
 }
 
-.mainmenu ul li {
-    padding-right: 15px;
-    padding-left: 15px;
-}
+/* .mainmenu ul li {
+    padding: 0px 15px 15px 15px;
+} */
 
-.mainmenu ul li:first-child {
-    padding-left: 0px;
+.mainmenu ul li~li{
+    margin-left: 20px;
 }
 
 .mainmenu ul li a {
@@ -437,6 +436,11 @@ ul.sub-menu {
 .footer-top .container {
     border-bottom: 1px solid #e0e0da;
     padding-bottom: 20px;
+}
+
+.footer-row{
+    display: flex;
+    justify-content: center;
 }
 
 .companyinfo {
@@ -1531,6 +1535,16 @@ h1.title {
 
 .logo-404 {
     margin-top: 60px;
+}
+
+
+.logo-row{
+    display: flex;
+}
+
+.logo-row .search-content{
+    flex-grow: 1;
+    margin: 0 50px;
 }
 
 .content-404 h1 {
@@ -2940,7 +2954,7 @@ h4.filter-btn button:hover {
     position: relative;
 }
 
-.price-slider-wrapper{
+.price-slider-wrapper {
     display: flex;
     flex-direction: column;
 }
@@ -3024,6 +3038,6 @@ h4.filter-btn button:hover {
     color: #4d4d4d;
 }
 
-.dop-info p span{
+.dop-info p span {
     color: black;
 }

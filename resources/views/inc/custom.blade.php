@@ -46,21 +46,21 @@
             </div>
             <div class="col-md-4">
                 <div class="contact-info h-100">
-                    <h3>Feeldom</h3>
-                    <p class="mb-5">Сделаем для вас особый заказ, учитывая все ваши пожелания, даже самые
-                        сложные!</p>
+                    <h3>Белый волк</h3>
+                    <p class="mb-5">Работаем на рынке товаров для животных и ветеринарной фармацевтики с 2012 года. 
+                        Всегда рады нашим клиентам, с заботой о любимых питомцах!</p>
                     <ul class="list-unstyled">
                         <li class="d-flex">
                             <span class="wrap-icon icon-phone mr-3"></span>
-                            <span class="text"><a href="tel:84955325529" style="color:white">8 (495) 532-55-29</a></span>
+                            <span class="text"><a href="tel:+79788500420 " style="color:white">+7 (978) 850-04-20 </a></span>
                         </li>
                         <li class="d-flex">
                             <span class="wrap-icon icon-envelope mr-3"></span>
-                            <span class="text"><a href="mailto:feeldom@bk.ru" style="color:white">feeldom@bk.ru</a></span>
+                            <span class="text"><a href="mailto:bel.volk.zoo@gmail.com" style="color:white">bel.volk.zoo@gmail.com</a></span>
                         </li>
                         <li class="d-flex">
                             <span class="wrap-icon icon-envelope mr-3"></span>
-                            <span class="text"><a href="mailto:feeldom@bk.ru" style="color:white">Москва, Ленинский проспект, дом 4, строение 1А, квартира 10</a></span>
+                            <span class="text">Россия, р. Крым, Белогорский район, пгт. Зуя, ул. Кулявина, 3</span>
                         </li>
                     </ul>
                 </div>

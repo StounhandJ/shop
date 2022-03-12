@@ -51,8 +51,8 @@ function update() {
                 }
             },
         });
-        return false;
         // dropdown list for change depart in category
+        return false;
     });
     // update maker
     $(".save-btn-makers").click(function () {

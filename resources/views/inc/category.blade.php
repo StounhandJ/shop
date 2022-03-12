@@ -1,6 +1,6 @@
 <div class="col-sm-3">
     <div class="left-sidebar">
-        @if (Request::url() == route('catalog.index', ['department' => $current_department->getEName(), 'category' => $current_category->getEName()]) || Request::url() == route('catalog.index', ['department' => $current_department->getEName()]))
+        {{-- @if (Request::url() == route('catalog.index', ['department' => $current_department->getEName(), 'category' => $current_category->getEName()]) || Request::url() == route('catalog.index', ['department' => $current_department->getEName()]))
             <div class="price-slider-main">
                 <h2 class="filters-all-title">Цена</h2>
                 <div class="panel-group category-products">
@@ -21,9 +21,10 @@
                 @include('inc.filters-checkbox')
             </div>
             @include('inc.price-range-btn')
-        @endif
-        <h2 class="main-category-title category-mobile category-open">Категории <span
-                class="badge category-plus-button"><i class="fa fa-minus"></i></span></h2>
+        @endif --}}
+        <h2 class="main-category-title category-mobile category-open">Категории 
+            {{-- <span class="badge category-plus-button"><i class="fa fa-minus"></i></span> --}}
+        </h2>
         <ul class="panel-group category-products" id="accordian">
             @foreach ($categories as $item)
                 <li>
