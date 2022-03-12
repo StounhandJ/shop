@@ -17,7 +17,7 @@
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/price-range.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" />
-    <link rel="icon" href="/images/ico/favicon.ico" sizes="48x48" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.svg" sizes="48x48" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"
         charset="utf-8"></script>
@@ -119,14 +119,14 @@
             @yield('content')
         </main>
         <footer id="footer">
-            <div class="footer-widget">
+            {{-- <div class="footer-widget">
                 <div class="container">
                     <div class="row footer-row">
                         <div class="col-sm-2">
                             <div class="single-widget">
                                 <h2>О нас</h2>
                                 <ul class="nav nav-pills nav-stacked">
-                                    {{-- <li><a href="#">Акции</a></li> --}}
+                                    <li><a href="#">Акции</a></li>
                                     <li><a href="https://api.whatsapp.com/send/?phone=79261775858">Партнёрам</a></li>
                                     <li><a href="{{ route('info') }}#contacts">Контакты</a></li>
                                 </ul>
@@ -158,7 +158,7 @@
                                 </ul>
                             </div>
                         </div>
-                        {{-- <div class="col-sm-3 col-sm-offset-1">
+                        <div class="col-sm-3 col-sm-offset-1">
                             <div class="single-widget">
                                 <h2>Связаться с нами</h2>
                                 <form action="#" class="searchform">
@@ -168,10 +168,10 @@
                                     <p>Введите номер телефона и в ближайшее время мы перезвоним вам!</p>
                                 </form>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="footer-bottom">
                 <div class="container">
                     <div class="row">
@@ -185,10 +185,20 @@
         <div class="popup__block">
             <i class="fa fa-times popup__close" aria-hidden="true"></i>
             <div>
-                <p class="popup__text">Успешно!<br> Скоро мы вам позвоним</p>
+                <p class="popup__text">Успешно!
+                    {{-- <br> Скоро мы вам позвоним --}}
+                </p>
             </div>
             <i class="fa fa-check-square-o" aria-hidden="true"></i>
         </div>
+    </div>
+    <div id="cookieNotification"> 
+        <div class="container" 
+            style="display: flex; align-items: center; justify-content: space-between;  
+                    z-index: 1000; padding: 12px 0px; position: fixed; bottom: 0; width: 100%; background: #75c5f0;"> 
+            <p style="font-size: 20px; color: white; margin: 0;">Мы используем файлы куки, чтобы пользоваться сайтом было удобно</p> 
+            <button id="cookie-accept-btn" style="background: none; color: white; border: none; outline: none; font-size: 18px; background: #ffcf46; border-radius: 5px; padding: 5px 10px;">Понятно</button> 
+        </div> 
     </div>
     <script src="/js/cut-title.js"></script>
     <script src="/js/add-to-cart.js"></script>

@@ -1,4 +1,4 @@
-@media (max-width: 1199px) {
+@media (max-width: 1201px) {
     .usa {
         margin-right: 0;
     }
@@ -20,6 +20,13 @@
     }
     #cart_items .cart_total_price {
         font-size: 18px;
+    }
+    .mainmenu ul li~li{
+        margin-left: 0;
+    }
+    .mainmenu ul li{
+        margin-right: 20px;
+        margin-bottom: 20px;
     }
 }
 
@@ -126,6 +133,32 @@
     #accordian{
         display: none;
     } */
+    .category-products{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .logo-row{
+        flex-direction: column;
+    }
+    .shop-menu, .logo{
+        align-self: center;
+        margin-bottom: 10px;
+    }
+    .logo-row .search-content{
+        order: 1;
+    }
+    .navbar-collapse{
+        max-height: none;
+    }
+    .header-bottom{
+        padding-top: 0;
+        padding-bottom: 15px;
+    }
+    .mainmenu ul li{
+        margin: 0;
+    }
     .padding-right {
         padding-left: 0;
     }

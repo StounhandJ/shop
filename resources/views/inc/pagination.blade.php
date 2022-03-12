@@ -11,7 +11,7 @@
             <li><a
                     href="{{ $paginate->url(1) }}">1</a>
             </li>
-            <li><a style="background: none; color: #FE980F; cursor: default">...</a></li>
+            <li><a style="background: none; color: #75c5f0; cursor: default">...</a></li>
         @endif
 
         @for ($i = $paginate->currentPage() > 4 ? $paginate->currentPage() - 2 : 1; $i <= ($paginate->currentPage() < $paginate->lastPage() - 3 ? $paginate->currentPage() + 2 : $paginate->lastPage()); $i++)
@@ -21,7 +21,7 @@
         @endfor
 
         @if ($paginate->currentPage() < $paginate->lastPage() - 3)
-            <li><a style="background: none; color: #FE980F; cursor: default">...</a></li>
+            <li><a style="background: none; color: #75c5f0; cursor: default">...</a></li>
             <li><a
                     href="{{ $paginate->url($paginate->lastPage()) }}">{{ $paginate->lastPage() }}</a>
             </li>

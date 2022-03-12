@@ -4,28 +4,29 @@
             <div class="col-md-8">
                 <div class="form h-100">
                     <h3>
-                        @if (Request::url() == route('custom'))
-                            Заявка для оформления особого заказа
-                        @else
                             Для оформления заказа заполните форму
-                        @endif
                     </h3>
-                    <form class="mb-5" id="{{Request::url() == route('custom') ? "customId" : "cartId"}}" name="contactForm">
+                    <form class="mb-5" id="cartId" name="contactForm">
                         <div class="row">
                             <div class="col-md-6 form-group mb-5">
                                 <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Имя" required>
+                                    placeholder="Имя*" required>
                             </div>
-                            <div class="col-md-6 form-group mb-5">
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Почта" required>
-                            </div>
-                        </div>
-
-                        <div class="row">
                             <div class="col-md-6 form-group mb-5">
                                 <input type="tel" class="form-control" name="phone" id="phone"
-                                    placeholder="Контактный телефон" required>
+                                placeholder="Контактный телефон*" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 form-group mb-5">
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Почта">
+                            </div>
+                            <div class="col-md-6 form-group mb-5 promocode-wrapper">
+                                <input type="text" class="form-control" name="promocode" id="promocode"
+                                    placeholder="Промокод (если есть)">
+                                <button class="promocode-btn"><i class="fa fa-plus"></i></button>
                             </div>
                         </div>
 
@@ -37,8 +38,15 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-md-12 form-group cart-delivery">
+                                <label><input type="radio" name="delivery" id="delivery-pickup" required> Самовывоз</label>
+                                <label><input type="radio" name="delivery" id="delivery-delivery" required> Доставка</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-12 form-group">
-                                <input type="submit" value="{{ Request::url() == route('custom') ? 'Отправить' : 'Заказать' }}" class="btn btn-primary form-button">
+                                <input type="submit" value="Заказать" class="btn btn-primary form-button">
                             </div>
                         </div>
                     </form>

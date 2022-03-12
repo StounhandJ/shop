@@ -508,7 +508,7 @@
                                                 <tr>
                                                     <td class="esd-structure"
                                                         esd-general-paddings-checked="false"
-                                                        style="background: #FE980F; padding: 10px 0px;">
+                                                        style="background: #75c5f0; padding: 10px 0px;">
                                                         <table cellspacing="0" cellpadding="0" style="width:100%;">
                                                             <tbody>
                                                                 <tr>
@@ -659,7 +659,7 @@
                                                 <td align="right" class="esd-block-text es-m-txt-c">
                                                     <p style="font-size: 25px; padding-top:10px;margin:0;color: black;">
                                                         <span
-                                                            style="color: #FE980F;font-weight: bold;font-size: 20px;line-height: 23px;text-align:right;">{{ $item->getPrice() }}
+                                                            style="color: #75c5f0;font-weight: bold;font-size: 20px;line-height: 23px;text-align:right;">{{ $item->getPrice() }}
                                                             &#8381;</span>
                                                     </p>
                                                 </td>
@@ -687,7 +687,7 @@
                                                 line-height: 18px;text-align:left;">
                                                     <span style="display:block;font-weight:bold;">Итого:</span>
                                                     <span
-                                                        style="display:block;color: #FE980F;padding-top:20px;font-weight: bold;font-size: 20px;line-height: 23px;">{{ $totalPrice }}
+                                                        style="display:block;color: #75c5f0;padding-top:20px;font-weight: bold;font-size: 20px;line-height: 23px;">{{ $totalPrice }}
                                                         &#8381;</span>
                                                 </p>
                                             </td>
@@ -729,7 +729,7 @@
             </td>
         </table>
         <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
-            <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" align="left" style="background-color: #FE980F;"
+            <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" align="left" style="background-color: #75c5f0;"
                 esd-custom-block-id="47378">
                 <table cellpadding="0" cellspacing="0" class="es-left" align="left">
                     <tbody>

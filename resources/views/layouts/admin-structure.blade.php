@@ -16,7 +16,7 @@
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link id="theme-style" rel="stylesheet" href="/css/admin.css">
-
+    <link rel="icon" href="/images/favicon.svg" sizes="48x48" type="image/x-icon">
 </head>
 
 <body class="app">
@@ -76,22 +76,6 @@
                             </a>
                         </li> --}}
                         {{-- <li class="nav-item">
-                            <a class="{{Request::url() == route('admin.charts') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.charts') }}">
-                                <span class="nav-icon">
-                                    <i class="fa fa-bar-chart" aria-hidden="true" style="font-size: 18px;"></i>
-                                </span>
-                                <span class="nav-link-text">Диаграммы</span>
-                            </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a class="{{Request::url() == route('admin.main-info') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.main-info') }}">
-                                <span class="nav-icon">
-                                    <i class="fa fa-info-circle" aria-hidden="true" style="font-size: 18px;"></i>
-                                </span>
-                                <span class="nav-link-text">Диаграммы</span>
-                            </a>
-                        </li> --}}
-                        <li class="nav-item">
                             <a class="{{Request::url() == route('admin.makers') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.makers') }}">
                                 <span class="nav-icon">
                                     <i class="fa fa-user" aria-hidden="true" style="font-size: 18px;"></i>
@@ -114,7 +98,7 @@
                                 </span>
                                 <span class="nav-link-text">Категории</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="{{Request::url() == route('admin.products') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.products') }}">
                                 <span class="nav-icon">

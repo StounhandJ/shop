@@ -23,7 +23,6 @@ $(document).ready(function () {
                 success: function (data) {
                     $("a.search-product-link").remove();
                     data["products"].forEach((item) => {
-                        console.log(item);
                         $(".search-dropdown-content").append(
                             `<a href="${item.url}" class="search-product-link">${item.title}</a>`
                         );

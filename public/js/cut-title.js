@@ -4,7 +4,7 @@ $(document).ready(function () {
         for (var i = 0; i < cut.length; i++) {
             cut[i].innerText =
                 cut[i].innerText.slice(0, 70) +
-                (cut[i].innerText < 70 ? "" : "...");
+                (cut[i].innerText.length < 70 ? "" : "...");
         }
     });
 });

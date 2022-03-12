@@ -60,7 +60,6 @@ function update() {
         fd.append("name", $(this).siblings(".change-input")[0].value);
         maker_name = $(this).siblings("h4").children()[0];
         btn = $(this)[0];
-        console.log($(this)[0].id);
         if ($(this)[0].id !== "") {
             fd.append("_method", "PUT");
             $.ajax({
@@ -214,7 +213,6 @@ function update() {
             .siblings(".app-doc-meta")
             .children(".mb-0")
             .children(".change-list-department")[0];
-        console.log($(this)[0].id);
         if ($(this)[0].id !== "") {
             fd.append("_method", "PUT");
             $.ajax({
