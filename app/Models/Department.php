@@ -42,9 +42,9 @@ class Department extends Model
 
     //<editor-fold desc="Set Attribute">
 
-    public static function categories()
+    public function categories()
     {
-        return Category::all();
+        return $this->hasMany(Category::class);
     }
 
     public function getName()
