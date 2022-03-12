@@ -90,4 +90,10 @@ class Department extends Model
     {
         return $this->id;
     }
+
+    public static function all($columns = ['*'])
+    {
+        $data = parent::all($columns);
+        return $data->sortBy("id");
+    }
 }
