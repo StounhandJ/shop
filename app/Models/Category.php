@@ -17,14 +17,14 @@ class Category extends Model implements Sitemapable
 
     protected $appends = ['department_name'];
 
-    public static function getFirstCategoryOfDepartment(Department $department): Category
+    public static function getFirstCategoryOfDepartment(Department $department): \Illuminate\Database\Eloquent\Builder|Category
     {
-        return Category::where("department_id", $department->getId())->first() ?? new Category();
+        return Category::query()->where("department_id", $department->getId())->firstOrNew();
     }
 
-    public static function getAllCategoriesOfDepartment(Department $department)
+    public static function getAllCategoriesOfDepartment(Department $department): \Illuminate\Database\Eloquent\Collection|array
     {
-        return Category::where("department_id", $department->getId())->get();
+        return Category::query()->where("department_id", $department->getId())->get();
     }
     //</editor-fold>
 
