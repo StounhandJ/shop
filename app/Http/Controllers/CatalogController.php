@@ -7,9 +7,6 @@ use App\Models\Category;
 use App\Models\Department;
 use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Request;
 
 class CatalogController extends Controller
 {
@@ -56,6 +53,5 @@ class CatalogController extends Controller
             compact("departments", "categories", "paginate"),
             $data
         );
-//        Cache::store("memcached")->set("/" . Request::path(), $html, 10);
     }
 }
