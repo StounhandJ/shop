@@ -23,9 +23,8 @@ class ProductController extends Controller
             compact("product", "departments", 'categories', 'current_category', 'current_department'),
             [
                 "title" => $product->getTitle() . " - Белый Волк",
-                "description" => $product->getTitle(
-                    ) . " за ". $product->getPrice() ." рублей купить или заказать с доставкой " . $current_category->getName(
-                    ),
+                "description" => $product->getTitle() . " за " . $product->getPrice() . " рублей купить или заказать с доставкой " . $current_category->getName(),
+                "popular" => Product::getPopular(4)
             ]
         );
     }
