@@ -157,6 +157,11 @@ class Product extends Model implements Sitemapable
         return Product::query()->where("img_src", $img_src);
     }
 
+    public static function getPopular(int $count): array|\Illuminate\Database\Eloquent\Collection
+    {
+        return Product::query()->orderBy("popular")->limit($count)->get();
+    }
+
     public static function make(
         $title,
         $description,
