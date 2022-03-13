@@ -58,6 +58,8 @@ class CartSendRequest extends FormRequest
 
     public function getPromoCode(): \Illuminate\Database\Eloquent\Builder|PromoCode
     {
-        return PromoCode::getByName($this->input("promo_code"));
+        if ($this->input("promo_code")!=null)
+            return PromoCode::getByName($this->input("promo_code"));
+        return new PromoCode();
     }
 }

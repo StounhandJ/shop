@@ -159,7 +159,7 @@ class Product extends Model implements Sitemapable
 
     public static function getPopular(int $count): array|\Illuminate\Database\Eloquent\Collection
     {
-        return Product::query()->orderBy("popular")->limit($count)->get();
+        return Product::query()->orderBy("rating")->limit($count)->get();
     }
 
     public static function make(
