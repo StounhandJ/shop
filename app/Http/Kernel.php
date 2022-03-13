@@ -62,5 +62,10 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'cache.page' => \App\Http\Middleware\CachePageMiddleware::class,
+    ];
+
+    protected $middlewarePriority = [
+        \App\Http\Middleware\CachePageMiddleware::class,
     ];
 }

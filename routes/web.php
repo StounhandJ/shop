@@ -31,9 +31,8 @@ use App\Http\Controllers\Admin\DepartmentAdminController;
 */
 
 Route::get('/', function (Request $request) {
-//    return redirect(\route("catalog.index", ["department"=>\App\Models\Department::getFirst()->getEname()]));
     return view("index", ["departments" => \App\Models\Department::all()]);
-})->name("index");
+})->middleware("cache.page")->name("index");
 
 Route::get('/custom', function (Request $request) {
     return view("custom", ["departments" => \App\Models\Department::all()]);
@@ -44,28 +43,28 @@ Route::get('/info', function () {
 })->name("info");
 
 Route::get('/c/{department:e_name}/{category:e_name?}', [CatalogController::class, "index"])
+    ->middleware("cache.page")
     ->where('department', '[A-Za-z|_]+')
     ->where('category', '[A-Za-z|_]+')
     ->name("catalog.index");
 
 Route::get('/p/{product:id}', [ProductController::class, "index"])
+    ->middleware("cache.page")
     ->where('product', '[1-9]+')
     ->name("product.details");
 
 Route::get('/cart', [CartController::class, "index"])->name("cart.index");
 
 Route::prefix("action")->group(function () {
-    Route::get('/search/products', [SearchController::class, "product"])
-        ->name("search.products");
 
-    Route::post("/callback-form", [CartActionController::class, "callbackForm"]);
+    Route::post("/callback-form", [CartActionController::class, "callbackForm"])->middleware("throttle:cart");
 
     Route::prefix("cart")->name("cart.")->group(function () {
         Route::post('/add', [CartActionController::class, "addProduct"])->name("add");
         Route::post('/del', [CartActionController::class, "delProduct"])->name("del");
         Route::post('/info', [CartActionController::class, "info"])->name("info");
-        Route::post('/send', [CartActionController::class, "send"])->name("send");
-        Route::post('/send-custom', [CartActionController::class, "sendCustom"])->name("send.custom");
+        Route::post('/send', [CartActionController::class, "send"])->middleware("throttle:cart")->name("send");
+        Route::post('/send-custom', [CartActionController::class, "sendCustom"])->middleware("throttle:cart")->name("send.custom");
     });
 
     Route::middleware("auth:admin")->group(function () {

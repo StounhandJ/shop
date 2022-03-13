@@ -22,7 +22,7 @@ class ProductController extends Controller
         return view("product-details",
             compact("product", "departments", 'categories', 'current_category', 'current_department'),
             [
-                "title" => $product->getTitle() . " - Филдом",
+                "title" => $product->getTitle() . " - Белый Волк",
                 "description" => $product->getTitle(
                     ) . " за ". $product->getPrice() ." рублей купить или заказать с доставкой " . $current_category->getName(
                     ),

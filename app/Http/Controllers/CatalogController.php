@@ -7,9 +7,6 @@ use App\Models\Category;
 use App\Models\Department;
 use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Request;
 
 class CatalogController extends Controller
 {
@@ -22,7 +19,7 @@ class CatalogController extends Controller
         $categories = Category::getAllCategoriesOfDepartment($department);
 
         if ($categories->count() == 0) {
-            $data["title"] = $department->getName() . " - Фиилдом";
+            $data["title"] = $department->getName() . " - Белый Волк";
             $data["description"] = "Отдел " . $department->getName() . " пустой";
             $data["current_category"] = $department;
             return view(
@@ -49,13 +46,12 @@ class CatalogController extends Controller
         );
 
         $data["current_category"] = $category;
-        $data["title"] = $category->getName() . " - Фиилдом";
+        $data["title"] = $category->getName() . " - Белый Волк";
         $data["description"] = " Купить или заказать с доставкой " . $category->getName();
         return view(
             "shop",
             compact("departments", "categories", "paginate"),
             $data
         );
-//        Cache::store("memcached")->set("/" . Request::path(), $html, 10);
     }
 }
