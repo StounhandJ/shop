@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Action;
 
 use App\Http\Requests\Cart\Cart;
+use App\Models\PromoCode;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CartSendRequest extends FormRequest
@@ -31,6 +32,7 @@ class CartSendRequest extends FormRequest
             "email" => "required|string|min:3|max:60",
             "phone" => "string|min:3|max:60",
             "comment" => "nullable|string|max:800",
+            "promo_code" => "bail|string|exists:" . PromoCode::class . ",name",
         ];
     }
 
@@ -50,6 +52,11 @@ class CartSendRequest extends FormRequest
     }
 
     public function getComment()
+    {
+        return $this->input("comment");
+    }
+
+    public function getPromoCode()
     {
         return $this->input("comment");
     }

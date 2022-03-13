@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Action\DepartmentAdminActionController;
 use App\Http\Controllers\Admin\Action\MakerAdminActionController;
 use App\Http\Controllers\Admin\Action\OrderAdminActionController;
 use App\Http\Controllers\Admin\Action\ProductAdminActionController;
+use App\Http\Controllers\Admin\Action\PromoCodeAdminActionController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\CartController;
@@ -59,6 +60,8 @@ Route::prefix("action")->group(function () {
 
     Route::post("/callback-form", [CartActionController::class, "callbackForm"])->middleware("throttle:cart");
 
+    Route::post('/searchPromoCode', [PromoCodeAdminActionController::class, "search"])->name("promoCode.search");
+
     Route::prefix("cart")->name("cart.")->group(function () {
         Route::post('/add', [CartActionController::class, "addProduct"])->name("add");
         Route::post('/del', [CartActionController::class, "delProduct"])->name("del");
@@ -81,6 +84,10 @@ Route::prefix("action")->group(function () {
         );
 
         Route::apiResource("maker", MakerAdminActionController::class)->missing(
+            fn() => response()->json(["message" => "No query results for model \"Maker\""], 404)
+        );
+
+        Route::apiResource("promoCode", PromoCodeAdminActionController::class)->missing(
             fn() => response()->json(["message" => "No query results for model \"Maker\""], 404)
         );
 

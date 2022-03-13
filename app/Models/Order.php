@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
@@ -44,18 +44,33 @@ class Order extends Model
         return $this->comment;
     }
 
+    public function getPromoCodeId()
+    {
+        return $this->promo_code_id;
+    }
+
+    public function getTotalPrice()
+    {
+        return $this->total_price;
+    }
+
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, "products_orders")->using(ProductsOrders::class);
+    }
+
+    public function promoCode(): PromoCode
+    {
+        return $this->hasOne(PromoCode::class, "promo_code_id")->getResults();
     }
     //</editor-fold>
 
     //<editor-fold desc="Search">
 
 
-    public static function getById($id): Order
+    public static function getById($id): Builder|Order
     {
-        return Order::where("id", $id)->first() ?? new Order();
+        return Order::query()->where("id", $id)->firstOrNew();
     }
 
     //</editor-fold>
@@ -68,16 +83,26 @@ class Order extends Model
      * @param $comment
      * @return Order
      */
-    public static function create(Collection $products, $fio, $email, $phone, $comment): Order
+    public static function create(Collection $products, $fio, $email, $phone, $comment, PromoCode $promoCode): Order
     {
         /** @var Order $order */
         $order = Order::factory([
             "fio" => $fio,
             "email" => $email,
             "phone" => $phone ?? "",
-            "comment" => $comment ?? ""
+            "comment" => $comment ?? "",
+            "promo_code_id" => $promoCode->getId()
         ])->create();
         $order->products()->attach($products);
+        $totalPrice = 0;
+        foreach ($products as $product) {
+            $totalPrice += $product->getPrice();
+        }
+        if ($promoCode->exists) {
+            $totalPrice = $totalPrice * (1 - $promoCode->getPercent() / 100);
+        }
+        $order->total_price = $totalPrice;
+        $order->save();
         return $order;
     }
 }

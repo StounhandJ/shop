@@ -49,17 +49,6 @@ class Product extends Model implements Sitemapable
         foreach ($makers as $maker) {
             $makersString .= sprintf("%s=", $maker->getId());
         }
-        $key = sprintf(
-            "products_%s.%s.%s.%s.%s.%s.%s.%s",
-            $category->getEName(),
-            $makersString,
-            $minPrice ?? "-",
-            $maxPrice ?? "-",
-            $popular ?? "-",
-            $price ?? "-",
-            $abc ?? "-",
-            $page
-        );
 
         $builder = Product::sortProductBuilder($category, $makers, $minPrice, $maxPrice, $popular, $price, $abc);
 
@@ -153,19 +142,19 @@ class Product extends Model implements Sitemapable
         return $products;
     }
 
-    public static function getById(int $id): Product
+    public static function getById(int $id): Builder|Product
     {
-        return Product::where("id", $id)->first() ?? new Product();
+        return Product::query()->where("id", $id)->firstOrNew();
     }
 
-    public static function getByTitle(string $title): Product
+    public static function getByTitle(string $title): Builder|Product
     {
-        return Product::where("title", $title)->first() ?? new Product();
+        return Product::query()->where("title", $title)->firstOrNew();
     }
 
     public static function getByImgSrcBuilder(string $img_src): Builder
     {
-        return Product::where("img_src", $img_src);
+        return Product::query()->where("img_src", $img_src);
     }
 
     public static function make(
