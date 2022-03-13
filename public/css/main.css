@@ -281,6 +281,7 @@ a#scrollUp i {
     font-weight: 300;
     padding: 0;
     text-transform: lowercase;
+    font-weight: 500;
 }
 
 .mainmenu ul li a::first-letter {
@@ -353,6 +354,10 @@ a#scrollUp i {
 
 .search-content {
     position: relative;
+}
+
+#dcp p{
+    color: black !important;
 }
 
 .search-dropdown-content a:hover {

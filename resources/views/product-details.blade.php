@@ -1,6 +1,10 @@
 @extends('layouts/structure')
-@section('title'){{ $title }}@endsection
-@section('description'){{ $description }}@endsection
+@section('title')
+    {{ $title }}
+@endsection
+@section('description')
+    {{ $description }}
+@endsection
 @section('content')
     <section>
         <div class="container">
@@ -9,7 +13,7 @@
                 <div class="col-sm-9 padding-right">
                     <div class="product-details">
                         <div class="col-sm-5">
-                            <div class="view-product" style="background-image: url({{$product->getImgSrc()}});">
+                            <div class="view-product" style="background-image: url({{ $product->getImgSrc() }});">
                             </div>
                         </div>
                         <div class="col-sm-7">
@@ -18,14 +22,9 @@
                                 <div>
                                     <span>{{ $product->getPrice() }} &#8381;</span>
                                 </div>
-                                <p><b>Производитель: </b> {{$product->getMaker()->getName()}}</p>
-                                <p><b>ID товара: </b> {{$product->getId()}}</p>
-                                {{-- <p><b>Длина: </b> см</p>
-                                <p><b>Ширина: </b> см</p>
-                                <p><b>Высота: </b> см</p> --}}
-                                {{-- <p><b>Габариты: </b> см</p> --}}
-                                <button type="button" id="{{ $product->getId() }}"
-                                    class="btn cart btn-cart-p-d">
+                                <p><b>Производитель: </b> {{ $product->getMaker()->getName() }}</p>
+                                <p><b>Артикуль: </b> {{ $product->getId() }}</p>
+                                <button type="button" id="{{ $product->getId() }}" class="btn cart btn-cart-p-d">
                                     <i class="fa fa-shopping-cart"></i>
                                     Добавить в корзину
                                 </button>
@@ -33,44 +32,33 @@
                         </div>
                     </div>
 
-                    {{-- <div class="category-tab shop-details-tab">
+                    <div class="category-tab shop-details-tab">
                         <div class="col-sm-12">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#dcp" data-toggle="tab">Описание</a></li>
-                                <li><a href="#property" data-toggle="tab">Характеристики</a></li>
+                                <li><a href="#property" data-toggle="tab">Ещё</a></li>
                             </ul>
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade active in" id="dcp">
                                 <div class="col-sm-12">
-                                    <ul>
+                                    {{-- <ul>
                                         <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
                                         <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
                                         <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure
-                                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                        pariatur.</p>
+                                    </ul> --}}
+                                    <p>{{ $product->getDescription() }}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="property">
                                 <div class="col-sm-12">
-                                    <ul>
-                                        <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                                        <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                                        <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure
-                                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                        pariatur.</p>
+                                    {{-- @foreach ($popular as $item)
+                                        @include('inc.product-card')
+                                    @endforeach --}}
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>

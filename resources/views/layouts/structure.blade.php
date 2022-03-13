@@ -59,10 +59,35 @@
                             <a href="{{ route('index') }}"><img src="/images/logo.png" alt="logo"></a>
                         </div>
                         <div class="search-content">
-                            <div class="search-icons">
-                                <input type="search" placeholder="Поиск..." id="search" autocomplete="off">
-                                <button><i class="fa fa-times-circle" aria-hidden="true"
-                                        style="margin-top: 2px; font-size: 18px;"></i></button>
+                            <div class="btn-group">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                        USA
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Canada</a></li>
+                                        <li><a href="#">UK</a></li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                        DOLLAR
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Canadian Dollar</a></li>
+                                        <li><a href="#">Pound</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="search-content-inner">
+                                <div class="search-icons">
+                                    <input type="search" placeholder="Поиск..." id="search" autocomplete="off">
+                                    <button><i class="fa fa-times-circle" aria-hidden="true"
+                                            style="margin-top: 2px; font-size: 18px;"></i></button>
+                                </div>
                             </div>
                             <div class="search-dropdown-content"></div>
                         </div>

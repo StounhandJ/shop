@@ -1,5 +1,7 @@
 @extends('layouts/structure')
-@section('title')Главная@endsection
+@section('title')
+    Главная
+@endsection
 @section('content')
     <section id="slider">
         <!--slider-->
@@ -74,142 +76,15 @@
     <section class="index-content">
         <div class="container">
             <div class="row">
-                {{-- <div class="col-sm-12">
-                    <div class="category-tab">
-                        <!--category-tab-->
-                        <div class="col-sm-12">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a href="#toogle-list-1" data-toggle="tab">toogle-list-1</a></li>
-                                <li><a href="#toogle-list-2" data-toggle="tab">toogle-list-2</a></li>
-                                <li><a href="#toogle-list-3" data-toggle="tab">toogle-list-3</a></li>
-                                <li><a href="#toogle-list-4" data-toggle="tab">toogle-list-4</a></li>
-                                <li><a href="#toogle-list-5" data-toggle="tab">toogle-list-5</a></li>
-                            </ul>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade active in" id="toogle-list-1">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/gallery1.jpg" alt="" />
-                                                <h2>56 &#8381;</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Добавить в корзину</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="toogle-list-2">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/gallery4.jpg" alt="" />
-                                                <h2>56 &#8381;</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Добавить в корзину</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="toogle-list-3">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/gallery3.jpg" alt="" />
-                                                <h2>56 &#8381;</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Добавить в корзину</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="toogle-list-4">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/gallery1.jpg" alt="" />
-                                                <h2>56 &#8381;</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Добавить в корзину</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="toogle-list-5">
-                                <div class="col-sm-3">
-                                    <div class="product-image-wrapper">
-                                        <div class="single-products">
-                                            <div class="productinfo text-center">
-                                                <img src="/images/home/gallery2.jpg" alt="" />
-                                                <h2>56 &#8381;</h2>
-                                                <p>Easy Polo Black Edition</p>
-                                                <a href="#" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-shopping-cart"></i>Добавить в корзину</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/category-tab-->
-
-
+                <div class="col-sm-12">
                     <div class="recommended_items">
                         <!--recommended_items-->
                         <h2 class="title text-center">Рекомендуем</h2>
-
                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="/images/home/recommend1.jpg" alt="" />
-                                                    <h2>56 &#8381;</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Добавить в корзину</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="col-sm-4">
-                                        <div class="product-image-wrapper">
-                                            <div class="single-products">
-                                                <div class="productinfo text-center">
-                                                    <img src="/images/home/recommend1.jpg" alt="" />
-                                                    <h2>56 &#8381;</h2>
-                                                    <p>Easy Polo Black Edition</p>
-                                                    <a href="#" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-shopping-cart"></i>Добавить в корзину</a>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                {{-- @foreach ($paginate as $item)
+                                    @include('inc.product-card')
+                                @endforeach --}}
                             </div>
                             <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                                 <i class="fa fa-angle-left"></i>
@@ -220,35 +95,9 @@
                         </div>
                     </div>
                     <!--/recommended_items-->
-                </div> --}}
-
-                <h3>Акции</h3>
-                <div class="sales">
-                    <div class="col-sm-6">
-                        <div class="sales__self sales__self-1">
-                            Акция 1 (картинка)
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="sales__self sales__self-2">
-                            Акция 2 (картинка)
-                        </div>
-                        <div class="sales-34-wrapper">
-                            <div class="col-sm-6 sales__self-3">
-                                <div class="sales__self">
-                                    Акция 3 (картинка)
-                                </div>
-                            </div>
-                            <div class="col-sm-6 sales__self-4">
-                                <div class="sales__self">
-                                    Акция 4 (картинка)
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                <h3>Популярные категории</h3>
+                <h2 class="title text-center">Популярные категории</h2>
                 <div class="popular-categories">
                     <div class="card">
                         <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">

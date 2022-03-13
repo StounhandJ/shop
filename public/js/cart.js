@@ -1,3 +1,4 @@
+
 // total price
 function totalPrice(promocode) {
     price = 0;
@@ -7,7 +8,7 @@ function totalPrice(promocode) {
     if ($(".final-price .int span").length > 0) {
         $(".final-price .int span")[0].innerHTML = price;
         if (promocode) {
-            $(".final-price .int span")[0].innerHTML = price - (price/100*promocode);
+            $(".final-price .int span")[0].innerHTML = `${price} - ${promocode}% = ${price-(price/100*promocode)}`;
         }
     }
 } 
@@ -19,19 +20,20 @@ $(document).ready(function () {
         var promoCode = $(this).siblings("#promocode")[0];
         var fd = new FormData();
         fd.append("_method", "POST");
-        fd.append("promoCode", promoCode.value);
+        fd.append("name", promoCode.value);
         $.ajax({
             type: "POST",
             cache: false,
             processData: false,
             contentType: false,
             data: fd,
-            url: "/searchPromoCode/",
+            url: "/action/searchPromoCode",
             success: function (data) {
                 totalPrice(data);
             },
             error: function (data) {
                 alert("Промокод недействителен")
+                totalPrice();
             },
         });
     });
