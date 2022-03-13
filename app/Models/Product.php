@@ -9,10 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
-use Psr\SimpleCache\InvalidArgumentException;
 use Spatie\Sitemap\Tags\Url;
 use Spatie\Sitemap\Contracts\Sitemapable;
 
@@ -62,15 +60,10 @@ class Product extends Model implements Sitemapable
             $abc ?? "-",
             $page
         );
-        $data = Product::get_cache($key);
-        if (!is_null($data))
-            return Product::get_cache($key);
-
 
         $builder = Product::sortProductBuilder($category, $makers, $minPrice, $maxPrice, $popular, $price, $abc);
 
         $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
-        Product::set_cache($key, $paginate);
         return $paginate;
     }
 
@@ -147,18 +140,6 @@ class Product extends Model implements Sitemapable
 
     //<editor-fold desc="Get Attribute">
 
-    /**
-     * @throws InvalidArgumentException
-     */
-    private static function set_cache(string $key, $data)
-    {
-        return Cache::store("memcached")->set($key, $data, Product::$cacheSecond);
-    }
-
-    private static function get_cache(string $key)
-    {
-        return Cache::store("memcached")->get($key);
-    }
 
     public static function getListProduct(array $ids): array
     {
@@ -258,7 +239,10 @@ class Product extends Model implements Sitemapable
 
     public function getImgPath()
     {
-        return stream_get_meta_data(Storage::disk("prod_img")->readStream($this->img_src))["uri"];
+        $src_app = Storage::disk("prod_img")->readStream($this->img_src);
+        if ($src_app == null)
+            return $src_app;
+        return stream_get_meta_data($src_app)["uri"];
     }
 
     public function getEName()

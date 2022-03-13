@@ -24,7 +24,7 @@ class Category extends Model implements Sitemapable
 
     public static function getAllCategoriesOfDepartment(Department $department): \Illuminate\Database\Eloquent\Collection|array
     {
-        return Category::query()->where("department_id", $department->getId())->get();
+        return Category::query()->where("department_id", $department->getId())->get()->sortBy("name");
     }
     //</editor-fold>
 
