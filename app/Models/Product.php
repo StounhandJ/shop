@@ -9,10 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
-use Psr\SimpleCache\InvalidArgumentException;
 use Spatie\Sitemap\Tags\Url;
 use Spatie\Sitemap\Contracts\Sitemapable;
 
@@ -51,26 +49,10 @@ class Product extends Model implements Sitemapable
         foreach ($makers as $maker) {
             $makersString .= sprintf("%s=", $maker->getId());
         }
-        $key = sprintf(
-            "products_%s.%s.%s.%s.%s.%s.%s.%s",
-            $category->getEName(),
-            $makersString,
-            $minPrice ?? "-",
-            $maxPrice ?? "-",
-            $popular ?? "-",
-            $price ?? "-",
-            $abc ?? "-",
-            $page
-        );
-        $data = Product::get_cache($key);
-        if (!is_null($data))
-            return Product::get_cache($key);
-
 
         $builder = Product::sortProductBuilder($category, $makers, $minPrice, $maxPrice, $popular, $price, $abc);
 
         $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
-        Product::set_cache($key, $paginate);
         return $paginate;
     }
 
@@ -147,18 +129,6 @@ class Product extends Model implements Sitemapable
 
     //<editor-fold desc="Get Attribute">
 
-    /**
-     * @throws InvalidArgumentException
-     */
-    private static function set_cache(string $key, $data)
-    {
-        return Cache::store("memcached")->set($key, $data, Product::$cacheSecond);
-    }
-
-    private static function get_cache(string $key)
-    {
-        return Cache::store("memcached")->get($key);
-    }
 
     public static function getListProduct(array $ids): array
     {
@@ -172,19 +142,19 @@ class Product extends Model implements Sitemapable
         return $products;
     }
 
-    public static function getById(int $id): Product
+    public static function getById(int $id): Builder|Product
     {
-        return Product::where("id", $id)->first() ?? new Product();
+        return Product::query()->where("id", $id)->firstOrNew();
     }
 
-    public static function getByTitle(string $title): Product
+    public static function getByTitle(string $title): Builder|Product
     {
-        return Product::where("title", $title)->first() ?? new Product();
+        return Product::query()->where("title", $title)->firstOrNew();
     }
 
     public static function getByImgSrcBuilder(string $img_src): Builder
     {
-        return Product::where("img_src", $img_src);
+        return Product::query()->where("img_src", $img_src);
     }
 
     public static function make(
@@ -258,7 +228,10 @@ class Product extends Model implements Sitemapable
 
     public function getImgPath()
     {
-        return stream_get_meta_data(Storage::disk("prod_img")->readStream($this->img_src))["uri"];
+        $src_app = Storage::disk("prod_img")->readStream($this->img_src);
+        if ($src_app == null)
+            return $src_app;
+        return stream_get_meta_data($src_app)["uri"];
     }
 
     public function getEName()

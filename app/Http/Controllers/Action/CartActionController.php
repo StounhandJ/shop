@@ -62,7 +62,8 @@ class CartActionController extends Controller
             $request->getName(),
             $request->getEmail(),
             $request->getPhone(),
-            $request->getComment()
+            $request->getComment(),
+            $request->getPromoCode()
         );
 
         Mail::to($request->getEmail())
@@ -81,7 +82,8 @@ class CartActionController extends Controller
             $request->getName(),
             $request->getEmail(),
             $request->getPhone(),
-            $request->getComment()
+            $request->getComment(),
+            $request->getPromoCode()
         );
         Mail::to(config("app.app_mail"))
             ->send(new OrderCustomEmployerMail($order));
