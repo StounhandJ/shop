@@ -56,8 +56,8 @@ class CartSendRequest extends FormRequest
         return $this->input("comment");
     }
 
-    public function getPromoCode()
+    public function getPromoCode(): \Illuminate\Database\Eloquent\Builder|PromoCode
     {
-        return $this->input("comment");
+        return PromoCode::getByName($this->input("promo_code"));
     }
 }

@@ -9,7 +9,7 @@ class PromoCodeSearchRequest extends PromoCodeRequest
     public function rules(): array
     {
         return [
-            "name" => "string|min:3|max:60"
+            "name" => "required|string|min:3|max:60"
         ];
     }
 }

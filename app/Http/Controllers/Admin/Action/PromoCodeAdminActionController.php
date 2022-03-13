@@ -59,7 +59,7 @@ class PromoCodeAdminActionController extends Controller
     public function search(PromoCodeSearchRequest $request)
     {
         $promoCode = PromoCode::getByName($request->getName());
-        return response()->json($promoCode->getPercent(), $promoCode->exists() ? 200 : 404);
+        return response()->json($promoCode->getPercent(), $promoCode->exists ? 200 : 404);
     }
 
     /**
