@@ -15,6 +15,7 @@ return new class extends Migration {
         Schema::create('promo_codes', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->integer("percent");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,10 +33,11 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('promo_codes');
-
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropForeign("promo_code_id");
+            $table->dropColumn("promo_code_id");
+            $table->dropColumn("total_price");
         });
+
+        Schema::dropIfExists('promo_codes');
     }
 };
