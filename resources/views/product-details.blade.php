@@ -52,9 +52,9 @@
                             </div>
                             <div class="tab-pane fade" id="property">
                                 <div class="col-sm-12">
-                                    {{-- @foreach ($popular as $item)
+                                    @foreach ($popular as $item)
                                         @include('inc.product-card')
-                                    @endforeach --}}
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
