@@ -91,7 +91,8 @@ class Order extends Model
             "email" => $email,
             "phone" => $phone ?? "",
             "comment" => $comment ?? "",
-            "promo_code_id" => $promoCode->getId()
+            "promo_code_id" => $promoCode->getId(),
+            "total_price" => 0
         ])->create();
         $order->products()->attach($products);
         $totalPrice = 0;
