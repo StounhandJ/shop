@@ -19,7 +19,7 @@ $(document).ready(function () {
                 data: {
                     'p_title': $(this)[0].value
                 },
-                url: "/action/search/products",
+                url: "/api/search/products",
                 success: function (data) {
                     $("a.search-product-link").remove();
                     data["products"].forEach((item) => {

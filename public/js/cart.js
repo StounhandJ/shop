@@ -1,16 +1,41 @@
 // total price
-function totalPrice() {
+function totalPrice(promocode) {
     price = 0;
     $("tbody span.price").each((id, item_price) => {
         price += parseInt(item_price.innerHTML);
     });
     if ($(".final-price .int span").length > 0) {
         $(".final-price .int span")[0].innerHTML = price;
+        if (promocode) {
+            $(".final-price .int span")[0].innerHTML = price - (price/100*promocode);
+        }
     }
-}
+} 
 // total price
 $(document).ready(function () {
     totalPrice();
+
+    $("#promocode-btn").click(function () {
+        var promoCode = $(this).siblings("#promocode")[0];
+        var fd = new FormData();
+        fd.append("_method", "POST");
+        fd.append("promoCode", promoCode.value);
+        $.ajax({
+            type: "POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: fd,
+            url: "/searchPromoCode/",
+            success: function (data) {
+                totalPrice(data);
+            },
+            error: function (data) {
+                alert("Промокод недействителен")
+            },
+        });
+    });
+
     $(".cart_quantity_delete").click(function () {
         var parent = $(this).parent().parent();
         $.ajax({
@@ -42,7 +67,7 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             data: data,
-            url: "/action/cart/send" + ($(this)[0].id == "customId" ? "-custom" : ""),
+            url: "/action/cart/send",
             success: function () {
                 $("body").addClass("modal__visible");
                 $(".popup").addClass("modal__active");

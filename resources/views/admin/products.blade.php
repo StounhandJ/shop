@@ -1,5 +1,7 @@
 @extends('layouts/admin-structure')
-@section('title')Продукты @endsection
+@section('title')
+    Продукты
+@endsection
 @section('content')
     <div class="row g-3 mb-4 align-items-center justify-content-between">
         <div class="col-auto">
@@ -27,23 +29,43 @@
     <div class="row g-4">
         @foreach ($paginate as $item)
             <div class="col-6 col-md-4 col-xl-3 col-xxl-3">
-                <div class="app-card app-card-doc shadow-sm h-100">
-                    <img src="/images/cart/one.png" alt="Изображение продукта">
-                    <input type="file" class="add-img-btn">
-                    <div class="app-card-body p-3">
-                        <h4 class="app-doc-title truncate mb-0"><span>Название товара</span></h4>
-                        <div class="app-doc-meta">
-                            <ul class="list-unstyled mb-0">
-                                <li><span class="text-muted">Категория:</span> <input type="text" class="change-input"></li>
-                                <li><span class="text-muted">Производитель:</span> <input type="text" class="change-input">
-                                </li>
-                                <li><span class="text-muted">Цена:</span> <input type="text" class="change-input"></li>
-                            </ul>
+                <form action="">
+                    <div class="app-card app-card-doc shadow-sm h-100">
+                        <img src="{{ $item->getImgSrc() }}">
+                        <div class="app-card-body p-3">
+                            <input type="file" class="add-img-btn">
+                            <h4 class="app-doc-title truncate mb-0" title="{{ $item->getTitle() }}">
+                                <span>{{ $item->getTitle() }}</span>
+                            </h4>
+                            <input type="text" name="name" class="change-input" placeholder="Название товара"
+                                value="{{ $item->getTitle() }}">
+                            <div class="app-doc-meta">
+                                <ul class="list-unstyled mb-0">
+                                    <li><span class="text-muted">Id:</span> {{ $item->getId() }}</li>
+                                    <li><span class="text-muted department-name">Отдел:</span> {{$item->getCategory()->getDepartment()->getName()}}</li>
+                                    <li><span class="text-muted">Категория:</span>
+                                        {{ $item->getCategory()->getName() }}
+                                    </li>
+                                    <select class="change-list-category" id="{{$item->getCategory()->getId()}}"></select>
+                                    <li><span class="text-muted">Производитель:</span>
+                                        {{ $item->getMaker()->getName() }}
+                                    </li>
+                                    <select class="change-list-maker" id="{{$item->getMaker()->getId()}}"></select>
+                                    <li><span class="text-muted">Цена:</span> {{ $item->getPrice() }} руб.</li>
+                                    <input type="text" name="price" class="change-input-price" placeholder="Цена товара" value="{{ $item->getPrice() }}">
+                                    <li class="product-dcp-text"><span class="text-muted">Описание:</span> {{ $item->getDescription() }}
+                                    </li>
+                                    <textarea name="product-dcp" class="product-dcp">{{ $item->getDescription() }}</textarea>
+                                </ul>
+                            </div>
+                            <button class="change-btn change-btn-products btn btn-primary">Изменить</button>
+                            <button class="save-btn save-btn-products btn btn-primary" type="submit"
+                                id="{{ $item->getId() }}">Сохранить</button>
+                            <button class="delete-btn btn btn-primary" path="product"><i class="far fa-trash-alt"
+                                    style="color: white;"></i></button>
                         </div>
-                        <button class="change-btn btn btn-primary">Изменить</button>
-                        <button class="save-btn btn btn-primary">Сохранить</button>
                     </div>
-                </div>
+                </form>
             </div>
         @endforeach
     </div>

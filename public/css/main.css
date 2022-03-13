@@ -270,7 +270,7 @@ a#scrollUp i {
     padding: 0px 15px 15px 15px;
 } */
 
-.mainmenu ul li~li{
+.mainmenu ul li ~ li {
     margin-left: 20px;
 }
 
@@ -438,7 +438,7 @@ ul.sub-menu {
     padding-bottom: 20px;
 }
 
-.footer-row{
+.footer-row {
     display: flex;
     justify-content: center;
 }
@@ -1537,13 +1537,13 @@ h1.title {
     margin-top: 60px;
 }
 
-.promocode-wrapper{
+.promocode-wrapper {
     display: flex;
     align-items: center;
     position: relative;
 }
 
-.promocode-btn{
+.promocode-btn {
     border: 0;
     background: #75c5f0;
     outline: none;
@@ -1555,25 +1555,25 @@ h1.title {
     justify-content: center;
 }
 
-.promocode-btn .fa-plus{
+.promocode-btn .fa-plus {
     padding: 0;
 }
 
-.cart-delivery label{
+.cart-delivery label {
     display: flex;
     align-items: center;
 }
 
-.cart-delivery input[type=radio]{
+.cart-delivery input[type="radio"] {
     margin: 0;
     margin-right: 10px;
 }
 
-.logo-row{
+.logo-row {
     display: flex;
 }
 
-.logo-row .search-content{
+.logo-row .search-content {
     flex-grow: 1;
     margin: 0 50px;
 }

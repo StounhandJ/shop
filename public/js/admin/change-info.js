@@ -7,9 +7,13 @@ function update() {
     $(".save-btn").hide();
     $(".delete-btn").hide();
     $(".change-input").hide();
+    $(".change-input-price").hide();
     $(".change-input-ename").hide();
     $(".change-list-department").hide();
+    $(".change-list-category").hide();
+    $(".change-list-maker").hide();
     $(".add-img-btn").hide();
+    $(".product-dcp").hide();
     $(".change-btn").show();
     $(".change-btn").click(function () {
         $(this).hide();
@@ -23,10 +27,31 @@ function update() {
         $(this)
             .siblings(".app-doc-meta")
             .children(".mb-0")
+            .children(".change-list-category")
+            .show();
+        $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".change-list-maker")
+            .show();
+        $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
             .children(".change-input-ename")
+            .show();
+        $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".change-input-price")
+            .show();
+        $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".product-dcp")
             .show();
         $(this).siblings(".save-btn").show();
         $(this).siblings(".add-img-btn").show();
+        
 
         // dropdown list for change depart in category
         var department_list = $(this)
@@ -52,6 +77,58 @@ function update() {
             },
         });
         // dropdown list for change depart in category
+
+        // dropdown list for change categories in products
+        var category_list = $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".change-list-category");
+        var fd = new FormData();
+        fd.append("_method", "GET");
+        $.ajax({
+            type: "POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: fd,
+            url: "/action/category",
+            success: function (data) {
+                if (category_list[0] != undefined) {
+                    Object.values(data.response).forEach((item) => {
+                        category_list.append(new Option(item.name, item.id));
+                    });
+                    category_list.val(category_list[0].id).change();
+                }
+            },
+        });
+        // dropdown list for change categories in products
+        
+        // dropdown list for change makers in products
+        var maker_list = $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".change-list-maker");
+        var fd = new FormData();
+        fd.append("_method", "GET");
+        $.ajax({
+            type: "POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: fd,
+            url: "/action/maker",
+            success: function (data) {
+                if (maker_list[0] != undefined) {
+                    data.response.forEach((item) => {
+                        maker_list.append(new Option(item.name, item.id));
+                    });
+                    maker_list.val(maker_list[0].id).change();
+                }
+            },
+        });
+        // dropdown list for change makers in products
+
+
         return false;
     });
     // update maker
