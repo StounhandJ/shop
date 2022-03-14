@@ -11,12 +11,13 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Scout\Searchable;
 use Spatie\Sitemap\Tags\Url;
 use Spatie\Sitemap\Contracts\Sitemapable;
 
 class Product extends Model implements Sitemapable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Searchable;
 
     //<editor-fold desc="Setting">
     private static int $cacheSecond = 20;
@@ -33,6 +34,13 @@ class Product extends Model implements Sitemapable
     ];
 
     protected $appends = ['url', 'img_url'];
+
+    public function toSearchableArray()
+    {
+        return [
+            "title" => $this->title
+        ];
+    }
 
     public static function getProductsOfCategoryPagination(
         Category   $category,

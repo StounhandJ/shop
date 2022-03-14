@@ -12,11 +12,7 @@ class SearchController extends Controller
     {
         $products = [];
         if ($request->validateProductTitle()) {
-            $products = Product::where('title', 'ilike', '%' . $request->getProductTitle() . '%')
-                ->limit(25)
-                ->orderBy("price", $request->getPriceFilter() ? "desc" : "asc")
-                ->get()
-                ->merge($products);
+            $products = Product::search($request->getProductTitle())->get();
         } else {
             $products = Product::orderBy("price", $request->getPriceFilter() ? "desc" : "asc")
                 ->limit(25)
