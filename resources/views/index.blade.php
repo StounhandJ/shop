@@ -66,7 +66,6 @@
                             <i class="fa fa-angle-right"></i>
                         </a>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -76,60 +75,33 @@
     <section class="index-content">
         <div class="container">
             <div class="row">
+
                 <div class="col-sm-12">
-                    <div class="recommended_items">
-                        <!--recommended_items-->
-                        <h2 class="title text-center">Рекомендуем</h2>
-                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                {{-- @foreach ($paginate as $item)
+                    <div class="popular-products-wrapper popular-products-wrapper-slider">
+                        <h2 class="title text-center">Популярные товары</h2>
+                        <div class="popular-products popular-products-slider">
+                            @foreach ($popular as $item)
+                                <div class="popular-products__card">
                                     @include('inc.product-card')
-                                @endforeach --}}
-                            </div>
-                            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
+                                </div>
+                            @endforeach
                         </div>
+                        <a class="popular-products-prev left control-carousel hidden-xs">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="popular-products-next right control-carousel hidden-xs">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
                     </div>
-                    <!--/recommended_items-->
                 </div>
 
-                <h2 class="title text-center">Популярные категории</h2>
-                <div class="popular-categories">
-                    <div class="card">
-                        <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">
-                        <div class="card-body">
-                            <h5 class="card-title">Категория</h5>
-                            <p class="card-text">Описание категроии</p>
-                            <a href="#" class="btn btn-primary">Перейти</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">
-                        <div class="card-body">
-                            <h5 class="card-title">Категория</h5>
-                            <p class="card-text">Описание категроии</p>
-                            <a href="#" class="btn btn-primary">Перейти</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">
-                        <div class="card-body">
-                            <h5 class="card-title">Категория</h5>
-                            <p class="card-text">Описание категроии</p>
-                            <a href="#" class="btn btn-primary">Перейти</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="http://placehold.it/286x180/" class="card-img-top" alt="#">
-                        <div class="card-body">
-                            <h5 class="card-title">Категория</h5>
-                            <p class="card-text">Описание категроии</p>
-                            <a href="#" class="btn btn-primary">Перейти</a>
-                        </div>
+                
+
+
+                <div class="col-sm-12">
+                    <h2 class="title text-center">Популярные категории</h2>
+                    <div class="popular-categories">
+                        
                     </div>
                 </div>
             </div>

@@ -9,6 +9,9 @@
     <meta name="description"
         content="@yield('description') в интернет-магазине feeldom.ru, продажа мебели в Москве и Московской области, гибкий фильтр подбора за низкую цену">
     <meta name="keywords" content="мебель, москва, купить, доставка, заказать">
+
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/prettyPhoto.css" rel="stylesheet">
@@ -16,8 +19,11 @@
     <link href="/css/main.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/price-range.css" rel="stylesheet">
+
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" />
+
     <link rel="icon" href="/images/favicon.svg" sizes="48x48" type="image/x-icon">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"
         charset="utf-8"></script>
@@ -59,7 +65,7 @@
                             <a href="{{ route('index') }}"><img src="/images/logo.png" alt="logo"></a>
                         </div>
                         <div class="search-content">
-                            <div class="btn-group">
+                            {{-- <div class="btn-group">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                         USA
@@ -81,7 +87,7 @@
                                         <li><a href="#">Pound</a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="search-content-inner">
                                 <div class="search-icons">
                                     <input type="search" placeholder="Поиск..." id="search" autocomplete="off">
@@ -225,6 +231,7 @@
             <button id="cookie-accept-btn" style="background: none; color: white; border: none; outline: none; font-size: 18px; background: #ffcf46; border-radius: 5px; padding: 5px 10px;">Понятно</button> 
         </div> 
     </div>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/js/cut-title.js"></script>
     <script src="/js/add-to-cart.js"></script>
     <script src="/js/bootstrap.min.js"></script>

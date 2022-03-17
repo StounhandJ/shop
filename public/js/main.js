@@ -184,15 +184,15 @@ $(document).ready(function () {
         //     };
         // });
 
-        $(".filters-checkbox-more").click(function () {
-            $(".filters-checkbox-ul").toggleClass("filters-checkbox-open");
-            $(".fa-checkbox-arrow").toggleClass("fa-arrow-up fa-arrow-down");
-            if ($(".filters-checkbox-more-text").text() == "Ещё") {
-                $(".filters-checkbox-more-text").text("Свернуть");
-            } else {
-                $(".filters-checkbox-more-text").text("Ещё");
-            }
-        });
+        // $(".filters-checkbox-more").click(function () {
+        //     $(".filters-checkbox-ul").toggleClass("filters-checkbox-open");
+        //     $(".fa-checkbox-arrow").toggleClass("fa-arrow-up fa-arrow-down");
+        //     if ($(".filters-checkbox-more-text").text() == "Ещё") {
+        //         $(".filters-checkbox-more-text").text("Свернуть");
+        //     } else {
+        //         $(".filters-checkbox-more-text").text("Ещё");
+        //     }
+        // });
 
         // $("#filter-price-slider").click(function () {
         //     $(".filter-checkbox-self").each((index, element) => {
@@ -204,5 +204,44 @@ $(document).ready(function () {
         //         }
         //     });
         // });
+
+        $(".popular-products-slider").slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 2,
+            autoplay: true,
+            autoplaySpeed: 1000,
+            speed: 800,
+            arrows: true,
+            prevArrow: $(".popular-products-prev"),
+            nextArrow: $(".popular-products-next"),
+            dots: false,
+            responsive: [
+                {
+                    breakpoint: 1200,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 800,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        autoplaySpeed: 500,
+                    },
+                },
+                {
+                    breakpoint: 500,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        });
+
+
     });
 });

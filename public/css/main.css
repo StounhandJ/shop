@@ -356,7 +356,11 @@ a#scrollUp i {
     position: relative;
 }
 
-#dcp p{
+#dcp{
+    padding: 0 10px;
+}
+
+#dcp p {
     color: black !important;
 }
 
@@ -1735,9 +1739,8 @@ h1.title {
     padding-right: 0;
 }
 
-.popular-categories {
-    display: flex;
-    padding: 0 15px 45px;
+.popular-categories{
+    margin-bottom: 50px;
 }
 
 .card {
@@ -1755,10 +1758,6 @@ h1.title {
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
-}
-
-.popular-categories .card {
-    width: 25%;
 }
 
 .card-img-top {
@@ -3076,4 +3075,28 @@ h4.filter-btn button:hover {
 
 .dop-info p span {
     color: black;
+}
+
+.popular-products-wrapper-slider {
+    position: relative;
+    margin: 0 -20px 50px -20px;
+}
+
+.slick-slide {
+    margin: 0 20px;
+}
+
+.control-carousel {
+    cursor: pointer;
+}
+
+.popular-products-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.popular-products__card-details{
+    width: 50%;
 }

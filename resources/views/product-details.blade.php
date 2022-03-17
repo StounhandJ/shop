@@ -51,10 +51,14 @@
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="property">
-                                <div class="col-sm-12">
-                                    @foreach ($popular as $item)
-                                        @include('inc.product-card')
-                                    @endforeach
+                                <div class="popular-products-wrapper-details">
+                                    <div class="popular-products-details col-sm-12">
+                                        @foreach ($popular as $item)
+                                            <div class="popular-products__card-details">
+                                                @include('inc.product-card')
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>

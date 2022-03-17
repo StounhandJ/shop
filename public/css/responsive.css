@@ -124,6 +124,14 @@
 }
 
 @media (max-width: 767px) {
+    .popular-products-wrapper-slider {
+        position: relative;
+        margin: 0 -10px 50px -10px;
+    }
+    
+    .slick-slide {
+        margin: 0 10px;
+    }
     /* .category-close{
         margin-bottom: 35px !important;
     }
@@ -358,6 +366,9 @@
 }
 
 @media (max-width: 661px) {
+    .popular-products__card-details{
+        width: 100%;
+    }
     .footer-row {
         flex-direction: column;
         align-items: center;
