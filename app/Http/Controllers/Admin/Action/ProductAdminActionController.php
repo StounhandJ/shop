@@ -32,7 +32,6 @@ class ProductAdminActionController extends Controller
         $product = Product::make(
             $request->getTitle(),
             $request->getDescription(),
-            $request->getEName(),
             $request->getPrice(),
             $img_src,
             $request->getCategory(),
@@ -64,7 +63,6 @@ class ProductAdminActionController extends Controller
     {
         $product->setTitleIfNotEmpty($request->getTitle());
         $product->setDescriptionIfNotEmpty($request->getDescription());
-        $product->setENameIfNotEmpty($request->getEName());
         $product->setCategoryIfNotEmpty($request->getCategory());
         $product->setMakerIfNotEmpty($request->getMaker());
         $product->setImgSrcIfNotEmpty($request->getImg());

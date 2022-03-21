@@ -70,7 +70,6 @@ class ParseCommand extends Command
                 $search_product = Product::getByTitle($product->getTitle());
                 if ($search_product->exists) {
                     $search_product->setDescriptionIfNotEmpty($product->getDescription());
-                    $search_product->setENameIfNotEmpty($product->getEName());
                     $search_product->setImgSrcIfNotEmpty($product->getImgPath());
                     $search_product->setCategoryIfNotEmpty($product->getCategory());
                     $search_product->setMakerIfNotEmpty($product->getMaker());

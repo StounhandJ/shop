@@ -173,7 +173,6 @@ class Product extends Model implements Sitemapable
     public static function make(
         $title,
         $description,
-        $e_name,
         int $price,
         string $img_src,
         Category $category,
@@ -183,7 +182,6 @@ class Product extends Model implements Sitemapable
         return Product::factory([
             "title" => $title,
             "description" => $description,
-            "e_name" => $e_name,
             "price" => $price,
             "img_src" => $img_src,
             "category_id" => $category->getID(),
@@ -247,10 +245,6 @@ class Product extends Model implements Sitemapable
         return stream_get_meta_data($src_app)["uri"];
     }
 
-    public function getEName()
-    {
-        return $this->e_name;
-    }
     //</editor-fold>
 
     //<editor-fold desc="Search Product">
@@ -271,13 +265,6 @@ class Product extends Model implements Sitemapable
     {
         if ($description != "") {
             $this->description = $description;
-        }
-    }
-
-    public function setENameIfNotEmpty($e_name)
-    {
-        if ($e_name != "") {
-            $this->e_name = $e_name;
         }
     }
 
