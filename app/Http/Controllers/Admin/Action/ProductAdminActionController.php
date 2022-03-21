@@ -17,7 +17,7 @@ class ProductAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message" => "success", "response" => Product::all()], 200);
+        return response()->json(["message" => "success", "response" => Product::all()->sortBy("name")], 200);
     }
 
     /**

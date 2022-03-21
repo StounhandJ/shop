@@ -20,7 +20,7 @@ class PromoCodeAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message" => "success", "response" => PromoCode::all()], 200);
+        return response()->json(["message" => "success", "response" => PromoCode::all()->sortBy("name")], 200);
     }
 
     /**

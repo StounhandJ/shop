@@ -17,7 +17,7 @@ class DepartmentAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message" => "success", "response" => Department::all()], 200);
+        return response()->json(["message" => "success", "response" => Department::all()->sortBy("name")], 200);
     }
 
     /**
