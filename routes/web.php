@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\CategoryAdminController;
@@ -32,7 +33,7 @@ use App\Http\Controllers\Admin\DepartmentAdminController;
 */
 
 Route::get('/', function (Request $request) {
-    return view("index", ["departments" => \App\Models\Department::all()]);
+    return view("index", ["departments" => \App\Models\Department::all(),"popular" => Product::getPopular(25)]);
 })->middleware("cache.page")->name("index");
 
 Route::get('/custom', function (Request $request) {
