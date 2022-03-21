@@ -17,7 +17,7 @@ class MakerAdminActionController extends Controller
      */
     public function index()
     {
-        return response()->json(["message" => "success", "response" => Maker::all()], 200);
+        return response()->json(["message" => "success", "response" => Maker::all()->sortBy("name")], 200);
     }
 
     /**

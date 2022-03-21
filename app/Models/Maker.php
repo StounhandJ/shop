@@ -16,14 +16,14 @@ class Maker extends Model
 
     //<editor-fold desc="Get Attribute">
 
-    public static function getById($id): Maker
+    public static function getById($id): \Illuminate\Database\Eloquent\Builder|Maker
     {
-        return Maker::where("id", $id)->first() ?? new Maker();
+        return Maker::query()->where("id", $id)->firstOrNew();
     }
 
-    public static function getByName($name): Maker
+    public static function getByName($name): \Illuminate\Database\Eloquent\Builder|Maker
     {
-        return Maker::where("name", $name)->first() ?? new Maker();
+        return Maker::query()->where("name", $name)->firstOrNew();
     }
     //</editor-fold>
 
@@ -51,9 +51,9 @@ class Maker extends Model
 
     //</editor-fold>
 
-    public function getProductCount()
+    public function getProductCount(): int
     {
-        return Product::where("maker_id", $this->getId())->count();
+        return Product::query()->where("maker_id", $this->getId())->count();
     }
 
     public function getId()
