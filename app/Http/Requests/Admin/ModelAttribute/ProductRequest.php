@@ -18,11 +18,6 @@ class ProductRequest extends FormRequest
         return $this->input("title");
     }
 
-    public function getEName()
-    {
-        return $this->input("e_name");
-    }
-
     public function getDescription()
     {
         return $this->input("description");

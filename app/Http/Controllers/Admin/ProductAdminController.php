@@ -9,7 +9,7 @@ class ProductAdminController extends Controller
 {
     public function index()
     {
-        $paginate = Product::paginate(16, ['*'], "p")
+        $paginate = Product::query()->orderBy("title")->paginate(16, ['*'], "p")
             ->withPath(route('admin.products'));
 
         return view("admin.products", compact("paginate"));

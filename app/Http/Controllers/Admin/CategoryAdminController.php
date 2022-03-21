@@ -9,7 +9,7 @@ class CategoryAdminController extends Controller
 {
     public function index()
     {
-        $paginate = Category::paginate(16, ['*'], "p")
+        $paginate = Category::query()->orderBy("name")->paginate(16, ['*'], "p")
             ->withPath(route('admin.categories'));
 
         return view("admin.categories", compact("paginate"));

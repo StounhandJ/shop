@@ -37,7 +37,6 @@ class CatalogController extends Controller
         $paginate = Product::getProductsOfCategoryPagination(
             $category,
             $request->getMakers(),
-            $request->getPage(),
             $request->getMinPrice(),
             $request->getMaxPrice(),
             $request->getPopular(),

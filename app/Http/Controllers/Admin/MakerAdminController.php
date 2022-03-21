@@ -9,7 +9,7 @@ class MakerAdminController extends Controller
 {
     public function index()
     {
-        $paginate = Maker::paginate(16, ['*'], "p")
+        $paginate = Maker::query()->orderBy("name")->paginate(16, ['*'], "p")
             ->withPath(route('admin.makers'));
 
         return view("admin.makers", compact("paginate"));
