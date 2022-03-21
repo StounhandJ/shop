@@ -51,7 +51,6 @@ function update() {
             .show();
         $(this).siblings(".save-btn").show();
         $(this).siblings(".add-img-btn").show();
-        
 
         // dropdown list for change depart in category
         var department_list = $(this)
@@ -69,7 +68,7 @@ function update() {
             url: "/action/department",
             success: function (data) {
                 if (department_list[0] != undefined) {
-                    data.response.forEach((item) => {
+                    Object.values(data.response).forEach((item) => {
                         department_list.append(new Option(item.name, item.id));
                     });
                     department_list.val(department_list[0].id).change();
@@ -102,7 +101,7 @@ function update() {
             },
         });
         // dropdown list for change categories in products
-        
+
         // dropdown list for change makers in products
         var maker_list = $(this)
             .siblings(".app-doc-meta")
@@ -127,7 +126,6 @@ function update() {
             },
         });
         // dropdown list for change makers in products
-
 
         return false;
     });
@@ -192,21 +190,23 @@ function update() {
 
     // update department
     $(".save-btn-departments").click(function () {
-        var data = {};
-        $(this)
-            .parents("form")
-            .serializeArray()
-            .forEach((item) => {
-                data[item.name] = item.value;
-            });
+        var fd = new FormData();
+        fd.append("name", $(this).siblings(".change-input")[0].value);
+        fd.append("e_name", $(this).siblings(".app-doc-meta").children(".mb-0").children(".change-input-ename")[0].value);
+
+
         uri = $(this).siblings(".app-doc-meta").children(".mb-0").children()[0];
         department_name = $(this).siblings("h4").children()[0];
         btn = $(this)[0];
+
         if ($(this)[0].id !== "") {
-            data["_method"]="PUT"
+            fd.append("_method", "PUT");
             $.ajax({
                 type: "POST",
-                data: data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: fd,
                 url: "/action/department/" + $(this)[0].id,
                 success: function (data) {
                     department_name.innerHTML = data.response.name;
@@ -226,10 +226,13 @@ function update() {
             });
         } else {
             // add department
-            data["_method"]="PUT"
+            fd.append("_method", "POST");
             $.ajax({
                 type: "POST",
-                data: data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: fd,
                 url: "/action/department",
                 success: function (data) {
                     department_name.innerHTML = data.response.name;
@@ -403,7 +406,7 @@ $(document).ready(function () {
     update();
     // add maker
     $(".add-btn-makers").click(function () {
-        $(".all-cards").append(
+        $(".all-cards").prepend(
             '<div class="col-6 col-md-4 col-xl-3 col-xxl-3">' +
                 '<div class="app-card app-card-doc shadow-sm h-100">' +
                 '<div class="app-card-body p-3">' +
@@ -428,7 +431,7 @@ $(document).ready(function () {
 
     // add department
     $(".add-btn-departments").click(function () {
-        $(".all-cards").append(
+        $(".all-cards").prepend(
             '<div class="col-6 col-md-4 col-xl-3 col-xxl-3">' +
                 '<div class="app-card app-card-doc shadow-sm h-100">' +
                 '<div class="app-card-body p-3">' +
@@ -455,7 +458,7 @@ $(document).ready(function () {
 
     // add category
     $(".add-btn-categories").click(function () {
-        $(".all-cards").append(
+        $(".all-cards").prepend(
             '<div class="col-6 col-md-4 col-xl-3 col-xxl-3">' +
                 '<div class="app-card app-card-doc shadow-sm h-100">' +
                 '<div class="app-card-body p-3">' +
@@ -469,7 +472,7 @@ $(document).ready(function () {
                 '<li><span class="text-muted">Отдел:</span></li>' +
                 '<select class="change-list-department">' +
                 "</select>" +
-                '<li><span class="text-muted">Товаров:</span></li>' +
+                '<li><span class="text-muted">Товаров: </span></li>' +
                 "</ul>" +
                 "</div>" +
                 '<button class="change-btn change-btn-categories btn btn-primary">Изменить</button>' +

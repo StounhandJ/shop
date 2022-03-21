@@ -16,7 +16,6 @@
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link id="theme-style" rel="stylesheet" href="/css/admin.css">
-    <link rel="icon" href="/images/favicon.svg" sizes="48x48" type="image/x-icon">
 </head>
 
 <body class="app">
@@ -29,7 +28,6 @@
                             <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none" href="#">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"
                                     role="img">
-                                    <title>Menu</title>
                                     <path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
                                         stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path>
                                 </svg>
@@ -75,7 +73,7 @@
                                 <span class="nav-link-text">Заказы</span>
                             </a>
                         </li> --}}
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a class="{{Request::url() == route('admin.makers') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.makers') }}">
                                 <span class="nav-icon">
                                     <i class="fa fa-user" aria-hidden="true" style="font-size: 18px;"></i>
@@ -98,7 +96,7 @@
                                 </span>
                                 <span class="nav-link-text">Категории</span>
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             <a class="{{Request::url() == route('admin.products') ? 'active nav-link' : 'nav-link'}}" href="{{ route('admin.products') }}">
                                 <span class="nav-icon">

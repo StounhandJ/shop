@@ -16,6 +16,7 @@
                             <option value="price">Цене</option>
                             <option value="makers">Производителю</option>
                             <option value="category">Категории</option>
+                            <option value="department">Отделу</option>
                         </select>
                     </div>
                     <div class="col-auto">
@@ -42,18 +43,21 @@
                             <div class="app-doc-meta">
                                 <ul class="list-unstyled mb-0">
                                     <li><span class="text-muted">Id:</span> {{ $item->getId() }}</li>
-                                    <li><span class="text-muted department-name">Отдел:</span> {{$item->getCategory()->getDepartment()->getName()}}</li>
-                                    <li><span class="text-muted">Категория:</span>
-                                        {{ $item->getCategory()->getName() }}
-                                    </li>
-                                    <select class="change-list-category" id="{{$item->getCategory()->getId()}}"></select>
+                                    <li><span class="text-muted department-name">Отдел:</span>
+                                        {{ $item->getCategory()->getDepartment()->getName() }}</li>
+                                    <select class="change-list-department"
+                                        id="{{ $item->getCategory()->getDepartment()->getId() }}"></select>
+                                    <li><span class="text-muted">Категория: </span>{{ $item->getCategory()->getName() }}</li>
+                                    <select class="change-list-category" id="{{ $item->getCategory()->getId() }}"></select>
                                     <li><span class="text-muted">Производитель:</span>
                                         {{ $item->getMaker()->getName() }}
                                     </li>
-                                    <select class="change-list-maker" id="{{$item->getMaker()->getId()}}"></select>
+                                    <select class="change-list-maker" id="{{ $item->getMaker()->getId() }}"></select>
                                     <li><span class="text-muted">Цена:</span> {{ $item->getPrice() }} руб.</li>
-                                    <input type="text" name="price" class="change-input-price" placeholder="Цена товара" value="{{ $item->getPrice() }}">
-                                    <li class="product-dcp-text"><span class="text-muted">Описание:</span> {{ $item->getDescription() }}
+                                    <input type="text" name="price" class="change-input-price" placeholder="Цена товара"
+                                        value="{{ $item->getPrice() }}">
+                                    <li class="product-dcp-text"><span class="text-muted">Описание:</span>
+                                        {{ $item->getDescription() }}
                                     </li>
                                     <textarea name="product-dcp" class="product-dcp">{{ $item->getDescription() }}</textarea>
                                 </ul>

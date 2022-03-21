@@ -24,7 +24,7 @@
                                 <input type="text" class="change-input-ename" placeholder="Новый uri" value="{{$item->getEName()}}">
                                 <li><span class="text-muted department-name">Отдел:</span> {{$item->getDepartment()->getName()}}</li>
                                 <select class="change-list-department" id="{{$item->getDepartment()->getId()}}"></select>
-                                <li><span class="text-muted">Товаров:</span>{{$item->getProductCount()}}</li>
+                                <li><span class="text-muted">Товаров: </span>{{$item->getProductCount()}}</li>
                             </ul>
                         </div>
                         <button class="change-btn change-btn-categories btn btn-primary">Изменить</button>
