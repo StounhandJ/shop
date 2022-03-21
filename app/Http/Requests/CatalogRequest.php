@@ -37,7 +37,7 @@ class CatalogRequest extends FormRequest
     {
         $page = $this->query("p");
 
-        if (filter_var($page, FILTER_VALIDATE_INT) !== false && (int)$page >= 1) {
+        if (is_numeric($page) && (int)$page >= 1) {
             return (int)$page;
         }
 

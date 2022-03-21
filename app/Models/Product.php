@@ -22,7 +22,7 @@ class Product extends Model implements Sitemapable
     //<editor-fold desc="Setting">
     private static int $cacheSecond = 20;
     public $timestamps = false;
-    protected $perPage = 18;
+    protected static int $PER_PAGE = 18;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -45,7 +45,6 @@ class Product extends Model implements Sitemapable
     public static function getProductsOfCategoryPagination(
         Category   $category,
         Collection $makers,
-                   $page,
                    $minPrice = null,
                    $maxPrice = null,
         bool       $popular = true,
@@ -60,8 +59,7 @@ class Product extends Model implements Sitemapable
 
         $builder = Product::sortProductBuilder($category, $makers, $minPrice, $maxPrice, $popular, $price, $abc);
 
-        $paginate = Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
-        return $paginate;
+        return Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
     }
 
     private static function sortProductBuilder(
@@ -125,7 +123,7 @@ class Product extends Model implements Sitemapable
             $data["abc"] = $abc;
         }
         $data["popular"] = $popular;
-        return $builder->paginate(null, ['*'], "p")
+        return $builder->paginate(Product::$PER_PAGE, ['*'], "p")
             ->withPath(
                 route(
                     'catalog.index',
