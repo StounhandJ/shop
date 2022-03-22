@@ -65,7 +65,4 @@ class Kernel extends HttpKernel
         'cache.page' => \StounhandJ\LaravelCacheRoute\Middleware\CacheRoteMiddleware::class,
     ];
 
-    protected $middlewarePriority = [
-        \App\Http\Middleware\CachePageMiddleware::class,
-    ];
 }
