@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,7 +34,18 @@ class Product extends Model implements Sitemapable
         'img_src'
     ];
 
-    protected $appends = ['url', 'img_url'];
+    protected $appends = ['url', 'img_url', 'category_name', 'maker_name'];
+
+
+    function categoryName(): Attribute
+    {
+        return Attribute::get(fn() => $this->getCategory()->getName());
+    }
+
+    function makerName(): Attribute
+    {
+        return Attribute::get(fn() => $this->getMaker()->getName());
+    }
 
     public function toSearchableArray()
     {
