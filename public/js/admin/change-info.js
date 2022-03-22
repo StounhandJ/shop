@@ -17,6 +17,7 @@ function update() {
     $(".change-btn").show();
     $(".change-btn").click(function () {
         $(this).hide();
+        $(this).parent().siblings(".admin-product-img").hide();
         $(this).siblings(".delete-btn").show();
         $(this).siblings(".change-input").show();
         $(this)
@@ -192,8 +193,13 @@ function update() {
     $(".save-btn-departments").click(function () {
         var fd = new FormData();
         fd.append("name", $(this).siblings(".change-input")[0].value);
-        fd.append("e_name", $(this).siblings(".app-doc-meta").children(".mb-0").children(".change-input-ename")[0].value);
-
+        fd.append(
+            "e_name",
+            $(this)
+                .siblings(".app-doc-meta")
+                .children(".mb-0")
+                .children(".change-input-ename")[0].value
+        );
 
         uri = $(this).siblings(".app-doc-meta").children(".mb-0").children()[0];
         department_name = $(this).siblings("h4").children()[0];
@@ -255,10 +261,10 @@ function update() {
         $(this).siblings(".delete-btn").hide();
         $(this).siblings(".change-input").hide();
         $(this)
-        .siblings(".app-doc-meta")
-        .children(".mb-0")
-        .children(".change-input-ename")
-        .hide();
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".change-input-ename")
+            .hide();
         $(this).siblings(".change-btn").show();
         return false;
     });
@@ -376,6 +382,137 @@ function update() {
     });
     // update category
 
+    // update product
+    $(".save-btn-products").click(function () {
+        var fd = new FormData();
+        fd.append("title", $(this).siblings(".change-input")[0].value);
+        fd.append(
+            "description",
+            $(this)
+                .siblings(".app-doc-meta")
+                .children(".mb-0")
+                .children(".product-dcp")[0].value
+        );
+        fd.append(
+            "category_id",
+            $(this)
+                .siblings(".app-doc-meta")
+                .children(".mb-0")
+                .children(".change-list-category")[0].value
+        );
+        fd.append(
+            "maker_id",
+            $(this)
+                .siblings(".app-doc-meta")
+                .children(".mb-0")
+                .children(".change-list-maker")[0].value
+        );
+        fd.append(
+            "price",
+            $(this)
+                .siblings(".app-doc-meta")
+                .children(".mb-0")
+                .children(".change-input-price")[0].value
+        );
+
+        if ($(this).siblings(".add-img-btn")[0].files[0] != undefined) {
+            fd.append("photo", $(this).siblings(".add-img-btn")[0].files[0]);
+        }
+
+        var product_img = $(this).parent().siblings("#admin-product-img")[0];
+        var product_title = $(this).siblings("h4")[0];
+        var product_dcp = $(this).siblings(".app-doc-meta").children(".mb-0").children(".product-dcp-text")[0];
+        var product_category_list = $(this).siblings(".app-doc-meta").children(".mb-0").children(".change-list-category")[0];
+        var product_category_text = $(this).siblings(".app-doc-meta").children(".mb-0").children(".category-text")[0];
+        var product_maker_list = $(this).siblings(".app-doc-meta").children(".mb-0").children(".change-list-maker")[0];
+        var product_maker_text = $(this).siblings(".app-doc-meta").children(".mb-0").children(".maker-text")[0];
+        var product_price = $(this).siblings(".app-doc-meta").children(".mb-0").children(".product-price")[0];
+
+        if ($(this)[0].id !== "") {
+            fd.append("_method", "PUT");
+            $.ajax({
+                type: "POST",
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: fd,
+                url: "/action/product/" + $(this)[0].id,
+                success: function (data) {
+                    product_img.src = data.response.img_url;
+                    product_title.innerHTML =  `<span>${data.response.title}</span>`;
+
+                    product_dcp.innerHTML = `<span class="text-muted">Описание: </span>${data.response.description}`;
+
+                    product_category_list.id = data.response.category_id;
+                    // product_category_text.innerHTML = `<span class="text-muted">Категория: </span>${data.response.category_name}`
+                    
+                    product_maker_list.id = data.response.maker_id;
+                    // product_maker_text.innerHTML = `<span class="text-muted">Производитель: </span>${data.response.maker_name}`
+                    
+                    product_price.innerHTML = `<span class="text-muted">Цена: </span>${data.response.price} руб.`;
+                },
+                error: function (data) {
+                    if (data.status == 422) {
+                        alert("Неверные данные");
+                    } else if (data.status == 404) {
+                        alert("Производитель не найден");
+                    } else if (data.status == 500) {
+                        alert("Написать Роме");
+                    }
+                },
+            });
+        } else {
+            // add product
+            fd.append("_method", "POST");
+            $.ajax({
+                type: "POST",
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: fd,
+                url: "/action/product",
+                success: function (data) {
+                    console.log("add product");
+                },
+                error: function (data) {
+                    if (data.status == 422) {
+                        alert("Неверные данные");
+                    } else if (data.status == 500) {
+                        alert("Написать Роме");
+                    }
+                },
+            });
+            // add product
+        }
+        $(this).hide();
+        $(this).siblings(".delete-btn").hide();
+        $(this).siblings(".change-input").hide();
+        $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".product-dcp")
+            .hide();
+        $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".change-list-category")
+            .hide();
+        $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".change-list-maker")
+            .hide();
+        $(this)
+            .siblings(".app-doc-meta")
+            .children(".mb-0")
+            .children(".change-input-price")
+            .hide();
+        $(this).siblings(".add-img-btn").hide();
+        $(this).parent().siblings(".admin-product-img").show();
+        $(this).siblings(".change-btn").show();
+    });
+    // update product
+
     // delete someone
     $(".delete-btn").click(function () {
         var closet = $(this).closest(".col-6");
@@ -485,4 +622,41 @@ $(document).ready(function () {
         update();
     });
     // add category
+
+    // add product
+    $(".add-btn-products").click(function () {
+        $(".all-cards").prepend(
+            `<div class="col-6 col-md-4 col-xl-3 col-xxl-3">
+                    <div class="app-card app-card-doc shadow-sm h-100">
+                        <div class="app-card-body p-3">
+                            <input type="file" class="add-img-btn">
+                            <h4 class="app-doc-title truncate mb-0">
+                                <span></span>
+                            </h4>
+                            <input type="text" name="name" class="change-input" placeholder="Название товара">
+                            <div class="app-doc-meta">
+                                <ul class="list-unstyled mb-0">
+                                    <li><span class="text-muted">Id:</span></li>
+                                    <li><span class="text-muted department-name">Отдел:</span></li>
+                                    <li><span class="text-muted">Категория: </span></li>
+                                    <select class="change-list-category"></select>
+                                    <li><span class="text-muted">Производитель:</span></li>
+                                    <select class="change-list-maker"></select>
+                                    <li><span class="text-muted">Цена:</span></li>
+                                    <input type="text" name="price" class="change-input-price" placeholder="Цена товара">
+                                    <li class="product-dcp-text"><span class="text-muted">Описание:</span></li>
+                                    <textarea name="product-dcp" class="product-dcp"></textarea>
+                                </ul>
+                            </div>
+                            <button class="change-btn change-btn-products btn btn-primary">Изменить</button>
+                            <button class="save-btn save-btn-products btn btn-primary">Сохранить</button>
+                            <button class="delete-btn btn btn-primary" path="product"><i class="far fa-trash-alt"
+                                    style="color: white;"></i></button>
+                        </div>
+                    </div>
+            </div>`
+        );
+        update();
+    });
+    // add product
 });
