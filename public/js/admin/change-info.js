@@ -69,6 +69,8 @@ function update() {
             url: "/action/department",
             success: function (data) {
                 if (department_list[0] != undefined) {
+                    department_list[0].innerHTML = "";
+
                     Object.values(data.response).forEach((item) => {
                         department_list.append(new Option(item.name, item.id));
                     });
@@ -94,6 +96,8 @@ function update() {
             url: "/action/category",
             success: function (data) {
                 if (category_list[0] != undefined) {
+                    category_list[0].innerHTML = "";
+
                     Object.values(data.response).forEach((item) => {
                         category_list.append(new Option(item.name, item.id));
                     });
@@ -119,6 +123,8 @@ function update() {
             url: "/action/maker",
             success: function (data) {
                 if (maker_list[0] != undefined) {
+                    maker_list[0].innerHTML = "";
+
                     data.response.forEach((item) => {
                         maker_list.append(new Option(item.name, item.id));
                     });
@@ -419,13 +425,17 @@ function update() {
             fd.append("photo", $(this).siblings(".add-img-btn")[0].files[0]);
         }
 
-        var product_img = $(this).parent().siblings("#admin-product-img")[0];
+        var product_img_update = $(this).parent().siblings(".admin-product-img")[0];
+
         var product_title = $(this).siblings("h4")[0];
         var product_dcp = $(this).siblings(".app-doc-meta").children(".mb-0").children(".product-dcp-text")[0];
+
         var product_category_list = $(this).siblings(".app-doc-meta").children(".mb-0").children(".change-list-category")[0];
         var product_category_text = $(this).siblings(".app-doc-meta").children(".mb-0").children(".category-text")[0];
+
         var product_maker_list = $(this).siblings(".app-doc-meta").children(".mb-0").children(".change-list-maker")[0];
         var product_maker_text = $(this).siblings(".app-doc-meta").children(".mb-0").children(".maker-text")[0];
+
         var product_price = $(this).siblings(".app-doc-meta").children(".mb-0").children(".product-price")[0];
 
         if ($(this)[0].id !== "") {
@@ -438,16 +448,16 @@ function update() {
                 data: fd,
                 url: "/action/product/" + $(this)[0].id,
                 success: function (data) {
-                    product_img.src = data.response.img_url;
+                    product_img_update.src = data.response.img_url;
                     product_title.innerHTML =  `<span>${data.response.title}</span>`;
 
                     product_dcp.innerHTML = `<span class="text-muted">Описание: </span>${data.response.description}`;
 
                     product_category_list.id = data.response.category_id;
-                    // product_category_text.innerHTML = `<span class="text-muted">Категория: </span>${data.response.category_name}`
+                    product_category_text.innerHTML = `<span class="text-muted">Категория: </span>${data.response.category_name}`
                     
                     product_maker_list.id = data.response.maker_id;
-                    // product_maker_text.innerHTML = `<span class="text-muted">Производитель: </span>${data.response.maker_name}`
+                    product_maker_text.innerHTML = `<span class="text-muted">Производитель: </span>${data.response.maker_name}`
                     
                     product_price.innerHTML = `<span class="text-muted">Цена: </span>${data.response.price} руб.`;
                 },
@@ -472,7 +482,18 @@ function update() {
                 data: fd,
                 url: "/action/product",
                 success: function (data) {
-                    console.log("add product");
+                    product_img_update.src = data.response.img_url;
+                    product_title.innerHTML =  `<span>${data.response.title}</span>`;
+
+                    product_dcp.innerHTML = `<span class="text-muted">Описание: </span>${data.response.description}`;
+
+                    product_category_list.id = data.response.category_id;
+                    product_category_text.innerHTML = `<span class="text-muted">Категория: </span>${data.response.category_name}`
+                    
+                    product_maker_list.id = data.response.maker_id;
+                    product_maker_text.innerHTML = `<span class="text-muted">Производитель: </span>${data.response.maker_name}`
+                    
+                    product_price.innerHTML = `<span class="text-muted">Цена: </span>${data.response.price} руб.`;
                 },
                 error: function (data) {
                     if (data.status == 422) {
@@ -627,34 +648,32 @@ $(document).ready(function () {
     $(".add-btn-products").click(function () {
         $(".all-cards").prepend(
             `<div class="col-6 col-md-4 col-xl-3 col-xxl-3">
-                    <div class="app-card app-card-doc shadow-sm h-100">
-                        <div class="app-card-body p-3">
-                            <input type="file" class="add-img-btn">
-                            <h4 class="app-doc-title truncate mb-0">
-                                <span></span>
-                            </h4>
-                            <input type="text" name="name" class="change-input" placeholder="Название товара">
-                            <div class="app-doc-meta">
-                                <ul class="list-unstyled mb-0">
-                                    <li><span class="text-muted">Id:</span></li>
-                                    <li><span class="text-muted department-name">Отдел:</span></li>
-                                    <li><span class="text-muted">Категория: </span></li>
-                                    <select class="change-list-category"></select>
-                                    <li><span class="text-muted">Производитель:</span></li>
-                                    <select class="change-list-maker"></select>
-                                    <li><span class="text-muted">Цена:</span></li>
-                                    <input type="text" name="price" class="change-input-price" placeholder="Цена товара">
-                                    <li class="product-dcp-text"><span class="text-muted">Описание:</span></li>
-                                    <textarea name="product-dcp" class="product-dcp"></textarea>
-                                </ul>
-                            </div>
-                            <button class="change-btn change-btn-products btn btn-primary">Изменить</button>
-                            <button class="save-btn save-btn-products btn btn-primary">Сохранить</button>
-                            <button class="delete-btn btn btn-primary" path="product"><i class="far fa-trash-alt"
-                                    style="color: white;"></i></button>
-                        </div>
+            <div class="app-card app-card-doc shadow-sm h-100">
+                <img class="admin-product-img">
+                <div class="app-card-body p-3">
+                    <input type="file" class="add-img-btn">
+                    <h4 class="app-doc-title truncate mb-0"><span></span></h4>
+                    <input type="text" name="name" class="change-input" placeholder="Название товара">
+                    <div class="app-doc-meta">
+                        <ul class="list-unstyled mb-0">
+                            <li><span class="text-muted">Id:</span></li>
+                            <li><span class="text-muted department-name">Отдел:</span></li>
+                            <li class="category-text"><span class="text-muted">Категория: </span></li>
+                            <select class="change-list-category"></select>
+                            <li class="maker-text"><span class="text-muted">Производитель:</span></li>
+                            <select class="change-list-maker"></select>
+                            <li class="product-price"><span class="text-muted">Цена: руб.</li>
+                            <input type="text" name="price" class="change-input-price" placeholder="Цена товара">
+                            <li class="product-dcp-text"><span class="text-muted">Описание:</span></li>
+                            <textarea name="product-dcp" class="product-dcp"></textarea>
+                        </ul>
                     </div>
-            </div>`
+                    <button class="change-btn change-btn-products btn btn-primary">Изменить</button>
+                    <button class="save-btn save-btn-products btn btn-primary">Сохранить</button>
+                    <button class="delete-btn btn btn-primary" path="product"><i class="far fa-trash-alt" style="color: white;"></i></button>
+                </div>
+            </div>
+        </div>`
         );
         update();
     });
