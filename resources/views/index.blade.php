@@ -95,13 +95,48 @@
                     </div>
                 </div>
 
-                
+
 
 
                 <div class="col-sm-12">
                     <h2 class="title text-center">Популярные категории</h2>
                     <div class="popular-categories">
-                        
+                        <div class="popular-categories-card col-sm-3">
+                            <img class="card-img-top" src="/images/popular-categories/01.png" alt="Сухие корма для собак">
+                            <div class="card-body">
+                                <h5 class="card-title">Сухие корма для собак</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Перейти</a>
+                            </div>
+                        </div>
+                        <div class="popular-categories-card col-sm-3">
+                            <img class="card-img-top" src="/images/popular-categories/02.png" alt="Сухие корма для кошек">
+                            <div class="card-body">
+                                <h5 class="card-title">Сухие корма для кошек</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Перейти</a>
+                            </div>
+                        </div>
+                        <div class="popular-categories-card col-sm-3">
+                            <img class="card-img-top" src="/images/popular-categories/03.png" alt="Наполнители">
+                            <div class="card-body">
+                                <h5 class="card-title">Наполнители</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Перейти</a>
+                            </div>
+                        </div>
+                        <div class="popular-categories-card col-sm-3">
+                            <img class="card-img-top" src="/images/popular-categories/04.png" alt="Средства от блох и клещей">
+                            <div class="card-body">
+                                <h5 class="card-title">Средства от блох и клещей</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Перейти</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

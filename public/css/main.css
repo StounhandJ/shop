@@ -1740,10 +1740,14 @@ h1.title {
 }
 
 .popular-categories{
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 20px;
     margin-bottom: 50px;
 }
 
-.card {
+.popular-categories-card {
     position: relative;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1758,12 +1762,14 @@ h1.title {
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    padding: 15px;
 }
 
 .card-img-top {
     width: 100%;
-    border-top-left-radius: calc(0.25rem - 1px);
-    border-top-right-radius: calc(0.25rem - 1px);
+    border-radius: 1000px;
+    width: 236px;
+    height: 236px;
 }
 
 .card-body {
@@ -3100,3 +3106,6 @@ h4.filter-btn button:hover {
 .popular-products__card-details{
     width: 50%;
 }
+
+
+

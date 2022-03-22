@@ -41,7 +41,7 @@
                             value="{{ $item->getTitle() }}">
                         <div class="app-doc-meta">
                             <ul class="list-unstyled mb-0">
-                                <li><span class="text-muted">Id:</span> {{ $item->getId() }}</li>
+                                <li class="id-text"><span class="text-muted">Id:</span> {{ $item->getId() }}</li>
                                 <li><span class="text-muted department-name">Отдел:</span>
                                     {{ $item->getCategory()->getDepartment()->getName() }}</li>
                                 <li class="category-text"><span class="text-muted">Категория:

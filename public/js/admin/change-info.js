@@ -437,6 +437,9 @@ function update() {
         var product_maker_text = $(this).siblings(".app-doc-meta").children(".mb-0").children(".maker-text")[0];
 
         var product_price = $(this).siblings(".app-doc-meta").children(".mb-0").children(".product-price")[0];
+        var id_text = $(this).siblings(".app-doc-meta").children(".mb-0").children(".id-text")[0];
+
+        var btn = $(this)[0];
 
         if ($(this)[0].id !== "") {
             fd.append("_method", "PUT");
@@ -460,6 +463,7 @@ function update() {
                     product_maker_text.innerHTML = `<span class="text-muted">Производитель: </span>${data.response.maker_name}`
                     
                     product_price.innerHTML = `<span class="text-muted">Цена: </span>${data.response.price} руб.`;
+                    id_text.innerHTML = `<span class="text-muted">Id:</span> ${data.response.id}`;
                 },
                 error: function (data) {
                     if (data.status == 422) {
@@ -494,6 +498,8 @@ function update() {
                     product_maker_text.innerHTML = `<span class="text-muted">Производитель: </span>${data.response.maker_name}`
                     
                     product_price.innerHTML = `<span class="text-muted">Цена: </span>${data.response.price} руб.`;
+                    btn.id = data.response.id;
+                    id_text.innerHTML = `<span class="text-muted">Id:</span> ${data.response.id}`;
                 },
                 error: function (data) {
                     if (data.status == 422) {
@@ -656,7 +662,7 @@ $(document).ready(function () {
                     <input type="text" name="name" class="change-input" placeholder="Название товара">
                     <div class="app-doc-meta">
                         <ul class="list-unstyled mb-0">
-                            <li><span class="text-muted">Id:</span></li>
+                            <li class="id-text"><span class="text-muted">Id:</span></li>
                             <li><span class="text-muted department-name">Отдел:</span></li>
                             <li class="category-text"><span class="text-muted">Категория: </span></li>
                             <select class="change-list-category"></select>
