@@ -66,6 +66,7 @@ $(document).ready(function () {
             .forEach((item) => {
                 data[item.name] = item.value;
             });
+        data["delivery"] = $("input[name=delivery]:checked")[0].id;
         $.ajax({
             type: "POST",
             data: data,

@@ -95,9 +95,9 @@
 
                                     <div class="row">
                                         <div class="col-md-12 form-group cart-delivery">
-                                            <label><input type="radio" name="delivery" id="delivery-pickup" required
+                                            <label><input type="radio" name="delivery" id="delivery_pickup" required
                                                     checked> Самовывоз</label>
-                                            <label><input type="radio" name="delivery" id="delivery-delivery" required>
+                                            <label><input type="radio" name="delivery" id="delivery_delivery" required>
                                                 Доставка</label>
                                         </div>
                                     </div>
