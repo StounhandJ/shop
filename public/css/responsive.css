@@ -31,6 +31,14 @@
 }
 
 @media (max-width: 992px) {
+    .popular-categories{
+        justify-content: center;
+    flex-wrap: wrap;
+
+    }
+    .popular-categories-card{
+        width: 45%;
+    }
     .filters-checkbox-li h4{
         padding-left: 0;
     }
@@ -366,6 +374,11 @@
 }
 
 @media (max-width: 661px) {
+    
+    .popular-categories{
+        flex-direction: column;
+        align-items: center;
+    }
     .popular-products__card-details{
         width: 100%;
     }
@@ -429,6 +442,9 @@
 }
 
 @media (max-width: 480px) {
+    .popular-categories-card{
+        width: 100%;
+    }
     .shop-grid {
         display: grid;
         grid-template-columns: 1fr;
