@@ -687,11 +687,19 @@
                                         <tr>
                                             <td align="left" class="esd-block-text es-p5t es-m-txt-c">
                                                 <p style="color: black;font-size: 16px;
-                                                line-height: 18px;text-align:left;">
+                                                line-height: 18px;text-align:left;margin-bottom:20px;">
                                                     <span style="display:block;font-weight:bold;">Итого:</span>
                                                     <span
                                                         style="display:block;color: #75c5f0;padding-top:20px;font-weight: bold;font-size: 20px;line-height: 23px;">{{ $totalPrice }}
                                                         &#8381;</span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" class="esd-block-text es-p5t es-m-txt-c">
+                                                <p style="color: black;font-size: 16px;
+                                                line-height: 18px;text-align:left;">
+                                                    <span style="display:block;font-weight:bold;">Доставка: {{ $delivery }}</span>
                                                 </p>
                                             </td>
                                         </tr>
@@ -715,8 +723,7 @@
                                         <tr>
                                             <td align="left" class="esd-block-text es-m-txt-c">
                                                 <p style="color: black;font-size: 16px;
-                                                line-height: 18px;text-align:center;margin:0;">В ближайшее время мы
-                                                    позвоним вам
+                                                line-height: 18px;text-align:center;margin:0;">В ближайшее время свяжемся с вами
                                                 </p>
                                                 <p style="color: black;font-size: 34px;
                                                 line-height: 43px;padding-top:10px;text-align:center;margin:0;">Спасибо
