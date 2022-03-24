@@ -24,6 +24,7 @@ echo -e "\033[1;32m \033[41m Granting rights to files... \033[0m"
 chmod +x data/certbot/run.sh
 chmod +x data/certbot/gen-ssl.sh
 chmod +x restart.sh
+chmod 755 -R storage/app/prod_img
 
 echo -e "\033[1;32m \033[41m Getting a wildcard certificate... \033[0m"
 ./data/certbot/run.sh $DOMAIN $CLOUDFLARE_API_KEY $CLOUDFLARE_EMAIL
