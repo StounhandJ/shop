@@ -223,11 +223,9 @@
         </div>
     </div>
     <div id="cookieNotification"> 
-        <div class="container" 
-            style="display: flex; align-items: center; justify-content: space-between;  
-                    z-index: 1000; padding: 12px 0px; position: fixed; bottom: 0; width: 100%; background: #75c5f0;"> 
-            <p style="font-size: 20px; color: white; margin: 0;">Мы используем файлы куки, чтобы пользоваться сайтом было удобно</p> 
-            <button id="cookie-accept-btn" style="background: none; color: white; border: none; outline: none; font-size: 18px; background: #ffcf46; border-radius: 5px; padding: 5px 10px;">Понятно</button> 
+        <div class="container cookie-norification-wrapper"> 
+            <p class="cookie-notification-p">Мы используем файлы куки, чтобы пользоваться сайтом было удобно</p> 
+            <button id="cookie-accept-btn" class="cookie-notification-btn">Понятно</button> 
         </div> 
     </div>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>

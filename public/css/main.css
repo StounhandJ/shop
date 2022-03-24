@@ -110,6 +110,35 @@ a#scrollUp i {
     font-size: 30px;
 }
 
+.cookie-notification-btn {
+    background: none;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    background: #ffcf46;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.cookie-notification-p {
+    font-size: 20px;
+    color: white;
+    margin: 0;
+}
+
+.cookie-norification-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    padding: 12px 0px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #75c5f0;
+}
+
 /*************************
 *******Header CSS******
 **************************/
@@ -356,7 +385,7 @@ a#scrollUp i {
     position: relative;
 }
 
-#dcp{
+#dcp {
     padding: 0 10px;
 }
 
@@ -1739,7 +1768,7 @@ h1.title {
     padding-right: 0;
 }
 
-.popular-categories{
+.popular-categories {
     display: flex;
     align-items: stretch;
     justify-content: space-between;
@@ -3096,16 +3125,13 @@ h4.filter-btn button:hover {
     cursor: pointer;
 }
 
-.popular-products-details{
+.popular-products-details {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.popular-products__card-details{
+.popular-products__card-details {
     width: 50%;
 }
-
-
-

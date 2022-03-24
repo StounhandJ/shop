@@ -132,6 +132,16 @@
 }
 
 @media (max-width: 767px) {
+
+    .cookie-notification-p {
+        font-size: 16px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .cookie-norification-wrapper {
+        flex-direction: column;
+    }
     .popular-products-wrapper-slider {
         position: relative;
         margin: 0 -10px 50px -10px;
@@ -442,6 +452,9 @@
 }
 
 @media (max-width: 480px) {
+    .cookie-notification-p {
+        font-size: 14px;
+    }
     .popular-categories-card{
         width: 100%;
     }
