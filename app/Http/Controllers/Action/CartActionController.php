@@ -63,7 +63,8 @@ class CartActionController extends Controller
             $request->getEmail(),
             $request->getPhone(),
             $request->getComment(),
-            $request->getPromoCode()
+            $request->getPromoCode(),
+            $request->getDelivery(),
         );
 
         Mail::to($request->getEmail())

@@ -83,7 +83,7 @@ class Order extends Model
      * @param $comment
      * @return Order
      */
-    public static function create(Collection $products, $fio, $email, $phone, $comment, PromoCode $promoCode): Order
+    public static function create(Collection $products, $fio, $email, $phone, $comment, PromoCode $promoCode, $delivery): Order
     {
         /** @var Order $order */
         $order = Order::factory([
@@ -92,7 +92,8 @@ class Order extends Model
             "phone" => $phone ?? "",
             "comment" => $comment ?? "",
             "promo_code_id" => $promoCode->getId(),
-            "total_price" => 0
+            "total_price" => 0,
+            "delivery" => $delivery
         ])->create();
         $order->products()->attach($products);
         $totalPrice = 0;

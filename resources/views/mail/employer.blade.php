@@ -10,4 +10,5 @@
     Телефон:  {{ $order->getPhone() }}<br>
     Почта:  {{ $order->getEmail() }}<br>
     Комментарий:  {{ $order->getComment() }}
+    Тип получения:  {{ $order->delivery=="delivery_delivery"?"Доставка":"Самовывоз" }}
 @endcomponent

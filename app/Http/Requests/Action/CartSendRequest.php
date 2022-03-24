@@ -33,6 +33,7 @@ class CartSendRequest extends FormRequest
             "phone" => "string|min:3|max:60",
             "comment" => "nullable|string|max:800",
             "promo_code" => "bail|string|exists:" . PromoCode::class . ",name",
+            "delivery" => "required|in:delivery_pickup,delivery_delivery",
         ];
     }
 
@@ -56,9 +57,14 @@ class CartSendRequest extends FormRequest
         return $this->input("comment");
     }
 
+    public function getDelivery()
+    {
+        return $this->input("delivery");
+    }
+
     public function getPromoCode(): \Illuminate\Database\Eloquent\Builder|PromoCode
     {
-        if ($this->input("promo_code")!=null)
+        if ($this->input("promo_code") != null)
             return PromoCode::getByName($this->input("promo_code"));
         return new PromoCode();
     }
