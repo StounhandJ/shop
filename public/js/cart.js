@@ -66,6 +66,12 @@ $(document).ready(function () {
             .forEach((item) => {
                 data[item.name] = item.value;
             });
+        if (data["comment"] == "") {
+            delete data["comment"];
+        }
+        if (data["promo_code"] == "") {
+            delete data["promo_code"];
+        }
         data["delivery"] = $("input[name=delivery]:checked")[0].id;
         $.ajax({
             type: "POST",
