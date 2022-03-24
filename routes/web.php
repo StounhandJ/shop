@@ -46,8 +46,8 @@ Route::get('/info', function () {
 
 Route::get('/c/{department:e_name}/{category:e_name?}', [CatalogController::class, "index"])
     ->middleware("cache.page")
-    ->where('department', '[A-Za-z|_]+')
-    ->where('category', '[A-Za-z|_]+')
+    ->where('department', '[A-Za-z|_0-9]+')
+    ->where('category', '[A-Za-z|_0-9]+')
     ->name("catalog.index");
 
 Route::get('/p/{product:id}', [ProductController::class, "index"])
