@@ -222,7 +222,7 @@
             <i class="fa fa-check-square-o" aria-hidden="true"></i>
         </div>
     </div>
-    <div id="cookieNotification"> 
+    <div id="cookieNotification" style="display: none;"> 
         <div class="container cookie-norification-wrapper"> 
             <p class="cookie-notification-p">Мы используем файлы куки, чтобы пользоваться сайтом было удобно</p> 
             <button id="cookie-accept-btn" class="cookie-notification-btn">Понятно</button> 

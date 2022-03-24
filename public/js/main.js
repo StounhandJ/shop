@@ -84,11 +84,12 @@ function checkCookies() {
     } 
  
     if (getCookie("cookie-accept") == undefined) { 
+        $("#cookieNotification").show(); 
         cookieBtn.addEventListener("click", function () { 
             $("#cookieNotification").hide(); 
             const date = new Date();
             date.setFullYear(date.getFullYear() + 1);
-            document.cookie = `cookie-accept=true;Expires=${date}`;
+            document.cookie = `cookie-accept=true;Expires=${date};path=/`;
         }); 
     } 
      
