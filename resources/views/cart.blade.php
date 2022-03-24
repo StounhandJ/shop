@@ -12,9 +12,10 @@
                     @else
                         <thead>
                             <tr class="cart_menu">
-                                <td class="product" colspan="2">Товар</td>
+                                <td class="product" colspan="3">Товар</td>
+                                {{-- <td class="quantity"></td> --}}
                                 <td class="total">Цена</td>
-                                <td></td>
+                                <td class="delete"></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,6 +28,12 @@
                                         <h4><a href="{{ route('product.details', ['product' => $product->getId()]) }}"
                                                 class="cut-title">{{ $product->getTitle() }}</a></h4>
                                         <p>ID товара: {{ $product->getId() }}</p>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <div class="cart_quantity_wrapper">
+                                            <input class="cart_quantity_input" type="number" name="quantity"
+                                                id="quantity_input" min="1" max="100" autocomplete="off" value="1">
+                                        </div>
                                     </td>
                                     <td class="cart_total">
                                         <p class="cart_total_price"><span
@@ -83,7 +90,8 @@
                                         <div class="col-md-6 form-group mb-5 promocode-wrapper">
                                             <input type="text" class="form-control" name="promo_code" id="promocode"
                                                 placeholder="Промокод (если есть)">
-                                            <button class="promocode-btn" id="promocode-btn"><i class="fa fa-plus"></i></button>
+                                            <button class="promocode-btn" id="promocode-btn"><i
+                                                    class="fa fa-plus"></i></button>
                                         </div>
                                     </div>
 

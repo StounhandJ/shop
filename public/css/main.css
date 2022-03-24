@@ -2836,9 +2836,26 @@ h3.zero-items-cart {
 }
 
 #cart_items .cart_description {
-    max-width: 735px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+#cart_items .delete {
+    width: 50px;
+}
+#cart_items .cart_quantity {
+    text-align: center;
+    width: 80px;
+}
+
+.cart_quantity_input {
+    width: 50px;
+    text-align: center;
+}
+
+.cart_quantity_input::-webkit-inner-spin-button,
+.cart_quantity_input::-webkit-outer-spin-button {
+    opacity: 1;
 }
 
 #cart_items .cart_description h4 {

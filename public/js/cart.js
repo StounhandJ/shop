@@ -1,4 +1,3 @@
-
 // total price
 function totalPrice(promocode) {
     price = 0;
@@ -13,6 +12,7 @@ function totalPrice(promocode) {
     }
 } 
 // total price
+
 $(document).ready(function () {
     totalPrice();
 
@@ -38,6 +38,17 @@ $(document).ready(function () {
         });
     });
 
+    $("#quantity_input")[0].oninput = function () {
+        let price_text = $(this).parent().parent().siblings(".cart_total").children().children()[0];
+        let quantity = $(this)[0].value;
+        
+        // let total = ;
+
+        price_text.innerText = total;
+        
+        totalPrice();
+    };
+
     $(".cart_quantity_delete").click(function () {
         var parent = $(this).parent().parent();
         $.ajax({
@@ -59,6 +70,7 @@ $(document).ready(function () {
         });
         return false;
     });
+
     $("form").submit(function () {
         var data = {};
         $(this)

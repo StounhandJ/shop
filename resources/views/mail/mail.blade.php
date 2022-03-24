@@ -494,278 +494,280 @@
 </head>
 
 <body>
-<div class="es-wrapper-color">
-    <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
-        <tbody>
-        <tr>
-            <td class="esd-email-paddings" valign="top">
-                <table cellpadding="0" cellspacing="0" class="es-header" align="center">
-                    <tbody>
-                    <tr>
-                        <td class="es-adaptive esd-stripe" esd-custom-block-id="2657" align="center">
-                            <table class="es-header-body" width="600" cellspacing="0" cellpadding="0"
-                                   align="center">
-                                <tbody>
+    <div class="es-wrapper-color">
+        <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="esd-email-paddings" valign="top">
+                        <table cellpadding="0" cellspacing="0" class="es-header" align="center">
+                            <tbody>
                                 <tr>
-                                    <td class="esd-structure" esd-general-paddings-checked="false"
-                                        style="background: #75c5f0; padding: 10px 0px;">
-                                        <table cellspacing="0" cellpadding="0" style="width:100%;">
+                                    <td class="es-adaptive esd-stripe" esd-custom-block-id="2657" align="center">
+                                        <table class="es-header-body" width="600" cellspacing="0" cellpadding="0"
+                                            align="center">
                                             <tbody>
-                                            <tr>
-                                                <td class="esd-container-frame" width="383"
-                                                    align="left">
-                                                    <table width="100%" cellspacing="0"
-                                                           cellpadding="0">
-                                                        <tbody>
-                                                        <tr>
-                                                            <td class="esd-block-menu"
-                                                                esd-img-prev-h="16"
-                                                                esd-img-prev-w="16">
-                                                                <table class="es-menu"
-                                                                       width="100%" cellspacing="0"
-                                                                       cellpadding="0">
-                                                                    <tbody>
-                                                                    <tr
-                                                                        class="links">
-                                                                        <td class="es-p10t es-p10b es-p5r es-p5l "
-                                                                            width="33.33%"
-                                                                            bgcolor="transparent"
-                                                                            align="center">
-                                                                            <a target="_blank"
-                                                                               style="color: white;text-decoration:underline;font-weight: bold;font-size: 14px;line-height: 16px;"
-                                                                               href="tel:+79788500420">+7 (978)
-                                                                                850-04-20</a>
-                                                                        </td>
-                                                                        <td class="esd-block-image es-m-p0l es-p10t es-p10b"
-                                                                            align="center"
-                                                                            style="font-size:0">
-                                                                            <a href="{{route('index')}}"
-                                                                               target="_blank">
+                                                <tr>
+                                                    <td class="esd-structure" esd-general-paddings-checked="false"
+                                                        style="background: #75c5f0; padding: 10px 0px;">
+                                                        <table cellspacing="0" cellpadding="0" style="width:100%;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="esd-container-frame" width="383"
+                                                                        align="left">
+                                                                        <table width="100%" cellspacing="0"
+                                                                            cellpadding="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="esd-block-menu"
+                                                                                        esd-img-prev-h="16"
+                                                                                        esd-img-prev-w="16">
+                                                                                        <table class="es-menu"
+                                                                                            width="100%" cellspacing="0"
+                                                                                            cellpadding="0">
+                                                                                            <tbody>
+                                                                                                <tr
+                                                                                                    class="links">
+                                                                                                    <td class="es-p10t es-p10b es-p5r es-p5l "
+                                                                                                        width="33.33%"
+                                                                                                        bgcolor="transparent"
+                                                                                                        align="center">
+                                                                                                        <a target="_blank"
+                                                                                                            style="color: white;text-decoration:underline;font-weight: bold;font-size: 14px;line-height: 16px;"
+                                                                                                            href="tel:+79788500420">+7
+                                                                                                            (978)
+                                                                                                            850-04-20</a>
+                                                                                                    </td>
+                                                                                                    <td class="esd-block-image es-m-p0l es-p10t es-p10b"
+                                                                                                        align="center"
+                                                                                                        style="font-size:0">
+                                                                                                        <a href="{{ route('index') }}"
+                                                                                                            target="_blank">
 
-                                                                                <img width="150"
-                                                                                     alt="Белый волк"
-                                                                                     src="{{ route('index')."/images/logo.png" }}"
-                                                                                />
-                                                                            </a>
-                                                                        </td>
-                                                                        <td class="es-p10t es-p10b es-p5r es-p5l "
-                                                                            width="33.33%"
-                                                                            bgcolor="transparent"
-                                                                            align="center">
-                                                                            <a target="_blank"
-                                                                               style="color: white;text-decoration:underline;font-weight: bold;font-size: 14px;line-height: 16px;"
-                                                                               href="mailto:bel.volk.zoo@gmail.com">bel.volk.zoo@gmail.com</a>
-                                                                        </td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
+                                                                                                            <img width="150"
+                                                                                                                alt="Белый волк"
+                                                                                                                src="{{ route('index') . '/images/logo.png' }}" />
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                    <td class="es-p10t es-p10b es-p5r es-p5l "
+                                                                                                        width="33.33%"
+                                                                                                        bgcolor="transparent"
+                                                                                                        align="center">
+                                                                                                        <a target="_blank"
+                                                                                                            style="color: white;text-decoration:underline;font-weight: bold;font-size: 14px;line-height: 16px;"
+                                                                                                            href="mailto:bel.volk.zoo@gmail.com">bel.volk.zoo@gmail.com</a>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </td>
                                 </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+        <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
+            <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" style="padding-top:50px"
+                esd-custom-block-id="47378">
+                <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                    <tbody>
+                        <tr>
+                            <td width="100%" class="esd-container-frame" align="center">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td align="left" class="esd-block-text es-p5t es-m-txt-c">
+                                                <p style="color: black;text-align:center;font-size: 24px;
+                                                line-height: 28px; font-weight:600">Ваш заказ</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="es-hidden" width="5"></td>
+                        </tr>
                     </tbody>
                 </table>
             </td>
-        </tr>
+        </table>
+        @php $totalPrice = 0 @endphp
+        <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
+            <td class="esd-structure" align="left" style="padding:20px 50px" esd-custom-block-id="47378">
+                <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="width:60%">
+                    <tbody>
+                        <tr>
+                            <td width="320" class="es-m-p0r es-m-p20b esd-container-frame" align="center">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td align="left" class="esd-block-text es-m-txt-c">
+                                                <p
+                                                    style="font-size: 16px;color: black;margin:0;line-height: 18px;font-weight:600;">
+                                                    Товар:</p>
+                                            </td>
+                                            <td>
 
-        </tbody>
-
-    </table>
-    <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
-        <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" style="padding-top:50px"
-            esd-custom-block-id="47378">
-            <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                <tbody>
-                <tr>
-                    <td width="100%" class="esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                            <tbody>
-                            <tr>
-                                <td align="left" class="esd-block-text es-p5t es-m-txt-c">
-                                    <p style="color: black;text-align:center;font-size: 24px;
-                                                line-height: 28px; font-weight:600">Ваш заказ</p>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td class="es-hidden" width="5"></td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </table>
-    @php $totalPrice = 0 @endphp
-    <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
-        <td class="esd-structure" align="left" style="padding:20px 50px" esd-custom-block-id="47378">
-            <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="width:60%">
-                <tbody>
-                <tr>
-                    <td width="320" class="es-m-p0r es-m-p20b esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                            <tbody>
-                            <tr>
-                                <td align="left" class="esd-block-text es-m-txt-c">
-                                    <p
-                                        style="font-size: 16px;color: black;margin:0;line-height: 18px;font-weight:600;">
-                                        Товар:</p>
-                                </td>
-                                <td>
-
-                                </td>
-                            </tr>
-                            @foreach ($order->products()->getResults() as $item)
-                                <tr>
-                                    <td align="left" class="esd-block-text es-p5t es-m-txt-c">
-                                        <p style="color: black;font-size: 16px;
+                                            </td>
+                                        </tr>
+                                        @foreach ($order->products()->getResults() as $item)
+                                            <tr>
+                                                <td align="left" class="esd-block-text es-p5t es-m-txt-c">
+                                                    <p style="color: black;font-size: 16px;
                                                 line-height: 18px;;margin:0;padding-top:20px">
-                                            <a href="{{route('product.details', ['product' => $item->getId()])}}">{{ $item->getTitle() }}</a>
-                                        </p>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </td>
-                    <td class="es-hidden" width="5"></td>
-                </tr>
-                </tbody>
-            </table>
-            <table cellpadding="0" cellspacing="0" align="right" style="width:30%">
-                <tbody>
-                <tr>
-                    <td width="96" class="es-m-p20b esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                            <tbody>
-                            <tr>
-                                <td align="right" class="esd-block-text es-m-txt-c">
-                                    <p
-                                        style="color: black;;margin:0;font-weight: bold;font-size: 16px;line-height: 18px;">
-                                        <strong>Цена</strong>
-                                    </p>
-                                </td>
-                            </tr>
-                            @foreach ($order->products()->getResults() as $item)
-                                <tr>
-                                    <td align="right" class="esd-block-text es-m-txt-c">
-                                        <p style="font-size: 25px; padding-top:10px;margin:0;color: black;">
+                                                        <a
+                                                            href="{{ route('product.details', ['product' => $item->getId()]) }}">{{ $item->getTitle() }}</a>
+                                                        {{-- {{ $item->getQuantity() }} шт. --}}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="es-hidden" width="5"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table cellpadding="0" cellspacing="0" align="right" style="width:30%">
+                    <tbody>
+                        <tr>
+                            <td width="96" class="es-m-p20b esd-container-frame" align="center">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td align="right" class="esd-block-text es-m-txt-c">
+                                                <p
+                                                    style="color: black;;margin:0;font-weight: bold;font-size: 16px;line-height: 18px;">
+                                                    <strong>Цена</strong>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        @foreach ($order->products()->getResults() as $item)
+                                            <tr>
+                                                <td align="right" class="esd-block-text es-m-txt-c">
+                                                    <p style="font-size: 25px; padding-top:10px;margin:0;color: black;">
                                                         <span
                                                             style="color: #75c5f0;font-weight: bold;font-size: 20px;line-height: 23px;text-align:right;">{{ $item->getPrice() }}
                                                             &#8381;</span>
-                                        </p>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </table>
-    <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
-        <td class="esd-structure" align="left" style="padding: 20px 50px;" esd-custom-block-id="47378">
-            <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                <tbody>
-                <tr>
-                    <td width="100%" class="esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                            <tbody>
-                            <tr>
-                                <td align="left" class="esd-block-text es-p5t es-m-txt-c">
-                                    <p style="color: black;font-size: 16px;
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </table>
+        <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
+            <td class="esd-structure" align="left" style="padding: 20px 50px;" esd-custom-block-id="47378">
+                <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                    <tbody>
+                        <tr>
+                            <td width="100%" class="esd-container-frame" align="center">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td align="left" class="esd-block-text es-p5t es-m-txt-c">
+                                                <p style="color: black;font-size: 16px;
                                                 line-height: 18px;text-align:left;margin-bottom:20px;">
-                                        <span style="display:block;font-weight:bold;">Итого:</span>
-                                        <span
-                                            style="display:block;color: #75c5f0;padding-top:20px;font-weight: bold;font-size: 20px;line-height: 23px;">{{ $order->total_price }}
+                                                    <span style="display:block;font-weight:bold;">Итого:</span>
+                                                    <span
+                                                        style="display:block;color: #75c5f0;padding-top:20px;font-weight: bold;font-size: 20px;line-height: 23px;">{{ $order->total_price }}
                                                         &#8381;</span>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="left" class="esd-block-text es-p5t es-m-txt-c">
-                                    <p style="color: black;font-size: 16px;
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" class="esd-block-text es-p5t es-m-txt-c">
+                                                <p style="color: black;font-size: 16px;
                                                 line-height: 18px;text-align:left;">
-                                        <span
-                                            style="display:block;font-weight:bold;">Тип получения: {{ $order->delivery=="delivery_delivery"?"Доставка":"Самовывоз" }}</span>
-                                    </p>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td class="es-hidden" width="5"></td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </table>
-    <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
-        <td class="esd-structure" style="padding:30px 20px 20px 20px" esd-custom-block-id="47378">
-            <table cellpadding="0" cellspacing="0" class="es-left">
-                <tbody>
-                <tr>
-                    <td width="100%" class="esd-container-frame">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                            <tbody>
-                            <tr>
-                                <td align="left" class="esd-block-text es-m-txt-c">
-                                    <p style="color: black;font-size: 16px;
+                                                    <span style="display:block;font-weight:bold;">Тип получения:
+                                                        {{ $order->delivery == 'delivery_delivery' ? 'Доставка' : 'Самовывоз' }}</span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="es-hidden" width="5"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </table>
+        <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
+            <td class="esd-structure" style="padding:30px 20px 20px 20px" esd-custom-block-id="47378">
+                <table cellpadding="0" cellspacing="0" class="es-left">
+                    <tbody>
+                        <tr>
+                            <td width="100%" class="esd-container-frame">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td align="left" class="esd-block-text es-m-txt-c">
+                                                <p style="color: black;font-size: 16px;
                                                 line-height: 18px;text-align:center;margin:0;">В ближайшее время
-                                        свяжемся с вами
-                                    </p>
-                                    <p style="color: black;font-size: 34px;
+                                                    свяжемся с вами
+                                                </p>
+                                                <p style="color: black;font-size: 34px;
                                                 line-height: 43px;padding-top:10px;text-align:center;margin:0;">Спасибо
-                                        за
-                                        заказ!</p>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td class="es-hidden" width="5"></td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </table>
-    <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
-        <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" align="left" style="background-color: #75c5f0;"
-            esd-custom-block-id="47378">
-            <table cellpadding="0" cellspacing="0" class="es-left" align="left">
-                <tbody>
-                <tr>
-                    <td width="100%" class="esd-container-frame" align="center">
-                        <table cellpadding="0" cellspacing="0" width="100%">
-                            <tbody>
-                            <tr>
-                                <td align="left" class="esd-block-text es-p5t es-m-txt-c">
-                                    <p style="color: white;font-size: 14px;
+                                                    за
+                                                    заказ!</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="es-hidden" width="5"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </table>
+        <table class="es-content" style="width: 600px !important;" cellspacing="0" cellpadding="0" align="center">
+            <td class="esd-structure es-p20t es-p20b es-p20r es-p20l" align="left" style="background-color: #75c5f0;"
+                esd-custom-block-id="47378">
+                <table cellpadding="0" cellspacing="0" class="es-left" align="left">
+                    <tbody>
+                        <tr>
+                            <td width="100%" class="esd-container-frame" align="center">
+                                <table cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td align="left" class="esd-block-text es-p5t es-m-txt-c">
+                                                <p style="color: white;font-size: 14px;
                                                 line-height: 16px;text-align:center;">©
-                                        Белый Волк, {{ now()->year }}</p>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td class="es-hidden" width="5"></td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </table>
-</div>
+                                                    Белый Волк, {{ now()->year }}</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="es-hidden" width="5"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </table>
+    </div>
 </body>
 
 </html>
