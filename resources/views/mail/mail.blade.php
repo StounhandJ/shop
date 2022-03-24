@@ -627,9 +627,10 @@
                             @foreach ($order->products()->getResults() as $item)
                                 <tr>
                                     <td align="left" class="esd-block-text es-p5t es-m-txt-c">
-                                        <a href="{{route('product.details', ['product' => $item->getId()])}}" style="color: black;font-size: 16px;
+                                        <p style="color: black;font-size: 16px;
                                                 line-height: 18px;;margin:0;padding-top:20px">
-                                            {{ $item->getTitle() }}</a>
+                                            <a href="{{route('product.details', ['product' => $item->getId()])}}">{{ $item->getTitle() }}</a>
+                                        </p>
                                     </td>
                                 </tr>
                             @endforeach
