@@ -86,7 +86,9 @@ function checkCookies() {
     if (getCookie("cookie-accept") == undefined) { 
         cookieBtn.addEventListener("click", function () { 
             $("#cookieNotification").hide(); 
-            document.cookie = "cookie-accept=true"; 
+            const date = new Date();
+            date.setFullYear(date.getFullYear() + 1);
+            document.cookie = `cookie-accept=true;Expires=${date}`;
         }); 
     } 
      
