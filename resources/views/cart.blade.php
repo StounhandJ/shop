@@ -31,8 +31,8 @@
                                     </td>
                                     <td class="cart_quantity">
                                         <div class="cart_quantity_wrapper">
-                                            <input class="cart_quantity_input" type="number" name="quantity"
-                                                id="quantity_input" min="1" max="100" autocomplete="off" 
+                                            <input class="cart_quantity_input quantity_input" type="number" name="quantity"
+                                                min="1" max="100" autocomplete="off" 
                                                 value="{{ $product->count }}"
                                                 data-normal-price="{{ $product->getPrice() }}"
                                                 data-product-id="{{ $product->getId() }}"
@@ -41,7 +41,7 @@
                                     </td>
                                     <td class="cart_total">
                                         <p class="cart_total_price"><span
-                                                class="price">{{ $product->getPrice() }}</span> &#8381;</p>
+                                                class="price">{{ $product->getPrice() * $product->count}}</span> &#8381;</p>
                                     </td>
                                     <td class="cart_delete">
                                         <a class="cart_quantity_delete" id="{{ $product->getId() }}"><i

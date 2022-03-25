@@ -95,9 +95,9 @@ $(document).ready(function () {
 function update(cart) {
     $(".count-products-in-cart")[0].innerHTML = cart.length;
     cart.forEach((id) => {
-        var element = $(`#${id}>.fa-shopping-cart`);
+        var element = $(`#${id.i}>.fa-shopping-cart`);
         if (element) {
-            $(`button#${id}`).addClass("link-disabled");
+            $(`button#${id.i}`).addClass("link-disabled");
             if (window.location.href.split("p/")[1]) {
                 element.parent().html(`<i class="fa fa-check-circle"></i> Добавлено в корзину`);
             } else {

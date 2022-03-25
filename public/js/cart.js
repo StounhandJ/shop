@@ -41,46 +41,47 @@ $(document).ready(function () {
             },
         });
     });
+    if ($(".quantity_input")[0]) {
+        $(".quantity_input").on('input', function () {
+            console.log($(this));
+            let normalPrice = $(this)[0].getAttribute("data-normal-price");
+            let priceText = $(this)
+                .parent()
+                .parent()
+                .siblings(".cart_total")
+                .children()
+                .children()[0];
+            let quantity = $(this)[0].value;
 
-    $("#quantity_input")[0].oninput = function () {
-        let normalPrice = $(this)[0].getAttribute("data-normal-price");
-        let priceText = $(this)
-            .parent()
-            .parent()
-            .siblings(".cart_total")
-            .children()
-            .children()[0];
-        let quantity = $(this)[0].value;
+            let total = normalPrice * quantity;
 
-        let total = normalPrice * quantity;
+            priceText.innerText = total;
+            totalPrice();
 
-        priceText.innerText = total;
-        totalPrice();
-
-        let fd = new FormData();
-        fd.append("_method", "POST");
-        fd.append("count", quantity);
-        fd.append("p_id", $(this)[0].getAttribute("data-product-id"));
-        $.ajax({
-            url: "/action/cart/count",
-            type: "POST",
-            cache: false,
-            processData: false,
-            contentType: false,
-            data: fd,
-            success: function (data) {
-                console.log("Кол-во товара изменено");
-            },
-            error: function (data) {
-                if (data.status == 404) {
-                    alert("Ошибка");
-                } else if (data.status == 500) {
-                    alert("Написать Роме");
-                }
-            },
+            let fd = new FormData();
+            fd.append("_method", "POST");
+            fd.append("count", quantity);
+            fd.append("p_id", $(this)[0].getAttribute("data-product-id"));
+            $.ajax({
+                url: "/action/cart/count",
+                type: "POST",
+                cache: false,
+                processData: false,
+                contentType: false,
+                data: fd,
+                success: function (data) {
+                    console.log("Кол-во товара изменено");
+                },
+                error: function (data) {
+                    if (data.status == 404) {
+                        alert("Ошибка");
+                    } else if (data.status == 500) {
+                        alert("Написать Роме");
+                    }
+                },
+            });
         });
-    };
-
+    }
     $(".cart_quantity_delete").click(function () {
         var parent = $(this).parent().parent();
         $.ajax({
