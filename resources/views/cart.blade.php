@@ -32,7 +32,8 @@
                                     <td class="cart_quantity">
                                         <div class="cart_quantity_wrapper">
                                             <input class="cart_quantity_input" type="number" name="quantity"
-                                                id="quantity_input" min="1" max="100" autocomplete="off" value="1"
+                                                id="quantity_input" min="1" max="100" autocomplete="off" 
+                                                value="{{ $product->count }}"
                                                 data-normal-price="{{ $product->getPrice() }}"
                                                 data-product-id="{{ $product->getId() }}"
                                                 >

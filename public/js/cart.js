@@ -7,10 +7,14 @@ function totalPrice(promocode) {
     if ($(".final-price .int span").length > 0) {
         $(".final-price .int span")[0].innerHTML = price;
         if (promocode) {
-            $(".final-price .int span")[0].innerHTML = `${price} - ${promocode}% = ${price-(price/100*promocode)}`;
+            $(
+                ".final-price .int span"
+            )[0].innerHTML = `${price} - ${promocode}% = ${
+                price - (price / 100) * promocode
+            }`;
         }
     }
-} 
+}
 // total price
 
 $(document).ready(function () {
@@ -32,7 +36,7 @@ $(document).ready(function () {
                 totalPrice(data);
             },
             error: function (data) {
-                alert("Промокод недействителен")
+                alert("Промокод недействителен");
                 totalPrice();
             },
         });
@@ -40,7 +44,12 @@ $(document).ready(function () {
 
     $("#quantity_input")[0].oninput = function () {
         let normalPrice = $(this)[0].getAttribute("data-normal-price");
-        let priceText = $(this).parent().parent().siblings(".cart_total").children().children()[0];
+        let priceText = $(this)
+            .parent()
+            .parent()
+            .siblings(".cart_total")
+            .children()
+            .children()[0];
         let quantity = $(this)[0].value;
 
         let total = normalPrice * quantity;
@@ -48,12 +57,17 @@ $(document).ready(function () {
         priceText.innerText = total;
         totalPrice();
 
+        let fd = new FormData();
+        fd.append("_method", "POST");
         fd.append("count", quantity);
         fd.append("p_id", $(this)[0].getAttribute("data-product-id"));
         $.ajax({
-            data: fd,
-            type: "POST",
             url: "/action/cart/count",
+            type: "POST",
+            cache: false,
+            processData: false,
+            contentType: false,
+            data: fd,
             success: function (data) {
                 console.log("Кол-во товара изменено");
             },
@@ -114,7 +128,7 @@ $(document).ready(function () {
                     if (e.code == "Escape") {
                         $(".popup").removeClass("modal__active");
                         $("body").removeClass("modal__visible");
-                    };
+                    }
                 });
                 $(".popup__close").click(function () {
                     $(".popup").removeClass("modal__active");
