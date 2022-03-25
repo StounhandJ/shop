@@ -624,14 +624,14 @@
 
                                             </td>
                                         </tr>
-                                        @foreach ($order->products()->getResults() as $item)
+                                        @foreach ($order->products_orders()->getResults() as $item)
                                             <tr>
                                                 <td align="left" class="esd-block-text es-p5t es-m-txt-c">
                                                     <p style="color: black;font-size: 16px;
                                                 line-height: 18px;;margin:0;padding-top:20px">
                                                         <a
-                                                            href="{{ route('product.details', ['product' => $item->getId()]) }}">{{ $item->getTitle() }}</a>
-                                                        {{ $item->getQuantity() }} шт.
+                                                            href="{{ route('product.details', ['product' => $item->getProduct()->getId()]) }}">{{ $item->getProduct()->getTitle() }}</a>
+                                                        {{ $item->getCount() }} шт.
                                                     </p>
                                                 </td>
                                             </tr>
@@ -657,12 +657,12 @@
                                                 </p>
                                             </td>
                                         </tr>
-                                        @foreach ($order->products()->getResults() as $item)
+                                        @foreach ($order->products_orders()->getResults() as $item)
                                             <tr>
                                                 <td align="right" class="esd-block-text es-m-txt-c">
                                                     <p style="font-size: 25px; padding-top:10px;margin:0;color: black;">
                                                         <span
-                                                            style="color: #75c5f0;font-weight: bold;font-size: 20px;line-height: 23px;text-align:right;">{{ $item->getPrice() }}
+                                                            style="color: #75c5f0;font-weight: bold;font-size: 20px;line-height: 23px;text-align:right;">{{ $item->getProduct()->getPrice() }}
                                                             &#8381;</span>
                                                     </p>
                                                 </td>
