@@ -6,7 +6,7 @@ use App\Http\Requests\Cart\Cart;
 use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CartDelProductRequest extends FormRequest
+class CartCountProductRequest extends FormRequest
 {
     use Cart;
 
@@ -28,7 +28,8 @@ class CartDelProductRequest extends FormRequest
     public function rules()
     {
         return [
-            "p_id" => "required|integer|exists:".Product::class.",id"
+            "p_id" => "required|integer|exists:" . Product::class . ",id",
+            "count" => "required|integer|min:1"
         ];
     }
 
@@ -36,4 +37,10 @@ class CartDelProductRequest extends FormRequest
     {
         return (int)$this->input("p_id");
     }
+
+    public function getProductCount(): int
+    {
+        return (int)$this->input("count");
+    }
 }
+

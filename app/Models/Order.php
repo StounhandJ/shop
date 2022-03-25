@@ -76,14 +76,16 @@ class Order extends Model
     //</editor-fold>
 
     /**
-     * @param Collection $products
+     * @param array $products
      * @param $fio
      * @param $email
      * @param $phone
      * @param $comment
+     * @param PromoCode $promoCode
+     * @param $delivery
      * @return Order
      */
-    public static function create(Collection $products, $fio, $email, $phone, $comment, PromoCode $promoCode, $delivery): Order
+    public static function create(array $products, $fio, $email, $phone, $comment, PromoCode $promoCode, $delivery): Order
     {
         /** @var Order $order */
         $order = Order::factory([
@@ -95,10 +97,11 @@ class Order extends Model
             "total_price" => 0,
             "delivery" => $delivery
         ])->create();
-        $order->products()->attach($products);
+
         $totalPrice = 0;
         foreach ($products as $product) {
-            $totalPrice += $product->getPrice();
+            $order->products()->attach($product['i'], ["count" => $product['c']]);
+            $totalPrice += Product::getById($product['i'])->getPrice() * $product['c'];
         }
         if ($promoCode->exists) {
             $totalPrice = $totalPrice * (1 - $promoCode->getPercent() / 100);

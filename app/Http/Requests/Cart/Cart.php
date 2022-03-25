@@ -17,7 +17,7 @@ trait Cart
     {
         $cartString = $this->cookie("cart");
         if (!is_null($cartString)) {
-            $cart = json_decode($cartString);
+            $cart = json_decode($cartString, true);
         } else {
             $cart = [];
         }

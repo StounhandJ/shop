@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Action;
 
 use App\Http\Requests\Cart\Cart;
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CartAddProductRequest extends FormRequest
@@ -27,7 +28,7 @@ class CartAddProductRequest extends FormRequest
     public function rules()
     {
         return [
-            "p_id" => "required|integer|exists:products,id"
+            "p_id" => "required|integer|exists:".Product::class.",id"
         ];
     }
 
