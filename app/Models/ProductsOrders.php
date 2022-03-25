@@ -24,4 +24,9 @@ class ProductsOrders extends Pivot
     {
         return Product::getById($this->product_id);
     }
+
+    public function getCount(): int
+    {
+        return $this->count;
+    }
 }

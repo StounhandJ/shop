@@ -59,6 +59,11 @@ class Order extends Model
         return $this->belongsToMany(Product::class, "products_orders")->using(ProductsOrders::class);
     }
 
+    public function products_orders(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ProductsOrders::class);
+    }
+
     public function promoCode(): PromoCode
     {
         return $this->hasOne(PromoCode::class, "promo_code_id")->getResults();

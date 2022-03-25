@@ -74,6 +74,9 @@ class CartActionController extends Controller
 
     public function send(CartSendRequest $request): \Illuminate\Http\JsonResponse
     {
+        if (count($request->getCart())==0)
+            return response()->json(["message" => "cart empty"], 401);
+
         $order = Order::create(
             $request->getCart(),
             $request->getName(),
