@@ -48,22 +48,23 @@ $(document).ready(function () {
         priceText.innerText = total;
         totalPrice();
 
-        // $.ajax({
-        //     data: {  },
-        //     type: "POST",
-        //     url: "",
-        //     success: function (data) {
-        //         priceText.innerText = total;
-        //         totalPrice();
-        //     },
-        //     error: function (data) {
-        //         if (data.status == 404) {
-        //             alert("Ошибка");
-        //         } else if (data.status == 500) {
-        //             alert("Написать Роме");
-        //         }
-        //     },
-        // });
+        fd.append("count", quantity);
+        fd.append("p_id", $(this)[0].getAttribute("data-product-id"));
+        $.ajax({
+            data: fd,
+            type: "POST",
+            url: "/action/cart/count",
+            success: function (data) {
+                console.log("Кол-во товара изменено");
+            },
+            error: function (data) {
+                if (data.status == 404) {
+                    alert("Ошибка");
+                } else if (data.status == 500) {
+                    alert("Написать Роме");
+                }
+            },
+        });
     };
 
     $(".cart_quantity_delete").click(function () {

@@ -631,7 +631,7 @@
                                                 line-height: 18px;;margin:0;padding-top:20px">
                                                         <a
                                                             href="{{ route('product.details', ['product' => $item->getId()]) }}">{{ $item->getTitle() }}</a>
-                                                        {{-- {{ $item->getQuantity() }} шт. --}}
+                                                        {{ $item->getQuantity() }} шт.
                                                     </p>
                                                 </td>
                                             </tr>
