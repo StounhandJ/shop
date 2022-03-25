@@ -16,7 +16,7 @@ class ProductsOrders extends Pivot
     protected static function booted()
     {
         static::created(function (ProductsOrders $productsOrders) {
-            $productsOrders->getProduct()->addRating();
+            $productsOrders->getProduct()->addRating($productsOrders->getCount());
         });
     }
 

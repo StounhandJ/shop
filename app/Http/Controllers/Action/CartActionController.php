@@ -78,7 +78,7 @@ class CartActionController extends Controller
             return response()->json(["message" => "cart empty"], 401);
 
         $order = Order::create(
-            $request->getCart(),
+            Collection::make(Product::getListProduct($request->getCart())),
             $request->getName(),
             $request->getEmail(),
             $request->getPhone(),
@@ -99,7 +99,7 @@ class CartActionController extends Controller
     public function sendCustom(CartSendRequest $request): \Illuminate\Http\JsonResponse
     {
         $order = Order::create(
-            [],
+            Collection::make(),
             $request->getName(),
             $request->getEmail(),
             $request->getPhone(),
