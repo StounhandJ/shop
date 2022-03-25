@@ -1,8 +1,8 @@
 @component('mail::table')
-    | Название | Цена          | Производитель  |
-    | ---------|:-------------:| --------------:|
-    @foreach ($order->products()->get() as $item)
-        | <a href="{{ $item->getUrlAttribute() }}">{{ $item->getTitle() }}</a> | {{ $item->getPrice() }}р. | {{ $item->getMaker()->getName() }} |
+    | Название | Количество    | Цена          | Производитель |
+    | ---------|:-------------:|:-------------:|--------------:|
+    @foreach ($order->products_orders()->getResults() as $item)
+        | <a href="{{ $item->getProduct()->getUrlAttribute() }}">{{ $item->getProduct()->getTitle() }}</a> | {{ $item->getCount() }} | {{ $item->getProduct()->getPrice() }}р. | {{ $item->getProduct()->getMaker()->getName() }} |
     @endforeach
 @endcomponent
 
