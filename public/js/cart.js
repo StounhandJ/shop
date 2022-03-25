@@ -43,7 +43,6 @@ $(document).ready(function () {
     });
     if ($(".quantity_input")[0]) {
         $(".quantity_input").on('input', function () {
-            console.log($(this));
             let normalPrice = $(this)[0].getAttribute("data-normal-price");
             let priceText = $(this)
                 .parent()
@@ -51,16 +50,22 @@ $(document).ready(function () {
                 .siblings(".cart_total")
                 .children()
                 .children()[0];
-            let quantity = $(this)[0].value;
+            let quantity = $(this)[0];
 
-            let total = normalPrice * quantity;
+            
+            if ($(this)[0].value > 99 && $(this)[0].value > 0) {
+                $(this)[0].value = 1;
+            }
+            
+            let total = normalPrice * quantity.value;
 
             priceText.innerText = total;
             totalPrice();
 
+
             let fd = new FormData();
             fd.append("_method", "POST");
-            fd.append("count", quantity);
+            fd.append("count", quantity.value);
             fd.append("p_id", $(this)[0].getAttribute("data-product-id"));
             $.ajax({
                 url: "/action/cart/count",

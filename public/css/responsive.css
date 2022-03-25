@@ -419,6 +419,7 @@
     #cart_items tbody tr {
         display: flex;
         flex-direction: column;
+        align-items: center;
         position: relative;
     }
     #cart_items .cart_product img {
