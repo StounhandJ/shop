@@ -148,11 +148,12 @@ class Product extends Model implements Sitemapable
     //<editor-fold desc="Get Attribute">
 
 
-    public static function getListProduct(array $ids): array
+    public static function getListProduct(array $data): array
     {
         $products = [];
-        foreach ($ids as $id) {
-            $product = Product::where("id", $id)->first();
+        foreach ($data as $id) {
+            $product = Product::query()->where("id", $id["i"])->first();
+            $product->count = $id["c"];
             if (!is_null($product)) {
                 $products[] = $product;
             }
