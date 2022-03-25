@@ -29,7 +29,7 @@ class CartCountProductRequest extends FormRequest
     {
         return [
             "p_id" => "required|integer|exists:" . Product::class . ",id",
-            "count" => "required|integer|min:1"
+            "count" => "required|integer|min:1|max:100"
         ];
     }
 
