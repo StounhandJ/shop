@@ -66,6 +66,7 @@ Route::prefix("action")->group(function () {
     Route::prefix("cart")->name("cart.")->group(function () {
         Route::post('/add', [CartActionController::class, "addProduct"])->name("add");
         Route::post('/del', [CartActionController::class, "delProduct"])->name("del");
+        Route::post('/count', [CartActionController::class, "setCountProduct"])->name("count");
         Route::post('/info', [CartActionController::class, "info"])->name("info");
         Route::post('/send', [CartActionController::class, "send"])->middleware("throttle:cart")->name("send");
         Route::post('/send-custom', [CartActionController::class, "sendCustom"])->middleware("throttle:cart")->name("send.custom");
