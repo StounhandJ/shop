@@ -39,14 +39,31 @@ $(document).ready(function () {
     });
 
     $("#quantity_input")[0].oninput = function () {
-        let price_text = $(this).parent().parent().siblings(".cart_total").children().children()[0];
+        let normalPrice = $(this)[0].getAttribute("data-normal-price");
+        let priceText = $(this).parent().parent().siblings(".cart_total").children().children()[0];
         let quantity = $(this)[0].value;
-        
-        // let total = ;
 
-        price_text.innerText = total;
-        
+        let total = normalPrice * quantity;
+
+        priceText.innerText = total;
         totalPrice();
+
+        // $.ajax({
+        //     data: {  },
+        //     type: "POST",
+        //     url: "",
+        //     success: function (data) {
+        //         priceText.innerText = total;
+        //         totalPrice();
+        //     },
+        //     error: function (data) {
+        //         if (data.status == 404) {
+        //             alert("Ошибка");
+        //         } else if (data.status == 500) {
+        //             alert("Написать Роме");
+        //         }
+        //     },
+        // });
     };
 
     $(".cart_quantity_delete").click(function () {
