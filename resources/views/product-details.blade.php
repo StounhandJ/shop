@@ -23,7 +23,7 @@
                                     <span>{{ $product->getPrice() }} &#8381;</span>
                                 </div>
                                 <p><b>Производитель: </b> {{ $product->getMaker()->getName() }}</p>
-                                <p><b>Артикуль: </b> {{ $product->getId() }}</p>
+                                {{-- <p><b>Артикуль: </b> {{ $product->getId() }}</p> --}}
                                 <button type="button" id="{{ $product->getId() }}" class="btn cart btn-cart-p-d">
                                     <i class="fa fa-shopping-cart"></i>
                                     Добавить в корзину

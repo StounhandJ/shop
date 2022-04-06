@@ -27,7 +27,7 @@
                                     <td class="cart_description">
                                         <h4><a href="{{ route('product.details', ['product' => $product->getId()]) }}"
                                                 class="cut-title">{{ $product->getTitle() }}</a></h4>
-                                        <p>ID товара: {{ $product->getId() }}</p>
+                                        {{-- <p>ID товара: {{ $product->getId() }}</p> --}}
                                     </td>
                                     <td class="cart_quantity">
                                         <div class="cart_quantity_wrapper">
