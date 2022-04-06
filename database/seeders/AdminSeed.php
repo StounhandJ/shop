@@ -17,12 +17,17 @@ class AdminSeed extends Seeder
         $admins = [
             [
                 "login" => "admin",
-                "password" => "Rad027S"
+                "password" => env('ADMIN_PASSWORD', 'Rad027S')
             ]
         ];
         foreach ($admins as $admin) {
-            if (!User::getByLogin($admin["login"])->exists) {
+            $user = User::getByLogin($admin["login"]);
+            if (!$user->exists) {
                 User::makeAdmin($admin["login"], $admin["password"])->save();
+            }
+            else{
+                $user->password = $admin["password"];
+                $user->save();
             }
         }
     }
