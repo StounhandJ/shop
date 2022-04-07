@@ -453,6 +453,14 @@
 }
 
 @media (max-width: 480px) {
+    .header-top-row{
+        flex-direction: column;
+    }
+
+    .social-icons ul{
+        display: flex !important;
+        align-items: center;
+    }
     .cookie-notification-p {
         font-size: 14px;
     }
