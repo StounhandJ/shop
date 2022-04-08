@@ -37,12 +37,13 @@ $(document).ready(function () {
             },
             error: function (data) {
                 alert("Промокод недействителен");
+                promoCode.value = "";
                 totalPrice();
             },
         });
     });
     if ($(".quantity_input")[0]) {
-        $(".quantity_input").on('input', function () {
+        $(".quantity_input").on("input", function () {
             let normalPrice = $(this)[0].getAttribute("data-normal-price");
             let priceText = $(this)
                 .parent()
@@ -52,16 +53,14 @@ $(document).ready(function () {
                 .children()[0];
             let quantity = $(this)[0];
 
-            
             if ($(this)[0].value > 99 && $(this)[0].value > 0) {
                 $(this)[0].value = 1;
             }
-            
+
             let total = normalPrice * quantity.value;
 
             priceText.innerText = total;
             totalPrice();
-
 
             let fd = new FormData();
             fd.append("_method", "POST");
@@ -140,6 +139,15 @@ $(document).ready(function () {
                     $(".popup").removeClass("modal__active");
                     $("body").removeClass("modal__visible");
                 });
+            },
+            error: function (data) {
+                if (data.status == 429) {
+                    alert(
+                        "Извините, что-то пошло не так. Возможно, вы сделали несколько запросов подряд. Попробуйте оформить заказ через несколько минут"
+                    );
+                } else if (data.status == 422) {
+                    alert(data.responseJSON.message);
+                }
             },
         });
         return false;
