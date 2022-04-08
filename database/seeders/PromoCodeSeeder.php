@@ -17,15 +17,15 @@ class PromoCodeSeeder extends Seeder
     {
         $promoCodes = [
             [
-                "name " => "Promoskidkod5",
+                "name" => "Promoskidkod5",
                 "percent" => 5
             ],
             [
-                "name " => "Promoskidkod10",
+                "name" => "Promoskidkod10",
                 "percent" => 10
             ],
             [
-                "name " => "Promoskidkod15",
+                "name" => "Promoskidkod15",
                 "percent" => 15
             ]
         ];
