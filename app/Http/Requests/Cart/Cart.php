@@ -8,8 +8,9 @@ trait Cart
     public function messages()
     {
         return [
-            'p_id.c_exists' => 'Product not found',
-            'p_id.integer' => 'No integer'
+            'p_id.c_exists' => 'Товар не найден',
+            'p_id.integer' => 'No integer',
+            'promo_code.exists' => 'Промокод не действителен'
         ];
     }
 
