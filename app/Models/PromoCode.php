@@ -41,7 +41,7 @@ class PromoCode extends Model
         $percent
     )
     {
-        return Product::factory([
+        return PromoCode::factory([
             "name" => $name,
             "percent" => $percent,
         ])->make();
