@@ -22,7 +22,11 @@ return new class extends Migration {
 
         Schema::table('orders', function (Blueprint $table) {
             $table->foreignId("promo_code_id")->nullable(true)->references('id')->on('promo_codes');
-            $table->integer("total_price");
+            $table->integer("total_price")->default(0);
+        });
+
+        Schema::table('orders', function (Blueprint $table) {
+            $table->integer("total_price")->default(null)->change();
         });
     }
 
