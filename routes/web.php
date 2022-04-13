@@ -115,7 +115,6 @@ Route::prefix("admin")->name("admin.")->middleware("auth:admin")->group(function
 
     Route::get('/makers', [MakerAdminController::class, 'index'])->name("makers");
 
-    Route::get('/', [ProductAdminController::class, 'index'])->name("index");
 });
 
 Route::get('/orders', function () {
