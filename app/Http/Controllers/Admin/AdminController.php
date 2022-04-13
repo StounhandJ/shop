@@ -13,7 +13,7 @@ class AdminController extends Controller
     public function login()
     {
         if (Auth::guard("admin")->check()) {
-            return redirect(route("admin.index"));
+            return redirect(route("admin.products"));
         }
         return view("admin.login");
     }

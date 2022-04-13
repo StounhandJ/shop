@@ -18,7 +18,7 @@ class AdminAuthController extends Controller
                 "login" => "Неправильные данные"
             ]);
         }
-        return redirect(route("admin.index"));
+        return redirect(route("admin.products"));
     }
 
     public function logout()
