@@ -97,9 +97,10 @@ function update() {
             success: function (data) {
                 if (category_list[0] != undefined) {
                     category_list[0].innerHTML = "";
-
+                    console.log(data);
                     Object.values(data.response).forEach((item) => {
-                        category_list.append(new Option(item.name, item.id));
+                        let option_name = `${item.name} (${item.department_name})`;
+                        category_list.append(new Option(option_name, item.id));
                     });
                     category_list.val(category_list[0].id).change();
                 }
