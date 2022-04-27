@@ -107,7 +107,7 @@
                                 <h5 class="card-title">Сухие корма для собак</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Перейти</a>
+                                <a href="https://bel-volk.ru/c/sobaki/korma" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
@@ -116,7 +116,7 @@
                                 <h5 class="card-title">Сухие корма для кошек</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Перейти</a>
+                                <a href="https://bel-volk.ru/c/koshki/korma_suhie_koshki" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
@@ -125,7 +125,7 @@
                                 <h5 class="card-title">Наполнители</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Перейти</a>
+                                <a href="https://bel-volk.ru/c/gryzyn/napolniteli_gryz" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
@@ -134,7 +134,7 @@
                                 <h5 class="card-title">Средства от блох и клещей</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Перейти</a>
+                                <a href="https://bel-volk.ru/c/vetapteka/insektoakaricidnye" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                     </div>
