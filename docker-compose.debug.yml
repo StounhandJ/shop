@@ -24,8 +24,11 @@ services:
       - ./storage:/var/www/storage
       - ./resources:/var/www/resources
       - ./data/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./vendor:/var/www/vendor
     depends_on:
       - pg_db
+      - kafka
+      - memcached_db
     container_name: site
 
   pg_db:
@@ -64,3 +67,33 @@ services:
     restart: always
     command:
       - '--memory-limit=100'
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - 2181:2181
+#    volumes:
+#      - zkdata:/data
+
+  kafka:
+    image: wurstmeister/kafka
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_CREATE_TOPICS: "test:1:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=local
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+      - KAFKA_CLUSTERS_0_READONLY=false
+    depends_on:
+      - kafka

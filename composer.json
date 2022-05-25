@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -18,7 +21,8 @@
         "rosell-dk/webp-convert": "^2.7",
         "spatie/laravel-sitemap": "^6.0",
         "stounhandj/htmldom-laravel": "^1.0.0",
-        "stounhandj/laravel-cache-route": "^1.1"
+        "stounhandj/laravel-cache-route": "^1.1",
+        "stounhandj/laravel-traffic-metrics": "dev-master"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -64,6 +68,12 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "lib/laravel-traffic-metrics"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }

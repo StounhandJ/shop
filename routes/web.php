@@ -34,7 +34,7 @@ use App\Http\Controllers\Admin\DepartmentAdminController;
 
 Route::get('/', function (Request $request) {
     return view("index", ["departments" => \App\Models\Department::all(),"popular" => Product::getPopular(25)]);
-})->middleware("cache.page")->name("index");
+})->middleware(["cache.page","metrics"])->name("index");
 
 Route::get('/custom', function (Request $request) {
     return view("custom", ["departments" => \App\Models\Department::all()]);
@@ -51,7 +51,7 @@ Route::get('/c/{department:e_name}/{category:e_name?}', [CatalogController::clas
     ->name("catalog.index");
 
 Route::get('/p/{product:id}', [ProductController::class, "index"])
-    ->middleware("cache.page")
+    ->middleware(["cache.page","metrics"])
     ->where('product', '[1-9]+')
     ->name("product.details");
 
