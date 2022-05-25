@@ -18,7 +18,7 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                 <div class="col-sm-6">
-                                    <h1>Название магазина</h1>
+                                    <h1>Белый волк</h1>
                                     <h2>Подзаголовок</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. </p>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1>Название магазина</h1>
+                                    <h1>Белый волк</h1>
                                     <h2>Подзаголовок</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. </p>
@@ -45,7 +45,7 @@
 
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1>Название магазина</h1>
+                                    <h1>Белый волк</h1>
                                     <h2>Подзаголовок</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. </p>

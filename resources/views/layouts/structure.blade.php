@@ -7,8 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <meta name="description"
-        content="@yield('description') в интернет-магазине feeldom.ru, продажа мебели в Москве и Московской области, гибкий фильтр подбора за низкую цену">
-    <meta name="keywords" content="мебель, москва, купить, доставка, заказать">
+        content="@yield('description') в интернет-магазине bel-volk.ru, продажа товаров для животных с большим ассортиментом, гибкий фильтр подбора за низкую цену">
+    <meta name="keywords" content="животные, крым, игрушки, севастополь, доставка, заказать">
 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
@@ -104,7 +104,7 @@
                                         <li><a href="#">UK</a></li>
                                     </ul>
                                 </div>
-                                
+
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                         DOLLAR
