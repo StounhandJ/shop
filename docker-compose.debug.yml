@@ -15,6 +15,7 @@ services:
       - DB_DATABASE=testDB
       - MEMCACHED_HOST=memcached_db
       - MEMCACHED_PORT=11211
+      - KAFKA_BROKERS=kafka:9092
     volumes:
       - ./public:/var/www/public
       - ./app:/var/www/app
@@ -71,15 +72,12 @@ services:
   zookeeper:
     image: wurstmeister/zookeeper
     ports:
-      - 2181:2181
-#    volumes:
-#      - zkdata:/data
+      - "2181:2181"
 
   kafka:
     image: wurstmeister/kafka
     environment:
       KAFKA_ADVERTISED_HOST_NAME: kafka
-      KAFKA_CREATE_TOPICS: "test:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     depends_on:
       - zookeeper

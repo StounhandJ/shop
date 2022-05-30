@@ -176,7 +176,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        StounhandJ\LaravelTrafficMetrics\TrafficMetricsProvider::class,
         /*
          * Application Service Providers...
          */
