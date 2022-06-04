@@ -18,7 +18,7 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                 <div class="col-sm-6">
-                                    <h1>Название магазина</h1>
+                                    <h1>Белый волк</h1>
                                     <h2>Подзаголовок</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. </p>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1>Название магазина</h1>
+                                    <h1>Белый волк</h1>
                                     <h2>Подзаголовок</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. </p>
@@ -45,7 +45,7 @@
 
                             <div class="item">
                                 <div class="col-sm-6">
-                                    <h1>Название магазина</h1>
+                                    <h1>Белый волк</h1>
                                     <h2>Подзаголовок</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. </p>
@@ -107,7 +107,7 @@
                                 <h5 class="card-title">Сухие корма для собак</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Перейти</a>
+                                <a href="https://bel-volk.ru/c/sobaki/korma" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
@@ -116,7 +116,7 @@
                                 <h5 class="card-title">Сухие корма для кошек</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Перейти</a>
+                                <a href="https://bel-volk.ru/c/koshki/korma_suhie_koshki" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
@@ -125,7 +125,7 @@
                                 <h5 class="card-title">Наполнители</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Перейти</a>
+                                <a href="https://bel-volk.ru/c/gryzyn/napolniteli_gryz" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
@@ -134,7 +134,7 @@
                                 <h5 class="card-title">Средства от блох и клещей</h5>
                                 <p class="card-text">Some quick example text to build on the card title and make up the
                                     bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Перейти</a>
+                                <a href="https://bel-volk.ru/c/vetapteka/insektoakaricidnye" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                     </div>
