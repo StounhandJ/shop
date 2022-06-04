@@ -47,7 +47,7 @@
                                         <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
                                         <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
                                     </ul> --}}
-                                    <p>{{ $product->getDescription() }}</p>
+                                    <p>{!! html_entity_decode(str_replace(array("\r\n", "\n"), '<br>', $product->getDescription())) !!}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="property">
