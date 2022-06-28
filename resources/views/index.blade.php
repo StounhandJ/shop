@@ -105,36 +105,32 @@
                             <img class="card-img-top" src="/images/popular-categories/01.png" alt="Сухие корма для собак">
                             <div class="card-body">
                                 <h5 class="card-title">Сухие корма для собак</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="https://bel-volk.ru/c/sobaki/korma" class="btn btn-primary">Перейти</a>
+                                <p class="card-text">Полнорационные корма для собак и щенков всех пород. Большой ассортимент! Делайте покупки с удовольствием, для ваших хвостатых любимцев!</p>
+                                <a href="#" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
                             <img class="card-img-top" src="/images/popular-categories/02.png" alt="Сухие корма для кошек">
                             <div class="card-body">
                                 <h5 class="card-title">Сухие корма для кошек</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="https://bel-volk.ru/c/koshki/korma_suhie_koshki" class="btn btn-primary">Перейти</a>
+                                <p class="card-text">В разделе Вы можете приобрести сухие корма для кошек и котят. Полнорационные корма в широком ассортименте! Покупайте с удовольствием, не выходя из дома!</p>
+                                <a href="#" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
                             <img class="card-img-top" src="/images/popular-categories/03.png" alt="Наполнители">
                             <div class="card-body">
                                 <h5 class="card-title">Наполнители</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="https://bel-volk.ru/c/gryzyn/napolniteli_gryz" class="btn btn-primary">Перейти</a>
+                                <p class="card-text">Качественные наполнители для ваших домашних питомцев. Впитывающие, силикагелевые, впитывающие... Разнообразные и ожидающие Ваш выбор.</p>
+                                <a href="#" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                         <div class="popular-categories-card">
                             <img class="card-img-top" src="/images/popular-categories/04.png" alt="Средства от блох и клещей">
                             <div class="card-body">
                                 <h5 class="card-title">Средства от блох и клещей</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="https://bel-volk.ru/c/vetapteka/insektoakaricidnye" class="btn btn-primary">Перейти</a>
+                                <p class="card-text">Защитите любимцев от накожных паразитов! Выбирайте и покупайте с заботой и любовью о Ваших четырехлапых друзьях!</p>
+                                <a href="#" class="btn btn-primary">Перейти</a>
                             </div>
                         </div>
                     </div>
