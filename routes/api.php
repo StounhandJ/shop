@@ -20,12 +20,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/search/products', [SearchController::class, "product"])
-        ->name("search.products");
+    ->name("search.products");
 
-Route::prefix("api")->name("api.")->group(function () {
-        Route::get('/department', [DepartmentAdminActionController::class, "index"])->name("department");
-        Route::get('/category', [CategoryAdminActionController::class, "index"])->name("category");
-        Route::get('/maker', [MakerAdminActionController::class, "index"])->name("maker");
-        Route::get('/promoCode', [PromoCodeAdminActionController::class, "index"])->name("promoCode");
-        Route::get('/product', [ProductAdminActionController::class, "index_sort"])->name("product_sort");
-    });
+Route::get('/department', [DepartmentAdminActionController::class, "index"])->name("department");
+Route::get('/category', [CategoryAdminActionController::class, "index"])->name("category");
+Route::get('/maker', [MakerAdminActionController::class, "index"])->name("maker");
+Route::get('/promoCode', [PromoCodeAdminActionController::class, "index"])->name("promoCode");
+Route::get('/product', [ProductAdminActionController::class, "index_sort"])->name("product_sort");

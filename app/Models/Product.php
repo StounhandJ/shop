@@ -61,7 +61,8 @@ class Product extends Model implements Sitemapable
                    $maxPrice = null,
         bool       $popular = true,
                    $price = null,
-                   $abc = null
+                   $abc = null,
+                   $user_route = true
     ): LengthAwarePaginator
     {
         $makersString = "";
@@ -71,7 +72,7 @@ class Product extends Model implements Sitemapable
 
         $builder = Product::sortProductBuilder($category, $makers, $minPrice, $maxPrice, $popular, $price, $abc);
 
-        return Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc);
+        return Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc, $user_route);
     }
 
     private static function sortProductBuilder(
@@ -84,7 +85,11 @@ class Product extends Model implements Sitemapable
                    $abc = null
     ): Builder
     {
-        $builder = Product::query()->where("category_id", $category->getId());
+        $builder = Product::query();
+
+        if ($category->exists){
+            $builder->where("category_id", $category->getId());
+        }
 
         $builder->where(function ($query) use ($makers) {
             /** @var Maker $maker */
@@ -117,7 +122,8 @@ class Product extends Model implements Sitemapable
                  $maxPrice = null,
         bool     $popular = true,
                  $price = null,
-                 $abc = null
+                 $abc = null,
+                 $user_route = true
     ): LengthAwarePaginator
     {
         $data = ['department' => $category->getDepartment()->getEName(), 'category' => $category->getEName()];
@@ -135,13 +141,19 @@ class Product extends Model implements Sitemapable
             $data["abc"] = $abc;
         }
         $data["popular"] = $popular;
-        return $builder->paginate(Product::$PER_PAGE, ['*'], "p")
-            ->withPath(
+
+        $paginate = $builder->paginate(Product::$PER_PAGE, ['*'], "p");
+        if ($user_route) {
+            $paginate = $paginate->withPath(
                 route(
                     'catalog.index',
                     $data
                 )
             );
+        }
+
+        return $paginate;
+
     }
     //</editor-fold>
 

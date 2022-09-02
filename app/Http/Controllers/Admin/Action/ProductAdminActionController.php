@@ -100,7 +100,9 @@ class ProductAdminActionController extends Controller
             $request->getPopular(),
             $request->getPrice(),
             $request->getAbc(),
+            false
         );
-        return response()->json(["message" => "success", "response" => $products]);
+
+        return response()->json(["message" => "success", "response" => $products->all()]);
     }
 }
