@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Action;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Action\ProductCreateRequest;
 use App\Http\Requests\Admin\Action\ProductUpdateRequest;
+use App\Http\Requests\ProductSortRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 
@@ -82,5 +83,24 @@ class ProductAdminActionController extends Controller
     {
         $result = $product->delete();
         return response()->json(["message" => $result ? "success" : "error"], $result ? 200 : 500);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return JsonResponse
+     */
+    public function index_sort(ProductSortRequest $request)
+    {
+        $products = Product::getProductsOfCategoryPagination(
+            $request->getCategory(),
+            $request->getMakers(),
+            $request->getMinPrice(),
+            $request->getMaxPrice(),
+            $request->getPopular(),
+            $request->getPrice(),
+            $request->getAbc(),
+        );
+        return response()->json(["message" => "success", "response" => $products]);
     }
 }
