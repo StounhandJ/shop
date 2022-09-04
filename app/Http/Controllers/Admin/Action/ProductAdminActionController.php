@@ -93,6 +93,7 @@ class ProductAdminActionController extends Controller
     public function index_sort(ProductSortRequest $request)
     {
         $products = Product::getProductsOfCategoryPagination(
+            $request->getProductTitle(),
             $request->getCategory(),
             $request->getMakers(),
             $request->getMinPrice(),

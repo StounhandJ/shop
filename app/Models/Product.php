@@ -55,6 +55,7 @@ class Product extends Model implements Sitemapable
     }
 
     public static function getProductsOfCategoryPagination(
+        ?string    $search,
         Category   $category,
         Collection $makers,
                    $minPrice = null,
@@ -70,12 +71,13 @@ class Product extends Model implements Sitemapable
             $makersString .= sprintf("%s=", $maker->getId());
         }
 
-        $builder = Product::sortProductBuilder($category, $makers, $minPrice, $maxPrice, $popular, $price, $abc);
+        $builder = Product::sortProductBuilder($search, $category, $makers, $minPrice, $maxPrice, $popular, $price, $abc);
 
         return Product::builderToPaginate($builder, $category, $minPrice, $maxPrice, $popular, $price, $abc, $user_route);
     }
 
     private static function sortProductBuilder(
+        ?string    $search,
         Category   $category,
         Collection $makers,
                    $minPrice = null,
@@ -87,7 +89,11 @@ class Product extends Model implements Sitemapable
     {
         $builder = Product::query();
 
-        if ($category->exists){
+        if ($search) {
+            $builder->where("title", "like", "%$search%");
+        }
+
+        if ($category->exists) {
             $builder->where("category_id", $category->getId());
         }
 

@@ -25,7 +25,7 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            "p_title" => "min:1",
+            "p_title" => "min:1|max:50",
             "price" => "integer|min:0|max:1"
         ];
     }

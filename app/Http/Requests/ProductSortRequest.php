@@ -28,6 +28,7 @@ class ProductSortRequest extends FormRequest
     {
         return [
             "category_id" => "integer|exists:" . Category::class . ",id",
+            "p_title" => "min:1|max:50",
             "p" => "integer|min:1",
             "popular" => "integer|min:0|max:1",
             "price" => "integer|min:0|max:1",
@@ -35,6 +36,11 @@ class ProductSortRequest extends FormRequest
             "mip" => "integer|min:0",
             "map" => "integer|min:0",
         ];
+    }
+
+    public function getProductTitle()
+    {
+        return $this->input("p_title");
     }
 
     public function getPage(): int
