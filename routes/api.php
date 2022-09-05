@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/search/products', [SearchController::class, "product"])
     ->name("search.products");
 
-Route::get('/department', [DepartmentAdminActionController::class, "index"])->name("department");
-Route::get('/category', [CategoryAdminActionController::class, "index"])->name("category");
-Route::get('/maker', [MakerAdminActionController::class, "index"])->name("maker");
-Route::get('/promoCode', [PromoCodeAdminActionController::class, "index"])->name("promoCode");
-Route::get('/product', [ProductAdminActionController::class, "index_sort"])->name("product_sort");
+Route::get('/department', [DepartmentAdminActionController::class, "index"])->middleware("cache.page")->name("department");
+Route::get('/category', [CategoryAdminActionController::class, "index"])->middleware("cache.page")->name("category");
+Route::get('/maker', [MakerAdminActionController::class, "index"])->middleware("cache.page")->name("maker");
+Route::get('/promoCode', [PromoCodeAdminActionController::class, "index"])->middleware("cache.page")->name("promoCode");
+Route::get('/product', [ProductAdminActionController::class, "index_sort"])->middleware("cache.page")->name("product_sort");
