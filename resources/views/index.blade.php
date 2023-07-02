@@ -60,9 +60,6 @@
                                         <br>
                                         <br>
                                         bel.volk.zoo@gmail.com
-                                        <br>
-                                        <br>
-                                        Или просто в чат на сайте!
                                     </p>
                                     {{-- <button type="button" class="btn btn-default get">Подробнее</button> --}}
                                 </div>
