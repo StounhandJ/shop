@@ -3151,6 +3151,8 @@ h4.filter-btn button:hover {
 
 .consultation{
     color: #696763;
+    display: block;
+    padding: 10px 0;
 }
 .consultation:hover{
     color: #75c5f0;

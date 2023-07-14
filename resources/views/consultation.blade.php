@@ -1,6 +1,6 @@
 @extends('layouts/structure')
 @section('title')
-    Корзина
+    Консультация с ветеринаром
 @endsection
 @section('content')
     <section id="do_action">
@@ -19,7 +19,7 @@
                                             placeholder="Имя*" required>
                                     </div>
                                     <div class="col-md-6 form-group mb-5">
-                                        <input type="tel" class="form-control" name="phone" id="phone"
+                                        <input type="tel" class="form-control" name="phone" id="phone" data-phone-pattern
                                             placeholder="Контактный телефон*" required>
                                     </div>
                                 </div>

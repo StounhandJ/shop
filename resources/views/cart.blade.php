@@ -83,7 +83,7 @@
                                                 placeholder="Имя*" required>
                                         </div>
                                         <div class="col-md-6 form-group mb-5">
-                                            <input type="tel" class="form-control" name="phone" id="phone"
+                                            <input type="tel" class="form-control" name="phone" id="phone" data-phone-pattern
                                                 placeholder="Контактный телефон*" required>
                                         </div>
                                     </div>
@@ -115,7 +115,11 @@
                                                 Доставка</label>
                                         </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p>ВНИМАНИЕ! Цены на сайте могут отличаться от реальных, для уточнения итоговой стоимости дождитесь звонка консультанта.</p>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-12 form-group">
                                             <input type="submit" value="Заказать" class="btn btn-primary form-button">
@@ -154,5 +158,6 @@
             </div>
 
         </section>
+        
     @endif
 @endsection
