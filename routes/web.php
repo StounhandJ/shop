@@ -44,6 +44,10 @@ Route::get('/info', function () {
     return view('info');
 })->name("info");
 
+Route::get('/consultation', function () {
+    return view('consultation', ["departments" => \App\Models\Department::all()]);
+})->name("consultation");
+
 Route::get('/c/{department:e_name}/{category:e_name?}', [CatalogController::class, "index"])
     ->middleware("cache.page")
     ->where('department', '[A-Za-z|_0-9]+')
