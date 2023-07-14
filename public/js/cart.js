@@ -108,7 +108,7 @@ $(document).ready(function () {
         return false;
     });
 
-    $("form").submit(function () {
+    $("form#cartId").submit(function () {
         var data = {};
         $(this)
             .serializeArray()

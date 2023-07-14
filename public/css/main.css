@@ -164,6 +164,7 @@ a#scrollUp i {
 .header-top-row{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .social-icons ul {
@@ -3146,4 +3147,11 @@ h4.filter-btn button:hover {
 
 .popular-products__card-details {
     width: 50%;
+}
+
+.consultation{
+    color: #696763;
+}
+.consultation:hover{
+    color: #75c5f0;
 }

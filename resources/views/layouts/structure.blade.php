@@ -33,7 +33,7 @@
             <div class="header_top">
                 <div class="container">
                     <div class="row header-top-row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="contactinfo">
                                 <ul class="nav nav-pills">
                                     <li><a href="tel:+79788500420"><i class="fa fa-phone header-contact-icon"></i>+7
@@ -44,11 +44,15 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4 text-center">
+                            <a href="{{route('consultation')}}" class="consultation">Консультация с ветеринаром</a>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="social-icons pull-right">
                                 <ul class="nav navbar-nav">
                                     <li>
-                                        <a href="https://wapp.click/79788500420" class="soc-whatsapp" title="Белый волк в вотсаппе">
+                                        <a href="https://wapp.click/79788500420" class="soc-whatsapp"
+                                            title="Белый волк в вотсаппе">
                                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -59,7 +63,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://viber.click/79788500420" class="soc-viber" title="Белый волк в вайбере">
+                                        <a href="https://viber.click/79788500420" class="soc-viber"
+                                            title="Белый волк в вайбере">
                                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -70,7 +75,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://t.me/Bel_Volk_Zoo" class="soc-tg" title="Белый волк в телеграмме">
+                                        <a href="https://t.me/Bel_Volk_Zoo" class="soc-tg"
+                                            title="Белый волк в телеграмме">
                                             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -287,7 +293,8 @@
     });
 </script>
 <noscript>
-    <div><img src="https://mc.yandex.ru/watch/85838985" style="position:absolute; left:-9999px;" alt="" /></div>
+    <div><img src="https://mc.yandex.ru/watch/85838985" style="position:absolute; left:-9999px;" alt="" />
+    </div>
 </noscript>
 <!-- /Yandex.Metrika counter -->
 
