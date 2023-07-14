@@ -67,7 +67,7 @@ jobs:
         if: steps.vendor-cache.outputs.cache-hit != 'true'
         run: composer install -q --ignore-platform-reqs --no-scripts --optimize-autoloader --no-progress
       
-      - name: Check Composer
+      - name: UPDATE dependensies
         run: composer update -W
 
       - name: Generate key
