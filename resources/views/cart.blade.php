@@ -121,6 +121,15 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="form-check col-md-12">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault2" required>
+                                            <label class="form-check-label" for="flexCheckDefault2">
+                                                Согласие на обработку персональных данных
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-12 form-group">
                                             <input type="submit" value="Заказать" class="btn btn-primary form-button">
                                         </div>
