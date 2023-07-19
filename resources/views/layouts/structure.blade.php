@@ -20,6 +20,8 @@
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/css/price-range.css" rel="stylesheet">
 
+    <link rel="icon" href="/images/ico/favicon.svg" type="image/svg+xml">
+
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -45,7 +47,7 @@
                             </div>
                         </div>
                         <div class="col-sm-4 text-center">
-                            <a href="{{route('consultation')}}" class="consultation">Консультация с ветеринаром</a>
+                            <a href="{{route('consultation')}}#custom" class="consultation">Консультация с ветеринаром <img src="/images/arrows.svg"></a>
                         </div>
                         <div class="col-sm-4">
                             <div class="social-icons pull-right">

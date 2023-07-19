@@ -3150,10 +3150,16 @@ h4.filter-btn button:hover {
 }
 
 .consultation{
-    color: #696763;
-    display: block;
-    padding: 10px 0;
+    color: white;
+    background: #75c4f1;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 20px;
 }
+
 .consultation:hover{
-    color: #75c5f0;
+    color: white;
+    background: #66aad1;
 }

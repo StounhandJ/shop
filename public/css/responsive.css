@@ -675,6 +675,11 @@
     .product-information span span {
         float: none;
     }
+    .form-check{
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+    }
 }
 
 @media screen and (max-width: 401px) {
